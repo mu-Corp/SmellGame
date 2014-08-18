@@ -5,6 +5,7 @@ sudo apt-get install git-core
 git config --global color.diff auto
 git config --global color.status auto
 git config --global color.branch auto
+git config --global push.default matching
 git config --global user.name "$1"
 git config --global user.email $2
 
@@ -24,6 +25,7 @@ python -c "import django; print django.get_version()"
 # echo "########## INIT REPERTORY SMELLGAME ##########"
 # django-admin.py startproject SmellGame
 # cd SmellGame
+# python manage.py startapp formapp
 # touch README.md
 # git init
 # git commit -a
