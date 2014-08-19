@@ -1,8 +1,16 @@
 # SmellGame
 
-SmellGame is a web application as part of iGEM Paris Bettencourt 2014 projects.
+SmellGame is a web application as part of iGEM Paris Bettencourt 2014 projects. It uses Django Frameworks and SQLite data base.
 
-SmellGame uses Django Frameworks and SQLite data base.
+Collaborators :
+
+| Name             | GitHub Profile |
+| ---------------- | -------------- |
+| Arnaud Ferre     | @ArnoNoo       |
+| Florian Thonier  | @kertrej       |
+| Jean Coquet      | @JeanCoq       |
+| Lucas Lelann     | @lucaslelann   |
+| Nathan Foulquier | @Nurtal        |
 
 ## Setup & Installation
 
