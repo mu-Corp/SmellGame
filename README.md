@@ -6,7 +6,7 @@ SmellGame uses Django Frameworks and SQLite data base.
 
 ## Setup & Installation
 
-### Django 1.6.5
+### Django 1.x
 
 Linux :
 
