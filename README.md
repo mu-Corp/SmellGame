@@ -4,13 +4,13 @@ SmellGame is a web application as part of iGEM Paris Bettencourt 2014 projects. 
 
 Collaborators :
 
-| Name             | GitHub Profile                                |
-| ---------------- | --------------------------------------------- |
-| Arnaud Ferre     | [ArnoNoo](https://github.com/ArnoNoo)         |
-| Florian Thonier  | [kertrej](https://github.com/kertrej)         |
-| Jean Coquet      | [JeanCoq](https://github.com/JeanCoq)         |
-| Lucas Lelann     | [lucaslelann](https://github.com/lucaslelann) |
-| Nathan Foulquier | [Nurtal](https://github.com/Nurtal)           |
+| Name             | GitHub Profile                                | Linkedin Profile                                                       |
+| ---------------- | --------------------------------------------- | ---------------------------------------------------------------------- |
+| Arnaud Ferre     | [ArnoNoo](https://github.com/ArnoNoo)         |                                                                        |
+| Florian Thonier  | [kertrej](https://github.com/kertrej)         |                                                                        |
+| Jean Coquet      | [JeanCoq](https://github.com/JeanCoq)         |  [fr.linkedin.com/in/jeancoquet](http://fr.linkedin.com/in/jeancoquet) |
+| Lucas Lelann     | [lucaslelann](https://github.com/lucaslelann) |                                                                        |
+| Nathan Foulquier | [Nurtal](https://github.com/Nurtal)           |                                                                        |
 
 ## Setup & Installation
 
