@@ -2,8 +2,6 @@
 
 SmellGame is a web application as part of iGEM Paris Bettencourt 2014 projects.
 
-test a sup
-
 SmellGame uses Django Frameworks and SQLite data base.
 
 ## Setup & Installation
