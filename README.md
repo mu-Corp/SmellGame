@@ -10,7 +10,7 @@ Collaborators :
 | Florian Thonier  | [kertrej](https://github.com/kertrej)                   |                                                                                                          |
 | Jean Coquet      | [JeanCoq](https://github.com/JeanCoq)                   |  [fr.linkedin.com/in/jeancoquet](http://fr.linkedin.com/in/jeancoquet)                                   |
 | Lucas Lelann     | [lucaslelann](https://github.com/lucaslelann)           |                                                                                                          |
-| Nathan Foulquier | [Nurtal](https://github.com/Nurtal)                     |                                                                                                          |
+| Nathan Foulquier | [Nurtal](https://github.com/Nurtal)                     |  [fr.linkedin.com/in/nathanfoulquier](http://fr.linkedin.com/in/nathanfoulquier)                         |
 
 ## Setup & Installation
 
