@@ -89,7 +89,7 @@ STATIC_URL = '/static/'
 # Directory of templates
 relativeTemplatePath = BASE_DIR + "/templates/" #effective for everybody (see / or \ maybe...)
 TEMPLATE_DIRS = (
-                 relativeTemplatePath
+                 relativeTemplatePath,
 )
 
 
