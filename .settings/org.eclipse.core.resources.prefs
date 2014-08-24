@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
 encoding//SmellGuess/urls.py=utf-8
 encoding//SmellGuess/views.py=utf-8
+encoding//templates/SmellGuessTemplate/game.html=UTF-8
+encoding//templates/SmellGuessTemplate/home.html=UTF-8
