@@ -2,30 +2,26 @@
 
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from django.shortcuts import redirect, render
 
-
+from datetime import datetime
 
 
 
 def home(request):
-    text = """<h1>Bienvenue sur SmellGame !</h1>
-              <p>Ceci est la page d'accueil. Il va falloir créer un template adéquate pour cette page (Nathan). !</p>"""
-              
-    return HttpResponse(text)
+    
+    return render(request, 'SmellGuessTemplate/home.html', {'current_date': datetime.now()})
 
 
 
 def identification(request):
-    text = """<h1>Vous êtes sur la page d'identification !</h1>
-              <p>Il va falloir créer un template adéquate pour cette page (Nathan).</p>"""
-              
-    return HttpResponse(text)
+    
+    return render(request, 'SmellGuessTemplate/identification.html', {'current_date': datetime.now()})
 
 
 
 def game(request):
-    text = """<h1>Vous êtes sur la page du jeu !</h1>
-              <p>Il va falloir créer un template adéquate pour cette page (Nathan).</p>"""
-              
-    return HttpResponse(text)
+    
+    return render(request, 'SmellGuessTemplate/game.html', {'current_date': datetime.now()})
+    

@@ -1,8 +1,10 @@
 from django.conf.urls import patterns, url
 
-urlpatterns = patterns('',
-                       url(r'^home/$', 'SmellGuess.views.home'),
-                       url(r'^identification/$', 'SmellGuess.views.identification'),
-                       url(r'^game/$', 'SmellGuess.views.game'),
+
+
+urlpatterns = patterns('SmellGuess.views',#main path
+                       url(r'^home/$', 'home'),
+                       url(r'^identification/$', 'identification'),
+                       url(r'^game/$', 'game'),
                        #url(r'^URL_name/$', 'AppName.views.FunctionName'),
 )

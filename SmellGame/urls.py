@@ -6,4 +6,5 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = [
                url(r'^smellguess/', include('SmellGuess.urls')),
+               url(r'^smellgalaxy/', include('SmellGalaxy.urls')),
 ]
