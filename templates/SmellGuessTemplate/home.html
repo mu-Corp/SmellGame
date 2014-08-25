@@ -15,4 +15,8 @@
 	<p>Exemple de transmission de variable entre la vue et le template (tu peux choisir les variables que tu veux) :</p>
 	<h1>{{ current_date }}</h1>
 	
+	<form action="{% url "SmellGuess.views.identification" %}" method="get">
+		<input type="submit" value="Identification" />
+	</form>
+	
 </html>
