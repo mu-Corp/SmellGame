@@ -14,16 +14,21 @@ from datetime import datetime
 #######################    FUNCTIONS    ########################
 ################################################################
 
-def home(request):
-    
+
+def home(request):    
     return render(request, 'SmellGuessTemplate/home.html', {'current_date': datetime.now()})
 
 
-
-def identification(request):
-    
+def enter(request):
     return render(request, 'SmellGuessTemplate/identification.html', {'current_date': datetime.now()})
 
+
+#######################
+
+
+
+
+#######################
 
 
 def game(request):

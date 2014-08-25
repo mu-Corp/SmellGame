@@ -37,8 +37,8 @@
 					</br></br>
 					
 					<h3>Example with form, action (try to call a python function...):</h3>
-					<form action="" method="get">
-						{% csrf_token %}
+					<form action="{% url "SmellGuess.views.enter" %}" method="POST">
+						{% csrf_token %} <!-- Security variable, don't touch -->
 						<input type="submit" value="Access" />
 					</form>
 					
@@ -56,20 +56,6 @@
 		  	</header>
 		
 		</div>
-
-<<<<<<< HEAD
-	<p>Ceci est la page d'accueil. Il va falloir creer un template adequate pour cette page (Nathan). !</p>
-	
-	<p>Exemple de transmission de variable entre la vue et le template (tu peux choisir les variables que tu veux) :</p>
-	<h1>{{ current_date }}</h1>
-	
-	<form action="{% url "SmellGuess.views.identification" %}" method="get">
-		<input type="submit" value="Identification" />
-	</form>
-	
-</html>
-=======
-
 		
 		<!-- content -->
 		<div class="wrapper row2">
@@ -93,4 +79,3 @@
 	</body>
 
 </html>
->>>>>>> fbd3c41f0d1664d1b954d04bba3fb08f0bf779e2
