@@ -20,7 +20,8 @@ print BASE_DIR
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '_!tech41)94ulwd0e+o^bcf&0#bjj3b*=zixxm2q8ha(&1nnzm'
-r
+#r : was uncommentted, useful ???
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -39,7 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SmellGuess',
-	'register',
+	#'register', A quoi ça sert ???
 )
 
 MIDDLEWARE_CLASSES = (
