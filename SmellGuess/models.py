@@ -26,7 +26,12 @@ class Smeller(models.Model):
 class Sample(models.Model):
     name = models.CharField(max_length=42)
     intensity = models.CharField(max_length=42)
-'''    
+	sex = models.CharField(max_length=42)
+	old = models.PositiveSmallIntegerField()
+	deo = models.BooleanField()
+	deo_type = models.CharField(max_length=42)
+	food_type = models.CharField(max_length=42)
+'''
     
 ################################################################
 #######################    FUNCTIONS    ########################
