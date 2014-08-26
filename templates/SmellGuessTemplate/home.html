@@ -36,15 +36,16 @@
 					
 					</br></br>
 					
-					<h3>Example with form, action (try to call a python function...):</h3>
-					<form action="{% url "SmellGuess.views.enter" %}" method="POST">
+					<h3>Example with tag %url%:</h3>
+					<form action="{% url "SmellGuess.views.registrationView" %}" method="POST">
 						{% csrf_token %} <!-- Security variable, don't touch -->
 						<input type="submit" value="Access" />
 					</form>
 					
 					</br>
 					
-					<h3>Example with call of a python variable:</h3>
+					<h3>Example with call of a python variable (see views.py):</h3>
+					<!-- model: {{ var_name_in_views.py }}-->
 					<p>Current date is : {{ current_date }}</p>
 					
 					</br>
