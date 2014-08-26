@@ -11,24 +11,43 @@ from django.shortcuts import redirect, render
 from datetime import datetime
 
 ################################################################
-#######################    FUNCTIONS    ########################
+#########################    VIEWS    ##########################
 ################################################################
+'''
+Modèle de fonctiond de la vue :
+def fonctionAppeleeParURL(request, autresVar):
+    return render(request, 'templateAppelePourgeneration', dict={'varName': valeur})
+'''
 
-def home(request):
-    
+def homeView(request):    
     return render(request, 'SmellGuessTemplate/home.html', {'current_date': datetime.now()})
 
-
-
-def identification(request):
+def homeViewTest(request):
+    return render(request, 'SmellGuessTemplate/home.html', {'current_date': 2014})
     
+#######################
+
+def registrationView(request):
+
     return render(request, 'SmellGuessTemplate/identification.html', {'current_date': datetime.now()})
 
 
 
+#######################
+
 def game(request):
-    
     return render(request, 'SmellGuessTemplate/game.html', {'current_date': datetime.now()})
+    '''
+    #user==True si le smeller s'est bien identifié auparavant sur la page d'identification
+    if user == 1:
+        return render(request, 'SmellGuessTemplate/game.html', {'current_date': datetime.now()})
+    else:
+        return render(request, 'SmellGuessTemplate/identification.html', {'current_date': datetime.now()})
+    '''
+
+###############################################################
+####################    LOCAL FUNCTIONS    ####################
+###############################################################
 
 
 ###############################################################

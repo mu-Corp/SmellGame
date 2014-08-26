@@ -8,6 +8,7 @@ encoding//SmellGame/settings.py=utf-8
 encoding//SmellGame/urls.py=utf-8
 encoding//SmellGame/wsgi.py=utf-8
 encoding//SmellGuess/admin.py=utf-8
+encoding//SmellGuess/forms.py=utf-8
 encoding//SmellGuess/models.py=utf-8
 encoding//SmellGuess/tests.py=utf-8
 encoding//SmellGuess/urls.py=utf-8
