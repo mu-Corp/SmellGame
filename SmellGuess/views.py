@@ -4,9 +4,9 @@
 #######################    LIBRARIES    ########################
 ################################################################
 
-from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
+from forms import SmellerModelForm
 
 from datetime import datetime
 
@@ -28,14 +28,12 @@ def homeViewTest(request):
 #######################
 
 def registrationView(request):
-
-    return render(request, 'SmellGuessTemplate/identification.html', {'current_date': datetime.now()})
-
-
+    form = SmellerModelForm()
+    return render(request, 'SmellGuessTemplate/registration.html', {'current_date': datetime.now(), 'form': form})
 
 #######################
 
-def game(request):
+def gameView(request):
     return render(request, 'SmellGuessTemplate/game.html', {'current_date': datetime.now()})
     '''
     #user==True si le smeller s'est bien identifié auparavant sur la page d'identification
