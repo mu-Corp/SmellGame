@@ -1,43 +1,6 @@
 <!DOCTYPE html>
 
 <html lang="fr" dir="ltr">
-<<<<<<< HEAD
-<head>
-<title>Homepage (In Progress)</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="Layout.css">
-</head>
-<body>
-<div class="wrapper row1">
-  <header id="header" class="clear">
-    <div id="hgroup">
-      <h1><a href="#">SmellGame</a></h1>
-      <h2>Default template & work in progress</h2>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="home.html">Homepage</a></li>
-        <li><a href="contact.html">Register</a></li>
-        <li><a href="game.html">The Game</a></li>
-        <li class="last"><a href="#">Contact us</a></li>
-      </ul>
-    </nav>
-  </header>
-</div>
-<!-- content -->
-<div class="wrapper row2">
-  <div id="container" class="clear">
-    <!-- content body -->
-    <section id="slider"><a href="#"><img src="images/Dna.jpg" alt=""></a></section>
-    <!-- main content -->
-	<p>Current date is : {{ current_date }}</p>
-    
-  <footer id="footer" class="clear">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Depress Team</a></p>
-  </footer>
-</div>
-</body>
-=======
 	
 	<head>
 		<title>Homepage (In Progress)</title>
@@ -59,7 +22,7 @@
 			    <nav>
 			    	<ul>
 				        <li><a href="home.html">Homepage</a></li>
-				        <li><a href="Identification.html">Register</a></li>
+				        <li><a href="identification.html">Register</a></li>
 				        <li><a href="game.html">The Game</a></li>
 				        <li class="last"><a href="#">Contact us</a></li>
 			      	</ul>
@@ -69,14 +32,14 @@
 			    
 			    <div>
 			    	<h3>Example with hyperlink:</h3>
-			    	<a href="../identification">Access to identification</a>
+			    	<a href="../registration">Access to registration</a>
 					
 					</br></br>
 					
 					<h3>Example with tag %url%:</h3>
 					<form action="{% url "SmellGuess.views.registrationView" %}" method="POST">
 						{% csrf_token %} <!-- Security variable, don't touch -->
-						<input type="submit" value="Access" />
+						<input type="submit" value="Access  to registration" />
 					</form>
 					
 					</br>
@@ -114,7 +77,8 @@
 		
 			</div>
 		
+		</div>
+		
 	</body>
-
->>>>>>> origin/master
+	
 </html>

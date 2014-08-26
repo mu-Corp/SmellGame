@@ -12,6 +12,6 @@ urlpatterns = [
 
 
 # For the register application
-urlpatterns += patterns('SmellGame.register.views',
-                       url(r'^contact$', 'contact', name='contact'),
-)
+# urlpatterns += patterns('SmellGame.register.views',
+#                        url(r'^contact$', 'contact', name='contact'),
+# )
