@@ -9,3 +9,9 @@ urlpatterns = [
                url(r'^smellguess/', include('SmellGuess.urls')),
                url(r'^smellgalaxy/', include('SmellGalaxy.urls')),
 ]
+
+
+# For the register application
+urlpatterns += patterns('SmellGame.register.views',
+                       url(r'^contact$', 'contact', name='contact'),
+)
