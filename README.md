@@ -9,7 +9,7 @@ Collaborators :
 | Arnaud Ferre     | [ArnoNoo](https://github.com/ArnoNoo)                   |  [fr.linkedin.com/in/arnaudferre/](http://fr.linkedin.com/in/arnaudferre) |
 | Florian Thonier  | [kertrej](https://github.com/kertrej)                   |                                                                                                          |
 | Jean Coquet      | [JeanCoq](https://github.com/JeanCoq)                   |  [fr.linkedin.com/in/jeancoquet](http://fr.linkedin.com/in/jeancoquet)                                   |
-| Lucas Lelann     | [lucaslelann](https://github.com/lucaslelann)           |                                                                                                          |
+| Lucas Lelann     | [lucaslelann](https://github.com/lucaslelann)           |    [https://www.linkedin.com/in/lucaslelann]                                                                                                      |
 | Nathan Foulquier | [Nurtal](https://github.com/Nurtal)                     |  [fr.linkedin.com/in/nathanfoulquier](http://fr.linkedin.com/pub/nathan-foulquier/87/72/1)                         |
 
 ## Setup & Installation
