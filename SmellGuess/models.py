@@ -12,7 +12,7 @@ from django.db    import  models
 ################################################################
 
 # TO DO: Change the fields (Lucas)
-class Smeller(models.Model):
+class Person(models.Model):
 	name    = models.CharField(max_length=42)
 	email   = models.CharField(max_length=100)
 	smeller = models.BooleanField()
@@ -22,8 +22,8 @@ class Smeller(models.Model):
 	age     = models.PositiveSmallIntegerField()
 	#deo_type     = models.CharField(max_length=42)
 	#food_type    = models.CharField(max_length=42)
-	date_registration = models.DateTimeField()
-	id_Sample    = models.AutoField(primary_key=True)
+	date_registration = models.DateTimeField(auto_now_add=True)
+	id_person = models.AutoField(primary_key=True)
 	
 	
 
@@ -31,10 +31,10 @@ class Smeller(models.Model):
 
 # TO DO: Change the fields (Flo)
 class Sample(models.Model):
-	name_sampler = models.ForeignKey('Smeller')
-	name_smeller = models.ForeignKey('Smeller')
+	name_sampler = models.ForeignKey(Person, related_name='+')
+	name_smeller = models.ForeignKey(Person, related_name='+')
 	intensity    = models.CharField(max_length=42)
-	id_Sample    = models.AutoField(primary_key=True)
+	id_sample    = models.AutoField(primary_key=True)
 	date_registration = models.DateTimeField()
 	
 
