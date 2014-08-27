@@ -23,6 +23,7 @@ class Smeller(models.Model):
 	#deo_type     = models.CharField(max_length=42)
 	#food_type    = models.CharField(max_length=42)
 	date_registration = models.DateTimeField()
+	id_Sample    = models.AutoField(primary_key=True)
 	
 	
 
