@@ -12,11 +12,11 @@ from django.db    import  models
 ################################################################
 
 # TO DO: Change the fields (Lucas)
-class Person(models.Model):
+class Smeller(models.Model):
 	name    = models.CharField(max_length=42)
 	email   = models.CharField(max_length=100)
-	smeller = models.BooleanField()
-	sampler = models.BooleanField()
+	#smeller = models.BooleanField()
+	#sampler = models.BooleanField()
 	SEX_CHOICE = (('M', 'Male'),('F', 'Female'),)
 	sex     = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
 	age     = models.PositiveSmallIntegerField()
@@ -31,8 +31,8 @@ class Person(models.Model):
 
 # TO DO: Change the fields (Flo)
 class Sample(models.Model):
-	name_sampler = models.ForeignKey(Person, related_name='+')
-	name_smeller = models.ForeignKey(Person, related_name='+')
+	#name_sampler = models.ForeignKey(Person, related_name='+')
+	name_smeller = models.ForeignKey(Smeller, related_name='+')
 	intensity    = models.CharField(max_length=42)
 	id_sample    = models.AutoField(primary_key=True)
 	date_registration = models.DateTimeField()
