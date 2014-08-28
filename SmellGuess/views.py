@@ -19,7 +19,7 @@ def fonctionAppeleeParURL(request, autresVar):
     return render(request, 'templateAppelePourgeneration', dict={'varName': valeur})
 '''
 
-def homeView(request):    
+def homeView(request):
     return render(request, 'SmellGuessTemplate/home.html', {'current_date': datetime.now()})
 
 def homeViewTest(request):
