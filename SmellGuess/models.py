@@ -13,13 +13,13 @@ from django.db import models
 
 class Smeller(models.Model):
 	id                = models.AutoField(primary_key=True)
-	name              = models.CharField(max_length=42)
-	email             = models.CharField(max_length=100)
+	name              = models.CharField(max_length=42, default='')
+	email             = models.CharField(max_length=100, default='')
 	SEX_CHOICE        = (('M', 'Male'),('F', 'Female'),)
 	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
-	age               = models.PositiveSmallIntegerField()
-	date_registration = models.DateTimeField(auto_now_add=True)
-	samples 			= models.ManyToManyField('Sample', through='Guess')
+	age               = models.PositiveSmallIntegerField(default=18)
+	date_registration = models.DateTimeField(auto_now_add=True, default='')
+	samples = models.ManyToManyField('Sample', through='Guess')
 	
 ################################################################
 	
@@ -30,17 +30,11 @@ class Sample(models.Model):
 ################################################################
 
 class Guess(models.Model): 
-	smeller   	= models.ForeignKey('Smeller')
-	sample    	= models.ForeignKey('Sample')
-	intensity 	= models.PositiveSmallIntegerField()
-	odor      	= models.PositiveSmallIntegerField()
-	perfumes 	= models.ManyToManyField('Perfume', through='PerfumeGuessed')
-
-################################################################
-	
-class PerfumeGuessed(models.Model): 
-	guess   	= models.ForeignKey('Guess')
-	perfume    	= models.ForeignKey('Perfume')
+	smeller   = models.ForeignKey('Smeller')
+	sample    = models.ForeignKey('Sample')
+	intensity = models.PositiveSmallIntegerField()
+	odor      = models.PositiveSmallIntegerField()
+	perfumes  = models.ManyToManyField('Perfume')
 
 ################################################################
 

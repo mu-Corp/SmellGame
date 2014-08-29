@@ -2,23 +2,72 @@
 
 <html lang="fr">
 
-
 	<head>
    		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   		
+   		<style>
+			div {width:500px;height:400px;padding:10px;border:1px solid #aaaaaa;}
+		</style>
+   		
+   		<script>
+			function allowDrop(ev) {
+			    ev.preventDefault();
+			}
+			
+			function drag(ev) {
+			    ev.dataTransfer.setData("Text", ev.target.id);
+			}
+			
+			function drop(ev) {
+			    ev.preventDefault();
+			    var data = ev.dataTransfer.getData("Text");
+			    ev.target.appendChild(document.getElementById(data));
+			    //document.getElementById('id_perfumes').value += data+";";
+			    document.getElementById('id_perfumes').value += data+";";
+			}
+		</script>
+   		
 	</head>
 	
+	<body>
+		<h1>{{ error }}</h1>
 	
-	<h1>{{ error }}</h1>
+		<h1>Vous etes sur la page du jeu (avec drag and drop) !</h1>
 	
-	<h1>Vous etes sur la page du jeu (avec drag and drop) !</h1>
-    
-    <p>Bonjour {{ nameFromPOST }} en direct de la dernière page !</p>
-    
-    <p>Bonjour {{ nameFromDB }} en direct (ou presque) de la BDD !</p>
+		<p>Bonjour {{ smeller.name }} en direct de la dernière page !</p>
 	
-	<p>Librairie de Jean en cours de développement...</p>
-	
-	<a href="../home/">Return to homepage</a>
+		<table>
+			<tr>
+				<td>Parfumes :</td>
+				<td>Sample : {{ name_sample }}</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="divParfume" ondrop="drop(event)" ondragover="allowDrop(event)">
+						{% for perfume in listPerfumes %}
+							<img id="{{ perfume.id }}" src="{{ perfume.id }}.png" draggable="true" ondragstart="drag(event)" width="100" height="100">
+						{% endfor %}
+					</div>
+				</td>
+				<td>
+					<div id="divSample" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<form action="{% url "SmellGuess.views.gameView" %}" method="POST">
+						{% csrf_token %}
+						{{ form.as_p }}
+						<input type="submit" value="Next" />
+					</form>
+				</td>
+			</tr>
+		</table>
+		
+		<a href="../home/">Return to homepage</a>
+		
+	</body>
 
 	
 </html>

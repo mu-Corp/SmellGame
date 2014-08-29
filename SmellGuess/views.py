@@ -5,9 +5,9 @@
 ################################################################
 
 from django.http import HttpResponse, Http404
-from django.shortcuts import redirect, render
-
-from forms import SmellerModelForm
+from django.shortcuts import redirect, render 
+from forms import SmellerModelForm, GuessModelForm
+from SmellGuess.models import Smeller, Sample, Guess, Perfume
 
 from datetime import datetime
 
@@ -20,7 +20,17 @@ def fonctionAppeleeParURL(request, autresVar):
     return render(request, 'templateAppelePourgeneration', dict={'varName': valeur})
 '''
 
+'''
+# VAR SESSION
+request.session['idSmeller']
+request.session['nameSmeller']
+request.session['index_listSamples']
+'''
+
 def homeView(request):
+    request.session['idSmeller'] = None
+    request.session['nameSmeller'] = None
+    request.session['index_listSamples'] = None
     return render(request, 'SmellGuessTemplate/home.html', {'current_date': datetime.now()})
 
 def homeViewTest(request):
@@ -36,61 +46,51 @@ def registrationView(request):
 
 def gameView(request):
     
-    # Dict to transfer to the template in render:
-    paramToGenerateTemplate = dict()
-    
-    paramToGenerateTemplate['idFromPOST']                  = None 
-    paramToGenerateTemplate['nameFromPOST']                = None 
-    paramToGenerateTemplate['emailFromPOST']               = None 
-    paramToGenerateTemplate['sexFromPOST']                 = None 
-    paramToGenerateTemplate['ageFromPOST']                 = None 
-    paramToGenerateTemplate['samplesFromPOST']             = None 
-    
-    paramToGenerateTemplate['idFromDB']                  = None 
-    paramToGenerateTemplate['nameFromDB']                = None 
-    paramToGenerateTemplate['emailFromDB']               = None 
-    paramToGenerateTemplate['sexFromDB']                 = None 
-    paramToGenerateTemplate['ageFromDB']                 = None 
-    paramToGenerateTemplate['date_registrationFromDB']   = None 
-    paramToGenerateTemplate['samplesFromDB']             = None 
-    
+    listPerfumes = Perfume.objects.all() # Get all perfumes from DB
+    listSamples = Sample.objects.all() # Get all samples from DB
     
     # Collect data from smeller from registration form (POST method):
     if request.method == 'POST':  # If it's a POST request
-        form = SmellerModelForm(request.POST)  # then data is collected.
+        
+        if request.session['idSmeller'] == None : # If Smeller is not registrated
+            
+            formSmeller = SmellerModelForm(request.POST)  # then data is collected.
 
-        if form.is_valid(): # If data are valid (correct type, size, etc.)
-
+            if formSmeller.is_valid(): # If data are valid (correct type, size, etc.)
+                error = 'no error'
+                smeller = formSmeller.save() # Save in DB
+                
+                # Full sessions variables
+                request.session['idSmeller'] = smeller.id
+                request.session['nameSmeller'] = smeller.name
+                request.session['index_listSamples'] = 0
+            
+            else:
+                error = 'invalid data...'
+        
+        else : # Else Sample is guessed
             error = 'no error'
-
-            # Store specific data in local variable (TO DO: use directly a full object...):
-            #paramToGenerateTemplate['idFromPOST']                  = form.cleaned_data['id']
-            paramToGenerateTemplate['nameFromPOST']                = form.cleaned_data['name']
-            paramToGenerateTemplate['emailFromPOST']               = form.cleaned_data['email']
-            paramToGenerateTemplate['sexFromPOST']                 = form.cleaned_data['sex']
-            paramToGenerateTemplate['ageFromPOST']                 = form.cleaned_data['age']
-            
-
-            # Save date in DB:
-            
-            
-            
-            # Load data in DB:
-            paramToGenerateTemplate['nameFromDB']                = 'Ho ! Je suis coincé dans la BDD !' 
-            paramToGenerateTemplate['emailFromDB']               = None 
-            paramToGenerateTemplate['sexFromDB']                 = None 
-            paramToGenerateTemplate['ageFromDB']                 = None 
-            
-        else:
-            error = 'invalid data...'
-
+            formGuess = GuessModelForm(request.POST) # Guess data is collected
+            index_listSamples = request.session['index_listSamples'] # Get index of sample guessed
+            # Save guess with data form, sample and smeller
+            save_GuessModelForm(formGuess, listSamples[index_listSamples], Smeller.objects.get(id=request.session['idSmeller']))
+            request.session['index_listSamples'] += 1 # Update index
+        
     else: # if it's not post, it's not safe
         error = 'You try to connect to this game with the wrong way, please, go back to home...'
     
+    index_listSamples = request.session['index_listSamples']
+    formGuess = GuessModelForm()
+    
+    # Dict to transfer to the template in render:
+    paramToGenerateTemplate = dict()
     
     #Store data in the dicstionnary:
     paramToGenerateTemplate['error'] = error
-    
+    paramToGenerateTemplate['smeller'] = Smeller.objects.get(id=request.session['idSmeller'])
+    paramToGenerateTemplate['name_sample'] = listSamples[index_listSamples].name
+    paramToGenerateTemplate['form'] = formGuess
+    paramToGenerateTemplate['listPerfumes'] = listPerfumes
     
     # To finish, generate the template game to send to user:
     return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
@@ -100,6 +100,28 @@ def gameView(request):
 ####################    LOCAL FUNCTIONS    ####################
 ###############################################################
 
+def save_GuessModelForm(guessModelForm, sample, smeller):
+    guess = Guess() # Init Guess
+    
+    # Update attr
+    guess.intensity = guessModelForm.data['intensity']
+    guess.odor = guessModelForm.data['odor']
+    guess.sample = sample
+    guess.smeller = smeller
+    
+    # Save guess
+    guess.save()
+        
+    # Add parfumes
+    listIdPerfumes = guessModelForm.data['perfumes'][:-1].split(';')
+    for idPerfume in listIdPerfumes :
+        perfume = Perfume.objects.get(id=idPerfume)
+        guess.perfumes.add(perfume)
+    
+    # Save guess with parfumes
+    guess.save()
+    
+    return guess
 
 ###############################################################
 ####################    LOCAL EXECUTION    ####################
