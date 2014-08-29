@@ -19,7 +19,7 @@ class Smeller(models.Model):
 	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
 	age               = models.PositiveSmallIntegerField()
 	date_registration = models.DateTimeField(auto_now_add=True)
-	samples = models.ManyToManyField('Sample', through='Guess')
+	samples 			= models.ManyToManyField('Sample', through='Guess')
 	
 ################################################################
 	
@@ -30,17 +30,17 @@ class Sample(models.Model):
 ################################################################
 
 class Guess(models.Model): 
-	smeller   = models.ForeignKey('Smeller')
-	sample    = models.ForeignKey('Sample')
-	intensity = models.PositiveSmallIntegerField()
-	odor      = models.PositiveSmallIntegerField()
-	perfumes = models.ManyToManyField('Perfume', through='PerfumeGuessed')
+	smeller   	= models.ForeignKey('Smeller')
+	sample    	= models.ForeignKey('Sample')
+	intensity 	= models.PositiveSmallIntegerField()
+	odor      	= models.PositiveSmallIntegerField()
+	perfumes 	= models.ManyToManyField('Perfume', through='PerfumeGuessed')
 
 ################################################################
 	
 class PerfumeGuessed(models.Model): 
-	guess   = models.ForeignKey('Guess')
-	perfume    = models.ForeignKey('Perfume')
+	guess   	= models.ForeignKey('Guess')
+	perfume    	= models.ForeignKey('Perfume')
 
 ################################################################
 

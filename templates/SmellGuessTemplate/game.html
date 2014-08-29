@@ -2,20 +2,23 @@
 
 <html lang="fr">
 
+
 	<head>
    		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	</head>
 	
 	
-
+	<h1>{{ error }}</h1>
+	
 	<h1>Vous etes sur la page du jeu (avec drag and drop) !</h1>
     
-    <p>Il va falloir creer un template adequate pour cette page (Nathan).</p>
+    <p>Bonjour {{ nameFromPOST }} en direct de la dernière page !</p>
+    
+    <p>Bonjour {{ nameFromDB }} en direct (ou presque) de la BDD !</p>
 	
-	<p>Il faudra trouver une librairie pour ca. Quand on aura fait les 2 autres templates, on cherchera tous.
-	</p>
+	<p>Librairie de Jean en cours de développement...</p>
+	
+	<a href="../home/">Return to homepage</a>
 
-	<p>Exemple de transmission de variable entre la vue et le template (tu peux choisir les variables que tu veux) :</p>
-	<h1>{{ current_date }}</h1>
 	
 </html>

@@ -6,6 +6,7 @@
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
+
 from forms import SmellerModelForm
 
 from datetime import datetime
@@ -34,14 +35,66 @@ def registrationView(request):
 #######################
 
 def gameView(request):
-    return render(request, 'SmellGuessTemplate/game.html', {'current_date': datetime.now()})
-    '''
-    #user==True si le smeller s'est bien identifié auparavant sur la page d'identification
-    if user == 1:
-        return render(request, 'SmellGuessTemplate/game.html', {'current_date': datetime.now()})
-    else:
-        return render(request, 'SmellGuessTemplate/identification.html', {'current_date': datetime.now()})
-    '''
+    
+    # Dict to transfer to the template in render:
+    paramToGenerateTemplate = dict()
+    
+    paramToGenerateTemplate['idFromPOST']                  = None 
+    paramToGenerateTemplate['nameFromPOST']                = None 
+    paramToGenerateTemplate['emailFromPOST']               = None 
+    paramToGenerateTemplate['sexFromPOST']                 = None 
+    paramToGenerateTemplate['ageFromPOST']                 = None 
+    paramToGenerateTemplate['samplesFromPOST']             = None 
+    
+    paramToGenerateTemplate['idFromDB']                  = None 
+    paramToGenerateTemplate['nameFromDB']                = None 
+    paramToGenerateTemplate['emailFromDB']               = None 
+    paramToGenerateTemplate['sexFromDB']                 = None 
+    paramToGenerateTemplate['ageFromDB']                 = None 
+    paramToGenerateTemplate['date_registrationFromDB']   = None 
+    paramToGenerateTemplate['samplesFromDB']             = None 
+    
+    
+    # Collect data from smeller from registration form (POST method):
+    if request.method == 'POST':  # If it's a POST request
+        form = SmellerModelForm(request.POST)  # then data is collected.
+
+        if form.is_valid(): # If data are valid (correct type, size, etc.)
+
+            error = 'no error'
+
+            # Store specific data in local variable (TO DO: use directly a full object...):
+            #paramToGenerateTemplate['idFromPOST']                  = form.cleaned_data['id']
+            paramToGenerateTemplate['nameFromPOST']                = form.cleaned_data['name']
+            paramToGenerateTemplate['emailFromPOST']               = form.cleaned_data['email']
+            paramToGenerateTemplate['sexFromPOST']                 = form.cleaned_data['sex']
+            paramToGenerateTemplate['ageFromPOST']                 = form.cleaned_data['age']
+            
+
+            # Save date in DB:
+            
+            
+            
+            # Load data in DB:
+            paramToGenerateTemplate['nameFromDB']                = 'Ho ! Je suis coincé dans la BDD !' 
+            paramToGenerateTemplate['emailFromDB']               = None 
+            paramToGenerateTemplate['sexFromDB']                 = None 
+            paramToGenerateTemplate['ageFromDB']                 = None 
+            
+        else:
+            error = 'invalid data...'
+
+    else: # if it's not post, it's not safe
+        error = 'You try to connect to this game with the wrong way, please, go back to home...'
+    
+    
+    #Store data in the dicstionnary:
+    paramToGenerateTemplate['error'] = error
+    
+    
+    # To finish, generate the template game to send to user:
+    return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
+
 
 ###############################################################
 ####################    LOCAL FUNCTIONS    ####################
