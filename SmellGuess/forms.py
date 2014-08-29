@@ -14,3 +14,4 @@ from models import Smeller
 class SmellerModelForm(forms.ModelForm):
     class Meta:
         model = Smeller
+        exclude = ('samples',)
