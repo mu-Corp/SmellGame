@@ -3,19 +3,22 @@
 ################################################################
 #######################    LIBRARIES    ########################
 ################################################################
-
+# Django libs:
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render 
-from forms import SmellerModelForm, GuessModelForm
-from SmellGuess.models import Smeller, Sample, Guess, Perfume
 
+# External libs:
 from datetime import datetime
+
+# Local import:
+from forms import SmellerModelForm, GuessModelForm 
+from SmellGuess.models import Smeller, Sample, Guess, Perfume
 
 ################################################################
 #########################    VIEWS    ##########################
 ################################################################
 '''
-Modèle de fonctiond de la vue :
+Modèle de fonction de la vue :
 def fonctionAppeleeParURL(request, autresVar):
     return render(request, 'templateAppelePourgeneration', dict={'varName': valeur})
 '''
@@ -27,23 +30,25 @@ request.session['nameSmeller']
 request.session['index_listSamples']
 '''
 
+# Function call when the URL /home/ is call:
 def homeView(request):
+    
+    # Initialization of variable of session (use during all the session):
     request.session['idSmeller'] = None
     request.session['nameSmeller'] = None
     request.session['index_listSamples'] = None
+    
+    # Render:
     return render(request, 'SmellGuessTemplate/home.html', {'current_date': datetime.now()})
-
-def homeViewTest(request):
-    return render(request, 'SmellGuessTemplate/home.html', {'current_date': 2014})
     
 #######################
-
+# Function call when the URL /registration/ is call:
 def registrationView(request):
     form = SmellerModelForm()
     return render(request, 'SmellGuessTemplate/registration.html', {'current_date': datetime.now(), 'form': form})
 
 #######################
-
+# Function call when the URL /game/ is call:
 def gameView(request):
     
     listPerfumes = Perfume.objects.all() # Get all perfumes from DB

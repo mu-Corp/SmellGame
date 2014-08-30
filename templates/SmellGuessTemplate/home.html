@@ -21,35 +21,17 @@
 
 			    <nav>
 			    	<ul>
-				        <li><a href="home.html">Homepage</a></li>
-				        <li><a href="identification.html">Register</a></li>
-				        <li><a href="game.html">The Game</a></li>
-				        <li class="last"><a href="#">Contact us</a></li>
+				        <li><a href="#">Homepage</a></li>
+				        <li><a href="../registration/">Register</a></li>
+				        <li><a href="../game/">The Game</a></li>
 			      	</ul>
 			    </nav>
 			    
 			    </br></br>
 			    
 			    <div>
-			    	<h3>Example with hyperlink:</h3>
-			    	<a href="../registration">Access to registration</a>
-					
-					</br></br>
-					
-					<h3>Example with tag %url%:</h3>
-					<form action="{% url "SmellGuess.views.registrationView" %}" method="POST">
-						{% csrf_token %} <!-- Security variable, don't touch -->
-						<input type="submit" value="Access  to registration" />
-					</form>
-					
-					</br>
-					
-					<h3>Example with call of a python variable (see views.py):</h3>
-					<!-- model: {{ var_name_in_views.py }}-->
-					<p>Current date is : {{ current_date }}</p>
-					
-					</br>
-			    
+			    	<h3>Welcome Smeller!</h3>
+			    	<a href="../registration">Click here to begin the game!</a			    
 			    </div>
 		    
 		    	</br></br>
@@ -72,7 +54,7 @@
 			    <!-- main content -->
 			    
 	  			<footer id="footer" class="clear">
-	    			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Depress Team</a></p>
+	    			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
 	  			</footer>
 		
 			</div>

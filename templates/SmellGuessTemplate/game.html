@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 
-<html lang="fr">
-
+<html lang="fr" dir="ltr">
+	
 	<head>
-   		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   		
-   		<style>
-			div {width:500px;height:400px;padding:10px;border:1px solid #aaaaaa;}
-		</style>
-   		
    		<script>
 			function allowDrop(ev) {
 			    ev.preventDefault();
@@ -26,48 +20,96 @@
 			    document.getElementById('id_perfumes').value += data+";";
 			}
 		</script>
-   		
+	
+		<title>Homepage (In Progress)</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="Layout.css">
 	</head>
 	
+	
+	
+	
 	<body>
-		<h1>{{ error }}</h1>
 	
-		<h1>Vous etes sur la page du jeu (avec drag and drop) !</h1>
-	
-		<p>Bonjour {{ smeller.name }} en direct de la dernière page !</p>
-	
-		<table>
-			<tr>
-				<td>Parfumes :</td>
-				<td>Sample : {{ name_sample }}</td>
-			</tr>
-			<tr>
-				<td>
-					<div id="divParfume" ondrop="drop(event)" ondragover="allowDrop(event)">
-						{% for perfume in listPerfumes %}
-							<img id="{{ perfume.id }}" src="{{ perfume.id }}.png" draggable="true" ondragstart="drag(event)" width="100" height="100">
-						{% endfor %}
-					</div>
-				</td>
-				<td>
-					<div id="divSample" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<form action="{% url "SmellGuess.views.gameView" %}" method="POST">
-						{% csrf_token %}
-						{{ form.as_p }}
-						<input type="submit" value="Next" />
-					</form>
-				</td>
-			</tr>
-		</table>
+		<div class="wrapper row1">
+			<header id="header" class="clear">
+		    
+			    <div id="hgroup">
+				      <h1><a href="#">SmellGame</a></h1>
+				      <h2>Default template & work in progress</h2>
+			    </div>
+
+			    <nav>
+			    	<ul>
+				        <li><a href="../home/">Homepage</a></li>
+				        <li><a href="../registration/">Register</a></li>
+				        <li><a href="#">The Game</a></li>
+			      	</ul>
+			    </nav>
+			    
+			    </br></br>
+			    
+			    <h1>Game page ({{ error }})</h1>
+    
+				<p>Hello {{ smeller.name }} (post method)</p>
+				
+				<div>
+					<table>
+						<tr>
+							<td>Parfumes :</td>
+							<td>Sample : {{ name_sample }}</td>
+						</tr>
+						<tr>
+							<td>
+								<div id="divParfume" ondrop="drop(event)" ondragover="allowDrop(event)" style="width:500px;height:400px;padding:10px;border:1px solid #aaaaaa;">
+									{% for perfume in listPerfumes %}
+										<img id="{{ perfume.id }}" src="{{ perfume.id }}.png" draggable="true" ondragstart="drag(event)" width="100" height="100">
+									{% endfor %}
+								</div>
+							</td>
+							<td>
+								<div id="divSample" ondrop="drop(event)" ondragover="allowDrop(event)" style="width:500px;height:400px;padding:10px;border:1px solid #aaaaaa;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<form action="{% url "SmellGuess.views.gameView" %}" method="POST">
+									{% csrf_token %}
+									{{ form.as_p }}
+									<input type="submit" value="Next" />
+								</form>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				
+			</header>
+		</div>
 		
-		<a href="../home/">Return to homepage</a>
+		<!-- content -->
+		<div class="wrapper row2">
+		  	<div id="container" class="clear">
+		    
+			    <!-- content body -->
+			    <section id="slider">
+			    	<a href="#">
+			    		<img src="images/Dna.jpg" >
+			    	</a>
+			    </section>
+			    
+			    <!-- main content -->
+			    
+	  			<footer id="footer" class="clear">
+	    			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
+	  			</footer>
+		
+			</div>
+		</div>
+		
 		
 	</body>
-
+	
 	
 </html>

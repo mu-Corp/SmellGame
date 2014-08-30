@@ -18,7 +18,7 @@ class Smeller(models.Model):
 	SEX_CHOICE        = (('M', 'Male'),('F', 'Female'),)
 	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
 	age               = models.PositiveSmallIntegerField(default=18)
-	date_registration = models.DateTimeField(auto_now_add=True, default='')
+	date_registration = models.DateTimeField(auto_now_add=True)
 	samples = models.ManyToManyField('Sample', through='Guess')
 	
 ################################################################
