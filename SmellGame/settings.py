@@ -82,8 +82,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
+# Read the tuto !!! (http://fr.openclassrooms.com/informatique/cours/developpez-votre-site-web-avec-le-framework-django/les-templates-3)
+STATIC_URL = '/assets/'
 
-STATIC_URL = '/static/'
+absoluteStaticPath = BASE_DIR + "/assets/" #effective for everybody (see / or \ maybe...)
+STATICFILES_DIRS = (
+    absoluteStaticPath,
+)
 
 
 

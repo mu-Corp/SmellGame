@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 
+<!-- Load images, CSS and JS files-->
+{% load static %}
+
 <html lang="fr" dir="ltr">
 	
 	<head>
 		<title>Homepage (In Progress)</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="Layout.css">
+		<link rel="stylesheet" href="{% static 'css/Layout.css' %}">
 	</head>
 	
 	<body>
@@ -50,7 +53,7 @@
 			    <!-- content body -->
 			    <section id="slider">
 			    	<a href="#">
-			    		<img src="images/Dna.jpg" >
+			    		<img src="{% static 'images/Dna.jpg' %}" >
 			    	</a>
 			    </section>
 			    
