@@ -70,11 +70,13 @@
 						</tr>
 						<tr>
 							<td>
+							
 								<div id="divParfume" ondrop="drop(event)" ondragover="allowDrop(event)" style="width:500px;height:400px;padding:10px;border:1px solid #aaaaaa;">
 									{% for perfume in listPerfumes %}
-										<img id="{{ perfume.id }}" src="{% static perfume.path %}" draggable="true" ondragstart="drag(event)" width="100" height="100" style="border:1px solid #aaaaaa; margin:2px;">
+										<img id="{{ perfume.id }}" src="{% static perfume.path %}" draggable="true" ondragstart="drag(event)" width="100" height="100" style="border:1px solid #aaaaaa; margin:2px;cursor:move">
 									{% endfor %}
 								</div>
+								
 							</td>
 							<td>
 								<div id="divSample" ondrop="drop(event)" ondragover="allowDrop(event)" style="width:500px;height:400px;padding:10px;border:1px solid #aaaaaa;"></div>
