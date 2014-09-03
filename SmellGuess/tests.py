@@ -2,3 +2,9 @@
 from django.test import TestCase
 
 # Create your tests here.
+
+if varInexistante == None:
+    print "testable"
+
+
+

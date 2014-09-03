@@ -49,11 +49,9 @@
 			    </div>
 
 			    <nav>
-			    	<ul>
-				        <li><a href="../home/">Homepage</a></li>
-				        <li><a href="../registration/">Register</a></li>
-				        <li><a href="#">The Game</a></li>
-			      	</ul>
+			        <li><h3><a href="../home" style="border:1px solid #aaaaaa; margin:2px;">Return to homepage</a></h3>(delete data)</li>
+			        </br>
+			        <li><h3><a href="../registration" style="border:1px solid #aaaaaa; margin:2px;">Modify your profile</a></h3>(your current data are saved)</li>
 			    </nav>
 			    
 			    </br></br>
@@ -88,7 +86,8 @@
 								<form action="{% url "SmellGuess.views.gameView" %}" method="POST">
 									{% csrf_token %}
 									{{ form.as_p }}
-									<input type="submit" value="Next" />
+									<input type="submit" value="Validate" />
+									<h3>You could go back after if you want</h3>
 								</form>
 							</td>
 						</tr>
@@ -102,13 +101,6 @@
 		<!-- content -->
 		<div class="wrapper row2">
 		  	<div id="container" class="clear">
-		    
-			    <!-- content body -->
-			    <section id="slider">
-			    	<a href="#">
-			    		<img src="{% static 'images/Dna.jpg' %}" >
-			    	</a>
-			    </section>
 			    
 			    <!-- main content -->
 			    

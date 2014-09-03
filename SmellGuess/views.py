@@ -18,22 +18,20 @@ from SmellGuess.models import Smeller, Sample, Guess, Perfume
 #########################    VIEWS    ##########################
 ################################################################
 '''
-Modèle de fonction de la vue :
+# Modèle de fonction de la vue :
 def fonctionAppeleeParURL(request, autresVar):
     return render(request, 'templateAppelePourgeneration', dict={'varName': valeur})
-'''
 
-'''
-# VAR SESSION
-request.session['idSmeller']
-request.session['nameSmeller']
-request.session['index_listSamples']
+# Modèle d'une variable de session (cad variable qui reste accessible tant que le navigateur n'est pas fermé ou que la var soit supprimée)
+request.session['KeyName']
 '''
 
 # Function call when the URL /home/ is call:
 def homeView(request):
     
-    # Initialization of variable of session (use during all the session):
+    #TODO: delete all var and delete data from uncomplete game (possible)
+    
+    # RE-Initialization of variable of session (use during all the session):
     request.session['idSmeller'] = None
     request.session['nameSmeller'] = None
     request.session['index_listSamples'] = None
@@ -44,11 +42,14 @@ def homeView(request):
 #######################
 # Function call when the URL /registration/ is call:
 def registrationView(request):
+    
     form = SmellerModelForm()
+    
     return render(request, 'SmellGuessTemplate/registration.html', {'current_date': datetime.now(), 'form': form})
 
 #######################
 # Function call when the URL /game/ is call:
+# TODO: Use var in URL to generate a specific game page
 def gameView(request):
     
     listPerfumes = Perfume.objects.all() # Get all perfumes from DB
@@ -57,7 +58,8 @@ def gameView(request):
     # Collect data from smeller from registration form (POST method):
     if request.method == 'POST':  # If it's a POST request
         
-        if request.session['idSmeller'] == None : # If Smeller is not registrated
+        # If Smeller is not registrated = first visit of user on game page (TODO: conserve session var if return to registration page)
+        if request.session['idSmeller'] == None : 
             
             formSmeller = SmellerModelForm(request.POST)  # then data is collected.
 

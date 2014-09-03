@@ -21,18 +21,16 @@
 				      <h1><a href="#">SmellGame</a></h1>
 				      <h2>Default template & work in progress</h2>
 			    </div>
+			    
+			    <nav><li><h3><a href="../home" style="border:1px solid #aaaaaa; margin:2px;">Return to homepage</a></h3>(delete data)</nav></li>		    
 
-			    <nav>
-			    	<ul>
-				        <li><a href="../home/">Homepage</a></li>
-				        <li><a href="#">Register</a></li>
-				        <li><a href="../game/">The Game</a></li>
-			      	</ul>
-			    </nav>
+				</br></br>
+
+			    <div>
+			    	<h3>Smeller, you can begin with your smell-profile!</h3>
+			    </div>
 			    
-			    </br></br>
-			    
-			    <h1>Registration page</h1>
+			    </br>
     
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post">
 					{% csrf_token %}
