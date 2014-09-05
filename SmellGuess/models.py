@@ -6,6 +6,7 @@
 
 from django.db import models
 import random #random number for listToSmell
+#from djangotoolbox.fields import ListField
 
 ################################################################
 #######################    FUNCTIONS    ########################
@@ -20,7 +21,7 @@ def scoring(listToSmell):
 def isCorrect(spl, odor): 
 	# Make the verification between answer and correct odor.
 	# Increment the sample/refSample corresponding object
-	#for elt in odor : --> if odor can be a list of proposition (see in drag&drop return possibilities)
+	#for elt in odor :
 	if spl == odor : 
 		spl.nb_outed   = spl.nb_outed + 1
 		spl.nb_correct = spl.nb_correct + 1
@@ -31,43 +32,68 @@ def isCorrect(spl, odor):
 		return 0 #possibility to change by a ratio of correct answer
 '''
 
-def getOdorToGuess():
-	# Return a list of tube (identify by number) to guess
-	# 3 of reference odor (vegetable , ...) and 3 of samples
-	listToSmell = []
-	listRef     = []
-	listNotRef  = []
-	for elt in Sample.objects.all():
-		if elt.refOdor == True :
-			listRef.append(elt.id)
+def getOdorToGuess(theSmeller):
+		listToSmell = []
+		listRef     = []
+		listNotRef  = []
+		for elt in Sample.objects.all():
+			if elt.refOdor == True :
+				listRef.append(elt)
+			else :
+				listNotRef.append(elt)
+		print 'listNotRef', len(listNotRef)
+		print 'listRef',    len(listRef)
+		
+		# Part 1 : RefOdor
+		i=0
+		if len(listRef)-1 >=3:
+			max = len(listRef)-1; #print "m1", max
+			while i<3 :
+				nthToAdd =random.randint(0,max) 
+				if listRef[nthToAdd] not in listToSmell :
+					listToSmell.append(listRef[nthToAdd])
+					i += 1
 		else :
-			listNotRef.append(elt.id)
-	print 'listNotRef', len(listNotRef)
-	print 'listRef',    len(listRef)
+			print 'error : listRef'
+			return False
+				
+		# Part 2 : Sample odor
+		i=0
+		if len(listNotRef)-1 >=3:
+			max = len(listNotRef)-1; #print "m2",max
+			while i<3 :
+				nthToAdd =random.randint(0,max) 
+				if listNotRef[nthToAdd] not in listToSmell :
+					listToSmell.append(listNotRef[nthToAdd])
+					i += 1
+		else :
+			print 'error : listNotRef'
+			return False
+		print 'listToSmell : ', listToSmell
+		for elt in listToSmell : 
+			print 'newGuessing = Guess(sample=Guess.sample('+str(elt.id)+'), smeller='+str(theSmeller.id)+')'
+			newGuessing = Guess(smeller=theSmeller, sample=elt)
+			newGuessing.save()
+		return
 	
-	# Part 1 : RefOdor
-	i=0
-	while i<3 :
-		nthToAdd =random.randint(0,len(listRef)-1) 
-		print nthToAdd
-		if listRef[nthToAdd] not in listToSmell :
-			listToSmell.append(listRef[nthToAdd])
-			i += 1
-			
-	# Part 2 : Sample
-	i=0
-	while i<3 :
-		nthToAdd =random.randint(0,len(listNotRef)-1) 
-		print nthToAdd
-		if listNotRef[nthToAdd] not in listToSmell :
-			listToSmell.append(listNotRef[nthToAdd])
-			i += 1
-	return listToSmell
-
 ################################################################
 ########################    CLASSES    #########################
 ################################################################
 
+class Sample(models.Model):
+	id   = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=42)
+	nb_outed   = models.PositiveSmallIntegerField(default=0)
+	nb_guesses = models.PositiveSmallIntegerField(default=0)
+	refOdor    = models.BooleanField(default=False)
+	perfumes  = models.ManyToManyField('Perfume')
+	#==================================
+	def __str__(self):
+		return '%s' % self.name
+	def __repr__(self):
+		return 'name-%s' % self.name
+
+################################################################
 class Smeller(models.Model):
 	id                = models.AutoField(primary_key=True)
 	name              = models.CharField(max_length=42, default='')
@@ -76,25 +102,34 @@ class Smeller(models.Model):
 	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
 	age               = models.PositiveSmallIntegerField(default=18)
 	date_registration = models.DateTimeField(auto_now_add=True)
-	samples = models.ManyToManyField('Sample', through='Guess')
-	
-################################################################
-	
-class Sample(models.Model):
-	id   = models.AutoField(primary_key=True)
-	name = models.CharField(max_length=42)
-	nb_outed   = models.PositiveSmallIntegerField(default=0)
-	nb_guesses = models.PositiveSmallIntegerField(default=0)
-	refOdor = models.BooleanField(default=False)
+	#==================================	
+	def __str__(self):
+		return '%s' % self.name
+	def __repr__(self):
+		return 'name-%s' % self.name
 
+################################################################
+'''
+class listToSmell(models.Model): 
+	id      = models.AutoField(primary_key=True)
+	smeller = models.ForeignKey('Smeller')	
+'''    	
 ################################################################
 
 class Guess(models.Model): 
+	# Object create to link a smeller and a smaple
+	# Created by getOdortoGuess function
+	id        = models.AutoField(primary_key=True)
 	smeller   = models.ForeignKey('Smeller')
 	sample    = models.ForeignKey('Sample')
-	intensity = models.PositiveSmallIntegerField()
-	odor      = models.PositiveSmallIntegerField()
+	intensity = models.PositiveSmallIntegerField(default=0)
+	odor      = models.PositiveSmallIntegerField(default=0)
 	perfumes  = models.ManyToManyField('Perfume')
+	#==================================
+	def __str__(self):
+		return 'Smeller : %s -- Sample : %s' % (self.smeller, self.sample.name)
+	def __repr__(self):
+		return 'Guess #%s' % self.id
 	'''correct   = isCorrect(sample, odor) #add a verification at the sending of answer'''
 
 ################################################################
@@ -104,7 +139,7 @@ class Perfume(models.Model):
 	name = models.CharField(max_length=42)
 	path = models.CharField(max_length=42)
 
-	
+#import SmellGuess.test_model
 
 ###############################################################
 ####################    LOCAL EXECUTION    ####################
