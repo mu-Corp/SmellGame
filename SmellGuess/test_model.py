@@ -60,8 +60,3 @@ for elt in Smeller.objects.all():
 	print elt , elt.id
 	if len(Guess.objects.filter(smeller = elt.id)) == 0:
 		getOdorToGuess(elt)
-
-
-#Recuperation des individus 
-
-#Recuperation des sampler
