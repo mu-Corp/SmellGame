@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<!-- Load images, CSS and JS files-->
+{% load static %}
+
+<html lang="fr" dir="ltr">
+	
+	<head>
+		<title>Error</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{% static 'css/Layout.css' %}">
+	</head>
+	
+	<body>
+		
+		<div class="wrapper row1">
+		  
+			<header id="header" class="clear">
+		    
+			    <div id="hgroup">
+				      <h1><a href="#">SmellGame</a></h1>
+				      <h2>Default template & work in progress</h2>
+			    </div>
+			
+			    <div>
+			    	<h2>Oups error</h2>
+			    	<p> You have encounter a wild error please refresh or contact one of our monkeys</p>
+			    	<nav><h3><span style="text-decoration:underline;"><a href="../home" style=" margin:20px;">Click here to return to home</a></span></h3></nav>	    
+			        
+			    </div>
+		    
+		  	</header>
+		
+		</div>
+		
+		<!-- content -->
+		<div class="wrapper row2">
+		  	<div id="container" class="clear">
+		    
+			    <!-- content body -->
+			    <section id="slider">
+			    	<a href="#">
+			    		<img src="{% static 'images/Dna.jpg' %}" >
+			    	</a>
+			    </section>
+			    
+			    <!-- main content -->
+			    
+	  			<footer id="footer" class="clear">
+	    			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
+	  			</footer>
+		
+			</div>
+		
+		</div>
+		
+	</body>
+	
+</html>

@@ -103,6 +103,10 @@ def gameView(request):
     return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
 
 
+def errorview(request):
+    #return a page indicating an error has occured
+    return render(request, 'SmellGuessTemplate/error.html')
+
 ###############################################################
 ####################    LOCAL FUNCTIONS    ####################
 ###############################################################
