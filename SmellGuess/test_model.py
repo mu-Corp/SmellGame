@@ -60,3 +60,11 @@ for elt in Smeller.objects.all():
 	print elt , elt.id
 	if len(Guess.objects.filter(smeller = elt.id)) == 0:
 		getOdorToGuess(elt)
+
+# Create Perfume
+perfume1= Perfume(name=u"banane", path=u"static/images/Perfume/banana.png")
+perfume2= Perfume(name=u"foot", path=u"static/images/Perfume/foot.png")
+perfume3= Perfume(name=u"forest", path=u"static/images/Perfume/forest.png")
+perfume4= Perfume(name=u"grass", path=u"static/images/Perfume/grass.png")
+
+perfume1.save();perfume2.save();perfume3.save();perfume4.save();
