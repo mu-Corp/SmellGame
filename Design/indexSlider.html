@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="fr" dir="ltr">
+	
+	<head>
+		<title>Design</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="design.css">
+	
+		<script>
+		function udpateRange(newVal) {
+			startGradientPercent = 30*newVal/100+10;
+			endGradientPercent = 30*newVal/100+40;
+			panelCenter = document.getElementById("panelCenter");
+			panelCenter.style.background = "-webkit-radial-gradient(white 0%, white "+startGradientPercent+"%, rgb(186,181,186) "+endGradientPercent+"%)";
+			panelCenter.style.background = "-o-radial-gradient(white 0%, white "+startGradientPercent+"%, rgb(186,181,186) "+endGradientPercent+"%)";
+			panelCenter.style.background = "-moz-radial-gradient(white 0%, white "+startGradientPercent+"%, rgb(186,181,186) "+endGradientPercent+"%)";
+			panelCenter.style.background = "radial-gradient(white 0%, white "+startGradientPercent+"%, rgb(186,181,186) "+endGradientPercent+"%)";
+		}
+		</script>
+	
+	</head>
+	
+	<body>
+		<div id="panelLeft">
+			<t1>SI CETTE ODEUR EST ...</t1>
+			<t2>UNE HUMEUR</t2>
+			<form action="" method="post" style="line-height: 2;">
+				<div id="textRange" position="center">FORTE</div>
+				<input type="range" min="0" max="100" step="1" value="50" orient="vertical" onchange="udpateRange(this.value)" oninput="udpateRange(this.value)"/>
+				<div id="textRange" position="center">FAIBLE</div>
+				<input type="submit" value="Suivant" />
+			</form>
+		</div>
+		
+		<div id="panelCenter"> </div>
+		
+		<div id="panelHistory">
+			HISTORIQUE :<br/>
+			Sample n°57<br/>
+		</div>
+		
+		<div id="panelLogo"> </div>
+		
+	</body>
+	
+</html>
