@@ -6,62 +6,50 @@
 <html lang="fr" dir="ltr">
 	
 	<head>
-		<title>Homepage (In Progress)</title>
+		<title>Registration page (In Progress)</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="{% static 'css/Layout.css' %}">
+		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
 	</head>
 	
 	<body>
-		
-		<div class="wrapper row1">
-		  
-			<header id="header" class="clear">
-		    
-			    <div id="hgroup">
-				      <h1><a href="#">SmellGame</a></h1>
-				      <h2>Default template & work in progress</h2>
-			    </div>
-			    
-			    <nav><li><h3><a href="../home" style="border:1px solid #aaaaaa; margin:2px;">Return to homepage</a></h3>(delete data)</nav></li>		    
-
-				</br></br>
-
-			    <div>
-			    	<h3>Smeller, you can begin with your smell-profile!</h3>
-			    </div>
-			    
-			    </br>
-    
+	
+		</br></br>
+	
+		<div style="text-align: center">
+	
+			<div style="text-align: center">
+				<h3>Smeller, you can begin with your smell-profile!</h3>
+			</div>	    	
+			
+			</br></br>
+			
+			<div style="text-align: center">
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post">
 					{% csrf_token %}
 					{{ form.as_p }}
 					<input type="submit" value="Submit" />
 				</form>
-		    
-		    	</br></br>
-		    
-		  	</header>
-		
-		</div>
-		
-		<!-- content -->
-		<div class="wrapper row2">
-		  	<div id="container" class="clear">
-		    
-			    <!-- content body -->
-			    <section id="slider">
-			    	<a href="#">
-			    		<img src="{% static 'images/Dna.jpg' %}" >
-			    	</a>
-			    </section>
-			    
-			    <!-- main content -->
-			    
-	  			<footer id="footer" class="clear">
-	    			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
-	  			</footer>
-		
+			</div>			
+			
+			</br></br></br></br>
+			
+		    <div>
+		    	<a href="#">
+		    		<img src="{% static 'images/logo150x150.png' %}" >
+		    	</a>
+		    </div>
+			
+			</br></br>
+			
+			<div>
+				<h3><a href="../home" style="border:1px solid #aaaaaa; margin:2px;">Return to homepage</a>(delete data)</h3>
+		    </div>
+			
+			</br></br>
+				    
+			<div style="position: relative; bottom: 0;">
+				<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
 			</div>
 		
 		</div>
