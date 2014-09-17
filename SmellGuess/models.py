@@ -83,15 +83,6 @@ def getOdorToGuess(theSmeller):
 class Sample(models.Model):
 	id   = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=42)
-	nb_outed   = models.PositiveSmallIntegerField(default=0)
-	nb_guesses = models.PositiveSmallIntegerField(default=0)
-	refOdor    = models.BooleanField(default=False)
-	perfumes  = models.ManyToManyField('Perfume')
-	#==================================
-	def __str__(self):
-		return '%s' % self.name
-	def __repr__(self):
-		return 'name-%s' % self.name
 
 ################################################################
 class Smeller(models.Model):
@@ -102,44 +93,40 @@ class Smeller(models.Model):
 	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
 	age               = models.PositiveSmallIntegerField(default=18)
 	date_registration = models.DateTimeField(auto_now_add=True)
-	#==================================	
-	def __str__(self):
-		return '%s' % self.name
-	def __repr__(self):
-		return 'name-%s' % self.name
 
-################################################################
-'''
-class listToSmell(models.Model): 
-	id      = models.AutoField(primary_key=True)
-	smeller = models.ForeignKey('Smeller')	
-'''    	
 ################################################################
 
 class Guess(models.Model): 
-	# Object create to link a smeller and a smaple
-	# Created by getOdortoGuess function
-	id        = models.AutoField(primary_key=True)
-	smeller   = models.ForeignKey('Smeller')
-	sample    = models.ForeignKey('Sample')
-	intensity = models.PositiveSmallIntegerField(default=0)
-	odor      = models.PositiveSmallIntegerField(default=0)
-	perfumes  = models.ManyToManyField('Perfume')
-	#==================================
-	def __str__(self):
-		return 'Smeller : %s -- Sample : %s' % (self.smeller, self.sample.name)
-	def __repr__(self):
-		return 'Guess #%s' % self.id
-	'''correct   = isCorrect(sample, odor) #add a verification at the sending of answer'''
+	id         = models.AutoField(primary_key=True)
+	smeller    = models.ForeignKey('Smeller')
+	sample     = models.ForeignKey('Sample')
+	intensity  = models.PositiveSmallIntegerField(default=0)
+	humor      = models.ForeignKey('Humor')
+	note       = models.ForeignKey('Note')
+	commonName = models.ForeignKey('CommonName')
+	feeling    = models.PositiveSmallIntegerField(default=0)
+	name       = models.CharField(max_length=42)
 
-################################################################
+###############################################################
 
-class Perfume(models.Model):
-	id   = models.AutoField(primary_key=True)
-	name = models.CharField(max_length=42)
-	path = models.CharField(max_length=42)
+class Humor(models.Model):
+	id    = models.AutoField(primary_key=True)
+	name  = models.CharField(max_length=42)
+	color = models.CharField(max_length=42)
 
-#import SmellGuess.test_model
+###############################################################
+
+class Note(models.Model):
+	id    = models.AutoField(primary_key=True)
+	name  = models.CharField(max_length=42)
+	color = models.CharField(max_length=42)
+
+###############################################################
+
+class CommonName(models.Model):
+	id    = models.AutoField(primary_key=True)
+	name  = models.CharField(max_length=42)
+	pathImage = models.CharField(max_length=42)
 
 ###############################################################
 ####################    LOCAL EXECUTION    ####################
