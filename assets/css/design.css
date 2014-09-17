@@ -25,58 +25,66 @@ body {
 
 #panelLeft t1 { color : rgb(216,89,149); }
 
-#panelLeft form input[type=submit] {
-	position: absolute;
-	right: 20px;
-	bottom: 40px;
-}
-
-#panelLeft form input[type=radio] {
-/* 	display: none; */
-}
-
-#panelLeft form label {
-	cursor: pointer;
-}
-
 #panelCenter {
 	position: absolute;
  	top: 50%; 
 	left: 50%;
-	width: 400px;
-	height: 400px;
-	margin-top: -200px;
-	margin-left: -200px;
-	background: -webkit-radial-gradient(white 0%, white 40%, rgb(186,181,186) 70%); /* Safari 5.1-6.0 */
-	background: -o-radial-gradient(white 0%, white 40%, rgb(186,181,186) 70%); /* For Opera 11.6-12.0 */
-	background: -moz-radial-gradient(white 0%, white 40%, rgb(186,181,186) 70%); /* For Firefox 3.6-15 */
-	background: radial-gradient(white 0%, white 40%, rgb(186,181,186) 70%); /* Standard syntax */
+	width: 500px;
+	height: 500px;
+	margin-top: -250px;
+	margin-left: -250px;
+	background: -webkit-radial-gradient(white 0%,rgb(186,181,186) 55%); /* Safari 5.1-6.0 */
+	background: -o-radial-gradient(white 0%,rgb(186,181,186) 55%); /* For Opera 11.6-12.0 */
+	background: -moz-radial-gradient(white 0%,rgb(186,181,186) 55%); /* For Firefox 3.6-15 */
+	background: radial-gradient(white 0%,rgb(186,181,186) 55%); /* Standard syntax */
+}
+
+#panelNote {
+	position: absolute;
+ 	top: 150px; 
+	left:150px;
+	width: 200px;
+	height: 200px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	border-radius: 100px;
 }
 
 #panelHistory {
 	position: absolute;
  	top: 20px;
 	right: 20px;
-	width: 120px;
+	width: 250px;
 }
 
 #panelLogo {
 	position: absolute;
- 	bottom: 20px;
+ 	bottom: 40px;
 	right: 20px;
 	width: 150px;
 	height: 150px;
-	background-image: url("logo150x150.png");
 }
 
-input[type=range].vertical {
+#panelLeft form input[type=image] {
+	position: absolute;
+	right: 20px;
+	bottom: 40px;
+	font-family: Arial;
+	font-size: 17px;
+	color: white;
+	font-weight: bold;
+	background-color: rgb(186,181,186);
+	background:       rgb(186,181,186);
+}
+
+#panelLeft form input[type=range].vertical {
 	writing-mode: bt-lr; /* IE */
 	-webkit-appearance: slider-vertical; /* WebKit */
 	width: 8px;
 	height: 500px;
 	padding: 0 5px;
 }
-input[type='range'] {
+#panelLeft form input[type='range'] {
 	-webkit-appearance: none;
 	width: 20px;
 	vertical-align: middle;
@@ -86,11 +94,11 @@ input[type='range'] {
 	background-size: 20px 350px;
 	background-image: url("backgroundSlider.png");
 }
-input[type='range']::-moz-range-track {
+#panelLeft form input[type='range']::-moz-range-track {
 	-moz-appearance: none;
 	width: 0px;
 }
-input[type='range']::-webkit-slider-thumb {
+#panelLeft form input[type='range']::-webkit-slider-thumb {
 	-webkit-appearance: none !important;
 	border-radius: 20px;
 	 background: rgb(216,89,149);
@@ -99,7 +107,7 @@ input[type='range']::-webkit-slider-thumb {
 	height: 20px;
 	background-color: white;
 }
-input[type='range']::-moz-range-thumb {
+#panelLeft form input[type='range']::-moz-range-thumb {
 	-moz-appearance: none;
 	border-radius: 20px;
 	 background: rgb(216,89,149);

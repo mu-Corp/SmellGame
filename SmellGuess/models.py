@@ -98,12 +98,12 @@ class Smeller(models.Model):
 
 class Guess(models.Model): 
 	id         = models.AutoField(primary_key=True)
-	smeller    = models.ForeignKey('Smeller')
-	sample     = models.ForeignKey('Sample')
+	smeller    = models.ForeignKey('Smeller', null=True)
+	sample     = models.ForeignKey('Sample', null=True)
 	intensity  = models.PositiveSmallIntegerField(default=0)
-	humor      = models.ForeignKey('Humor')
-	note       = models.ForeignKey('Note')
-	commonName = models.ForeignKey('CommonName')
+	humor      = models.ForeignKey('Humor', null=True)
+	note       = models.ForeignKey('Note', null=True)
+	image      = models.ForeignKey('Image', null=True)
 	feeling    = models.PositiveSmallIntegerField(default=0)
 	name       = models.CharField(max_length=42)
 
@@ -123,7 +123,7 @@ class Note(models.Model):
 
 ###############################################################
 
-class CommonName(models.Model):
+class Image(models.Model):
 	id    = models.AutoField(primary_key=True)
 	name  = models.CharField(max_length=42)
 	pathImage = models.CharField(max_length=42)

@@ -10,83 +10,158 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
+		
+		<script>		
+		function updateGradient(color, intensity) {
+			endGradientPercent = 30*intensity/100+40;
+			panelCenter = document.getElementById("panelCenter");
+			panelCenter.style.background = "-webkit-radial-gradient("+color+" 0%, rgb(186,181,186) "+endGradientPercent+"%)";
+			panelCenter.style.background = "-o-radial-gradient("+color+" 0%, rgb(186,181,186) "+endGradientPercent+"%)";
+			panelCenter.style.background = "-moz-radial-gradient("+color+" 0%, rgb(186,181,186) "+endGradientPercent+"%)";
+			panelCenter.style.background = "radial-gradient("+color+" 0%, rgb(186,181,186) "+endGradientPercent+"%)";
+		}
+		
+		function updateNote(color) {
+			panelNote = document.getElementById("panelNote");
+			panelNote.style.background = color;
+		}
+		</script>
 	</head>
 	
 	
 	<body>
 		
 		<div id="panelLeft">
-			<t1>SI CETTE ODEUR EST ...</t1>
-			<t2>UNE HUMEUR</t2>
+			{% if guessStep == 1 %}
+				<t1>QUEL ÉCHANTILLON AVEZ VOUS CHOISI ?</t1>
+				TO DO
+				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
+					{% csrf_token %}
+					<input type="image" value="SUIVANT" />
+				</form>
+			{% elif guessStep == 2 %}
+				<t1>QUELLE EST L'INTENSITÉ DE CETTE ODEUR ?</t1>
+				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
+					{% csrf_token %}
+					<div id="textRange" position="center">FORTE</div>
+					<input type="range" min="0" max="100" step="1" value="50" orient="vertical" name="intensity" onchange="updateGradient('white' this.value)" oninput="updateGradient('white', this.value)"/>
+					<div id="textRange" position="center">FAIBLE</div>
+					<input type="image" value="SUIVANT" />
+				</form>
+			{% elif guessStep == 3 %}
+				<t1>SI CETTE ODEUR EST ...</t1>
+				<t2>UNE HUMEUR</t2>
+				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
+					{% csrf_token %}
+					<div class="radio-toolbar">
+						{% for humor in listHumors %}
+							<input type="radio" id="radio{{ humor.id }}" value="{{ humor.id }}" name="humor" onchange="updateGradient('{{ humor.color }}', '{{ intensity }}')">
+							<label for="radio{{ humor.id }}">{{ humor.name }} <br/></label><br/>
+						{% endfor %}
+					<input type="image" value="SUIVANT" />
+					</div>
+				</form>
+			{% elif guessStep == 4 %}
+				<t1>SI CETTE ODEUR EST ...</t1>
+				<t2>UNE NOTE</t2>
+				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
+					{% csrf_token %}
+					<div class="radio-toolbar">
+						{% for note in listNotes %}
+							<input type="radio" id="radio{{ note.id }}" value="{{ note.id }}" name="note" onchange="updateNote('{{ note.color }}')">
+							<label for="radio{{ note.id }}">{{ note.name }} <br/></label><br/>
+						{% endfor %}
+					<input type="image" value="SUIVANT" />
+					</div>
+				</form>
+			{% elif guessStep == 5 %}
+				<t1>QUE VOUS ÉVOQUE CETTE ODEUR ?</t1>
+				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
+					{% csrf_token %}
+					<div class="radio-toolbar">
+						{% for image in listImages %}
+							<input type="radio" id="radio{{ image.id }}" value="{{ image.id }}" name="image">
+							<label for="radio{{ image.id }}">{{ image.name }} <br/></label><br/>
+						{% endfor %}
+					<input type="image" value="SUIVANT" />
+					</div>
+				</form>
+			{% elif guessStep == 6 %}
+				<t1>AIMEZ VOUS CETTE ODEUR ?</t1>
+				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
+					{% csrf_token %}
+					<div id="textRange" position="center">OUI</div>
+					<input type="range" min="0" max="100" step="1" value="50" orient="vertical" onchange="udpateRange(this.value)" oninput="udpateRange(this.value)" name="feeling"/>
+					<div id="textRange" position="center">NON</div>
+					<input type="image" value="SUIVANT" />
+				</form>
+			{% elif guessStep == 7 %}
+				<t1>SI CETTE ODEUR AVAIT UN NOM ...</t1>
+				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
+					{% csrf_token %}
+					<input type="text" name="name">
+					<input type="image" value="SUIVANT" />
+				</form>
+			{% endif %}
 			
-			<form action="" method="post" style="line-height: 2;">
-				<div class="radio-toolbar">  
-					<input type="radio" id="radio0" value="AFFECTION" name="radios">
-					<label for="radio0">AFFECTION <br/></label><br/>
-					<input type="radio" id="radio1" value="ANXIETE" name="radios">
-					<label for="radio1">ANXIETE <br/></label><br/>
-					<input type="radio" id="radio2" value="BONHEUR" name="radios">
-					<label for="radio2">BONHEUR <br/></label><br/>
-					<input type="radio" id="radio3" value="COLERE" name="radios">
-					<label for="radio3">COLERE <br/></label><br/>
-					<input type="radio" id="radio4" value="DEPRESSION" name="radios">
-					<label for="radio4">DEPRESSION <br/></label><br/>
-					<input type="radio" id="radio5" value="DOUCEUR" name="radios">
-					<label for="radio5">DOUCEUR <br/></label><br/>
-					<input type="radio" id="radio6" value="EXCITATION" name="radios">
-					<label for="radio6">EXCITATION <br/></label><br/>
-					<input type="radio" id="radio7" value="FOLIE" name="radios">
-					<label for="radio7">FOLIE <br/></label><br/>
-					<input type="radio" id="radio8" value="IRRITATION" name="radios">
-					<label for="radio8">IRRITATION <br/></label><br/>
-					<input type="radio" id="radio9" value="radios" name="radios">
-					<label for="radio9">NERVOSITE <br/></label><br/>
-					<input type="radio" id="radio10" value="PEUR" name="radios">
-					<label for="radio10">PEUR <br/></label><br/>
-					<input type="radio" id="radio11" value="RAGE" name="radios">
-					<label for="radio11">RAGE <br/></label><br/>
-					<input type="radio" id="radio12" value="TRISTESSE" name="radios">
-					<label for="radio12">TRISTESSE <br/></label><br/>
-				</div>
-				
-				<input type="submit" value="SUIVANT" />
-			</form>
-			
-			</br></br></br></br></br></br></br></br></br></br>
-
+			<!--</br></br></br></br></br></br></br></br></br></br>
 			<nav>
 		        <li><h3><a href="../home" style="border:1px solid #aaaaaa; margin:2px;">Return to homepage</a></h3>(delete data)</li>
 		        </br>
 		        <li><h3><a href="../registration" style="border:1px solid #aaaaaa; margin:2px;">Modify your profile</a></h3>(your current data are saved)</li>
-		    </nav>
+			</nav>-->
 		
 		</div>
 		
-		<div style="position: fixed; top: 0; left:250px">
-			<h3>Game page ({{ error }})</h3>
-			<p>Hello {{ smeller.name }} (post method)</p>
+		<div id="panelCenter">
+			<div id="panelNote"> </div>
 		</div>
-		
-		<div id="panelCenter"> </div>
 		
 		<div id="panelHistory">
 			HISTORIQUE :<br/>
-			Sample n°57<br/>
+			Sample n°57 <br/>
+			{% if guessStep >= 3 %}
+				Intensité : {{ intensity }}% <br/>
+			{% endif %}
+			{% if guessStep >= 4 %}
+				Humeur : {{ humor.name }} <br/>
+			{% endif %}
+			{% if guessStep >= 5 %}
+				Note : {{ note.name }} <br/>
+			{% endif %}
+			{% if guessStep >= 6 %}
+				Image : {{ image.name }} <br/>
+			{% endif %}
+			{% if guessStep >= 7 %}
+				Appréciation : {{ feeling }}% <br/>
+			{% endif %}
 		</div>
 		
-		<div style="position: fixed; bottom: 0; right:5px">
-			<div id="panelLogo"> logo with CSS (but how generate static var in css files ???)</div>
-			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
-		</div>
-		
+		<div id="panelLogo" style="background-image: url('{% static 'images/logo150x150.png' %}');"> </div>
+		<p class="fl_left" style="position: fixed; bottom: 0; right:5px" >Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
 	</body>
+	
+	<script>
+	{% if guessStep >= 3 %}
+		updateGradient('white', '{{ intensity }}');
+	{% endif %}
+	{% if guessStep >= 4 %}
+		updateGradient('{{ humor.color }}', '{{ intensity }}');
+	{% endif %}
+	{% if guessStep >= 5 %}
+		updateNote('{{ note.color }}');
+	{% endif %}
+	</script>
 	
 </html>
 
 
 
 
-
+<!--<div style="position: fixed; top: 0; left:250px">
+			<h3>Game page ({{ error }})</h3>
+			<p>Hello {{ smeller.name }} (post method)</p>
+		</div>-->
 
 
 

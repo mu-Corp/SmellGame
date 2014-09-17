@@ -55,29 +55,29 @@ else :
 	exit()
 
 
-if len(CommonName.objects.all()) == 0 :
+if len(Image.objects.all()) == 0 :
 	# Creating common names
-	CommonName(name="POISSON",             pathImage="images/CommonName/poisson.png").save()
-	CommonName(name="CHIEN MOUILLÉ",       pathImage="images/CommonName/chienMouille.png").save()
-	CommonName(name="BOUC / CHÈVRE",       pathImage="images/CommonName/boucChevre.png").save()
-	CommonName(name="SANGLIER",            pathImage="images/CommonName/sanglier.png").save()
-	CommonName(name="BOUILLON DE POULET",  pathImage="images/CommonName/bouillonDePoulet.png").save()
-	CommonName(name="FROMAGE",             pathImage="images/CommonName/fromage.png").save()
-	CommonName(name="BEURRE RANCE",        pathImage="images/CommonName/beurreRance.png").save()
-	CommonName(name="RAISIN",              pathImage="images/CommonName/raisin.png").save()
-	CommonName(name="FRUIT DE LA PASSION", pathImage="images/CommonName/fruitDeLaPassion.png").save()
-	CommonName(name="ONION",               pathImage="images/CommonName/onion.png").save()
-	CommonName(name="AIL",                 pathImage="images/CommonName/ail.png").save()
-	CommonName(name="CHOUX",               pathImage="images/CommonName/choux.png").save()
-	CommonName(name="ASPERGE",             pathImage="images/CommonName/asperge.png").save()
-	CommonName(name="MENTHE",              pathImage="images/CommonName/menthe.png").save()
-	CommonName(name="PIMENT",              pathImage="images/CommonName/piment.png").save()
-	CommonName(name="CUMIN",               pathImage="images/CommonName/cumin.png").save()
-	CommonName(name="CURCUMA",             pathImage="images/CommonName/curcuma.png").save()
-	CommonName(name="VINEGRE",             pathImage="images/CommonName/vinegre.png").save()
-	CommonName(name="ALCOOL",              pathImage="images/CommonName/alcool.png").save()
-	CommonName(name="ESSENCE",             pathImage="images/CommonName/essence.png").save()
-	print "Common names created"
+	Image(name="POISSON",             pathImage="images/Image/poisson.png").save()
+	Image(name="CHIEN MOUILLÉ",       pathImage="images/Image/chienMouille.png").save()
+	Image(name="BOUC / CHÈVRE",       pathImage="images/Image/boucChevre.png").save()
+	Image(name="SANGLIER",            pathImage="images/Image/sanglier.png").save()
+	Image(name="BOUILLON DE POULET",  pathImage="images/Image/bouillonDePoulet.png").save()
+	Image(name="FROMAGE",             pathImage="images/Image/fromage.png").save()
+	Image(name="BEURRE RANCE",        pathImage="images/Image/beurreRance.png").save()
+	Image(name="RAISIN",              pathImage="images/Image/raisin.png").save()
+	Image(name="FRUIT DE LA PASSION", pathImage="images/Image/fruitDeLaPassion.png").save()
+	Image(name="ONION",               pathImage="images/Image/onion.png").save()
+	Image(name="AIL",                 pathImage="images/Image/ail.png").save()
+	Image(name="CHOUX",               pathImage="images/Image/choux.png").save()
+	Image(name="ASPERGE",             pathImage="images/Image/asperge.png").save()
+	Image(name="MENTHE",              pathImage="images/Image/menthe.png").save()
+	Image(name="PIMENT",              pathImage="images/Image/piment.png").save()
+	Image(name="CUMIN",               pathImage="images/Image/cumin.png").save()
+	Image(name="CURCUMA",             pathImage="images/Image/curcuma.png").save()
+	Image(name="VINEGRE",             pathImage="images/Image/vinegre.png").save()
+	Image(name="ALCOOL",              pathImage="images/Image/alcool.png").save()
+	Image(name="ESSENCE",             pathImage="images/Image/essence.png").save()
+	print "Images created"
 else : 
 	print "Please remove db.sqlite3 and execute 'python manage.py syncb' before !"
 	exit()

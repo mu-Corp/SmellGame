@@ -11,8 +11,8 @@ from django.shortcuts import redirect, render
 from datetime import datetime
 
 # Local import:
-from forms import SmellerModelForm, GuessModelForm 
-from SmellGuess.models import Smeller, Sample, Guess, Perfume
+from forms import SmellerModelForm 
+from SmellGuess.models import Smeller, Sample, Guess, Image, Humor, Note
 
 ################################################################
 #########################    VIEWS    ##########################
@@ -34,7 +34,9 @@ def homeView(request):
     # RE-Initialization of variable of session (use during all the session):
     request.session['idSmeller'] = None
     request.session['nameSmeller'] = None
-    request.session['index_listSamples'] = None
+    request.session['idSample'] = None
+    request.session['idGuess'] = None
+    request.session['guessStep'] = None
     
     # Render:
     return render(request, 'SmellGuessTemplate/home.html', {'current_date': datetime.now()})
@@ -52,9 +54,6 @@ def registrationView(request):
 # TODO: Use var in URL to generate a specific game page
 def gameView(request):
     
-    listPerfumes = Perfume.objects.all() # Get all perfumes from DB
-    listSamples = Sample.objects.all() # Get all samples from DB
-    
     # Collect data from smeller from registration form (POST method):
     if request.method == 'POST':  # If it's a POST request
         
@@ -64,44 +63,54 @@ def gameView(request):
             formSmeller = SmellerModelForm(request.POST)  # then data is collected.
 
             if formSmeller.is_valid(): # If data are valid (correct type, size, etc.)
-                error = 'no error'
                 smeller = formSmeller.save() # Save in DB
+                sample = Sample.objects.get(id=1) # A tirer au sort
+                guess = Guess(smeller=smeller,sample=sample)
+                guess.save()
                 
                 # Full sessions variables
                 request.session['idSmeller'] = smeller.id
                 request.session['nameSmeller'] = smeller.name
-                request.session['index_listSamples'] = 0
-            
+                request.session['idSample'] = sample.id
+                request.session['idGuess'] = guess.id
+                request.session['guessStep'] = 1
             else:
                 error = 'invalid data...'
         
         else : # Else Sample is guessed
-            error = 'no error'
-            formGuess = GuessModelForm(request.POST) # Guess data is collected
-            index_listSamples = request.session['index_listSamples'] # Get index of sample guessed
-            # Save guess with data form, sample and smeller
-            save_GuessModelForm(formGuess, listSamples[index_listSamples], Smeller.objects.get(id=request.session['idSmeller']))
-            request.session['index_listSamples'] += 1 # Update index
+            
+            guess = Guess.objects.get(id=request.session['idGuess'])
+            
+            if request.session['guessStep']   == 2 : guess.intensity = request.POST['intensity']
+            elif request.session['guessStep'] == 3 : guess.humor = Humor.objects.get(id=request.POST['humor'])
+            elif request.session['guessStep'] == 4 : guess.note = Note.objects.get(id=request.POST['note'])
+            elif request.session['guessStep'] == 5 : guess.image = Image.objects.get(id=request.POST['image'])
+            elif request.session['guessStep'] == 6 : guess.feeling = request.POST['feeling']
+            elif request.session['guessStep'] == 7 : guess.name = request.POST['name']
+            
+            guess.save()
+            
+            request.session['guessStep'] += 1 # Update step
         
     else: # if it's not post, it's not safe
         error = 'You try to connect to this game with the wrong way, please, go back to home...'
     
-    index_listSamples = request.session['index_listSamples']
-    formGuess = GuessModelForm()
+    guess = Guess.objects.get(id=request.session['idGuess'])
     
-    # Dict to transfer to the template in render:
     paramToGenerateTemplate = dict()
+    paramToGenerateTemplate['listHumors'] = Humor.objects.all()
+    paramToGenerateTemplate['listNotes'] = Note.objects.all()
+    paramToGenerateTemplate['listImages'] = Image.objects.all()
     
-    #Store data in the dicstionnary:
-    paramToGenerateTemplate['error'] = error
-    paramToGenerateTemplate['smeller'] = Smeller.objects.get(id=request.session['idSmeller'])
-    paramToGenerateTemplate['name_sample'] = listSamples[index_listSamples].name
-    paramToGenerateTemplate['form'] = formGuess
-    paramToGenerateTemplate['listPerfumes'] = listPerfumes
-    
-    # To finish, generate the template game to send to user:
-    return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
+    paramToGenerateTemplate['guessStep'] = request.session['guessStep']
+    paramToGenerateTemplate['intensity'] = guess.intensity
+    paramToGenerateTemplate['humor'] = guess.humor
+    paramToGenerateTemplate['note'] = guess.note
+    paramToGenerateTemplate['image'] = guess.image
+    paramToGenerateTemplate['feeling'] = guess.feeling
 
+	
+    return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
 
 def errorview(request):
     #return a page indicating an error has occured
