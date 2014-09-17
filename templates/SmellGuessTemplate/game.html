@@ -6,6 +6,110 @@
 <html lang="fr" dir="ltr">
 	
 	<head>
+		<title>Game page type (In Progress)</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{% static 'css/design.css' %}">
+		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
+	</head>
+	
+	
+	<body>
+		
+		<div id="panelLeft">
+			<t1>SI CETTE ODEUR EST ...</t1>
+			<t2>UNE HUMEUR</t2>
+			
+			<form action="" method="post" style="line-height: 2;">
+				<div class="radio-toolbar">  
+					<input type="radio" id="radio0" value="AFFECTION" name="radios">
+					<label for="radio0">AFFECTION <br/></label><br/>
+					<input type="radio" id="radio1" value="ANXIETE" name="radios">
+					<label for="radio1">ANXIETE <br/></label><br/>
+					<input type="radio" id="radio2" value="BONHEUR" name="radios">
+					<label for="radio2">BONHEUR <br/></label><br/>
+					<input type="radio" id="radio3" value="COLERE" name="radios">
+					<label for="radio3">COLERE <br/></label><br/>
+					<input type="radio" id="radio4" value="DEPRESSION" name="radios">
+					<label for="radio4">DEPRESSION <br/></label><br/>
+					<input type="radio" id="radio5" value="DOUCEUR" name="radios">
+					<label for="radio5">DOUCEUR <br/></label><br/>
+					<input type="radio" id="radio6" value="EXCITATION" name="radios">
+					<label for="radio6">EXCITATION <br/></label><br/>
+					<input type="radio" id="radio7" value="FOLIE" name="radios">
+					<label for="radio7">FOLIE <br/></label><br/>
+					<input type="radio" id="radio8" value="IRRITATION" name="radios">
+					<label for="radio8">IRRITATION <br/></label><br/>
+					<input type="radio" id="radio9" value="radios" name="radios">
+					<label for="radio9">NERVOSITE <br/></label><br/>
+					<input type="radio" id="radio10" value="PEUR" name="radios">
+					<label for="radio10">PEUR <br/></label><br/>
+					<input type="radio" id="radio11" value="RAGE" name="radios">
+					<label for="radio11">RAGE <br/></label><br/>
+					<input type="radio" id="radio12" value="TRISTESSE" name="radios">
+					<label for="radio12">TRISTESSE <br/></label><br/>
+				</div>
+				
+				<input type="submit" value="SUIVANT" />
+			</form>
+			
+			</br></br></br></br></br></br></br></br></br></br>
+
+			<nav>
+		        <li><h3><a href="../home" style="border:1px solid #aaaaaa; margin:2px;">Return to homepage</a></h3>(delete data)</li>
+		        </br>
+		        <li><h3><a href="../registration" style="border:1px solid #aaaaaa; margin:2px;">Modify your profile</a></h3>(your current data are saved)</li>
+		    </nav>
+		
+		</div>
+		
+		<div style="position: fixed; top: 0; left:250px">
+			<h3>Game page ({{ error }})</h3>
+			<p>Hello {{ smeller.name }} (post method)</p>
+		</div>
+		
+		<div id="panelCenter"> </div>
+		
+		<div id="panelHistory">
+			HISTORIQUE :<br/>
+			Sample n°57<br/>
+		</div>
+		
+		<div style="position: fixed; bottom: 0; right:5px">
+			<div id="panelLogo"> logo with CSS (but how generate static var in css files ???)</div>
+			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
+		</div>
+		
+	</body>
+	
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="fr" dir="ltr">
+	
+	<head>
    		<script>
 			function allowDrop(ev) {
 			    ev.preventDefault();
@@ -99,11 +203,9 @@
 			</header>
 		</div>
 		
-		<!-- content -->
 		<div class="wrapper row2">
 		  	<div id="container" class="clear">
 			    
-			    <!-- main content -->
 			    
 	  			<footer id="footer" class="clear">
 	    			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
@@ -117,3 +219,5 @@
 	
 	
 </html>
+
+-->
