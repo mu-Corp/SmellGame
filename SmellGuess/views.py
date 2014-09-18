@@ -78,7 +78,7 @@ def gameView(request):
                 
                 # Full sessions variables
                 request.session['idSmeller'] = smeller.id
-                request.session['nameSmeller'] = smeller.name
+                #request.session['nameSmeller'] = smeller.name #obsolete
                 request.session['idSample'] = sample.id
                 request.session['idGuess'] = guess.id
                 request.session['guessStep'] = 1
@@ -138,14 +138,15 @@ def SQL_to_csv():
     sm = open ('Smeller.csv', 'w+')
     gu = open ('Guess.csv', 'w+')
     
-    sm_header="id;name;sex;age;date_registration"
+    sm_header="id;sex;age;date_registration"
     gu_header="id;smeller;sample;intensity;humor;note;image;feeling;name"
     sm.write(sm_header)
     gu.write(gu_header)
     
     
     for s in listSmeller :
-        tmp_sentence="\n"+ str(s.id)+ ";"+ s.name+ ";"+ s.sex+ ";"+ str(s.age)+ ";"+ str(s.date_registration)
+        tmp_sentence="\n"+ str(s.id)+ ";" + s.sex+ ";"+ str(s.age)+ ";"+ str(s.date_registration)
+        #tmp_sentence="\n"+ str(s.id)+ ";"+ s.name+ ";"+ s.sex+ ";"+ str(s.age)+ ";"+ str(s.date_registration) #obsolete
         sm.write(str(tmp_sentence))
         #s.sample.id
     sm.close()
