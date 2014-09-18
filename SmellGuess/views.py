@@ -9,6 +9,7 @@ from django.shortcuts import redirect, render
 
 # External libs:
 from datetime import datetime
+import random
 
 # Local import:
 from forms import SmellerModelForm 
@@ -63,8 +64,15 @@ def gameView(request):
             formSmeller = SmellerModelForm(request.POST)  # then data is collected.
 
             if formSmeller.is_valid(): # If data are valid (correct type, size, etc.)
+                
+                #Random id of samples to analyze:
+                allSampleIds = range(1, 51)#list contains 1, 2, ..., 50
+                nbSamplesToAnalyze = 6
+                request.session['currentSamples'] = random.sample(allSampleIds,  nbSamplesToAnalyze)
+                firstToAnalyze = 1#request.session['currentSamples'][0]
+                
                 smeller = formSmeller.save() # Save in DB
-                sample = Sample.objects.get(id=1) # A tirer au sort
+                sample = Sample.objects.get(id=firstToAnalyze)
                 guess = Guess(smeller=smeller,sample=sample)
                 guess.save()
                 
@@ -74,6 +82,7 @@ def gameView(request):
                 request.session['idSample'] = sample.id
                 request.session['idGuess'] = guess.id
                 request.session['guessStep'] = 1
+                
             else:
                 error = 'invalid data...'
         
@@ -103,6 +112,10 @@ def gameView(request):
     paramToGenerateTemplate['listImages'] = Image.objects.all()
     
     paramToGenerateTemplate['guessStep'] = request.session['guessStep']
+    
+        
+    paramToGenerateTemplate['keepingSamplesToAnalyze'] = "Echantillon tiré (en cours de modif) : " + str(request.session['idGuess'])#request.session['currentSamples'].remove(request.session['idGuess'])
+    
     paramToGenerateTemplate['intensity'] = guess.intensity
     paramToGenerateTemplate['humor'] = guess.humor
     paramToGenerateTemplate['note'] = guess.note

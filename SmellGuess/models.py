@@ -86,13 +86,24 @@ class Sample(models.Model):
 
 ################################################################
 class Smeller(models.Model):
+	
+	#Primary key (not in form)
 	id                = models.AutoField(primary_key=True)
+	
+	
+	#Fields visibles in form:
+	
 	name              = models.CharField(max_length=42, default='')
 	email             = models.CharField(max_length=100, default='')
+	
 	SEX_CHOICE        = (('M', 'Male'),('F', 'Female'),)
 	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
 	age               = models.PositiveSmallIntegerField(default=18)
+	
+	
+	#Hidden fields:
 	date_registration = models.DateTimeField(auto_now_add=True)
+
 
 ################################################################
 
