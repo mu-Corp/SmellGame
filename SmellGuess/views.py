@@ -109,7 +109,6 @@ def gameView(request):
     paramToGenerateTemplate['image'] = guess.image
     paramToGenerateTemplate['feeling'] = guess.feeling
 
-	
     return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
 
 def errorview(request):
@@ -120,28 +119,38 @@ def errorview(request):
 ####################    LOCAL FUNCTIONS    ####################
 ###############################################################
 
-def save_GuessModelForm(guessModelForm, sample, smeller):
-    guess = Guess() # Init Guess
+def SQL_to_csv():
+    listSmeller = Smeller.objects.all()
+    listGuess = Guess.objects.all()
+    sm = open ('Smeller.csv', 'w+')
+    gu = open ('Guess.csv', 'w+')
     
-    # Update attr
-    guess.intensity = guessModelForm.data['intensity']
-    guess.odor = guessModelForm.data['odor']
-    guess.sample = sample
-    guess.smeller = smeller
+    sm_header="id;name;sex;age;date_registration"
+    gu_header="id;smeller;sample;intensity;humor;note;image;feeling;name"
+    sm.write(sm_header)
+    gu.write(gu_header)
     
-    # Save guess
-    guess.save()
-        
-    # Add parfumes
-    listIdPerfumes = guessModelForm.data['perfumes'][:-1].split(';')
-    for idPerfume in listIdPerfumes :
-        perfume = Perfume.objects.get(id=idPerfume)
-        guess.perfumes.add(perfume)
     
-    # Save guess with parfumes
-    guess.save()
+    for s in listSmeller :
+        tmp_sentence="\n"+ str(s.id)+ ";"+ s.name+ ";"+ s.sex+ ";"+ str(s.age)+ ";"+ str(s.date_registration)
+        sm.write(str(tmp_sentence))
+        #s.sample.id
+    sm.close()
     
-    return guess
+    for g in listGuess :
+        #print ( "\n", g.id, ";", g.id_smeller, ";", g.id_Sample, ";", g.intensity, ";", g.humor, ";", g.note, ";", g.image, ";", g.feeling, ";", g.name )
+        tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.id)+";"+str(g.intensity)+";"+str(g.humor)+";"+str(g.note)+";"+str(g.image)+ ";"+ str(g.feeling)+ ";"+ str(g.name)
+        gu.write(str(tmp_sentence))
+        #g.smeller.id
+    gu.close()
+   
+SQL_to_csv()
+#"id;name;sex;age:date_registration"
+#"1;Flo;F;18;01/01/14"    
+#"id;id_Smeller;id_Sample;intensity;humor;note;image;feeling;name"
+#"1;1;1;20;COLERE;FRUITE;AIL;80;MA MERE"
+
+
 
 ###############################################################
 ####################    LOCAL EXECUTION    ####################
@@ -149,5 +158,6 @@ def save_GuessModelForm(guessModelForm, sample, smeller):
 if __name__=="__main__": 
     
     print 'Test in local\n.'
+
     
     
