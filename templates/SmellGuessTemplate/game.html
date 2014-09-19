@@ -25,19 +25,6 @@
 			panelNote = document.getElementById("panelNote");
 			panelNote.style.background = color;
 		}
-		
-		function updateImgGuessed(path) {
-			img = document.getElementById("imgGuessed");
-			img.style.display = "block";
-			img.src = path;
-		}
-		
-		function updateFeeling(feeling) {
-			panelFeeling = document.getElementById("panelFeeling");
-			opacity = feeling*70/100;
-			panelFeeling.style.opacity = opacity/100;
-			panelFeeling.style.filter = "alpha(opacity="+opacity+")";
-		}
 		</script>
 	</head>
 	
@@ -94,7 +81,7 @@
 					{% csrf_token %}
 					<div class="radio-toolbar">
 						{% for image in listImages %}
-							<input type="radio" id="radio{{ image.id }}" value="{{ image.id }}" name="image" onchange="updateImgGuessed('{% static image.pathImage %}')">
+							<input type="radio" id="radio{{ image.id }}" value="{{ image.id }}" name="image">
 							<label for="radio{{ image.id }}">{{ image.name }} <br/></label><br/>
 						{% endfor %}
 					<input type="image" value="SUIVANT" />
@@ -104,9 +91,9 @@
 				<t1>AIMEZ VOUS CETTE ODEUR ?</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
-					<div id="textRange" position="center">NON</div>
-					<input type="range" min="0" max="100" step="1" value="0" orient="vertical" onchange="updateFeeling(this.value)" oninput="updateFeeling(this.value)" name="feeling"/>
 					<div id="textRange" position="center">OUI</div>
+					<input type="range" min="0" max="100" step="1" value="50" orient="vertical" onchange="udpateRange(this.value)" oninput="udpateRange(this.value)" name="feeling"/>
+					<div id="textRange" position="center">NON</div>
 					<input type="image" value="SUIVANT" />
 				</form>
 			{% elif guessStep == 7 %}
@@ -129,8 +116,7 @@
 		
 		<div id="panelCenter">
 			<div id="panelNote"> </div>
-			<img id="imgGuessed" src="" height="160" width="160" style="display:none;"> 
-			<div id="panelFeeling"> </div>
+			<img id="imgGuessed" src="{% static 'images/Image/poisson.png' %} " alt="Image guessed" height="160" width="160"> 
 		</div>
 		
 		<div id="panelHistory">
@@ -149,7 +135,7 @@
 				Image : {{ image.name }} <br/>
 			{% endif %}
 			{% if guessStep >= 7 %}
-				Appréciation : {{ feeling }}% NÉGATIVE <br/>
+				Appréciation : {{ feeling }}% <br/>
 			{% endif %}
 		</div>
 		
@@ -166,12 +152,6 @@
 	{% endif %}
 	{% if guessStep >= 5 %}
 		updateNote('{{ note.color }}');
-	{% endif %}
-	{% if guessStep >= 6 %}
-		updateImgGuessed('{% static image.pathImage %}');
-	{% endif %}
-	{% if guessStep >= 7 %}
-		updateFeeling('{{ feeling }}');
 	{% endif %}
 	</script>
 	
