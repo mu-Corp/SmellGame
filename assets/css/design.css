@@ -57,6 +57,20 @@ body {
 	left: 170px;
 }
 
+#panelFeeling {
+	position: absolute;
+	top: 170px; 
+	left: 170px;
+	width: 160px;
+	height: 160px;
+	-webkit-border-radius: 80px;
+	-moz-border-radius: 80px;
+	border-radius: 80px;
+	background-color: red;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
 #panelHistory {
 	position: absolute;
  	top: 20px;
