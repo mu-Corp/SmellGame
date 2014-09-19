@@ -57,11 +57,13 @@
 	<body>
 		
 		<div id="panelLeft">
-			{% if guessStep == 1 %}
-				<t1>Voici les échantillons que vous avez à analyser :</t1>
-				<br/>
-				<t1>{{ currentSamples }}</t1>
-				
+			
+			<t1>Voici les échantillons que vous avez à analyser :</t1>
+			<t1>{{ currentSamples }}</t1>
+			<br/>
+			<br/>
+		
+			{% if guessStep == 1 %}				
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
 					<input type="image" value="SUIVANT" />

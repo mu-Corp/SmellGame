@@ -9,7 +9,11 @@ from random import sample
 
 azer = sample([1, 2, 3, 4, 5],  3)
 
-print range(1, 50)
+print azer
+azer2 = azer.remove(azer[0])
+print azer
+print azer2
+print type(azer)
 
 
 

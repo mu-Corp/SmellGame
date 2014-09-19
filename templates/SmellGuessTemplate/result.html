@@ -13,7 +13,29 @@
 	</head>
 	
 	
-	<body>		
+	<body>
+	
+		info:	
+		nbRemainSamplesToAnalyze= {{ nbRemainSamplesToAnalyze }}
+		</br>
+		remainSamplesToAnalyze= {{ remainSamplesToAnalyze }}
+	
+		
+		{% if nbRemainSamplesToAnalyze > 0 %}
+		<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
+			{% csrf_token %}
+			<input type="submit" value="ECHANTILLON SUIVANT" />
+		</form>
+		
+		{% else %}
+			<h2>Merci d'avoir joué!</h2>
+			<a href="../home">
+	    		<input type="submit" value="RETOUR A LA PAGE D'ACCUEIL" />	
+	    	</a>
+		
+		{% endif %}
+		
+			
 		<div id="panelLogo" style="background-image: url('{% static 'images/logo150x150.png' %}');"> </div>
 		<p class="fl_left" style="position: fixed; bottom: 0; right:5px" >Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
 	</body>

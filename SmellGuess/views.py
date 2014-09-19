@@ -87,6 +87,7 @@ def gameView(request):
                 request.session['idSample'] = sample.id
                 request.session['idGuess'] = guess.id
                 request.session['guessStep'] = 1
+                request.session['remainSamplesToAnalyze'] = nbSamplesToAnalyze #init
                 
             else:
                 error = 'invalid data...'
@@ -102,10 +103,7 @@ def gameView(request):
             elif request.session['guessStep'] == 6 : guess.feeling = request.POST['feeling']
             elif request.session['guessStep'] == 7 : 
                 guess.name = request.POST['name']
-                #Current samples to analyze :
-                request.session['SamplesToAnalyze'] = request.session['SamplesToAnalyze'].remove(request.session['idSample'])
-            
-            
+                
             guess.save()
             
             request.session['guessStep'] += 1 # Update step
@@ -147,6 +145,11 @@ def gameView(request):
 
 
 
+
+
+
+
+
 # ...
 def resultView(request):
     
@@ -155,9 +158,16 @@ def resultView(request):
         guess.name = request.POST['name']
         guess.save()
         
+        
+        request.session['guessStep'] = 1
+        
+        
+        '''
         img = open("guessImages/"+str(guess.id)+".png", "ab")
         img.write(decode_base64(request.POST['imageBase64'][22:]))
         img.close()
+        '''
+    
     
     else: # if it's not post, it's not safe
         error = 'You try to connect to this game with the wrong way, please, go back to home...'
@@ -165,10 +175,21 @@ def resultView(request):
     
     guess = Guess.objects.get(id=request.session['idGuess'])
     smeller = Smeller.objects.get(id=request.session['idSmeller'])
+    
+    
     paramToGenerateTemplate = dict()
     paramToGenerateTemplate['guess'] = guess
     paramToGenerateTemplate['listGuess'] = Guess.objects.filter(smeller=smeller);
-
+    
+    
+    request.session['SamplesToAnalyze'].remove(request.session['idSample']) #Warning: remove method don't return the list minus the element...
+    paramToGenerateTemplate['remainSamplesToAnalyze'] = request.session['SamplesToAnalyze']
+    
+    
+    paramToGenerateTemplate['nbRemainSamplesToAnalyze'] = len(request.session['SamplesToAnalyze'])
+    if paramToGenerateTemplate['nbRemainSamplesToAnalyze'] > 0:
+        sample = Sample.objects.get(id=request.session['SamplesToAnalyze'][0])
+        request.session['idSample'] = sample.id
     
     return render(request, 'SmellGuessTemplate/result.html', paramToGenerateTemplate)
 
