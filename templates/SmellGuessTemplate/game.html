@@ -10,6 +10,8 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
+		<script type="text/javascript" src="{% static 'js/html2canvas.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
 		
 		<script>		
 		function updateGradient(color, intensity) {
@@ -37,6 +39,16 @@
 			opacity = feeling*70/100;
 			panelFeeling.style.opacity = opacity/100;
 			panelFeeling.style.filter = "alpha(opacity="+opacity+")";
+		}
+		
+		function createImageFinal() {
+			html2canvas($("#panelCenter"), {
+				onrendered: function(canvas) {
+					var imageUrl = canvas.toDataURL("image/png");
+					var inputBase64 = document.getElementById("inputBase64"); 
+					inputBase64.value = imageUrl;
+				}
+			});
 		}
 		</script>
 	</head>
@@ -111,9 +123,10 @@
 				</form>
 			{% elif guessStep == 7 %}
 				<t1>SI CETTE ODEUR AVAIT UN NOM ...</t1>
-				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
+				<form action="{% url "SmellGuess.views.resultView" %}" method="post">
 					{% csrf_token %}
 					<input type="text" name="name">
+					<input type="hidden" name="imageBase64" id="inputBase64" /> 
 					<input type="image" value="SUIVANT" />
 				</form>
 			{% endif %}
@@ -172,149 +185,8 @@
 	{% endif %}
 	{% if guessStep >= 7 %}
 		updateFeeling('{{ feeling }}');
+		createImageFinal();
 	{% endif %}
 	</script>
 	
 </html>
-
-
-
-
-<!--<div style="position: fixed; top: 0; left:250px">
-			<h3>Game page ({{ error }})</h3>
-			<p>Hello {{ smeller.name }} (post method)</p>
-		</div>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-
-<!DOCTYPE html>
-
-{% load static %}
-
-<html lang="fr" dir="ltr">
-	
-	<head>
-   		<script>
-			function allowDrop(ev) {
-			    ev.preventDefault();
-			}
-			
-			function drag(ev) {
-			    ev.dataTransfer.setData("Text", ev.target.id);
-			}
-			
-			function drop(ev) {
-			    ev.preventDefault();
-			    var data = ev.dataTransfer.getData("Text");
-			    ev.target.appendChild(document.getElementById(data));
-			    
-			    var divSample = document.getElementById('divSample');
-				var child = divSample.lastChild; 
-				document.getElementById('id_perfumes').value = "";
-				while (child) {
-					document.getElementById('id_perfumes').value += child.id+";";
-					child = child.previousSibling;
-				}
-			}
-		</script>
-	
-		<title>Homepage (In Progress)</title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="{% static 'css/Layout.css' %}">
-		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
-	</head>
-	
-	
-	
-	
-	<body>
-	
-		<div class="wrapper row1">
-			<header id="header" class="clear">
-		    
-			    <div id="hgroup">
-				      <h1><a href="#">SmellGame</a></h1>
-				      <h2>Default template & work in progress</h2>
-			    </div>
-
-			    <nav>
-			        <li><h3><a href="../home" style="border:1px solid #aaaaaa; margin:2px;">Return to homepage</a></h3>(delete data)</li>
-			        </br>
-			        <li><h3><a href="../registration" style="border:1px solid #aaaaaa; margin:2px;">Modify your profile</a></h3>(your current data are saved)</li>
-			    </nav>
-			    
-			    </br></br>
-			    
-			    <h1>Game page ({{ error }})</h1>
-    
-				<p>Hello {{ smeller.name }} (post method)</p>
-				
-				<div>
-					<table>
-						<tr>
-							<td>Parfumes :</td>
-							<td>Sample : {{ name_sample }}</td>
-						</tr>
-						<tr>
-							<td>
-							
-								<div id="divParfume" ondrop="drop(event)" ondragover="allowDrop(event)" style="width:500px;height:400px;padding:10px;border:1px solid #aaaaaa;">
-									{% for perfume in listPerfumes %}
-										<img id="{{ perfume.id }}" src="{% static perfume.path %}" draggable="true" ondragstart="drag(event)" width="100" height="100" style="border:1px solid #aaaaaa; margin:2px;cursor:move">
-									{% endfor %}
-								</div>
-								
-							</td>
-							<td>
-								<div id="divSample" ondrop="drop(event)" ondragover="allowDrop(event)" style="width:500px;height:400px;padding:10px;border:1px solid #aaaaaa;"></div>
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td>
-								<form action="{% url "SmellGuess.views.gameView" %}" method="POST">
-									{% csrf_token %}
-									{{ form.as_p }}
-									<input type="submit" value="Validate" />
-									<h3>You could go back after if you want</h3>
-								</form>
-							</td>
-						</tr>
-					</table>
-				</div>
-				
-				
-			</header>
-		</div>
-		
-		<div class="wrapper row2">
-		  	<div id="container" class="clear">
-			    
-			    
-	  			<footer id="footer" class="clear">
-	    			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
-	  			</footer>
-		
-			</div>
-		</div>
-		
-		
-	</body>
-	
-	
-</html>
-
--->

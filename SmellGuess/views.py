@@ -10,6 +10,7 @@ from django.shortcuts import redirect, render
 # External libs:
 from datetime import datetime
 import random
+from base64 import decodestring
 
 # Local import:
 from forms import SmellerModelForm 
@@ -124,6 +125,27 @@ def gameView(request):
 
     return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
 
+def resultView(request):
+	if request.method == 'POST':  # If it's a POST request
+		guess = Guess.objects.get(id=request.session['idGuess'])
+		guess.name = request.POST['name']
+		guess.save()
+		
+		img = open("guessImages/"+str(guess.id)+".png", "ab")
+		img.write(decode_base64(request.POST['imageBase64'][22:]))
+		img.close()
+		
+	else: # if it's not post, it's not safe
+		error = 'You try to connect to this game with the wrong way, please, go back to home...'
+	
+	guess = Guess.objects.get(id=request.session['idGuess'])
+	smeller = Smeller.objects.get(id=request.session['idSmeller'])
+	paramToGenerateTemplate = dict()
+	paramToGenerateTemplate['guess'] = guess
+	paramToGenerateTemplate['listGuess'] = Guess.objects.filter(smeller=smeller);
+	
+	return render(request, 'SmellGuessTemplate/result.html', paramToGenerateTemplate)
+
 def errorview(request):
     #return a page indicating an error has occured
     return render(request, 'SmellGuessTemplate/error.html')
@@ -131,6 +153,19 @@ def errorview(request):
 ###############################################################
 ####################    LOCAL FUNCTIONS    ####################
 ###############################################################
+
+def decode_base64(data):
+    """Decode base64, padding being optional.
+
+    :param data: Base64 data as an ASCII byte string
+    :returns: The decoded byte string.
+
+    """
+    missing_padding = 4 - len(data) % 4
+    if missing_padding:
+        data += b'='* missing_padding
+    return decodestring(data)
+
 
 def SQL_to_csv():
     listSmeller = Smeller.objects.all()

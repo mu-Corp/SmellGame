@@ -4,16 +4,8 @@ from SmellGuess.models import *
 
 if len(Sample.objects.all()) == 0 :
 	# Creating samples
-	Sample(name='d1').save()
-	Sample(name='d2').save()
-	Sample(name='d3').save()
-	Sample(name='d4').save()
-	Sample(name='d5').save()
-	Sample(name='d6').save()
-	Sample(name='d7').save()
-	Sample(name='d8').save()
-	Sample(name='d9').save()
-	Sample(name='d9').save()
+	for i in range(50) :
+		Sample(name='d'+str(i)).save()
 	print "Samples created"
 else : 
 	print "Please remove db.sqlite3 and execute 'python manage.py syncb' before !"
@@ -66,7 +58,7 @@ if len(Image.objects.all()) == 0 :
 	Image(name="BEURRE RANCE",        pathImage="images/Image/beurreRance.png").save()
 	Image(name="RAISIN",              pathImage="images/Image/raisin.png").save()
 	Image(name="FRUIT DE LA PASSION", pathImage="images/Image/fruitDeLaPassion.png").save()
-	Image(name="OIGNON",              pathImage="images/Image/oignnon.png").save()
+	Image(name="OIGNON",              pathImage="images/Image/oignon.png").save()
 	Image(name="AIL",                 pathImage="images/Image/ail.png").save()
 	Image(name="CHOUX",               pathImage="images/Image/choux.png").save()
 	Image(name="ASPERGE",             pathImage="images/Image/asperge.png").save()

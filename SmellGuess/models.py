@@ -115,7 +115,7 @@ class Guess(models.Model):
 	image      = models.ForeignKey('Image', null=True)
 	feeling    = models.PositiveSmallIntegerField(default=0)
 	name       = models.CharField(max_length=42)
-
+	
 ###############################################################
 
 class Humor(models.Model):

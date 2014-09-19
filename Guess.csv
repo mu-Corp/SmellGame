@@ -1,15 +1,6 @@
 id;smeller;sample;intensity;humor;note;image;feeling;name
-1;1;1;0;None;None;None;0;
-2;2;1;0;None;None;None;0;
-3;3;3;0;None;None;None;0;
-4;4;9;0;None;None;None;0;
-5;6;1;0;None;None;None;0;
-6;7;1;0;None;None;None;0;
-7;8;1;0;None;None;None;0;
-8;9;1;98;Humor object;Note object;Image object;0;qfqf
-9;10;1;0;None;None;None;0;
-10;11;1;0;None;None;None;0;
-11;12;1;0;None;None;None;0;
-12;13;1;100;Humor object;Note object;None;0;
-13;14;1;100;Humor object;Note object;None;0;
-14;15;1;0;Humor object;Note object;None;0;
+1;1;1;5;Humor object;Note object;Image object;33;ihi
+2;2;1;0;Humor object;Note object;Image object;34;ervrv
+3;3;1;23;Humor object;Note object;Image object;59;boo
+4;4;1;0;Humor object;Note object;Image object;35;nhp
+5;5;1;50;Humor object;Note object;Image object;65;test
