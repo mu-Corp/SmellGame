@@ -50,6 +50,13 @@ body {
 	border-radius: 100px;
 }
 
+#imgGuessed {
+	display: block;
+	position: absolute;
+	top: 170px; 
+	left: 170px;
+}
+
 #panelHistory {
 	position: absolute;
  	top: 20px;
