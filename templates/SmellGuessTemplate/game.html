@@ -59,12 +59,14 @@
 		<div id="panelLeft">
 			{% if guessStep == 1 %}
 				<t1>Voici les échantillons que vous avez à analyser :</t1>
-				in process...
+				<br/>
+				<t1>{{ currentSamples }}</t1>
+				
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
-					{{ keepingSamplesToAnalyze }}
 					{% csrf_token %}
 					<input type="image" value="SUIVANT" />
 				</form>
+				
 			{% elif guessStep == 2 %}
 				<t1>QUELLE EST L'INTENSITÉ DE CETTE ODEUR ?</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
@@ -148,7 +150,7 @@
 		
 		<div id="panelHistory">
 			HISTORIQUE :<br/>
-			Sample n°{{ keepingSamplesToAnalyze }} <br/>
+			Sample n°{{ idSample }} (guessStep= {{ guessStep }})<br/>
 			{% if guessStep >= 3 %}
 				Intensité : {{ intensity }}% <br/>
 			{% endif %}

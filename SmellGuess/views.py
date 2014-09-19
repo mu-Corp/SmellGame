@@ -66,11 +66,15 @@ def gameView(request):
 
             if formSmeller.is_valid(): # If data are valid (correct type, size, etc.)
                 
+                
+                ################################################
                 #Random id of samples to analyze:
                 allSampleIds = range(1, 51)#list contains 1, 2, ..., 50
                 nbSamplesToAnalyze = 6
-                request.session['currentSamples'] = random.sample(allSampleIds,  nbSamplesToAnalyze)
-                firstToAnalyze = 1#request.session['currentSamples'][0]
+                request.session['SamplesToAnalyze'] = random.sample(allSampleIds,  nbSamplesToAnalyze) #init
+                firstToAnalyze = request.session['SamplesToAnalyze'][0]
+                ################################################
+                
                 
                 smeller = formSmeller.save() # Save in DB
                 sample = Sample.objects.get(id=firstToAnalyze)
@@ -96,16 +100,27 @@ def gameView(request):
             elif request.session['guessStep'] == 4 : guess.note = Note.objects.get(id=request.POST['note'])
             elif request.session['guessStep'] == 5 : guess.image = Image.objects.get(id=request.POST['image'])
             elif request.session['guessStep'] == 6 : guess.feeling = request.POST['feeling']
-            elif request.session['guessStep'] == 7 : guess.name = request.POST['name']
+            elif request.session['guessStep'] == 7 : 
+                guess.name = request.POST['name']
+                #Current samples to analyze :
+                request.session['SamplesToAnalyze'] = request.session['SamplesToAnalyze'].remove(request.session['idSample'])
+            
             
             guess.save()
             
             request.session['guessStep'] += 1 # Update step
         
+        
     else: # if it's not post, it's not safe
         error = 'You try to connect to this game with the wrong way, please, go back to home...'
     
+    
+    
+    #In all cases:
     guess = Guess.objects.get(id=request.session['idGuess'])
+    
+    
+    
     
     paramToGenerateTemplate = dict()
     paramToGenerateTemplate['listHumors'] = Humor.objects.all()
@@ -114,8 +129,11 @@ def gameView(request):
     
     paramToGenerateTemplate['guessStep'] = request.session['guessStep']
     
-        
-    paramToGenerateTemplate['keepingSamplesToAnalyze'] = "Echantillon tiré (en cours de modif) : " + str(request.session['idGuess'])#request.session['currentSamples'].remove(request.session['idGuess'])
+    
+    #Random story!    
+    paramToGenerateTemplate['currentSamples'] = request.session['SamplesToAnalyze']
+    paramToGenerateTemplate['idSample'] = request.session['idSample']
+    
     
     paramToGenerateTemplate['intensity'] = guess.intensity
     paramToGenerateTemplate['humor'] = guess.humor
@@ -123,29 +141,41 @@ def gameView(request):
     paramToGenerateTemplate['image'] = guess.image
     paramToGenerateTemplate['feeling'] = guess.feeling
 
+    
+    
     return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
 
-def resultView(request):
-	if request.method == 'POST':  # If it's a POST request
-		guess = Guess.objects.get(id=request.session['idGuess'])
-		guess.name = request.POST['name']
-		guess.save()
-		
-		img = open("guessImages/"+str(guess.id)+".png", "ab")
-		img.write(decode_base64(request.POST['imageBase64'][22:]))
-		img.close()
-		
-	else: # if it's not post, it's not safe
-		error = 'You try to connect to this game with the wrong way, please, go back to home...'
-	
-	guess = Guess.objects.get(id=request.session['idGuess'])
-	smeller = Smeller.objects.get(id=request.session['idSmeller'])
-	paramToGenerateTemplate = dict()
-	paramToGenerateTemplate['guess'] = guess
-	paramToGenerateTemplate['listGuess'] = Guess.objects.filter(smeller=smeller);
-	
-	return render(request, 'SmellGuessTemplate/result.html', paramToGenerateTemplate)
 
+
+# ...
+def resultView(request):
+    
+    if request.method == 'POST':  # If it's a POST request
+        guess = Guess.objects.get(id=request.session['idGuess'])
+        guess.name = request.POST['name']
+        guess.save()
+        
+        img = open("guessImages/"+str(guess.id)+".png", "ab")
+        img.write(decode_base64(request.POST['imageBase64'][22:]))
+        img.close()
+    
+    else: # if it's not post, it's not safe
+        error = 'You try to connect to this game with the wrong way, please, go back to home...'
+    
+    
+    guess = Guess.objects.get(id=request.session['idGuess'])
+    smeller = Smeller.objects.get(id=request.session['idSmeller'])
+    paramToGenerateTemplate = dict()
+    paramToGenerateTemplate['guess'] = guess
+    paramToGenerateTemplate['listGuess'] = Guess.objects.filter(smeller=smeller);
+
+    
+    return render(request, 'SmellGuessTemplate/result.html', paramToGenerateTemplate)
+
+
+
+
+# ...
 def errorview(request):
     #return a page indicating an error has occured
     return render(request, 'SmellGuessTemplate/error.html')
@@ -154,7 +184,7 @@ def errorview(request):
 ####################    LOCAL FUNCTIONS    ####################
 ###############################################################
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 def decode_base64(data):
     """Decode base64, padding being optional.
 
@@ -167,10 +197,10 @@ def decode_base64(data):
         data += b'='* missing_padding
     return decodestring(data)
 
-=======
+#=======
 import codecs
 from django.utils.encoding import smart_str, smart_unicode
->>>>>>> 1c5b4933a06124a498117ea8e1742274730f65e0
+#>>>>>>> 1c5b4933a06124a498117ea8e1742274730f65e0
 
 def SQL_to_csv():
     listSmeller = Smeller.objects.all()
@@ -193,8 +223,7 @@ def SQL_to_csv():
     sm.close()
     
     for g in listGuess :
-        #print ( "\n", g.id, ";", g.id_smeller, ";", g.id_Sample, ";", g.intensity, ";", g.humor, ";", g.note, ";", g.image, ";", g.feeling, ";", g.name )
-        tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.id)+";"+str(g.intensity)+";"+str(g.humor.name)+";"+str(g.note.name)+";"+str(g.image.name)+ ";"+ str(g.feeling)+ ";"+ smart_str(g.name)
+        tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.id)+";"+str(g.intensity)+";"+str(g.humor)+";"+str(g.note)+";"+str(g.image)+ ";"+ str(g.feeling)+ ";"+ str(g.name)
         gu.write(str(tmp_sentence))
         #g.smeller.id
     gu.close()
