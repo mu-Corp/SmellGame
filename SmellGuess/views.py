@@ -154,6 +154,7 @@ def errorview(request):
 ####################    LOCAL FUNCTIONS    ####################
 ###############################################################
 
+<<<<<<< HEAD
 def decode_base64(data):
     """Decode base64, padding being optional.
 
@@ -166,10 +167,15 @@ def decode_base64(data):
         data += b'='* missing_padding
     return decodestring(data)
 
+=======
+import codecs
+from django.utils.encoding import smart_str, smart_unicode
+>>>>>>> 1c5b4933a06124a498117ea8e1742274730f65e0
 
 def SQL_to_csv():
     listSmeller = Smeller.objects.all()
     listGuess = Guess.objects.all()
+
     sm = open ('Smeller.csv', 'w+')
     gu = open ('Guess.csv', 'w+')
     
@@ -188,7 +194,7 @@ def SQL_to_csv():
     
     for g in listGuess :
         #print ( "\n", g.id, ";", g.id_smeller, ";", g.id_Sample, ";", g.intensity, ";", g.humor, ";", g.note, ";", g.image, ";", g.feeling, ";", g.name )
-        tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.id)+";"+str(g.intensity)+";"+str(g.humor)+";"+str(g.note)+";"+str(g.image)+ ";"+ str(g.feeling)+ ";"+ str(g.name)
+        tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.id)+";"+str(g.intensity)+";"+str(g.humor.name)+";"+str(g.note.name)+";"+str(g.image.name)+ ";"+ str(g.feeling)+ ";"+ smart_str(g.name)
         gu.write(str(tmp_sentence))
         #g.smeller.id
     gu.close()
