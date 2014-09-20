@@ -5,15 +5,12 @@ from django.test import TestCase
 
 from random import sample
 
-
-
-azer = sample([1, 2, 3, 4, 5],  3)
-
+azer = [1, 2, None, 3]
 print azer
-azer2 = azer.remove(azer[0])
-print azer
-print azer2
-print type(azer)
+print type(azer[0])
+print type(azer[2])
 
-
-
+if isinstance(azer[0], int):
+    print 'helo' + str(type(azer[0]))
+else: 
+    print 'noo'

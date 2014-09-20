@@ -18,45 +18,58 @@
 		Echantillons encore à analyser : {{ remainSamplesToAnalyze }}
 		
 		</br></br>
-		Vos résultats :
-		todo
+		Vos résultats pour l'échantillon n°{{ idSample }} :
+		<table style="border:1px solid black; border-width:1px; border-style:solid; border-color:black;">
+			<tr>
+				<td style="border-width:1px; border-style:solid;">Intensité :</td>
+				<td style="border-width:1px; border-style:solid;">{{ yourIntensity }}%</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">Humeur :</td>
+				<td style="border-width:1px; border-style:solid;">{{ yourHumor }}</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">Note :</td>
+				<td style="border-width:1px; border-style:solid;">{{ yourNote }}</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">Image :</td>
+				<td style="border-width:1px; border-style:solid;">{{ yourImage }}</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">Sensation :</td>
+				<td style="border-width:1px; border-style:solid;">{{ yourFeeling }}%</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">Nom :</td>
+				<td style="border-width:1px; border-style:solid;">{{ yourName }}</td>
+			</tr>
+		</table>
+		
 		
 		</br></br>
 		Les résultats des autres :
-		other intensities = {{ intensities }}</br>
-		other humors = {{ humors }}</br>
-		other notes = {{ notes }}</br>
-		other images = {{ images }}</br>
-		other feelings = {{ feelings }}</br>
-		other names = {{ names }}</br>
 		
-		</br></br>
-		
-		Test d'affichage temporaire (voir à en mettre une dizaine max ptete et pas de bug si moins) :
 		<table style="border:1px solid black; border-width:1px; border-style:solid; border-color:black;">
 			<tr>
-				<td style="border-width:1px; border-style:solid;">intensité :</td>
-				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+				<td style="border-width:1px; border-style:solid;">Intensité moyenne:</td>
+				<td style="border-width:1px; border-style:solid;">{{ meanIntensities }}%</td>
 			</tr>
 			<tr>
-				<td style="border-width:1px; border-style:solid;">humeur :</td>
-				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+				<td style="border-width:1px; border-style:solid;">Humeur moyenne :</td>
+				<td style="border-width:1px; border-style:solid;">{{ maxHumors }}</td>
 			</tr>
 			<tr>
-				<td style="border-width:1px; border-style:solid;">note :</td>
-				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+				<td style="border-width:1px; border-style:solid;">Note moyenne :</td>
+				<td style="border-width:1px; border-style:solid;">{{ maxNotes }}</td>
 			</tr>
 			<tr>
-				<td style="border-width:1px; border-style:solid;">image :</td>
-				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+				<td style="border-width:1px; border-style:solid;">Image moyenne :</td>
+				<td style="border-width:1px; border-style:solid;">{{ maxImages }}</td>
 			</tr>
 			<tr>
-				<td style="border-width:1px; border-style:solid;">ressenti :</td>
-				<td style="border-width:1px; border-style:solid;">valeur associée</td>
-			</tr>
-			<tr>
-				<td style="border-width:1px; border-style:solid;">nom :</td>
-				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+				<td style="border-width:1px; border-style:solid;">Sensation moyenne :</td>
+				<td style="border-width:1px; border-style:solid;">{{ meanFeelings }}%</td>
 			</tr>
 		</table>
 		

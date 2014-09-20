@@ -193,12 +193,43 @@ def resultView(request):
     paramToGenerateTemplate = dict()
     
     
-    paramToGenerateTemplate['intensities'] = intensities
-    paramToGenerateTemplate['humors'] = humors
-    paramToGenerateTemplate['notes'] = notes
-    paramToGenerateTemplate['images'] = images
-    paramToGenerateTemplate['feelings'] = feelings
-    paramToGenerateTemplate['names'] = names
+    #######################################################################"
+    #all param to generate:
+    paramToGenerateTemplate['yourIntensity'] = guess.intensity
+    paramToGenerateTemplate['yourHumor'] = guess.humor_id
+    paramToGenerateTemplate['yourNote'] = guess.note_id
+    paramToGenerateTemplate['yourImage'] = guess.image_id
+    paramToGenerateTemplate['yourFeeling'] = guess.feeling
+    paramToGenerateTemplate['yourName'] = guess.name
+    
+    paramToGenerateTemplate['meanIntensities'] = mean(intensities)
+    paramToGenerateTemplate['meanFeelings'] = mean(feelings)
+    
+    maxHumorsId = maxi(humors)
+    if isinstance(maxHumorsId, int):#existe et donc non None
+        maxHumors = Humor.objects.get(id=maxHumorsId)
+        paramToGenerateTemplate['maxHumors'] = maxHumors.name
+    else:
+        paramToGenerateTemplate['maxHumors'] = "non disponible"
+    
+    
+    maxNotesId = maxi(notes)
+    if isinstance(maxNotesId, int):#existe et donc non None
+        maxNotes = Note.objects.get(id=maxNotesId)
+        paramToGenerateTemplate['maxNotes'] = maxNotes.name
+    else:
+        paramToGenerateTemplate['maxNotes'] = "non disponible"
+        
+    maxImagesId = maxi(images)
+    if isinstance(maxImagesId, int):#existe et donc non None    
+        maxImages = Image.objects.get(id=maxImagesId)
+        paramToGenerateTemplate['maxImages'] = maxImages.name
+    else:
+        paramToGenerateTemplate['maxImages'] = "non disponible"
+    
+    paramToGenerateTemplate['idSample'] = request.session['idSample']
+    
+    #######################################################################"
     
     
     paramToGenerateTemplate['guess'] = guess
@@ -232,8 +263,47 @@ def errorview(request):
 ###############################################################
 ####################    LOCAL FUNCTIONS    ####################
 ###############################################################
+def mean(param):
+    
+    result = 0
+    nb = 0
+    
+    for val in param:
+        if isinstance(val, int):
+            nb += 1
+            result += val
+    if nb > 0:
+        result = result / nb
+    else:
+        result = None  
+
+    #mean in % in fact
+    return result
 
 
+
+def maxi(param):
+    
+    from collections import defaultdict
+    
+    calDict = defaultdict(lambda: 0)
+    nb = 0
+    
+    for val in param:
+        if isinstance(val, int):
+            nb += 1
+            calDict[str(val)] += 1
+    
+    resultId = 0
+    if nb > 0:
+        maxCalDict = max(calDict.values())
+        for idKey in calDict.keys():
+            if calDict[idKey] == maxCalDict:
+                resultId = int(idKey)
+    else:
+        resultId = None
+    
+    return resultId
 
 
 ###############################################################
