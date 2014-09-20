@@ -167,7 +167,22 @@ def resultView(request):
         img.write(decode_base64(request.POST['imageBase64'][22:]))
         img.close()
         '''
-    
+        #In waiting to display images of other results:
+        idOfAnalyzedSample = request.session['idSample']
+        idemGuess = Guess.objects.filter(sample_id=idOfAnalyzedSample).exclude(smeller_id=guess.smeller_id) #Give a list of all guess with same current sample
+        intensities = list()
+        humors = list()
+        notes = list()
+        images = list()
+        feelings = list()
+        names = list()
+        for g in idemGuess:
+            intensities.append(g.intensity)
+            humors.append(g.humor_id)
+            notes.append(g.note_id)
+            images.append(g.image_id)
+            feelings.append(g.feeling)
+            names.append(g.name)
     
     else: # if it's not post, it's not safe
         error = 'You try to connect to this game with the wrong way, please, go back to home...'
@@ -178,6 +193,16 @@ def resultView(request):
     
     
     paramToGenerateTemplate = dict()
+    
+    
+    paramToGenerateTemplate['intensities'] = intensities
+    paramToGenerateTemplate['humors'] = humors
+    paramToGenerateTemplate['notes'] = notes
+    paramToGenerateTemplate['images'] = images
+    paramToGenerateTemplate['feelings'] = feelings
+    paramToGenerateTemplate['names'] = names
+    
+    
     paramToGenerateTemplate['guess'] = guess
     paramToGenerateTemplate['listGuess'] = Guess.objects.filter(smeller=smeller);
     

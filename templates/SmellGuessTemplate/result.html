@@ -14,11 +14,54 @@
 	
 	
 	<body>
-	
-		info:	
-		nbRemainSamplesToAnalyze= {{ nbRemainSamplesToAnalyze }}
-		</br>
-		remainSamplesToAnalyze= {{ remainSamplesToAnalyze }}
+		
+		Echantillons encore à analyser : {{ remainSamplesToAnalyze }}
+		
+		</br></br>
+		Vos résultats :
+		todo
+		
+		</br></br>
+		Les résultats des autres :
+		other intensities = {{ intensities }}</br>
+		other humors = {{ humors }}</br>
+		other notes = {{ notes }}</br>
+		other images = {{ images }}</br>
+		other feelings = {{ feelings }}</br>
+		other names = {{ names }}</br>
+		
+		</br></br>
+		
+		Test d'affichage temporaire (voir à en mettre une dizaine max ptete et pas de bug si moins) :
+		<table style="border:1px solid black; border-width:1px; border-style:solid; border-color:black;">
+			<tr>
+				<td style="border-width:1px; border-style:solid;">intensité :</td>
+				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">humeur :</td>
+				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">note :</td>
+				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">image :</td>
+				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">ressenti :</td>
+				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+			</tr>
+			<tr>
+				<td style="border-width:1px; border-style:solid;">nom :</td>
+				<td style="border-width:1px; border-style:solid;">valeur associée</td>
+			</tr>
+		</table>
+		
+		
+		</br></br>
 	
 		
 		{% if nbRemainSamplesToAnalyze > 0 %}

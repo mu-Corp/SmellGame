@@ -14,3 +14,6 @@ id;smeller;sample;intensity;humor;note;image;feeling;name
 13;13;5;50;Humor object;Note object;Image object;0;test
 14;14;30;50;Humor object;Note object;Image object;0;test
 15;15;41;0;None;None;None;0;
+16;16;14;50;Humor object;Note object;Image object;0;test
+17;17;14;50;Humor object;Note object;Image object;70;test2
+18;18;1;72;Humor object;Note object;Image object;49;test2
