@@ -269,7 +269,7 @@ def SQL_to_csv():
     sm.close()
     
     for g in listGuess :
-        tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.id)+";"+str(g.intensity)+";"+str(g.humor.name)+";"+str(g.note.name)+";"+str(g.image.name)+ ";"+ str(g.feeling)+ ";"+ str(g.name)
+        tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.id)+";"+str(g.intensity)+";"+str(g.humor.name)+";"+str(g.note.name)+";"+str(g.image.name)+ ";"+ str(g.feeling)+ ";"#+ str(g.name)
         gu.write(str(tmp_sentence))
         #g.smeller.id
     gu.close()
