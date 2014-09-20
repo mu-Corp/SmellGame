@@ -72,9 +72,11 @@
 		
 		{% else %}
 			<h2>Merci d'avoir joué!</h2>
-			<a href="../home">
-	    		<input type="submit" value="RETOUR A LA PAGE D'ACCUEIL" />	
-	    	</a>
+			<form action="{% url "SmellGuess.views.homeView" %}" method="post" >
+				{% csrf_token %}
+				<input type='hidden' name='csrfmiddlewaretoken' value='dxGetU2JTCN9RWOLtmoURIvO4T7P5bi4' />
+				<input type="submit" value="RETOUR A LA PAGE D'ACCUEIL" />	
+			</form>
 		
 		{% endif %}
 		
