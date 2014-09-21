@@ -6,7 +6,7 @@
 <html lang="fr" dir="ltr">
 	
 	<head>
-		<title>Game page type (In Progress)</title>
+		<title>THE SMELL OF US - Résultats (en construction...)</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
@@ -94,8 +94,20 @@
 		{% endif %}
 		
 			
-		<div id="panelLogo" style="background-image: url('{% static 'images/logo150x150.png' %}');"> </div>
-		<p class="fl_left" style="position: fixed; bottom: 0; right:5px" >Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
+		<!-- bottom block -->		
+		<div style="position: fixed; bottom: 5px; right:5px;" >
+			<a href="../home" style="text-decoration: none;" >
+				<input type="submit" value="Retour à la page d'accueil" style="display: block; margin-left: auto; margin-right: auto;"/>
+			</a>
+			<br/>
+	    	<a href="http://2014.igem.org/Team:Paris_Bettencourt" target="_blank" >
+	    		<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto">
+	    	</a>
+			<br/>
+	    	Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a>
+	    </div>
+	
+	
 	</body>
 	
 </html>

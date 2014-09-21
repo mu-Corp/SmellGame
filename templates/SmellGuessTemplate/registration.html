@@ -5,12 +5,15 @@
 
 <html lang="fr" dir="ltr">
 	
+	
+	<!-- header block -->
 	<head>
-		<title>Registration page (In Progress)</title>
+		<title>THE SMELL OF US - Enregistrement (en construction...)</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
 	</head>
+	
 	
 	<body>
 	
@@ -19,41 +22,39 @@
 		<div style="text-align: center">
 	
 			<div style="text-align: center">
-				<h3>Smeller, you can begin with your smell-profile!</h3>
+				<h1>Merci de renseigner ces quelques informations :</h1>
 			</div>	    	
 			
-			</br></br>
+			<br/>
 			
 			<div style="text-align: center">
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post">
 					{% csrf_token %}
 					{{ form.as_p }}
-					<input type="submit" value="Submit" />
+					
+					<br/> 
+					
+					<input type="submit" value="Valider" />
 				</form>
 			</div>			
-			
-			</br></br></br></br>
-			
-		    <div>
-		    	<a href="#">
-		    		<img src="{% static 'images/logo150x150.png' %}" >
-		    	</a>
-		    </div>
-			
-			</br></br>
-			
-			<div>
-				<h3><a href="../home" style="border:1px solid #aaaaaa; margin:2px;">Return to homepage</a>(delete data)</h3>
-		    </div>
-			
-			</br></br>
-				    
-			<div style="position: relative; bottom: 0;">
-				<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a></p>
-			</div>
-		
+						
 		</div>
+	
 		
+		<!-- bottom block -->		
+		<div style="position: fixed; bottom: 5px; right:5px;" >
+			<a href="../home" style="text-decoration: none;" >
+				<input type="submit" value="Retour à la page d'accueil" style="display: block; margin-left: auto; margin-right: auto"/>
+			</a>
+			<br/>
+	    	<a href="http://2014.igem.org/Team:Paris_Bettencourt" target="_blank" >
+	    		<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto">
+	    	</a>
+			<br/>
+	    	Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a>
+	    </div>
+	
+	
 	</body>
 	
 </html>
