@@ -68,8 +68,10 @@ WSGI_APPLICATION = 'SmellGame.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE'   : 'django.db.backends.sqlite3',
+        'NAME'     : os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER'     : 'smellgame',
+        'PASSWORD' : 'smellgame',
     }
 }
 
@@ -96,7 +98,7 @@ absoluteStaticPath = BASE_DIR + "/assets/" #effective for everybody (see / or \ 
 STATICFILES_DIRS = (
     absoluteStaticPath,
 )
-#STATIC_ROOT = '/home/cridev/wepapps/smellofus_static/' # modify for webfactional static app
+STATIC_ROOT = '/home/cridev/webapps/smellofus_static/' # modify for webfactional static app
 
 
 # Directory of templates
