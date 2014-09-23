@@ -28,6 +28,13 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ADMINS = (
+    ('Arnaud',  'arnaud.ferre.pro@gmail.com'),
+    ('Florian', 'florian.thonier@gmail.com'),
+    ('Jean',    'coquet.jean@gmail.com'),
+    ('Lucas',   'lucas.lelann@gmail.com'),
+    ('Nathan',  'nathan.foulquier.pro@gmail.com'),
+)
 
 # Application definition
 
@@ -69,7 +76,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'#'fr-FR'
+LANGUAGE_CODE = 'fr-FR' #'en-us'
 
 TIME_ZONE = 'Europe/Paris'
 
@@ -89,7 +96,7 @@ absoluteStaticPath = BASE_DIR + "/assets/" #effective for everybody (see / or \ 
 STATICFILES_DIRS = (
     absoluteStaticPath,
 )
-
+#STATIC_ROOT = '/home/cridev/wepapps/smellofus_static/' # modify for webfactional static app
 
 
 # Directory of templates
