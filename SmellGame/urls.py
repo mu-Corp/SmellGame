@@ -6,9 +6,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = [
-               url(r'^smellguess/', include('SmellGuess.urls')),
+               url(r'^smellguess/',  include('SmellGuess.urls')),
                url(r'^smellgalaxy/', include('SmellGalaxy.urls')),
-               url(r'^admin/', include(admin.site.urls)),
+               url(r'^admin/',       include(admin.site.urls)),
+               url(r'^home/',        'SmellGuess.views.homeView', name='home'),
 ]
 
 
