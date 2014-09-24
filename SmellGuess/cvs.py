@@ -1,19 +1,8 @@
-#<<<<<<< HEAD
-def decode_base64(data):
-    """Decode base64, padding being optional.
+# -*- coding: utf8 -*-
 
-    :param data: Base64 data as an ASCII byte string
-    :returns: The decoded byte string.
-
-    """
-    missing_padding = 4 - len(data) % 4
-    if missing_padding:
-        data += b'='* missing_padding
-    return decodestring(data)
-
-#=======
 import codecs
 from django.utils.encoding import smart_str, smart_unicode
+from SmellGuess.models import Smeller, Sample, Guess, Image, Humor, Note
 
 
 def SQL_to_csv():
@@ -37,8 +26,11 @@ def SQL_to_csv():
     sm.close()
     
     for g in listGuess :
-        tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.id)+";"+str(g.intensity)+";"+str(g.humor.name)+";"+str(g.note.name)+";"+str(g.image.name)+ ";"+ str(g.feeling)+ ";"#+ str(g.name)
-        gu.write(str(tmp_sentence))
+        test=g.name
+        test=test.encode("utf-8")
+        tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.id)+";"+str(g.intensity)+";"+str(g.humor.name)+";"+str(g.note.name)+";"+str(g.image.name)+ ";"+ str(g.feeling)+";"+ test      
+        #print tmp_sentence
+        gu.write(tmp_sentence)
         #g.smeller.id
     gu.close()
    
