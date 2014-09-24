@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-print BASE_DIR
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
@@ -92,11 +90,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 # Read the tuto !!! (http://fr.openclassrooms.com/informatique/cours/developpez-votre-site-web-avec-le-framework-django/les-templates-3)
+
 STATIC_URL = '/assets/'
+#STATIC_URL = '/static/'
 
 absoluteStaticPath = BASE_DIR + "/assets/" #effective for everybody (see / or \ maybe...)
 STATICFILES_DIRS = (
-    absoluteStaticPath,
+        absoluteStaticPath,
+        #'/home/cridev/webapps/smellofus_static/',
 )
 STATIC_ROOT = '/home/cridev/webapps/smellofus_static/' # modify for webfactional static app
 
