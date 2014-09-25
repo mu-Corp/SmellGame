@@ -154,3 +154,48 @@ body {
 .radio-toolbar input[type="radio"]:checked + label {
     background-color:rgb(216,89,149);
 }
+
+#panelIdSamples {
+	position: absolute;
+	left: 220px;
+	top: 10px;
+	width: 400px;
+	height: 50px;
+}
+
+.idSample {
+	display: inline-block;
+	width: 40px;
+	height: 34px;
+	padding-top: 6px;
+	font-size: 24px;
+	font-weight: bold;
+	color: lightgray;
+	border: 5px solid lightgray;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+	margin-right: 7px;
+}
+
+#panelCenterSample {
+	position: absolute;
+	top: 50%; 
+	left: 50%;
+	width: 300px;
+	height: 245px;
+	padding-top: 55px;
+	margin-top: -187px;
+	margin-left: -187px;
+	font-size: 160px;
+	font-weight: bold;
+	color: white;
+	border: 45px solid white;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-border-radius: 187px;
+	-moz-border-radius: 187px;
+	border-radius: 187px;
+}

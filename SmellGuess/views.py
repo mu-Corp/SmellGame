@@ -158,7 +158,7 @@ def resultView(request):
         guess.save()
         
         
-        request.session['guessStep'] = 1        
+        request.session['guessStep'] = 0      
         
         '''
         img = open("guessImages/"+str(guess.id)+".png", "ab")
