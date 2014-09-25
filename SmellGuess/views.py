@@ -196,20 +196,36 @@ def resultView(request):
     #######################################################################"
     #all param to generate:
     paramToGenerateTemplate['intensity'] = guess.intensity
+    paramToGenerateTemplate['intensityDisplay'] = 30*guess.intensity/100+40
     paramToGenerateTemplate['humorColor'] = guess.humor.color
     paramToGenerateTemplate['humourColorName'] = (Humor.objects.get(id=guess.humor_id)).name
     paramToGenerateTemplate['noteColor'] = guess.note.color
     paramToGenerateTemplate['noteColorName'] = (Note.objects.get(id=guess.note_id)).name
     paramToGenerateTemplate['pathImage'] = guess.image.pathImage
     paramToGenerateTemplate['imageName'] = (Image.objects.get(id=guess.image_id)).name
-    paramToGenerateTemplate['opacityLevel'] = str(guess.feeling / 100.0) 
+    paramToGenerateTemplate['opacityLevelPercent'] = str(guess.feeling*50/100) 
+    paramToGenerateTemplate['opacityLevel'] = str(guess.feeling*0.5/100)
     paramToGenerateTemplate['feelingLevel'] = guess.feeling
     paramToGenerateTemplate['name'] = guess.name
     
     
-    
-    paramToGenerateTemplate['intensityMean'] = mean(intensities)
-    paramToGenerateTemplate['opacityMean'] = mean(feelings)
+    if len(intensities) == 0 :
+	    paramToGenerateTemplate['intensityMean'] = None
+	    paramToGenerateTemplate['intensityMeanDisplay'] = None
+    else :
+	    intensityMean = mean(intensities)
+	    paramToGenerateTemplate['intensityMean'] = intensityMean
+	    paramToGenerateTemplate['intensityMeanDisplay'] = 30*intensityMean/100+40
+	    
+    if len(feelings) == 0 :
+	    paramToGenerateTemplate['feelingLevelMean'] = None
+	    paramToGenerateTemplate['opacityMeanLevelPercent'] = None
+	    paramToGenerateTemplate['opacityMeanLevel'] = None
+    else :
+	    feelingLevelMean = mean(feelings)
+	    paramToGenerateTemplate['feelingLevelMean'] = feelingLevelMean
+	    paramToGenerateTemplate['opacityLevelMeanPercent'] = str(feelingLevelMean*50/100) 
+	    paramToGenerateTemplate['opacityLevelMean'] = str(feelingLevelMean*0.5/100)
     
     maxHumorsId = maxi(humors)
     if isinstance(maxHumorsId, int):#existe et donc non None
@@ -217,8 +233,8 @@ def resultView(request):
         paramToGenerateTemplate['humorColorMean'] = maxHumors.color
         paramToGenerateTemplate['humourColorMeanName'] = (Humor.objects.get(id=maxHumorsId)).name
     else:
-        paramToGenerateTemplate['humorColorMean'] = "none"
-        paramToGenerateTemplate['humourColorMeanName'] = "non disponible"
+        paramToGenerateTemplate['humorColorMean'] = None
+        paramToGenerateTemplate['humourColorMeanName'] = "Non disponible"
     
     
     maxNotesId = maxi(notes)
@@ -227,8 +243,8 @@ def resultView(request):
         paramToGenerateTemplate['noteColorMean'] = maxNotes.color
         paramToGenerateTemplate['noteColorMeanName'] = (Note.objects.get(id=maxNotesId)).name
     else:
-        paramToGenerateTemplate['noteColorMean'] = "none"
-        paramToGenerateTemplate['noteColorMeanName'] = "non disponible"
+        paramToGenerateTemplate['noteColorMean'] = None
+        paramToGenerateTemplate['noteColorMeanName'] = "Non disponible"
         
     maxImagesId = maxi(images)
     if isinstance(maxImagesId, int):#existe et donc non None    
@@ -236,8 +252,8 @@ def resultView(request):
         paramToGenerateTemplate['pathImageMean'] = maxImages.pathImage
         paramToGenerateTemplate['imageMeanName'] = (Image.objects.get(id=maxImagesId)).name
     else:
-        paramToGenerateTemplate['pathImageMean'] = "none"
-        paramToGenerateTemplate['imageMeanName'] = "non disponible"
+        paramToGenerateTemplate['pathImageMean'] = None
+        paramToGenerateTemplate['imageMeanName'] = "Non disponible"
     
     paramToGenerateTemplate['idSample'] = request.session['idSample']
     
@@ -258,6 +274,7 @@ def resultView(request):
 
         sample = Sample.objects.get(id=request.session['SamplesToAnalyze'][0])
         request.session['idSample'] = sample.id
+	paramToGenerateTemplate['idNextSample'] = sample.id
         guess = Guess(smeller=smeller,sample=sample)
         guess.save()
         request.session['idGuess'] = guess.id

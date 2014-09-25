@@ -15,213 +15,19 @@
 	
 	<body>
 		
-
-		<h2>Echantillons encore à analyser : {{ remainSamplesToAnalyze }}</h2>
-		
-
-
-
-		<div style="display: inline-block; vertical-align: top; width: 500px; height:610px; text-align: center;">
-			
-			<h3>Vos résultats pour l'échantillon n°{{ idSample }} :</h3>
-			
-			<!-- Size of the first circle (intensity + color): -->
-			<div style="display: inline-block; 
-						vertical-align: top;
-						text-align: center;
-						width: 500px; 
-						height:500px;
-						background: -webkit-radial-gradient({{ humorColor }} 0%,rgb(186,181,186) {{ intensity }}%);
-						background: -o-radial-gradient({{ humorColor }} 0%,rgb(186,181,186) {{ intensity }}%);
-						background: -moz-radial-gradient({{ humorColor }} 0%,rgb(186,181,186) {{ intensity }}%);
-						background: radial-gradient({{ humorColor }} 0%,rgb(186,181,186) {{ intensity }}%);">
-	
-	
-				<!-- Color of the second circle (note): -->
-                <div style="width: 200px;
-                            height: 200px;
-                            
-                            margin: auto;
-                            position: relative;
-							top: 50%;
-							margin-top: -100px;
-                            
-                            -webkit-border-radius: 30px;
-                            -moz-border-radius: 30px;
-                            border-radius: 100px;
-                      
-                            background: {{ noteColor }}"> 
-                </div>
-                
-                
-                <!-- Image: -->
-                <img src="{% static pathImage %}" style="width: 160px;
-                                                                 height: 160px;
-                                                                      
-                                                                 display: block;
-                                                                 margin: auto;
-                                                                 position: relative;
-																 top: 50%;
-																 margin-top: -180px;"> 
-																		
-				
-				<!-- feeling (red gradient): -->
-                <div style="width: 160px;
-                            height: 160px;
-                            
-                            margin: auto;
-                            position: relative;
-                            top: 50%;
-                            margin-top: -160px;
-                            
-                            -webkit-border-radius: 80px;
-                            -moz-border-radius: 80px;
-                            border-radius: 80px;
-                            background-color: red;
-                            opacity: {{ opacityLevel }};
-                            filter: alpha(opacity={{ opacityLevel }});">
-                </div>
-			
+		{% if idNextSample != None %}
+			<div style="width: 400px; height: 50px; margin-bottom: 10px;">
+				{% for sample in remainSamplesToAnalyze %}
+					{% if sample == idNextSample %}
+						<div class="idSample" style="color: white; border: 5px solid white;">{{ sample }}</div>
+					{% else %}
+						<div class="idSample">{{ sample }}</div>
+					{% endif %}
+				{% endfor %}
 			</div>
-			
-			<h3>{{ name }}</h3>
-			
-			
-			<table style="border:1px solid black; border-width:1px; border-style:solid; border-color:black;">
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Intensité :</td>
-					<td style="border-width:1px; border-style:solid;">{{ intensity }}%</td>
-				</tr>
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Humeur :</td>
-					<td style="border-width:1px; border-style:solid;">{{ humourColorName }}</td>
-				</tr>
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Note :</td>
-					<td style="border-width:1px; border-style:solid;">{{ noteColorName }}</td>
-				</tr>
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Image :</td>
-					<td style="border-width:1px; border-style:solid;">{{ imageName }}</td>
-				</tr>
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Sensation :</td>
-					<td style="border-width:1px; border-style:solid;">{{ feelingLevel }}%</td>
-				</tr>
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Nom :</td>
-					<td style="border-width:1px; border-style:solid;">{{ name }}</td>
-				</tr>
-			</table>
-			
-		</div>
+		{% endif %}
 		
 		
-		
-		
-		
-		
-		<div style="display: inline-block; vertical-align: top; width: 500px; height:610px; text-align: center;">
-			
-			<h3>Voici le résultat moyen pour l'échantillon n°{{ idSample }} :</h3>
-			
-			<!-- Size of the first circle (intensity + color): -->
-			<div style="display: inline-block; 
-						vertical-align: top;
-						text-align: center;
-						width: 500px; 
-						height:500px;
-						background: -webkit-radial-gradient({{ humorColorMean }} 0%,rgb(186,181,186) {{ intensityMean }}%);
-						background: -o-radial-gradient({{ humorColorMean }} 0%,rgb(186,181,186) {{ intensityMean }}%);
-						background: -moz-radial-gradient({{ humorColorMean }} 0%,rgb(186,181,186) {{ intensityMean }}%);
-						background: radial-gradient({{ humorColorMean }} 0%,rgb(186,181,186) {{ intensityMean }}%);">
-	
-	
-				<!-- Color of the second circle (note): -->
-                <div style="width: 200px;
-                            height: 200px;
-                            
-                            margin: auto;
-                            position: relative;
-							top: 50%;
-							margin-top: -100px;
-                            
-                            -webkit-border-radius: 30px;
-                            -moz-border-radius: 30px;
-                            border-radius: 100px;
-                      
-                            background: {{ noteColorMean }}"> 
-                </div>
-                
-                
-                <!-- Image: -->
-                <img src="{% static pathImageMean %}" style="width: 160px;
-                                                                 height: 160px;
-                                                                      
-                                                                 display: block;
-                                                                 margin: auto;
-                                                                 position: relative;
-																 top: 50%;
-																 margin-top: -180px;"> 
-																		
-				
-				<!-- feeling (red gradient): -->
-                <div style="width: 160px;
-                            height: 160px;
-                            
-                            margin: auto;
-                            position: relative;
-                            top: 50%;
-                            margin-top: -160px;
-                            
-                            -webkit-border-radius: 80px;
-                            -moz-border-radius: 80px;
-                            border-radius: 80px;
-                            background-color: red;
-                            opacity: {{ opacityLevel }};
-                            filter: alpha(opacity={{ opacityLevelMean }});">
-                </div>
-			
-			</div>
-			
-			<h3>Voici les données du résultat moyen : </h3>
-			
-			<table style="border:1px solid black; border-width:1px; border-style:solid; border-color:black;">
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Intensité moyenne:</td>
-					<td style="border-width:1px; border-style:solid;">{{ intensityMean }}%</td>
-				</tr>
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Humeur moyenne :</td>
-					<td style="border-width:1px; border-style:solid;">{{ humourColorMeanName }}</td>
-				</tr>
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Note moyenne :</td>
-					<td style="border-width:1px; border-style:solid;">{{ noteColorMeanName }}</td>
-				</tr>
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Image moyenne :</td>
-					<td style="border-width:1px; border-style:solid;">{{ imageMeanName }}</td>
-				</tr>
-				<tr>
-					<td style="border-width:1px; border-style:solid;">Sensation moyenne :</td>
-					<td style="border-width:1px; border-style:solid;">{{ opacityMean }}%</td>
-				</tr>
-			</table>
-			
-			
-		</div>
-		
-		
-		
-		
-		
-		</br></br></br></br></br></br></br></br></br></br></br></br>
-		
-		
-		
-	
-	
 		<div style="display: block;">
 		
 			{% if nbRemainSamplesToAnalyze > 0 %}
@@ -234,15 +40,181 @@
 				<form action="{% url "SmellGuess.views.homeView" %}" method="post" >
 					{% csrf_token %}
 					<input type='hidden' name='csrfmiddlewaretoken' value='dxGetU2JTCN9RWOLtmoURIvO4T7P5bi4' />
-					<input type="submit" value="Merci d'avoir joué !" />	
+					<input type="submit" value="MERCI D'AVOIR JOUÉ !" />	
 				</form>
-			
 			{% endif %}
 			
 		</div>
 		
+		<br/>
+
+
+		<div style="display: inline-block; vertical-align: top; width: 500px; height:610px; text-align: center;">
+			
+			<h3>Vos résultats pour l'échantillon n°{{ idSample }} :</h3>
+			
+			<!-- Size of the first circle (intensity + color): -->
+			<div style="display: inline-block; 
+						vertical-align: top;
+						text-align: center;
+						width: 500px; 
+						height:500px;
+						background: -webkit-radial-gradient({{ humorColor }} 0%, {{ humorColor }} 20%, rgb(186,181,186) {{ intensityDisplay }}%);
+						background: -o-radial-gradient({{ humorColor }} 0%, {{ humorColor }} 20%, rgb(186,181,186) {{ intensityDisplay }}%);
+						background: -moz-radial-gradient({{ humorColor }} 0%, {{ humorColor }} 20%, rgb(186,181,186) {{ intensityDisplay }}%);
+						background: radial-gradient({{ humorColor }} 0%, {{ humorColor }} 20%, rgb(186,181,186) {{ intensityDisplay }}%);">
 		
+				<!-- Color of the second circle (note): -->
+				<div style="width: 200px;
+					height: 200px;
+					margin: auto;
+					position: relative;
+					top: 50%;
+					margin-top: -100px;
+					-webkit-border-radius: 30px;
+					-moz-border-radius: 30px;
+					border-radius: 100px;
+					background: {{ noteColor }}"> 
+				</div>
+				
+				<!-- Image: -->
+				<img src="{% static pathImage %}" style="width: 160px;
+										height: 160px;
+										display: block;
+										margin: auto;
+										position: relative;
+										top: 50%;
+										margin-top: -180px;">
+				
+				<!-- feeling (red gradient): -->
+				<div style="width: 160px;
+					height: 160px;
+					margin: auto;
+					position: relative;
+					top: 50%;
+					margin-top: -160px;
+					-webkit-border-radius: 80px;
+					-moz-border-radius: 80px;
+					border-radius: 80px;
+					background-color: red;
+					opacity: {{ opacityLevel }};
+					filter: alpha(opacity={{ opacityLevelPercent }});">
+				</div>
+				
+			</div>
+			
+			<h3>{{ name }}</h3>
+		</div>
 		
+		<div style="display: inline-block; vertical-align: top; width: 500px; height:610px; text-align: center;">
+			
+			<h3>Voici le résultat moyen pour l'échantillon n°{{ idSample }} :</h3>
+			
+			{% if intensityMean == None %}
+			<div style="display: inline-block; 
+					vertical-align: middle;
+					width: 500px; 
+					height: 500px;
+					font-size: 35px;">
+				Non displonible !<br/>Désolé.
+			</div>
+			{% else %}
+			<!-- Size of the first circle (intensity + color): -->
+			<div style="display: inline-block; 
+					vertical-align: top;
+					text-align: center;
+					width: 500px; 
+					height:500px;
+					background: -webkit-radial-gradient({{ humorColorMean }} 0%, {{ humorColorMean }} 20%, rgb(186,181,186) {{ intensityMeanDisplay }}%);
+					background: -o-radial-gradient({{ humorColorMean }} 0%, {{ humorColorMean }} 20%, rgb(186,181,186) {{ intensityMeanDisplay }}%);
+					background: -moz-radial-gradient({{ humorColorMean }} 0%, {{ humorColorMean }} 20%, rgb(186,181,186) {{ intensityMeanDisplay }}%);
+					background: radial-gradient({{ humorColorMean }} 0%, {{ humorColorMean }} 20%, rgb(186,181,186) {{ intensityMeanDisplay }}%);">
+	
+				<!-- Color of the second circle (note): -->
+				<div style="width: 200px;
+					height: 200px;
+					margin: auto;
+					position: relative;
+					top: 50%;
+					margin-top: -100px;
+					-webkit-border-radius: 30px;
+					-moz-border-radius: 30px;
+					border-radius: 100px;
+					background: {{ noteColorMean }}"> 
+				</div>
+			
+				<!-- Image: -->
+				<img src="{% static pathImageMean %}" style="width: 160px;
+										height: 160px;
+										display: block;
+										margin: auto;
+										position: relative;
+										top: 50%;
+										margin-top: -180px;"> 
+
+				<!-- feeling (red gradient): -->
+				<div style="width: 160px;
+					height: 160px;
+					margin: auto;
+					position: relative;
+					top: 50%;
+					margin-top: -160px;
+					-webkit-border-radius: 80px;
+					-moz-border-radius: 80px;
+					border-radius: 80px;
+					background-color: red;
+					opacity: {{ opacityLevelMean }};
+					filter: alpha(opacity={{ opacityLevelMeanPercent }});">
+				</div>
+				
+			</div>
+			{% endif %}
+		</div>
+		
+		<table style="margin: 20px; border-collapse: collapse;">
+			<tr>
+				<td style="color: rgb(216,89,149); padding: 2px; border: 1px solid white; font-weight: bold;">Résultat de l'échantillon n°{{ idSample }}</td>
+				<td style="color: rgb(216,89,149); border-color: white; padding: 2px; border: 1px solid white; font-weight: bold;">Personnel</td>
+				<td style="color: rgb(216,89,149); border-color: white; padding: 2px; border: 1px solid white; font-weight: bold;">Moyen</td>
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">Intensité</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ intensity }}%</td>
+				{% if feelingLevelMean == None %}
+					<td style="padding: 2px; border: 1px solid white;">Non disponible</td>
+				{% else %}
+					<td style="padding: 2px; border: 1px solid white;">{{ intensityMean }}%</td>
+				{% endif %}
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">Humeur</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ humourColorName }}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ humourColorMeanName }}</td>
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">Note</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ noteColorName }}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ noteColorMeanName }}</td>
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">Image</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ imageName }}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ imageMeanName }}</td>
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">Sensation</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ feelingLevel }}%</td>
+				{% if feelingLevelMean == None %}
+					<td style="padding: 2px; border: 1px solid white;">Non disponible</td>
+				{% else %}
+					<td style="padding: 2px; border: 1px solid white;">{{ feelingLevelMean }}%</td>
+				{% endif %}
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">Nom</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ name }}</td>
+			</tr>
+		</table>
 		
 			
 		<!-- bottom block -->		
@@ -251,15 +223,13 @@
 				<!-- icon from http://www.iconsdb.com/deep-pink-icons/home-5-icon.html -->
 				<img src="{% static 'images/homeIcon.png' %}" alt="Retour à la page d'accueil" height="50" style="display: block; margin-left: auto; margin-right: auto">
 			</a>
-			<br/><br/><br/>
+			<br/><br/><br/><br/>
+			<a href="http://2014.igem.org/Team:Paris_Bettencourt" target="_blank" >
+				<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto">
+			</a>
 			<br/>
-	    	<a href="http://2014.igem.org/Team:Paris_Bettencourt" target="_blank" >
-	    		<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto">
-	    	</a>
-			<br/>
-	    	Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a>
-	    </div>
-	
+			Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a>
+		</div>
 	
 	</body>
 	
