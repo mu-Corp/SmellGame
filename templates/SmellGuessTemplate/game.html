@@ -138,21 +138,23 @@
 					<input type="image" value="SUIVANT" />
 				</form>
 			{% endif %}
-			
-			<!--</br></br></br></br></br></br></br></br></br></br>
-			<nav>
-		        <li><h3><a href="../home" style="border:1px solid #aaaaaa; margin:2px;">Return to homepage</a></h3>(delete data)</li>
-		        </br>
-		        <li><h3><a href="../registration" style="border:1px solid #aaaaaa; margin:2px;">Modify your profile</a></h3>(your current data are saved)</li>
-			</nav>-->
 		
 		</div>
 		
+		
+		
+		
+		<!-- Zone where image is built -->
 		<div id="panelCenter">
 			<div id="panelNote"> </div>
 			<img id="imgGuessed" src="" height="160" width="160" style="display:none;"> 
 			<div id="panelFeeling"> </div>
 		</div>
+		
+		
+		
+		
+		
 		
 		<div id="panelHistory">
 			<h3>HISTORIQUE :</h3>
@@ -183,9 +185,10 @@
 		<!-- bottom block -->		
 		<div style="position: fixed; bottom: 5px; right:5px;" >
 			<a href="../home" style="text-decoration: none;" >
-				<input type="submit" value="Retour à la page d'accueil" style="display: block; margin-left: auto; margin-right: auto"/>
+				<!-- icon from http://www.iconsdb.com/deep-pink-icons/home-5-icon.html -->
+				<img src="{% static 'images/homeIcon.png' %}" alt="Retour à la page d'accueil" height="50" style="display: block; margin-left: auto; margin-right: auto">
 			</a>
-			<br/>
+			<br/><br/><br/>
 	    	<a href="http://2014.igem.org/Team:Paris_Bettencourt" target="_blank" >
 	    		<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto">
 	    	</a>

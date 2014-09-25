@@ -20,11 +20,11 @@ from SmellGuess.models import Smeller, Sample, Guess, Image, Humor, Note
 #########################    VIEWS    ##########################
 ################################################################
 '''
-# Modèle de fonction de la vue :
+# ModÃ¨le de fonction de la vue :
 def fonctionAppeleeParURL(request, autresVar):
     return render(request, 'templateAppelePourgeneration', dict={'varName': valeur})
 
-# Modèle d'une variable de session (cad variable qui reste accessible tant que le navigateur n'est pas fermé ou que la var soit supprimée)
+# ModÃ¨le d'une variable de session (cad variable qui reste accessible tant que le navigateur n'est pas fermÃ© ou que la var soit supprimÃ©e)
 request.session['KeyName']
 '''
 
@@ -40,8 +40,8 @@ def homeView(request):
     request.session['idGuess'] = None
     request.session['guessStep'] = None
     
-    # Render:
-    return render(request, 'SmellGuessTemplate/home.html', {'current_date': datetime.now()})
+    # Render:    
+    return render(request, 'SmellGuessTemplate/home.html',{})#{'nb': nb, 'intensity': intensity, 'color': color, 'note': note, 'image': image, 'opacity': opacity, 'name': name})
     
 #######################
 # Function call when the URL /registration/ is call:
@@ -195,39 +195,52 @@ def resultView(request):
     
     #######################################################################"
     #all param to generate:
-    paramToGenerateTemplate['yourIntensity'] = guess.intensity
-    paramToGenerateTemplate['yourHumor'] = guess.humor_id
-    paramToGenerateTemplate['yourNote'] = guess.note_id
-    paramToGenerateTemplate['yourImage'] = guess.image_id
-    paramToGenerateTemplate['yourFeeling'] = guess.feeling
-    paramToGenerateTemplate['yourName'] = guess.name
+    paramToGenerateTemplate['intensity'] = guess.intensity
+    paramToGenerateTemplate['humorColor'] = guess.humor.color
+    paramToGenerateTemplate['humourColorName'] = (Humor.objects.get(id=guess.humor_id)).name
+    paramToGenerateTemplate['noteColor'] = guess.note.color
+    paramToGenerateTemplate['noteColorName'] = (Note.objects.get(id=guess.note_id)).name
+    paramToGenerateTemplate['pathImage'] = guess.image.pathImage
+    paramToGenerateTemplate['imageName'] = (Image.objects.get(id=guess.image_id)).name
+    paramToGenerateTemplate['opacityLevel'] = str(guess.feeling / 100.0) 
+    paramToGenerateTemplate['feelingLevel'] = guess.feeling
+    paramToGenerateTemplate['name'] = guess.name
     
-    paramToGenerateTemplate['meanIntensities'] = mean(intensities)
-    paramToGenerateTemplate['meanFeelings'] = mean(feelings)
+    
+    
+    paramToGenerateTemplate['intensityMean'] = mean(intensities)
+    paramToGenerateTemplate['opacityMean'] = mean(feelings)
     
     maxHumorsId = maxi(humors)
     if isinstance(maxHumorsId, int):#existe et donc non None
         maxHumors = Humor.objects.get(id=maxHumorsId)
-        paramToGenerateTemplate['maxHumors'] = maxHumors.name
+        paramToGenerateTemplate['humorColorMean'] = maxHumors.color
+        paramToGenerateTemplate['humourColorMeanName'] = (Humor.objects.get(id=maxHumorsId)).name
     else:
-        paramToGenerateTemplate['maxHumors'] = "non disponible"
+        paramToGenerateTemplate['humorColorMean'] = "none"
+        paramToGenerateTemplate['humourColorMeanName'] = "non disponible"
     
     
     maxNotesId = maxi(notes)
     if isinstance(maxNotesId, int):#existe et donc non None
         maxNotes = Note.objects.get(id=maxNotesId)
-        paramToGenerateTemplate['maxNotes'] = maxNotes.name
+        paramToGenerateTemplate['noteColorMean'] = maxNotes.color
+        paramToGenerateTemplate['noteColorMeanName'] = (Note.objects.get(id=maxNotesId)).name
     else:
-        paramToGenerateTemplate['maxNotes'] = "non disponible"
+        paramToGenerateTemplate['noteColorMean'] = "none"
+        paramToGenerateTemplate['noteColorMeanName'] = "non disponible"
         
     maxImagesId = maxi(images)
     if isinstance(maxImagesId, int):#existe et donc non None    
         maxImages = Image.objects.get(id=maxImagesId)
-        paramToGenerateTemplate['maxImages'] = maxImages.name
+        paramToGenerateTemplate['pathImageMean'] = maxImages.pathImage
+        paramToGenerateTemplate['imageMeanName'] = (Image.objects.get(id=maxImagesId)).name
     else:
-        paramToGenerateTemplate['maxImages'] = "non disponible"
+        paramToGenerateTemplate['pathImageMean'] = "none"
+        paramToGenerateTemplate['imageMeanName'] = "non disponible"
     
     paramToGenerateTemplate['idSample'] = request.session['idSample']
+    
     
     #######################################################################"
     
@@ -300,6 +313,7 @@ def maxi(param):
         for idKey in calDict.keys():
             if calDict[idKey] == maxCalDict:
                 resultId = int(idKey)
+                
     else:
         resultId = None
     
