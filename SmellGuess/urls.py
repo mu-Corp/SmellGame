@@ -14,4 +14,5 @@ urlpatterns = patterns('SmellGuess.views',#main path
                        #url(r'^game/(?P<user>\d{0})/$', 'game'),
                        #url(r'^URL_name/$', 'AppName.views.FunctionName'),
                        url(r'^admin/', include(admin.site.urls)),
+                       url(r'^backup/', 'sendZipfileBackup')
 )

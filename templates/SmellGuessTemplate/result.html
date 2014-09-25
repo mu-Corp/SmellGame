@@ -15,10 +15,10 @@
 	
 	<body>
 		
-		{% if idNextSample != None %}
+		{% if nameNextSample != None %}
 			<div style="width: 400px; height: 50px; margin-bottom: 10px;">
 				{% for sample in remainSamplesToAnalyze %}
-					{% if sample == idNextSample %}
+					{% if sample == nameNextSample %}
 						<div class="idSample" style="color: white; border: 5px solid white;">{{ sample }}</div>
 					{% else %}
 						<div class="idSample">{{ sample }}</div>
@@ -50,7 +50,7 @@
 
 		<div style="display: inline-block; vertical-align: top; width: 500px; height:610px; text-align: center;">
 			
-			<h3>Vos résultats pour l'échantillon n°{{ idSample }} :</h3>
+			<h3>Vos résultats pour l'échantillon n°{{ nameSample }} :</h3>
 			
 			<!-- Size of the first circle (intensity + color): -->
 			<div style="display: inline-block; 
@@ -107,7 +107,7 @@
 		
 		<div style="display: inline-block; vertical-align: top; width: 500px; height:610px; text-align: center;">
 			
-			<h3>Voici le résultat moyen pour l'échantillon n°{{ idSample }} :</h3>
+			<h3>Voici le résultat moyen pour l'échantillon n°{{ nameSample }} :</h3>
 			
 			{% if intensityMean == None %}
 			<div style="display: inline-block; 
@@ -172,7 +172,7 @@
 		
 		<table style="margin: 20px; border-collapse: collapse;">
 			<tr>
-				<td style="color: rgb(216,89,149); padding: 2px; border: 1px solid white; font-weight: bold;">Résultat de l'échantillon n°{{ idSample }}</td>
+				<td style="color: rgb(216,89,149); padding: 2px; border: 1px solid white; font-weight: bold;">Résultat de l'échantillon n°{{ nameSample }}</td>
 				<td style="color: rgb(216,89,149); border-color: white; padding: 2px; border: 1px solid white; font-weight: bold;">Personnel</td>
 				<td style="color: rgb(216,89,149); border-color: white; padding: 2px; border: 1px solid white; font-weight: bold;">Moyen</td>
 			</tr>

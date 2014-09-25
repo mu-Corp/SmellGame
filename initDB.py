@@ -4,8 +4,13 @@ from SmellGuess.models import *
 
 if len(Sample.objects.all()) == 0 :
 	# Creating samples
-	for i in range(50) :
-		Sample(name='d'+str(i)).save()
+	for i in range(1,101) :
+		Sample(name=str(i)).save()
+	for i in range(1,11) :
+		Sample(name="PB"+str(i)).save()
+		Sample(name="PB"+str(i)+"'").save()
+	for i in range(1,27) :
+		Sample(name="SC"+str(i)).save()
 	print "Samples created"
 else : 
 	print "Please remove db.sqlite3 and execute 'python manage.py syncb' before !"

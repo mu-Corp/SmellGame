@@ -166,9 +166,9 @@ body {
 .idSample {
 	display: inline-block;
 	width: 40px;
-	height: 34px;
-	padding-top: 6px;
-	font-size: 24px;
+	height: 29px;
+	padding-top: 11px;
+	font-size: 14px;
 	font-weight: bold;
 	color: lightgray;
 	border: 5px solid lightgray;
@@ -185,11 +185,11 @@ body {
 	top: 50%; 
 	left: 50%;
 	width: 300px;
-	height: 245px;
-	padding-top: 55px;
+	height: 215px;
+	padding-top: 85px;
 	margin-top: -187px;
 	margin-left: -187px;
-	font-size: 160px;
+	font-size: 100px;
 	font-weight: bold;
 	color: white;
 	border: 45px solid white;
