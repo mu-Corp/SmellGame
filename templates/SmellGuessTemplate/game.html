@@ -59,7 +59,7 @@
 		<div id="panelLeft">
 		
 			{% if guessStep == 1 %}
-				<t1>VEUILLEZ SENTIR L'ÉCHANTILLON NUMÉRO : {{ idSample }}</t1>
+				<t1>VEUILLEZ SENTIR L'ÉCHANTILLON NUMÉRO : {{ nameSample }}</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
 					<input type="image" value="SUIVANT" />
@@ -137,7 +137,7 @@
 		
 		<div id="panelIdSamples">
 			{% for sample in currentSamples %}
-				{% if sample == idSample %}
+				{% if sample == nameSample %}
 					<div class="idSample" style="color: white; border: 5px solid white;">{{ sample }}</div>
 				{% else %}
 					<div class="idSample">{{ sample }}</div>
@@ -145,7 +145,7 @@
 			{% endfor %}
 		</div>
 		{% if guessStep == 1 %}
-			<div id="panelCenterSample">{{ idSample }}</div>
+			<div id="panelCenterSample">{{ nameSample }}</div>
 		{% else %}
 			<!-- Zone where image is built -->
 			<div id="panelCenter">
@@ -161,7 +161,7 @@
 		
 		<div id="panelHistory">
 			<h3>HISTORIQUE :</h3>
-			<h4>Echantillon n°{{ idSample }}</h4>
+			<h4>Echantillon n°{{ nameSample }}</h4>
 			{% if guessStep >= 3 %}
 				Intensité : {{ intensity }}% <br/>
 			{% endif %}

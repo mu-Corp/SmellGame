@@ -68,7 +68,11 @@ def gameView(request):
                 
                 ################################################
                 #Random id of samples to analyze:
-                allSampleIds = range(1, 51)#list contains 1, 2, ..., 50
+                allSample = Sample.objects.all()
+                allSampleIds = []
+                for s in allSample :
+			allSampleIds.append(s.id)
+                
                 nbSamplesToAnalyze = 6
                 request.session['SamplesToAnalyze'] = random.sample(allSampleIds,  nbSamplesToAnalyze) #init
                 firstToAnalyze = request.session['SamplesToAnalyze'][0]
@@ -115,8 +119,7 @@ def gameView(request):
     
     #In all cases:
     guess = Guess.objects.get(id=request.session['idGuess'])
-    
-    
+    sample = Sample.objects.get(id=request.session['idSample'])
     
     
     paramToGenerateTemplate = dict()
@@ -128,8 +131,10 @@ def gameView(request):
     
     
     #Random story!    
-    paramToGenerateTemplate['currentSamples'] = request.session['SamplesToAnalyze']
-    paramToGenerateTemplate['idSample'] = request.session['idSample']
+    paramToGenerateTemplate['currentSamples'] = []
+    for idSample in request.session['SamplesToAnalyze'] :
+	    paramToGenerateTemplate['currentSamples'].append(Sample.objects.get(id=idSample).name)
+    paramToGenerateTemplate['nameSample'] = sample.name
     
     
     paramToGenerateTemplate['intensity'] = guess.intensity
@@ -255,7 +260,7 @@ def resultView(request):
         paramToGenerateTemplate['pathImageMean'] = None
         paramToGenerateTemplate['imageMeanName'] = "Non disponible"
     
-    paramToGenerateTemplate['idSample'] = request.session['idSample']
+    paramToGenerateTemplate['nameSample'] = Sample.objects.get(id=request.session['idSample']).name
     
     
     #######################################################################"
@@ -266,7 +271,10 @@ def resultView(request):
     
     
     request.session['SamplesToAnalyze'].remove(request.session['idSample']) #Warning: remove method don't return the list minus the element...
-    paramToGenerateTemplate['remainSamplesToAnalyze'] = request.session['SamplesToAnalyze']
+    
+    paramToGenerateTemplate['remainSamplesToAnalyze'] = []
+    for idSample in request.session['SamplesToAnalyze'] :
+	    paramToGenerateTemplate['remainSamplesToAnalyze'].append(Sample.objects.get(id=idSample).name)
     
     
     paramToGenerateTemplate['nbRemainSamplesToAnalyze'] = len(request.session['SamplesToAnalyze'])
@@ -274,7 +282,7 @@ def resultView(request):
 
         sample = Sample.objects.get(id=request.session['SamplesToAnalyze'][0])
         request.session['idSample'] = sample.id
-	paramToGenerateTemplate['idNextSample'] = sample.id
+	paramToGenerateTemplate['nameNextSample'] = sample.name
         guess = Guess(smeller=smeller,sample=sample)
         guess.save()
         request.session['idGuess'] = guess.id
