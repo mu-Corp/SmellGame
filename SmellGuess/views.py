@@ -63,7 +63,7 @@ def gameView(request):
         if request.session['idSmeller'] == None : 
             
             formSmeller = SmellerModelForm(request.POST)  # then data is collected.
-
+            
             if formSmeller.is_valid(): # If data are valid (correct type, size, etc.)
                 
                 ################################################

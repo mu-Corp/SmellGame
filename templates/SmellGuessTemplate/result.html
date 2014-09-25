@@ -39,7 +39,6 @@
 			{% else %}
 				<form action="{% url "SmellGuess.views.homeView" %}" method="post" >
 					{% csrf_token %}
-					<input type='hidden' name='csrfmiddlewaretoken' value='dxGetU2JTCN9RWOLtmoURIvO4T7P5bi4' />
 					<input type="submit" value="MERCI D'AVOIR JOUÉ !" />	
 				</form>
 			{% endif %}
@@ -228,7 +227,7 @@
 				<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto">
 			</a>
 			<br/>
-			Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a>
+			Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a>
 		</div>
 	
 	</body>

@@ -91,10 +91,6 @@ class Smeller(models.Model):
 	id                = models.AutoField(primary_key=True)
 	
 	#Fields visibles in form:
-	'''#obsolete...
-	name              = models.CharField(max_length=42, default='')
-	email             = models.CharField(max_length=100, default='')
-	'''
 	SEX_CHOICE        = (('M', 'Male'),('F', 'Female'),)
 	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
 	age               = models.PositiveSmallIntegerField(default=18)

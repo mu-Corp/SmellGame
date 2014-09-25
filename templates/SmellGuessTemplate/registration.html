@@ -28,6 +28,61 @@
 			<br/>
 			
 			<div style="text-align: center">
+
+
+<!-- Test pour afficher des images à sélectionner (mais difficulté à cause des formulaires pré-définis Django...)
+				<script>				
+					function sexSelect(labelName) {
+						imFemale = document.getElementById("imFemale");
+						imMale = document.getElementById("imMale");
+						
+						if(labelName == "femaleLabel"){				
+							imFemale = document.getElementById("imFemale");
+							imFemale.src = "{% static 'images/femaleLight.png' %}"
+							imMale.src = "{% static 'images/male.png' %}"
+							
+						}else if(labelName == "maleLabel"){
+							imMale = document.getElementById("imMale");
+							imMale.src = "{% static 'images/maleLight.png' %}"
+							imFemale.src = "{% static 'images/female.png' %}"
+						}
+					}
+				</script>
+
+
+				<form action="{% url "SmellGuess.views.gameView" %}" method="post">
+				
+					{% csrf_token %}
+					
+					<div id="Fdiv" style="display: inline-block; width: 100px; height: 100px;">
+						<input type="radio" name="sex" style="display: none;" id="female" value="femme" onClick="sexSelect('femaleLabel')">
+						<label for="female">
+							<img src="{% static 'images/female.png' %}" id="imFemale" alt="femme" style="margin: auto; width: 80px; height: 80px;">
+						</label>
+					</div>
+					
+					<h3>ou</h3>
+					
+					<div id="Mdiv" style="display: inline-block; width: 100px; height: 100px;">
+						<input type="radio" name="sex" style="display: none;" id="male" value="homme" onClick="sexSelect('maleLabel')">
+						<label for="male">
+							<img src="{% static 'images/male.png' %}" id="imMale" alt="homme" style="margin: auto; width: 80px; height: 80px;">
+						</label>
+					</div>
+					
+					<h3>Âge : </h3>
+					<input id="id_age" min="0" name="age" type="number" value="21" style="display: block; margin: auto; width: 50px"/>
+
+					<br><br><br><br><br><br>
+
+					<input type="submit" value="Valider" style="display: block; margin: auto;"/>
+				</form>
+-->
+
+
+				<br><br><br><br>
+				
+				
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post">
 					{% csrf_token %}
 					{{ form.as_p }}
@@ -52,7 +107,7 @@
 	    		<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto">
 	    	</a>
 			<br/>
-	    	Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame">Sources</a>
+	    	Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a>
 	    </div>
 	
 	
