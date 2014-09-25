@@ -5,76 +5,12 @@
 ################################################################
 
 from django.db import models
-import random #random number for listToSmell
-#from djangotoolbox.fields import ListField
+import random
 
 ################################################################
 #######################    FUNCTIONS    ########################
 ################################################################
 
-def scoring(listToSmell):
-	# function of scoring. 
-	
-	return
-
-'''
-def isCorrect(spl, odor): 
-	# Make the verification between answer and correct odor.
-	# Increment the sample/refSample corresponding object
-	#for elt in odor :
-	if spl == odor : 
-		spl.nb_outed   = spl.nb_outed + 1
-		spl.nb_correct = spl.nb_correct + 1
-		return 1 #possibility to change by a ratio of correct answer
-	else : 
-		spl.nb_outed   = spl.nb_outed + 1
-		#spl.nb_correct = 0
-		return 0 #possibility to change by a ratio of correct answer
-'''
-
-def getOdorToGuess(theSmeller):
-		listToSmell = []
-		listRef     = []
-		listNotRef  = []
-		for elt in Sample.objects.all():
-			if elt.refOdor == True :
-				listRef.append(elt)
-			else :
-				listNotRef.append(elt)
-		print 'listNotRef', len(listNotRef)
-		print 'listRef',    len(listRef)
-		
-		# Part 1 : RefOdor
-		i=0
-		if len(listRef)-1 >=3:
-			max = len(listRef)-1; #print "m1", max
-			while i<3 :
-				nthToAdd =random.randint(0,max) 
-				if listRef[nthToAdd] not in listToSmell :
-					listToSmell.append(listRef[nthToAdd])
-					i += 1
-		else :
-			print 'error : listRef'
-			return False
-				
-		# Part 2 : Sample odor
-		i=0
-		if len(listNotRef)-1 >=3:
-			max = len(listNotRef)-1; #print "m2",max
-			while i<3 :
-				nthToAdd =random.randint(0,max) 
-				if listNotRef[nthToAdd] not in listToSmell :
-					listToSmell.append(listNotRef[nthToAdd])
-					i += 1
-		else :
-			print 'error : listNotRef'
-			return False
-		print 'listToSmell : ', listToSmell
-		for elt in listToSmell : 
-			print 'newGuessing = Guess(sample=Guess.sample('+str(elt.id)+'), smeller='+str(theSmeller.id)+')'
-			newGuessing = Guess(smeller=theSmeller, sample=elt)
-			newGuessing.save()
-		return
 	
 ################################################################
 ########################    CLASSES    #########################

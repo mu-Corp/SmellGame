@@ -11,6 +11,13 @@ from django.shortcuts import redirect, render
 from datetime import datetime
 import random
 from base64 import decodestring
+import time
+import codecs
+from django.utils.encoding import smart_str, smart_unicode
+
+import os, tempfile, zipfile
+from django.http import HttpResponse
+from django.core.servers.basehttp import FileWrapper
 
 # Local import:
 from forms import SmellerModelForm 
@@ -287,6 +294,8 @@ def resultView(request):
         guess.save()
         request.session['idGuess'] = guess.id
     
+    else : DB_to_csv()
+    
     return render(request, 'SmellGuessTemplate/result.html', paramToGenerateTemplate)
 
 
@@ -297,7 +306,24 @@ def errorview(request):
     #return a page indicating an error has occured
     return render(request, 'SmellGuessTemplate/error.html')
 
-#[15, 43, 25, 12, 28, 21]
+
+def sendZipfileBackup(request) :
+    temp = tempfile.TemporaryFile()
+    archive = zipfile.ZipFile(temp, 'w', zipfile.ZIP_DEFLATED)
+    for nameFile in os.listdir('Backup') :
+	if nameFile[0:7] == "Smeller" :
+		archive.write('Backup/'+nameFile, 'Smeller/'+nameFile)
+	elif nameFile[0:5] == "Guess" :
+		archive.write('Backup/'+nameFile, 'Guess/'+nameFile)
+    archive.close()
+    
+    wrapper = FileWrapper(temp)
+    response = HttpResponse(wrapper, content_type='application/zip')
+    response['Content-Disposition'] = 'attachment; filename=smellerBackup.zip'
+    response['Content-Length'] = temp.tell()
+    temp.seek(0)
+    return response
+
 ###############################################################
 ####################    LOCAL FUNCTIONS    ####################
 ###############################################################
@@ -344,6 +370,33 @@ def maxi(param):
     
     return resultId
 
+
+def DB_to_csv():
+    listSmeller = Smeller.objects.all()
+    listGuess = Guess.objects.all()
+    
+    date = time.strftime("%Y-%m-%d_%Hh%Mm%Ss")
+    
+    sm = open ('Backup/Smeller_'+date+'.csv', 'w+')
+    gu = open ('Backup/Guess_'+date+'.csv', 'w+')
+    
+    sm_header="id;sex;age;date_registration"
+    gu_header="id;smeller;sample;intensity;humor;note;image;feeling;name"
+    sm.write(sm_header)
+    gu.write(gu_header)
+    
+    
+    for s in listSmeller :
+        tmp_sentence="\n"+ str(s.id)+ ";" + s.sex+ ";"+ str(s.age)+ ";"+ str(s.date_registration)
+        sm.write(str(tmp_sentence))
+    sm.close()
+    
+    for g in listGuess :
+	if g.smeller != None and g.sample != None and g.humor != None and g.note != None and g.image != None :
+		name = g.name.encode("utf-8")
+		tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.name)+";"+str(g.intensity)+";"+str(g.humor.name)+";"+str(g.note.name)+";"+str(g.image.name)+ ";"+ str(g.feeling)+";"+ name
+		gu.write(tmp_sentence)
+    gu.close()
 
 ###############################################################
 ####################    LOCAL EXECUTION    ####################
