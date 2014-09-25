@@ -98,43 +98,43 @@ body {
 	background:       rgb(186,181,186);
 }
 
-#panelLeft form input[type=range].vertical {
-	writing-mode: bt-lr; /* IE */
-	-webkit-appearance: slider-vertical; /* WebKit */
-	width: 8px;
-	height: 500px;
-	padding: 0 5px;
-}
-#panelLeft form input[type='range'] {
-	-webkit-appearance: none;
+.rangeVertical {
+	writing-mode: bt-lr;
+	-webkit-appearance: slider-vertical;
 	width: 20px;
-	vertical-align: middle;
+	height: 350px;
 	margin-left: 80px;
-	display:block;
-	height:350px;
-	background-size: 20px 350px;
-	background-image: url("backgroundSlider.png");
 }
-#panelLeft form input[type='range']::-moz-range-track {
-	-moz-appearance: none;
-	width: 0px;
-}
-#panelLeft form input[type='range']::-webkit-slider-thumb {
-	-webkit-appearance: none !important;
-	border-radius: 20px;
-	 background: rgb(216,89,149);
-	 border: 1px solid rgb(216,89,149);
-	width: 20px;
-	height: 20px;
-	background-color: white;
-}
-#panelLeft form input[type='range']::-moz-range-thumb {
-	-moz-appearance: none;
-	border-radius: 20px;
-	 background: rgb(216,89,149);
-	 border: 1px solid rgb(216,89,149);
-	width: 20px;
-	height: 20px;
+
+@-moz-document url-prefix() {
+	.rangeVertical {
+		-webkit-appearance: none;
+		vertical-align: middle;
+		display:block;
+		background-size: 20px 350px;
+		background-image: url("backgroundSlider.png");
+	}
+	.rangeVertical::-moz-range-track {
+		-moz-appearance: none;
+		width: 0px;
+	}
+	.rangeVertical::-webkit-slider-thumb {
+		-webkit-appearance: none !important;
+		border-radius: 20px;
+		background: rgb(216,89,149);
+		border: 1px solid rgb(216,89,149);
+		width: 20px;
+		height: 20px;
+		background-color: white;
+	}
+	.rangeVertical::-moz-range-thumb {
+		-moz-appearance: none;
+		border-radius: 20px;
+		background: rgb(216,89,149);
+		border: 1px solid rgb(216,89,149);
+		width: 20px;
+		height: 20px;
+	}
 }
 
 #textRange{ 

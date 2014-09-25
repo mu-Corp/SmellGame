@@ -78,7 +78,7 @@
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
 					<div id="textRange" position="center">FORTE</div>
-					<input type="range" min="0" max="100" step="1" value="50" orient="vertical" name="intensity" onchange="updateGradient('white' this.value)" oninput="updateGradient('white', this.value)"/>
+					<input type="range" min="0" max="100" step="1" value="50" orient="vertical" name="intensity" class="rangeVertical" onchange="updateGradient('white' this.value)" oninput="updateGradient('white', this.value)"/>
 					<div id="textRange" position="center">FAIBLE</div>
 					<input type="image" value="SUIVANT" />
 				</form>
