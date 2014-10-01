@@ -78,7 +78,7 @@ def gameView(request):
                 allSample = Sample.objects.all()
                 allSampleIds = []
                 for s in allSample :
-			allSampleIds.append(s.id)
+                    allSampleIds.append(s.id)
                 
                 nbSamplesToAnalyze = 6
                 request.session['SamplesToAnalyze'] = random.sample(allSampleIds,  nbSamplesToAnalyze) #init
@@ -140,7 +140,7 @@ def gameView(request):
     #Random story!    
     paramToGenerateTemplate['currentSamples'] = []
     for idSample in request.session['SamplesToAnalyze'] :
-	    paramToGenerateTemplate['currentSamples'].append(Sample.objects.get(id=idSample).name)
+        paramToGenerateTemplate['currentSamples'].append(Sample.objects.get(id=idSample).name)
     paramToGenerateTemplate['nameSample'] = sample.name
     
     
