@@ -62,7 +62,7 @@
 				<t1>VEUILLEZ SENTIR L'ÉCHANTILLON NUMÉRO : {{ nameSample }}</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
-					<input type="image" value="SUIVANT" />
+					<input type="image" value="ÉTAPE SUIVANTE" />
 				</form>
 				
 			{% elif guessStep == 2 %}
@@ -72,7 +72,7 @@
 					<div id="textRange" position="center">FORTE</div>
 					<input type="range" min="0" max="100" step="1" value="50" orient="vertical" name="intensity" class="rangeVertical" onchange="updateGradient('white' this.value)" oninput="updateGradient('white', this.value)"/>
 					<div id="textRange" position="center">FAIBLE</div>
-					<input type="image" value="SUIVANT" />
+					<input type="image" value="ÉTAPE SUIVANTE" />
 				</form>
 			{% elif guessStep == 3 %}
 				<t1>SI CETTE ODEUR EST ...</t1>
@@ -84,7 +84,7 @@
 							<input type="radio" id="radio{{ humor.id }}" value="{{ humor.id }}" name="humor" onchange="updateGradient('{{ humor.color }}', '{{ intensity }}')">
 							<label for="radio{{ humor.id }}">{{ humor.name }} <br/></label><br/>
 						{% endfor %}
-					<input type="image" value="SUIVANT" />
+					<input type="image" value="ÉTAPE SUIVANTE" />
 					</div>
 				</form>
 			{% elif guessStep == 4 %}
@@ -97,7 +97,7 @@
 							<input type="radio" id="radio{{ note.id }}" value="{{ note.id }}" name="note" onchange="updateNote('{{ note.color }}')">
 							<label for="radio{{ note.id }}">{{ note.name }} <br/></label><br/>
 						{% endfor %}
-					<input type="image" value="SUIVANT" />
+					<input type="image" value="ÉTAPE SUIVANTE" />
 					</div>
 				</form>
 			{% elif guessStep == 5 %}
@@ -109,7 +109,7 @@
 							<input type="radio" id="radio{{ image.id }}" value="{{ image.id }}" name="image" onchange="updateImgGuessed('{% static image.pathImage %}')">
 							<label for="radio{{ image.id }}">{{ image.name }} <br/></label><br/>
 						{% endfor %}
-					<input type="image" value="SUIVANT" />
+					<input type="image" value="ÉTAPE SUIVANTE" />
 					</div>
 				</form>
 			{% elif guessStep == 6 %}
@@ -119,7 +119,7 @@
 					<div id="textRange" position="center">NON</div>
 					<input type="range" min="0" max="100" step="1" value="0" orient="vertical" onchange="updateFeeling(this.value)" oninput="updateFeeling(this.value)" name="feeling" class="rangeVertical"/>
 					<div id="textRange" position="center">OUI</div>
-					<input type="image" value="SUIVANT" />
+					<input type="image" value="ÉTAPE SUIVANTE" />
 				</form>
 			{% elif guessStep == 7 %}
 				<t1>SI CETTE ODEUR AVAIT UN NOM ...</t1>
@@ -127,7 +127,7 @@
 					{% csrf_token %}
 					<input type="text" name="name" style="width:170px;">
 					<input type="hidden" name="imageBase64" id="inputBase64" /> 
-					<input type="image" value="SUIVANT" />
+					<input type="image" value="ÉTAPE SUIVANTE" />
 				</form>
 			{% endif %}
 		
