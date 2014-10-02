@@ -62,6 +62,7 @@ def homeView(request):
     -----
 
     TODO: delete all data in var and delete data from uncomplete game
+    TODO: See serialization of session var (https://docs.djangoproject.com/en/1.7/topics/http/sessions/)
 
     """
     
@@ -149,10 +150,9 @@ def gameView(request):
 
     """
     
-    # Collect data from smeller from registration form (POST method):
-    if request.method == 'POST':  # If it's a POST request
+    if request.method == 'POST':  # If there is post data sent
         
-        # If Smeller is not registrated = first visit of user on game page (TODO: conserve session var if return to registration page)
+        # If Smeller is not registrated = first visit of user on game page
         if request.session['idSmeller'] == None : 
             
             formSmeller = SmellerModelForm(request.POST)  # then data is collected.
@@ -236,8 +236,7 @@ def gameView(request):
     paramToGenerateTemplate['image'] = guess.image
     paramToGenerateTemplate['feeling'] = guess.feeling
 
-    
-    
+
     return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
 
 
