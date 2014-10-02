@@ -1,44 +1,69 @@
 #-*- coding: utf-8 -*-
 
+"""
+Authors : 
+- Arnaud Ferré, arnaud.ferre.pro@gmail.com (2014)
+- 
+"""
+
+
 ################################################################
 #######################    LIBRARIES    ########################
 ################################################################
 # Django libs:
 from django.http import HttpResponse, Http404
-from django.shortcuts import redirect, render 
+from django.shortcuts import redirect, render
+from django.core.servers.basehttp import FileWrapper
+from django.utils.encoding import smart_str, smart_unicode 
 
 # External libs:
 from datetime import datetime
 import random
-from base64 import decodestring
 import time
 import codecs
-from django.utils.encoding import smart_str, smart_unicode
-
 import os, tempfile, zipfile
-from django.http import HttpResponse
-from django.core.servers.basehttp import FileWrapper
+from base64 import decodestring
 
 # Local import:
 from forms import SmellerModelForm 
 from SmellGuess.models import Smeller, Sample, Guess, Image, Humor, Note
 
+
 ################################################################
 #########################    VIEWS    ##########################
 ################################################################
-'''
-# ModÃ¨le de fonction de la vue :
-def fonctionAppeleeParURL(request, autresVar):
-    return render(request, 'templateAppelePourgeneration', dict={'varName': valeur})
 
-# ModÃ¨le d'une variable de session (cad variable qui reste accessible tant que le navigateur n'est pas fermÃ© ou que la var soit supprimÃ©e)
-request.session['KeyName']
-'''
-
-# Function call when the URL /home/ is call:
 def homeView(request):
-    
-    #TODO: delete all var and delete data from uncomplete game (possible)
+    """Called view by the URL /home.
+
+    No particular parameters. The homepage is just a static page.
+
+    Parameters
+    ----------
+    request : HttpRequest object
+        Contain many info (GET/POST method, forms data, session data, ...).
+
+    Returns
+    -------
+    render() : HttpResponse object
+        The render() function contain 3 parameters:
+            1) Initial request
+            2) Path of a template
+            3) A dictionary which contains all data accessible in the template (before generation) 
+        This function generates an HTML file after analyzing the correct template.
+
+    Examples
+    --------
+
+    See also
+    --------
+
+    Notes
+    -----
+
+    TODO: delete all data in var and delete data from uncomplete game
+
+    """
     
     # RE-Initialization of variable of session (use during all the session):
     request.session['idSmeller'] = None
@@ -48,20 +73,81 @@ def homeView(request):
     request.session['guessStep'] = None
     
     # Render:    
-    return render(request, 'SmellGuessTemplate/home.html',{})#{'nb': nb, 'intensity': intensity, 'color': color, 'note': note, 'image': image, 'opacity': opacity, 'name': name})
+    return render(request, 'SmellGuessTemplate/home.html',{})#{'nb': nb, 'intensity': intensity, 'color': color, 'note': note, 'image': image, 'opacity': opacity, 'name': name})    
     
-#######################
-# Function call when the URL /registration/ is call:
+
+
+
 def registrationView(request):
-    
+    """Called view by the URL /registration/.
+
+    No particular parameters. The registration page is just a static page.
+    It contains form.
+
+    Parameters
+    ----------
+    request : HttpRequest object
+        Contain many info (GET/POST method, forms data, session data, ...).
+
+    Returns
+    -------
+    render() : HttpResponse object
+        The render() function contain 3 parameters:
+            1) Initial request
+            2) Path of a template
+            3) A dictionary which contains all data accessible in the template (before generation) 
+        This function generates an HTML file after analyzing the correct template.
+
+    Examples
+    --------
+
+    See also
+    --------
+
+    Notes
+    -----
+
+    """
+        
     form = SmellerModelForm()
     
     return render(request, 'SmellGuessTemplate/registration.html', {'current_date': datetime.now(), 'form': form})
 
-#######################
-# Function call when the URL /game/ is call:
-# TODO: Use var in URL to generate a specific game page
+
+
+
 def gameView(request):
+    """Called view by the URL /game.
+
+    An unique view is called for all processes of the game.
+
+    Parameters
+    ----------
+    request : HttpRequest object
+        Contain many info (GET/POST method, forms data, session data, ...).
+
+    Returns
+    -------
+    render() : HttpResponse object
+        The render() function contain 3 parameters:
+            1) Initial request
+            2) Path of a template
+            3) A dictionary which contains all data accessible in the template (before generation) 
+        This function generates an HTML file after analyzing the correct template.
+
+    Examples
+    --------
+
+    See also
+    --------
+
+    Notes
+    -----
+    
+    TODO: Use var in URL to generate a specific game page
+    TODO: Many things again!
+
+    """
     
     # Collect data from smeller from registration form (POST method):
     if request.method == 'POST':  # If it's a POST request
@@ -157,12 +243,35 @@ def gameView(request):
 
 
 
-
-
-
-
-# ...
 def resultView(request):
+    """Called view by the URL /result.
+
+    Call calculations to find the mean values of others smellers.
+
+    Parameters
+    ----------
+    request : HttpRequest object
+        Contain many info (GET/POST method, forms data, session data, ...).
+
+    Returns
+    -------
+    render() : HttpResponse object
+        The render() function contain 3 parameters:
+            1) Initial request
+            2) Path of a template
+            3) A dictionary which contains all data accessible in the template (before generation) 
+        This function generates an HTML file after analyzing the correct template.
+
+    Examples
+    --------
+
+    See also
+    --------
+
+    Notes
+    -----
+
+    """
     
     if request.method == 'POST':  # If it's a POST request
         guess = Guess.objects.get(id=request.session['idGuess'])
@@ -301,28 +410,41 @@ def resultView(request):
 
 
 
-# ...
 def errorview(request):
+    """Called view by the URL /error.
+
+    Better than a Django error!
+
+    Parameters
+    ----------
+    request : HttpRequest object
+        Contain many info (GET/POST method, forms data, session data, ...).
+
+    Returns
+    -------
+    render() : HttpResponse object
+        The render() function contain 3 parameters:
+            1) Initial request
+            2) Path of a template
+            3) A dictionary which contains all data accessible in the template (before generation) 
+        This function generates an HTML file after analyzing the correct template.
+
+    Examples
+    --------
+
+    See also
+    --------
+
+    Notes
+    -----
+    
+    TODO: See redirection rather render.
+
+    """
+    
     #return a page indicating an error has occured
     return render(request, 'SmellGuessTemplate/error.html')
 
-
-def sendZipfileBackup(request) :
-    temp = tempfile.TemporaryFile()
-    archive = zipfile.ZipFile(temp, 'w', zipfile.ZIP_DEFLATED)
-    for nameFile in os.listdir('Backup') :
-	if nameFile[0:7] == "Smeller" :
-		archive.write('Backup/'+nameFile, 'Smeller/'+nameFile)
-	elif nameFile[0:5] == "Guess" :
-		archive.write('Backup/'+nameFile, 'Guess/'+nameFile)
-    archive.close()
-    
-    wrapper = FileWrapper(temp)
-    response = HttpResponse(wrapper, content_type='application/zip')
-    response['Content-Disposition'] = 'attachment; filename=smellerBackup.zip'
-    response['Content-Length'] = temp.tell()
-    temp.seek(0)
-    return response
 
 ###############################################################
 ####################    LOCAL FUNCTIONS    ####################
@@ -398,9 +520,40 @@ def DB_to_csv():
 		gu.write(tmp_sentence)
     gu.close()
 
+
+'''
+def sendZipfileBackup(request) :
+    temp = tempfile.TemporaryFile()
+    archive = zipfile.ZipFile(temp, 'w', zipfile.ZIP_DEFLATED)
+    for nameFile in os.listdir('Backup') :
+    if nameFile[0:7] == "Smeller" :
+        archive.write('Backup/'+nameFile, 'Smeller/'+nameFile)
+    elif nameFile[0:5] == "Guess" :
+        archive.write('Backup/'+nameFile, 'Guess/'+nameFile)
+    archive.close()
+    
+    wrapper = FileWrapper(temp)
+    response = HttpResponse(wrapper, content_type='application/zip')
+    response['Content-Disposition'] = 'attachment; filename=smellerBackup.zip'
+    response['Content-Length'] = temp.tell()
+    temp.seek(0)
+    return response
+'''
+        
+        
 ###############################################################
 ####################    LOCAL EXECUTION    ####################
 ###############################################################
+'''
+# Modele de fonction de la vue :
+def fonctionAppeleeParURL(request, autresVar):
+    return render(request, 'templateAppelePourgeneration', dict={'varName': valeur})
+
+# Modele d'une variable de session (cad variable qui reste accessible tant que le navigateur n'est pas ferme ou que la var soit supprimÃ©e)
+request.session['KeyName']
+'''
+
+
 if __name__=="__main__": 
     
     print 'Test in local\n.'
