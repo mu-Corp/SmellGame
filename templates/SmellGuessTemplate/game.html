@@ -69,9 +69,11 @@
 				<t1>QUELLE EST L'INTENSITÉ DE CETTE ODEUR ?</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
-					<div id="textRange" position="center">FORTE</div>
-					<input type="range" min="0" max="100" step="1" value="50" orient="vertical" name="intensity" class="rangeVertical" onchange="updateGradient('white' this.value)" oninput="updateGradient('white', this.value)"/>
-					<div id="textRange" position="center">FAIBLE</div>
+					<div id="divRange">
+						<div id="textRange" position="center">FORTE</div>
+						<input type="range" min="0" max="100" step="1" value="50" orient="vertical" name="intensity" class="rangeVertical" onchange="updateGradient('white' this.value)" oninput="updateGradient('white', this.value)"/>
+						<div id="textRange" position="center">FAIBLE</div>
+					</div>
 					<input type="image" value="ÉTAPE SUIVANTE" />
 				</form>
 			{% elif guessStep == 3 %}
@@ -116,9 +118,11 @@
 				<t1>AIMEZ VOUS CETTE ODEUR ?</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
-					<div id="textRange" position="center">NON</div>
-					<input type="range" min="0" max="100" step="1" value="0" orient="vertical" onchange="updateFeeling(this.value)" oninput="updateFeeling(this.value)" name="feeling" class="rangeVertical"/>
-					<div id="textRange" position="center">OUI</div>
+					<div id="divRange">
+						<div id="textRange" position="center">NON</div>
+						<input type="range" min="0" max="100" step="1" value="0" orient="vertical" onchange="updateFeeling(this.value)" oninput="updateFeeling(this.value)" name="feeling" class="rangeVertical"/>
+						<div id="textRange" position="center">OUI</div>
+					</div>
 					<input type="image" value="ÉTAPE SUIVANTE" />
 				</form>
 			{% elif guessStep == 7 %}
