@@ -27,19 +27,19 @@
 			</div>
 		{% endif %}
 		
-		
+		<br/>
 		<div style="display: block;">
 		
 			{% if nbRemainSamplesToAnalyze > 0 %}
 			<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 				{% csrf_token %}
-				<input type="submit" value="ECHANTILLON SUIVANT" />
+				<input type="image" value="ÉCHANTILLON SUIVANT" />
 			</form>
 			
 			{% else %}
 				<form action="{% url "SmellGuess.views.homeView" %}" method="post" >
 					{% csrf_token %}
-					<input type="submit" value="MERCI D'AVOIR JOUÉ !" />	
+					<input type="image" value="MERCI D'AVOIR JOUÉ !" />	
 				</form>
 			{% endif %}
 			

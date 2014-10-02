@@ -86,16 +86,19 @@ body {
 	height: 150px;
 }
 
-#panelLeft form input[type=image] {
-	position: absolute;
-	right: 20px;
-	bottom: 40px;
+input[type=image] {
 	font-family: Arial;
 	font-size: 17px;
 	color: white;
 	font-weight: bold;
 	background-color: rgb(186,181,186);
 	background:       rgb(186,181,186);
+}
+
+#panelLeft form input[type=image] {
+	position: absolute;
+	right: 20px;
+	bottom: 40px;
 }
 
 .rangeVertical {
