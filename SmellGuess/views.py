@@ -536,16 +536,15 @@ def DB_to_csv():
     gu.close()
 
 
-'''
 def sendZipfileBackup(request) :
     temp = tempfile.TemporaryFile()
     archive = zipfile.ZipFile(temp, 'w', zipfile.ZIP_DEFLATED)
     for nameFile in os.listdir('Backup') :
-    if nameFile[0:7] == "Smeller" :
-        archive.write('Backup/'+nameFile, 'Smeller/'+nameFile)
-    elif nameFile[0:5] == "Guess" :
-        archive.write('Backup/'+nameFile, 'Guess/'+nameFile)
-    archive.close()
+        if nameFile[0:7] == "Smeller" :
+            archive.write('Backup/'+nameFile, 'Smeller/'+nameFile)
+        elif nameFile[0:5] == "Guess" :
+            archive.write('Backup/'+nameFile, 'Guess/'+nameFile)
+        archive.close()
     
     wrapper = FileWrapper(temp)
     response = HttpResponse(wrapper, content_type='application/zip')
@@ -553,7 +552,7 @@ def sendZipfileBackup(request) :
     response['Content-Length'] = temp.tell()
     temp.seek(0)
     return response
-'''
+
         
         
 ###############################################################
