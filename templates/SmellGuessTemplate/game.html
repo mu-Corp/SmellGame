@@ -62,6 +62,7 @@
 				<t1>VEUILLEZ SENTIR L'ÉCHANTILLON NUMÉRO : {{ nameSample }}</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
+					<input type="hidden" name="firstStep" value="" />
 					<input type="image" value="ÉTAPE SUIVANTE" />
 				</form>
 				
