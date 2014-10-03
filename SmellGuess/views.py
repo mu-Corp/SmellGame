@@ -300,7 +300,7 @@ def resultView(request):
         guess.name = request.POST['name']
         guess.save()
         
-        request.session['guessStep'] = 0      
+        request.session['guessStep'] = 1      
         
         #In waiting to display images of other results:
         idOfAnalyzedSample = guess.sample_id
