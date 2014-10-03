@@ -550,6 +550,7 @@ def sendZipfileBackup(request) :
     response = HttpResponse(wrapper, content_type='application/zip')
     response['Content-Disposition'] = 'attachment; filename=smellerBackup.zip'
     response['Content-Length'] = temp.tell()
+    archive.close()
     temp.seek(0)
     return response
 
