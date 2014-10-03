@@ -5,12 +5,12 @@ from SmellGuess.models import *
 if len(Sample.objects.all()) == 0 :
 	# Creating samples
 	for i in range(1,101) :
-		Sample(name=str(i)).save()
+		Sample(name="S"+str(i)).save()
 	for i in range(1,11) :
 		Sample(name="PB"+str(i)).save()
 		Sample(name="PB"+str(i)+"'").save()
 	for i in range(1,27) :
-		Sample(name="SC"+str(i)).save()
+		Sample(name="CS"+str(i)).save()
 	print "Samples created"
 else : 
 	print "Please remove db.sqlite3 and execute 'python manage.py syncb' before !"
@@ -83,37 +83,31 @@ else :
 	
 	
 # Save old data in DB (need a parsing function !):
+
+for i in range(21) : Smeller().save()
+
 #Model: Guess(smeller_id='', sample_id='', intensity='', humor_id='', note_id='', image_id='', feeling='', name='').save
-"""	
-Guess(smeller_id=1, sample_id=2, intensity=40, humor_id=5, note_id=5, image_id=2, feeling=20).save
-Guess(smeller_id='2', sample_id='8', intensity='60', humor_id='8', note_id='6', 				feeling='80').save
-Guess(smeller_id='3', sample_id='8', intensity='20', humor_id='1', note_id='2', image_id='4', feeling='20').save	
-Guess(smeller_id='4', sample_id='10', intensity='80', humor_id='10', note_id='2', image_id='16', feeling='60').save
-Guess(smeller_id='5', sample_id='10', intensity='80', humor_id='7', note_id='4', image_id='9', feeling='80').save
-Guess(smeller_id='6', sample_id='13', intensity='80', humor_id='1', note_id='6', 				feeling='100').save	
-Guess(smeller_id='7', sample_id='13', intensity='80', humor_id='9', note_id='3', image_id='16', feeling='60').save
-	
-Guess(smeller_id='8', sample_id='17', intensity='40', humor_id='6', note_id='3', image_id='19', feeling='40').save
-Guess(smeller_id='9', sample_id='20', intensity='80', humor_id='13', note_id='6', image_id='17', feeling='80').save
-Guess(smeller_id='10', sample_id='20', intensity='60', humor_id='6', note_id='4', image_id='8', feeling='60').save	
-Guess(smeller_id='11', sample_id='20', intensity='80', humor_id='6', note_id='4', 				feeling='100').save
-Guess(smeller_id='12', sample_id='20', intensity='80', humor_id='6', 			 				feeling='60', name='rose').save
-Guess(smeller_id='13', sample_id='21', intensity='40', humor_id='6', note_id='4',				feeling='60').save	
-Guess(smeller_id='14', sample_id='30', intensity='80', humor_id='9', note_id='', 				feeling='20').save
-	
-Guess(smeller_id='15', sample_id='31', intensity='40', humor_id='2', note_id='6', image_id='17', feeling='40').save
-Guess(smeller_id='16', sample_id='32', intensity='0', 				note_id='6', 				feeling='20').save
-Guess(smeller_id='17', sample_id='41', intensity='60', humor_id='6', note_id='2', image_id='18', feeling='80').save	
-Guess(smeller_id='18', sample_id='44', intensity='60', humor_id='6', note_id='4', 				feeling='80').save
-Guess(smeller_id='19', sample_id='44', intensity='80', humor_id='9', note_id='4', 				feeling='100').save
-Guess(smeller_id='20', sample_id='45', intensity='60', humor_id='6', note_id='4', 				feeling='100').save	
-Guess(smeller_id='21', sample_id='97', intensity='20', humor_id='6', note_id='3', image_id='16', feeling='60').save	
-"""	
-	
-	
-	
-	
-	
-	
-	
-	
+
+Guess(smeller_id=1, sample_id=2, intensity=40, humor_id=5, note_id=5, image_id=2, feeling=20).save()
+Guess(smeller_id=2, sample_id=8, intensity=60, humor_id=8, note_id=6, feeling=80).save()
+Guess(smeller_id=3, sample_id=8, intensity=20, humor_id=1, note_id=2, image_id=4, feeling=20).save()
+Guess(smeller_id=4, sample_id=10, intensity=80, humor_id=10, note_id=2, image_id=16, feeling=60).save()
+Guess(smeller_id=5, sample_id=10, intensity=80, humor_id=7, note_id=4, image_id=9, feeling=80).save()
+Guess(smeller_id=6, sample_id=13, intensity=80, humor_id=1, note_id=6, feeling=100).save()
+Guess(smeller_id=7, sample_id=13, intensity=80, humor_id=9, note_id=3, image_id=16, feeling=60).save()
+
+Guess(smeller_id=8, sample_id=17, intensity=40, humor_id=6, note_id=3, image_id=19, feeling=40).save()
+Guess(smeller_id=9, sample_id=20, intensity=80, humor_id=13, note_id=6, image_id=17, feeling=80).save()
+Guess(smeller_id=10, sample_id=20, intensity=60, humor_id=6, note_id=4, image_id=8, feeling=60).save()
+Guess(smeller_id=11, sample_id=20, intensity=80, humor_id=6, note_id=4, feeling=100).save()
+Guess(smeller_id=12, sample_id=20, intensity=80, humor_id=6,  feeling=60, name='rose').save()
+Guess(smeller_id=13, sample_id=21, intensity=40, humor_id=6, note_id=4,feeling=60).save()
+Guess(smeller_id=14, sample_id=30, intensity=80, humor_id=9, feeling=20).save()
+
+Guess(smeller_id=15, sample_id=31, intensity=40, humor_id=2, note_id=6, image_id=17, feeling=40).save()
+Guess(smeller_id=16, sample_id=32, intensity=0, note_id=6, feeling=20).save()
+Guess(smeller_id=17, sample_id=41, intensity=60, humor_id=6, note_id=2, image_id=18, feeling=80).save()
+Guess(smeller_id=18, sample_id=44, intensity=60, humor_id=6, note_id=4, feeling=80).save()
+Guess(smeller_id=19, sample_id=44, intensity=80, humor_id=9, note_id=4, feeling=100).save()
+Guess(smeller_id=20, sample_id=45, intensity=60, humor_id=6, note_id=4, feeling=100).save()
+Guess(smeller_id=21, sample_id=97, intensity=20, humor_id=6, note_id=3, image_id=16, feeling=60).save()	
