@@ -288,6 +288,8 @@ def resultView(request):
 
     Notes
     -----
+    TODO: Secure when refresh/precedent action is used
+    TODO: See to improve the save of guess &co (not at each page, but only at the end for instance)
 
     """
     
