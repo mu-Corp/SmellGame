@@ -25,7 +25,7 @@ import os, tempfile, zipfile
 from base64 import decodestring
 
 # Local import:
-from forms import SmellerModelForm 
+from forms import SmellerModelForm, SmellerModelForm2
 from SmellGuess.models import Smeller, Sample, Guess, Image, Humor, Note
 
 
@@ -111,8 +111,9 @@ def registrationView(request):
     """
         
     form = SmellerModelForm()
+    form2 = SmellerModelForm2()
     
-    return render(request, 'SmellGuessTemplate/registration.html', {'current_date': datetime.now(), 'form': form})
+    return render(request, 'SmellGuessTemplate/registration.html', {'current_date': datetime.now(), 'form': form, 'form2': form2})
 
 
 

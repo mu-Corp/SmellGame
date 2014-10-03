@@ -27,7 +27,7 @@ class Smeller(models.Model):
 	id                = models.AutoField(primary_key=True)
 	
 	#Fields visibles in form:
-	SEX_CHOICE        = (('M', 'Male'),('F', 'Female'),)
+	SEX_CHOICE        = (('M', 'Homme'),('F', 'Femme'),)
 	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
 	age               = models.PositiveSmallIntegerField(default=18)
 	
