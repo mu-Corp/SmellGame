@@ -4,14 +4,20 @@ from SmellGuess.models import *
 
 if len(Sample.objects.all()) == 0 :
 	# Creating samples
-	for i in range(1,101) :
-		Sample(name="S"+str(i)).save()
-	for i in range(1,11) :
-		Sample(name="PB"+str(i)).save()
-		Sample(name="PB"+str(i)+"'").save()
-	for i in range(1,27) :
-		Sample(name="CS"+str(i)).save()
+	Slist = [28,30,32,36,38,40,41,44,45,46,47,48,53,63,71]
+	for nb in Slist :
+		Sample(id=nb, name="S"+str(nb)).save()
+		
+	for i in range(1,10) :
+		myId = 100 + i
+		Sample(id=myId, name="PB"+str(i)).save()
+	
+	for i in range(1,58) :
+		myId = 120 + i 
+		Sample(id = myId, name="CS"+str(i)).save()
+	
 	print "Samples created"
+	
 else : 
 	print "Please remove db.sqlite3 and execute 'python manage.py syncb' before !"
 	exit()
@@ -80,34 +86,85 @@ else :
 	
 	
 	
-	
-	
-# Save old data in DB (need a parsing function !):
+# Create ghost smellers for the first data from iGEM-Bettancourt:
+for i in range(21+21+10+11-33) : Smeller().save()
 
-for i in range(21) : Smeller().save()
 
-#Model: Guess(smeller_id='', sample_id='', intensity='', humor_id='', note_id='', image_id='', feeling='', name='').save
+# Première session (21 utilisables) :
+#Guess(smeller_id=1, sample_id=2, intensity=40, humor_id=5, note_id=5, image_id=2, feeling=20).save()
+#Guess(smeller_id=2, sample_id=8, intensity=60, humor_id=8, note_id=6, feeling=80).save()
+#Guess(smeller_id=3, sample_id=8, intensity=20, humor_id=1, note_id=2, image_id=4, feeling=20).save()
+#Guess(smeller_id=4, sample_id=10, intensity=80, humor_id=10, note_id=2, image_id=16, feeling=60).save()
+#Guess(smeller_id=5, sample_id=10, intensity=80, humor_id=7, note_id=4, image_id=9, feeling=80).save()
+#Guess(smeller_id=6, sample_id=13, intensity=80, humor_id=1, note_id=6, feeling=100).save()
+#Guess(smeller_id=7, sample_id=13, intensity=80, humor_id=9, note_id=3, image_id=16, feeling=60).save()
 
-Guess(smeller_id=1, sample_id=2, intensity=40, humor_id=5, note_id=5, image_id=2, feeling=20).save()
-Guess(smeller_id=2, sample_id=8, intensity=60, humor_id=8, note_id=6, feeling=80).save()
-Guess(smeller_id=3, sample_id=8, intensity=20, humor_id=1, note_id=2, image_id=4, feeling=20).save()
-Guess(smeller_id=4, sample_id=10, intensity=80, humor_id=10, note_id=2, image_id=16, feeling=60).save()
-Guess(smeller_id=5, sample_id=10, intensity=80, humor_id=7, note_id=4, image_id=9, feeling=80).save()
-Guess(smeller_id=6, sample_id=13, intensity=80, humor_id=1, note_id=6, feeling=100).save()
-Guess(smeller_id=7, sample_id=13, intensity=80, humor_id=9, note_id=3, image_id=16, feeling=60).save()
-
-Guess(smeller_id=8, sample_id=17, intensity=40, humor_id=6, note_id=3, image_id=19, feeling=40).save()
-Guess(smeller_id=9, sample_id=20, intensity=80, humor_id=13, note_id=6, image_id=17, feeling=80).save()
-Guess(smeller_id=10, sample_id=20, intensity=60, humor_id=6, note_id=4, image_id=8, feeling=60).save()
-Guess(smeller_id=11, sample_id=20, intensity=80, humor_id=6, note_id=4, feeling=100).save()
-Guess(smeller_id=12, sample_id=20, intensity=80, humor_id=6,  feeling=60, name='rose').save()
-Guess(smeller_id=13, sample_id=21, intensity=40, humor_id=6, note_id=4,feeling=60).save()
+#Guess(smeller_id=8, sample_id=17, intensity=40, humor_id=6, note_id=3, image_id=19, feeling=40).save()
+#Guess(smeller_id=9, sample_id=20, intensity=80, humor_id=13, note_id=6, image_id=17, feeling=80).save()
+#Guess(smeller_id=10, sample_id=20, intensity=60, humor_id=6, note_id=4, image_id=8, feeling=60).save()
+#Guess(smeller_id=11, sample_id=20, intensity=80, humor_id=6, note_id=4, feeling=100).save()
+#Guess(smeller_id=12, sample_id=20, intensity=80, humor_id=6, feeling=60, name='rose').save()
+#Guess(smeller_id=13, sample_id=21, intensity=40, humor_id=6, note_id=4,feeling=60).save()
 Guess(smeller_id=14, sample_id=30, intensity=80, humor_id=9, feeling=20).save()
 
-Guess(smeller_id=15, sample_id=31, intensity=40, humor_id=2, note_id=6, image_id=17, feeling=40).save()
+#Guess(smeller_id=15, sample_id=31, intensity=40, humor_id=2, note_id=6, image_id=17, feeling=40).save()
 Guess(smeller_id=16, sample_id=32, intensity=0, note_id=6, feeling=20).save()
 Guess(smeller_id=17, sample_id=41, intensity=60, humor_id=6, note_id=2, image_id=18, feeling=80).save()
 Guess(smeller_id=18, sample_id=44, intensity=60, humor_id=6, note_id=4, feeling=80).save()
 Guess(smeller_id=19, sample_id=44, intensity=80, humor_id=9, note_id=4, feeling=100).save()
 Guess(smeller_id=20, sample_id=45, intensity=60, humor_id=6, note_id=4, feeling=100).save()
-Guess(smeller_id=21, sample_id=97, intensity=20, humor_id=6, note_id=3, image_id=16, feeling=60).save()	
+#Guess(smeller_id=21, sample_id=97, intensity=20, humor_id=6, note_id=3, image_id=16, feeling=60).save()
+
+
+# Deuxième session (21 utilisables) : 
+#Guess(smeller_id=22, sample_id=2, intensity=20, humor_id=9, note_id=5, feeling=20, name='').save()
+#Guess(smeller_id=23, sample_id=2, intensity=100, humor_id=6, note_id=4, image_id=9, feeling=100, name='').save()
+#Guess(smeller_id=24, sample_id=7, intensity=20, humor_id=9, note_id=2, image_id=8, feeling=20, name='').save()
+#Guess(smeller_id=25, sample_id=7, intensity=40, humor_id=13, note_id=6, image_id=6, feeling=40, name='').save()
+#Guess(smeller_id=26, sample_id=8, intensity=80, humor_id=8, note_id=6, image_id=14, feeling=60, name='').save()
+#Guess(smeller_id=27, sample_id=9, intensity=20, humor_id=1, note_id=2, image_id=9, feeling=40, name='').save()
+#Guess(smeller_id=28, sample_id=14, intensity=60, humor_id=6, note_id=2, feeling=60, name='').save()
+#Guess(smeller_id=29, sample_id=16, intensity=20, humor_id=6, note_id=6, image_id=8, feeling=60, name='').save()
+#Guess(smeller_id=30, sample_id=19, intensity=20, humor_id=5, note_id=2, image_id=7, feeling=0, name='').save()
+#Guess(smeller_id=31, sample_id=19, intensity=20, humor_id=6, note_id=6, feeling=60, name='').save()
+#Guess(smeller_id=32, sample_id=20, intensity=100, humor_id=3, note_id=4, feeling=100, name='').save()
+#Guess(smeller_id=33, sample_id=20, intensity=60, humor_id=6, note_id=4, image_id=9, feeling=80, name='').save()
+#Guess(smeller_id=34, sample_id=20, intensity=60, humor_id=6, note_id=6, feeling=60, name='').save()
+#Guess(smeller_id=35, sample_id=21, intensity=20, humor_id=3, note_id=4, feeling=80, name='').save()
+#Guess(smeller_id=36, sample_id=23, intensity=60, humor_id=3, note_id=4, feeling=40, name='').save()
+Guess(smeller_id=37, sample_id=32, intensity=20, feeling=60, name='').save()
+#Guess(smeller_id=38, sample_id=35, intensity=20, humor_id=6, note_id=6, image_id=8, feeling=20, name='').save()
+Guess(smeller_id=39, sample_id=45, intensity=60, note_id=4, image_id=9, feeling=80, name='').save()
+Guess(smeller_id=40, sample_id=48, intensity=40, humor_id=6, image_id=9, feeling=80, name='').save()
+Guess(smeller_id=41, sample_id=71, intensity=40, humor_id=13, note_id=2, feeling=40, name='').save()
+#Guess(smeller_id=42, sample_id=72, intensity=40, image_id=18, feeling=60, name='').save()
+
+
+#SC data : Mettre les bon ID (10 utilisables)
+Guess(smeller_id=43, sample_id=121, intensity=40, humor_id=2, note_id=2, image_id=19, feeling=20, name='').save()
+Guess(smeller_id=44, sample_id=124, intensity=60, feeling=40, name='').save()
+Guess(smeller_id=45, sample_id=127, intensity=80, humor_id=4, note_id=2, feeling=20, name='').save()
+Guess(smeller_id=46, sample_id=130, intensity=40, humor_id=6, note_id=2, image_id=19, feeling=80, name='').save()
+Guess(smeller_id=47, sample_id=125, intensity=40, humor_id=13, note_id=5, feeling=40, name='').save()
+Guess(smeller_id=48, sample_id=123, intensity=20, note_id=2, image_id=19, feeling=40, name='').save()
+Guess(smeller_id=49, sample_id=136, intensity=100, humor_id=2, note_id=5, image_id=7, feeling=20, name='').save()
+Guess(smeller_id=52, sample_id=141, intensity=40, note_id=2, feeling=40, name='').save()
+Guess(smeller_id=53, sample_id=144, intensity=40, humor_id=1, note_id=4, image_id=8, feeling=60, name='').save()
+Guess(smeller_id=54, sample_id=144, intensity=80, humor_id=9, note_id=5, image_id=16, feeling=20, name='').save()
+
+
+#PB data : Mettre les bon ID (11 utilisables)
+Guess(smeller_id=55, sample_id=102, intensity=80, humor_id=6, note_id=5, feeling=60, name='').save()
+Guess(smeller_id=56, sample_id=101, intensity=60, humor_id=9, note_id=1, image_id=4, feeling=20, name='').save()
+#Guess(smeller_id=57, sample_id=10, intensity=20, humor_id=13, note_id=2, image_id=18, feeling=20, name='').save()
+Guess(smeller_id=58, sample_id=102, intensity=100, humor_id=4, note_id=1, image_id=2, feeling=40, name='').save()
+Guess(smeller_id=59, sample_id=103, intensity=100, humor_id=1, note_id=4, feeling=100, name='').save()
+Guess(smeller_id=60, sample_id=103, intensity=80, humor_id=6, note_id=5, feeling=80, name='').save()
+Guess(smeller_id=61, sample_id=104, intensity=100, humor_id=1, note_id=1, image_id=3, feeling=0, name='').save()
+Guess(smeller_id=62, sample_id=104, intensity=100, humor_id=4, note_id=1, image_id=4, feeling=0, name='').save()
+Guess(smeller_id=63, sample_id=105, intensity=40, feeling=40, name='').save()
+Guess(smeller_id=64, sample_id=107, intensity=80, humor_id=6, note_id=2, feeling=80, name='').save()
+Guess(smeller_id=65, sample_id=108, intensity=40, note_id=5, feeling=100, name='').save()
+
+
+
