@@ -68,11 +68,11 @@ def homeView(request):
     
     # RE-Initialization of variable of session (use during all the session):
     request.session['idSmeller'] = None
-    request.session['nameSmeller'] = None
-    request.session['idSample'] = None
-    request.session['idGuess'] = None
+    request.session['currentIdGuess'] = None
     request.session['guessStep'] = None
+    request.session['SampleIdToAnalyze'] = None
     
+
     # Render:    
     return render(request, 'SmellGuessTemplate/home.html',{})#{'nb': nb, 'intensity': intensity, 'color': color, 'note': note, 'image': image, 'opacity': opacity, 'name': name})    
     
@@ -118,6 +118,18 @@ def registrationView(request):
 
 
 
+def getAllId(l_objects):
+    l_allId = list()   
+    for obj in l_objects:
+        l_allId.append(obj.id)
+    return l_allId
+
+def getAllName(l_id, objectType):
+    l_allObject = list()   
+    for currentId in l_id:
+        l_allObject.append(objectType.get(id=currentId).name)
+    return l_allObject
+
 def gameView(request):
     """Called view by the URL /game.
 
@@ -151,95 +163,100 @@ def gameView(request):
 
     """
     
-    if request.method == 'POST':  # If there is post data sent
+    if request.method == 'POST':  # If there is post data sent (smeller data or game data)
         
+        paramToGenerateTemplate = dict()
+        
+        ### FIRST CONNECTION: ###
         # If Smeller is not registrated = first visit of user on game page
         if request.session['idSmeller'] == None : 
             
             formSmeller = SmellerModelForm(request.POST)  # then data is collected.
-            
             if formSmeller.is_valid(): # If data are valid (correct type, size, etc.)
                 
-                ################################################
-                #Random id of samples to analyze:
-                allSample = Sample.objects.all()
-                allSampleIds = []
-                for s in allSample :
-                    allSampleIds.append(s.id)
-                
-                nbSamplesToAnalyze = 6
-                request.session['SamplesToAnalyze'] = random.sample(allSampleIds,  nbSamplesToAnalyze) #init
-                firstToAnalyze = request.session['SamplesToAnalyze'][0]
-                ################################################
-                
-                
+                #Save smeller data:
                 smeller = formSmeller.save() # Save in DB
-                sample = Sample.objects.get(id=firstToAnalyze)
-                guess = Guess(smeller=smeller,sample=sample)
-                guess.save()
-                
-                # Full sessions variables
                 request.session['idSmeller'] = smeller.id
-                #request.session['nameSmeller'] = smeller.name #obsolete
-                request.session['idSample'] = sample.id
-                request.session['idGuess'] = guess.id
+                
+                #Generate game samples to analyze:
+                l_allSampleId = getAllId( Sample.objects.all() )
+                nbSamplesToAnalyze = 6
+                request.session['SampleIdToAnalyze'] = random.sample(l_allSampleId,  nbSamplesToAnalyze) #init
+                
+                
+                #Preparation of the first analyze:
+                firstToAnalyze = request.session['SampleIdToAnalyze'][0]   
+                firstSample = Sample.objects.get(id=firstToAnalyze)
+                firstGuess = Guess(smeller=smeller,sample=firstSample)#Initialize a guess entry for this first sample
+                firstGuess.save()
                 request.session['guessStep'] = 1
-                request.session['remainSamplesToAnalyze'] = nbSamplesToAnalyze #init
+                request.session['currentIdGuess'] = firstGuess.id
                 
+                #Parameters to generate the first page of game:
+                paramToGenerateTemplate['guessStep'] = request.session['guessStep']
+                paramToGenerateTemplate['nameSample'] = firstSample.name
+                paramToGenerateTemplate['currentSamples'] = getAllName(request.session['SampleIdToAnalyze'], Sample.objects)
+            
             else:
-                error = 'invalid data...'
-        
-        else : # Else (Sample-> NON) Smeller is guessed
-            
-            guess = Guess.objects.get(id=request.session['idGuess'])
-            
-            if request.session['guessStep']   == 2 : guess.intensity = request.POST['intensity']
-            elif request.session['guessStep'] == 3 : guess.humor = Humor.objects.get(id=request.POST['humor'])
-            elif request.session['guessStep'] == 4 : guess.note = Note.objects.get(id=request.POST['note'])
-            elif request.session['guessStep'] == 5 : guess.image = Image.objects.get(id=request.POST['image'])
-            elif request.session['guessStep'] == 6 : guess.feeling = request.POST['feeling']
-            elif request.session['guessStep'] == 7 : 
-                guess.name = request.POST['name']
+                error = 'Invalid format of registration...'
                 
-            guess.save()
+                
+                
+                
+        ### OTHER CONNECTIONS: ###
+        else:
             
-            request.session['guessStep'] += 1 # Update step
-        
-        
+            #Take the current data:
+            currentGuess = Guess.objects.get(id=request.session['currentIdGuess'])
+            
+            
+            #Save and generation of the different page of the game:
+            if request.session['guessStep'] == 2 :
+                currentGuess.intensity = request.POST['intensity']
+                paramToGenerateTemplate['listHumors'] = Humor.objects.all()
+                
+            elif request.session['guessStep'] == 3 :
+                currentGuess.humor = Humor.objects.get(id=request.POST['humor'])
+                paramToGenerateTemplate['listNotes'] = Note.objects.all()
+                
+            elif request.session['guessStep'] == 4 : 
+                currentGuess.note = Note.objects.get(id=request.POST['note'])
+                paramToGenerateTemplate['listImages'] = Image.objects.all()
+                
+            elif request.session['guessStep'] == 5 : 
+                currentGuess.image = Image.objects.get(id=request.POST['image'])
+                
+            elif request.session['guessStep'] == 6 :
+                currentGuess.feeling = request.POST['feeling']
+                
+            elif request.session['guessStep'] == 7 : 
+                currentGuess.name = request.POST['name']
+                
+            currentGuess.save()
+            
+            
+            # Parameters to generate template
+            paramToGenerateTemplate['currentSamples'] = getAllName(request.session['SampleIdToAnalyze'], Sample.objects)
+            paramToGenerateTemplate['nameSample'] = Sample.objects.get(id=currentGuess.sample_id).name
+            
+            paramToGenerateTemplate['intensity'] = currentGuess.intensity
+            paramToGenerateTemplate['humor'] = currentGuess.humor
+            paramToGenerateTemplate['note'] = currentGuess.note
+            paramToGenerateTemplate['image'] = currentGuess.image
+            paramToGenerateTemplate['feeling'] = currentGuess.feeling
+            
+            
+            #Preparing next step:
+            request.session['guessStep'] += 1
+            paramToGenerateTemplate['guessStep'] = request.session['guessStep']
+    
+    
     else: # if it's not post, it's not safe
         error = 'You try to connect to this game with the wrong way, please, go back to home...'
+            
+            
+    return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)    
     
-    
-    
-    #In all cases:
-    guess = Guess.objects.get(id=request.session['idGuess'])
-    sample = Sample.objects.get(id=request.session['idSample'])
-    
-    
-    paramToGenerateTemplate = dict()
-    paramToGenerateTemplate['listHumors'] = Humor.objects.all()
-    paramToGenerateTemplate['listNotes'] = Note.objects.all()
-    paramToGenerateTemplate['listImages'] = Image.objects.all()
-    
-    paramToGenerateTemplate['guessStep'] = request.session['guessStep']
-    
-    
-    #Random story!    
-    paramToGenerateTemplate['currentSamples'] = []
-    for idSample in request.session['SamplesToAnalyze'] :
-        paramToGenerateTemplate['currentSamples'].append(Sample.objects.get(id=idSample).name)
-    paramToGenerateTemplate['nameSample'] = sample.name
-    
-    
-    paramToGenerateTemplate['intensity'] = guess.intensity
-    paramToGenerateTemplate['humor'] = guess.humor
-    paramToGenerateTemplate['note'] = guess.note
-    paramToGenerateTemplate['image'] = guess.image
-    paramToGenerateTemplate['feeling'] = guess.feeling
-
-
-    return render(request, 'SmellGuessTemplate/game.html', paramToGenerateTemplate)
-
 
 
 
@@ -247,6 +264,7 @@ def resultView(request):
     """Called view by the URL /result.
 
     Call calculations to find the mean values of others smellers.
+    This view is called by the last page game of a test.
 
     Parameters
     ----------
@@ -274,20 +292,14 @@ def resultView(request):
     """
     
     if request.method == 'POST':  # If it's a POST request
-        guess = Guess.objects.get(id=request.session['idGuess'])
+        guess = Guess.objects.get(id=request.session['currentIdGuess'])
         guess.name = request.POST['name']
         guess.save()
         
-        
         request.session['guessStep'] = 0      
         
-        '''
-        img = open("guessImages/"+str(guess.id)+".png", "ab")
-        img.write(decode_base64(request.POST['imageBase64'][22:]))
-        img.close()
-        '''
         #In waiting to display images of other results:
-        idOfAnalyzedSample = request.session['idSample']
+        idOfAnalyzedSample = guess.sample_id
         idemGuess = Guess.objects.filter(sample_id=idOfAnalyzedSample).exclude(smeller_id=guess.smeller_id) #Give a list of all guess with same current sample
         intensities = list()
         humors = list()
@@ -307,7 +319,7 @@ def resultView(request):
         error = 'You try to connect to this game with the wrong way, please, go back to home...'
     
     
-    guess = Guess.objects.get(id=request.session['idGuess'])
+    guess = Guess.objects.get(id=request.session['currentIdGuess'])
     smeller = Smeller.objects.get(id=request.session['idSmeller'])
     
     
@@ -376,7 +388,7 @@ def resultView(request):
         paramToGenerateTemplate['pathImageMean'] = None
         paramToGenerateTemplate['imageMeanName'] = "Non disponible"
     
-    paramToGenerateTemplate['nameSample'] = Sample.objects.get(id=request.session['idSample']).name
+    paramToGenerateTemplate['nameSample'] = Sample.objects.get(id=guess.sample_id).name
     
     
     #######################################################################"
@@ -386,22 +398,21 @@ def resultView(request):
     paramToGenerateTemplate['listGuess'] = Guess.objects.filter(smeller=smeller);
     
     
-    request.session['SamplesToAnalyze'].remove(request.session['idSample']) #Warning: remove method don't return the list minus the element...
+    request.session['SampleIdToAnalyze'].remove(guess.sample_id) #Warning: remove method don't return the list minus the element...
     
     paramToGenerateTemplate['remainSamplesToAnalyze'] = []
-    for idSample in request.session['SamplesToAnalyze'] :
+    for idSample in request.session['SampleIdToAnalyze'] :
 	    paramToGenerateTemplate['remainSamplesToAnalyze'].append(Sample.objects.get(id=idSample).name)
     
     
-    paramToGenerateTemplate['nbRemainSamplesToAnalyze'] = len(request.session['SamplesToAnalyze'])
+    paramToGenerateTemplate['nbRemainSamplesToAnalyze'] = len(request.session['SampleIdToAnalyze'])
     if paramToGenerateTemplate['nbRemainSamplesToAnalyze'] > 0: #if it remains sample(s) to analyze: 
 
-        sample = Sample.objects.get(id=request.session['SamplesToAnalyze'][0])
-        request.session['idSample'] = sample.id
-	paramToGenerateTemplate['nameNextSample'] = sample.name
+        sample = Sample.objects.get(id=request.session['SampleIdToAnalyze'][0])
+        paramToGenerateTemplate['nameNextSample'] = sample.name
         guess = Guess(smeller=smeller,sample=sample)
         guess.save()
-        request.session['idGuess'] = guess.id
+        request.session['currentIdGuess'] = guess.id
     
     else : DB_to_csv()
     
