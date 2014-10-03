@@ -101,6 +101,15 @@ input[type=image] {
 	bottom: 40px;
 }
 
+#divRange {
+	position: absolute;
+	left: 0px;
+	top: 50%;
+	width: 20px;
+	height: 400px;
+	margin-top: -210px;
+}
+
 .rangeVertical {
 	writing-mode: bt-lr;
 	-webkit-appearance: slider-vertical;
@@ -141,8 +150,9 @@ input[type=image] {
 }
 
 #textRange{ 
-    text-align: center;
-    margin-top: 5px;
+   text-align: center;
+   margin-top: 5px;
+   width: 180px;
 }
 
 .radio-toolbar input[type="radio"] {
