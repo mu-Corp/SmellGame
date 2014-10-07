@@ -44,6 +44,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SmellGuess',
+    'SmellGift',
+    'SmellGalaxy',
 )
 
 MIDDLEWARE_CLASSES = (

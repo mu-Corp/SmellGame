@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from SmellGuess.models import *
+from SmellGift.models import *
 
 if len(Sample.objects.all()) == 0 :
 	# Creating samples
@@ -80,6 +81,24 @@ if len(Image.objects.all()) == 0 :
 	Image(name="ALCOOL",              pathImage="images/Image/alcool.png").save()
 	Image(name="ESSENCE",             pathImage="images/Image/essence.png").save()
 	print "Images created"
+else : 
+	print "Please remove db.sqlite3 and execute 'python manage.py syncb' before !"
+	exit()
+	
+
+if len(Food.objects.all()) == 0 :
+	# Creating common names
+	Food(name="Brocoli").save()
+	Food(name="Choux").save()
+	Food(name="Choux fleur").save()
+	Food(name="Asperge").save()
+	Food(name="Poisson").save()
+	Food(name="Viande rouge").save()
+	Food(name="Fast food").save()
+	Food(name="Plat épicé").save()
+	Food(name="Alcool").save()
+	Food(name="Antibiotiques").save()
+	print "Food created"
 else : 
 	print "Please remove db.sqlite3 and execute 'python manage.py syncb' before !"
 	exit()

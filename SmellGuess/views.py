@@ -3,7 +3,7 @@
 """
 Authors : 
 - Arnaud Ferré, arnaud.ferre.pro@gmail.com (2014)
-- 
+- Jean Coquet, public@jeancoquet.com (2014)
 """
 
 
