@@ -212,3 +212,23 @@ input[type=image] {
 	-moz-border-radius: 187px;
 	border-radius: 187px;
 }
+
+#formGift li {
+	display: inline-block;
+	list-style: none;
+}
+
+#formGift ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+#formGift .titleSectionFields {
+	text-align: center;
+	color : rgb(216,89,149);
+	font-weight: bold;
+}
+tr.titleSectionFields > td {
+	padding-top: 30px;
+	padding-bottom: 10px;
+}

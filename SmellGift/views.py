@@ -10,7 +10,7 @@ from django.shortcuts import redirect, render
 # Local import:
 from forms import SampleGiverForm
 from SmellGift.models import SampleGiver, Food
-
+from SmellGuess.models import Sample
 
 ################################################################
 #########################    VIEWS    ##########################
@@ -18,4 +18,17 @@ from SmellGift.models import SampleGiver, Food
 
 def giftView(request):
 	form = SampleGiverForm()
+	form.fields["foodRecentlyEaten"].queryset = Food.objects.all()
 	return render(request, 'SmellGiftTemplate/gift.html', {'form': form})
+
+def thanksView(request) :
+	if request.method == 'POST':
+		formGiver = SampleGiverForm(request.POST)
+		if formGiver.is_valid() :
+			print "ok"
+			giver = formGiver.save()
+			sample = Sample(sampleGiver=giver)
+			sample.save()
+			sample.name = "PT"+str(sample.id)
+			sample.save()
+	return render(request, 'SmellGiftTemplate/thanks.html')

@@ -11,29 +11,21 @@
 		<title>THE SMELL OF US - Donneur</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
-		<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
-		
-		<script>
-			function splitFields(dictInput) {
-				for(id in dictInput){
-					$('#'+id).parent().parent().before('<tr class="titleSectionFields"><td colspan="2">'+dictInput[id]+'</td></tr>');
-				}
-			}
-		</script>
 	</head>
 	
 	
 	<body>
+		
+		<br/><br/>
 	
 		<div style="text-align: center">
-			<div style="width:600px; margin: auto;">
-				<form action="{% url "SmellGift.views.thanksView" %}" method="post">
+			<div style="width:300px; margin: auto;">
+				<form action="{% url "SmellGuess.views.homeView" %}" method="post">
 					{% csrf_token %}
-					<table cellpadding="5" id="formGift" align="left" style="text-align: left; margin-bottom:30px;" >
-						{{ form.as_table }} 
-					</table>
-					<input type="image" value="VALIDER" />
+					Votre échantillon a bien été enregistré !<br/>
+					Merci de votre participation.<br/><br/>
+					<input type="image" value="RETOUR" />
 				</form>
 			</div>
 		</div>
@@ -59,14 +51,6 @@
 	    	<p style="font-size: 10px;">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a></p>
 	    </div>
 	    
-	    <script>
-		$(function(){
-			splitFields({'id_age': 'À PROPOS DE VOUS',
-			             'id_testDuration': 'À PROPOS DE CE TEST',
-			             'id_intensity': 'À PROPOS DE VOTRE ODEUR'});
-		})
-	    </script>
-	    
 	</body>
 	
-</html>
+</html> 

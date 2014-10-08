@@ -7,4 +7,5 @@ admin.autodiscover()
 
 urlpatterns = patterns('SmellGift.views',#main path
                        url(r'^$', 'giftView'),
+                       url(r'^thanks/$', 'thanksView'),
 )

@@ -17,8 +17,9 @@ import random
 ################################################################
 
 class Sample(models.Model):
-	id   = models.AutoField(primary_key=True)
-	name = models.CharField(max_length=42)
+	id          = models.AutoField(primary_key=True)
+	name        = models.CharField(max_length=42)
+	sampleGiver = models.ForeignKey('SmellGift.SampleGiver', null=True)
 
 ################################################################
 class Smeller(models.Model):

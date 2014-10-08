@@ -39,7 +39,7 @@ class SampleGiver(models.Model):
 	foodRecentlyEaten = models.ManyToManyField('Food')
 	deodorant         = models.BooleanField(default=True)
 	email             = models.EmailField(max_length=254)
-	testDuration      = models.TimeField()
+	testDuration      = models.CharField(max_length=15)
 	activity          = models.CharField(max_length=2, choices=ACTIVITY_CHOICE,default='N')
 	intensity         = models.PositiveSmallIntegerField(default=0)
 	feeling           = models.PositiveSmallIntegerField(default=0)
@@ -52,6 +52,8 @@ class SampleGiver(models.Model):
 class Food(models.Model):
 	id   = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=42)
+	
+	def __unicode__(self): return self.name
 
 
 ###############################################################
