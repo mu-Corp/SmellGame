@@ -284,11 +284,11 @@ tr.titleSectionFields > td {
 	}
 }
 
-.helpImg { 
+#helpImg { 
 	vertical-align: bottom;
 	cursor:pointer;
 }
-.helpText { 
+#helpText { 
 	display:none; 
 	width: 200px;
 	height: 55px;
@@ -298,6 +298,6 @@ tr.titleSectionFields > td {
 	background: rgb(255,20,147);
 	margin-top: -30px;
 }
-.helpImg:active ~ .helpText {
+/*.helpImg:active ~ .helpText {
 	display: inline-block;
-}
+}*/
