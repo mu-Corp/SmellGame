@@ -19,7 +19,8 @@ class SampleGiverForm(forms.ModelForm):
 	class Meta:
 		model = SampleGiver  # Form with fields of Smeller class
 		#exclude = ('samples',) # Exclude field "sample" in the form
-		#fields = ('age','sex','smoker','diet','foodRecentlyEaten','deodorant','email','testDuration','activity','intensity','feeling')
+		
+		fields = ('age','sex','smoker','diet','foodRecentlyEaten','deodorant','email','testDuration','activity','intensity','feeling')
 		
 		#fields[5].widget = forms.CheckboxSelectMultiple()
 		widgets = { 'sex': forms.widgets.RadioSelect(),
