@@ -62,8 +62,10 @@
 	    <script>
 		$(function(){
 			splitFields({'id_age': 'À PROPOS DE VOUS',
-			             'id_testDuration': 'À PROPOS DE CE TEST',
+			             'id_testDuration_hour': 'À PROPOS DE CE TEST<br/><span style="font-weight: normal; font-style: italic;">Conditions auquelles vous avez été soumis.<br/>(Si aucune condition particulière alors passer cette section)</span>',
 			             'id_intensity': 'À PROPOS DE VOTRE ODEUR'});
+			$("#id_email").after(" <img class=\"helpImg\" src=\"{% static 'images/help.png' %}\" alt=\"Help\" height=\"22\" /> "+
+					     "<span class=\"helpText\" style=\"float:right;\">Vous pouvez renseigner votre e-mail si vous voulez recevoir les résultats de cette étude.</span>")
 		})
 	    </script>
 	    

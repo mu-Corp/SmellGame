@@ -232,3 +232,72 @@ tr.titleSectionFields > td {
 	padding-top: 30px;
 	padding-bottom: 10px;
 }
+
+.divRangeHorizontal {
+	margin-left: -20px;
+}
+
+.divRangeHorizontal span {
+	display: inline-block;
+	width: 90px;
+	margin: 0px;
+}
+
+.labelBeforeRange { text-align: right; }
+
+.rangeHorizontal {
+	width: 220px;
+	height: 15px;
+	margin: 0px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+@-moz-document url-prefix() {
+	.divRangeHorizontal {
+		margin-left: -50px;
+	}
+	.rangeHorizontal {
+		background-size: 15px 350px;
+		background-image: url("backgroundSlider.png");
+	}
+	.rangeHorizontal::-moz-range-track {
+		-moz-appearance: none;
+		height: 0px;
+	}
+	.rangeHorizontal::-webkit-slider-thumb {
+		-webkit-appearance: none !important;
+		border-radius: 15px;
+		background: rgb(216,89,149);
+		border: 1px solid rgb(216,89,149);
+		width: 15px;
+		height: 15px;
+		background-color: white;
+	}
+	.rangeHorizontal::-moz-range-thumb {
+		-moz-appearance: none;
+		border-radius: 15px;
+		background: rgb(216,89,149);
+		border: 1px solid rgb(216,89,149);
+		width: 15px;
+		height: 15px;
+	}
+}
+
+.helpImg { 
+	vertical-align: bottom;
+	cursor:pointer;
+}
+.helpText { 
+	display:none; 
+	width: 200px;
+	height: 55px;
+	position: fixed;
+	margin-left:10px;
+	padding:10px;
+	background: rgb(255,20,147);
+	margin-top: -30px;
+}
+.helpImg:active ~ .helpText {
+	display: inline-block;
+}

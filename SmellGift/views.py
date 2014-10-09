@@ -25,7 +25,6 @@ def thanksView(request) :
 	if request.method == 'POST':
 		formGiver = SampleGiverForm(request.POST)
 		if formGiver.is_valid() :
-			print "ok"
 			giver = formGiver.save()
 			sample = Sample(sampleGiver=giver)
 			sample.save()

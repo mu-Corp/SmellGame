@@ -5,6 +5,7 @@
 ################################################################
 
 from django import forms
+from widgets import SelectTimeWidget, RangeWidget
 from models import SampleGiver, Food
 
 ################################################################
@@ -12,10 +13,11 @@ from models import SampleGiver, Food
 ################################################################
 
 class SampleGiverForm(forms.ModelForm):
-	#def __init__(self, *args, **kwargs):
-		#super(SampleGiverForm, self).__init__(*args, **kwargs)
-		#self.fields['foodRecentlyEaten'].widget = forms.CheckboxSelectMultiple()
-	
+	def __init__(self, *args, **kwargs):
+		super(SampleGiverForm, self).__init__(*args, **kwargs)
+		self.fields['email'].required = False
+		self.fields['foodRecentlyEaten'].required = False
+		
 	class Meta:
 		model = SampleGiver  # Form with fields of Smeller class
 		#exclude = ('samples',) # Exclude field "sample" in the form
@@ -26,7 +28,10 @@ class SampleGiverForm(forms.ModelForm):
 		widgets = { 'sex': forms.widgets.RadioSelect(),
 			    'foodRecentlyEaten': forms.widgets.CheckboxSelectMultiple(),
 			    'diet': forms.widgets.RadioSelect(),
-			    'activity': forms.widgets.RadioSelect() }
+			    'testDuration': SelectTimeWidget(),
+			    'activity': forms.widgets.RadioSelect(),
+			    'intensity': RangeWidget(LabelBefore='Faible', LabelAfter='Forte'),
+			    'feeling': RangeWidget(LabelBefore=u'Agréable', LabelAfter=u'Désagréable')}
 
 		labels = { 'age': 'Âge ',
 			   'sex': 'Sexe ',
@@ -36,6 +41,8 @@ class SampleGiverForm(forms.ModelForm):
 			   'deodorant': 'Déodorant ',
 			   'email': 'E-mail ',
 			   'testDuration': 'Durée du test ',
-			   'activity': 'Activité suivie '}
+			   'activity': 'Activité suivie ',
+			   'intensity': '',
+			   'feeling': ''}
         
         
