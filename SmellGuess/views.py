@@ -524,15 +524,33 @@ def DB_to_csv():
     
     
     for s in listSmeller :
-        tmp_sentence="\n"+ str(s.id)+ ";" + s.sex+ ";"+ str(s.age)+ ";"+ str(s.date_registration)
+        tmp_sentence = "\n"+str(s.id)+";"
+        if s.sex != None : tmp_sentence += s.sex+";"
+        else : tmp_sentence += ";"
+        if s.age != None : tmp_sentence += str(s.age)+";"
+        else : tmp_sentence += ";"
+        if s.date_registration != None : tmp_sentence += str(s.date_registration)
         sm.write(str(tmp_sentence))
     sm.close()
     
     for g in listGuess :
-	if g.smeller != None and g.sample != None and g.humor != None and g.note != None and g.image != None :
-		name = g.name.encode("utf-8")
-		tmp_sentence="\n"+ str(g.id) + ";"+ str(g.smeller.id)+ ";"+str(g.sample.name)+";"+str(g.intensity)+";"+str(g.humor.name)+";"+str(g.note.name)+";"+str(g.image.name)+ ";"+ str(g.feeling)+";"+ name
-		gu.write(tmp_sentence)
+	tmp_sentence = "\n"+str(g.id)+";"
+	if g.smeller != None : tmp_sentence += str(g.smeller.id)+";"
+	else : tmp_sentence += ";"
+	if g.sample != None : tmp_sentence += g.sample.name+";"
+	else : tmp_sentence += ";"
+	if g.intensity != None : tmp_sentence += str(g.intensity)+";"
+	else : tmp_sentence += ";"
+	if g.humor != None : tmp_sentence += g.humor.name+";"
+	else : tmp_sentence += ";"
+	if g.note != None : tmp_sentence += g.note.name+";"
+	else : tmp_sentence += ";"
+	if g.image != None : tmp_sentence += g.image.name+";"
+	else : tmp_sentence += ";"
+	if g.feeling != None : tmp_sentence += str(g.feeling)+";"
+	else : tmp_sentence += ";"
+	if g.name != None : tmp_sentence += g.name.encode("utf-8")
+	gu.write(tmp_sentence)
     gu.close()
 
 
