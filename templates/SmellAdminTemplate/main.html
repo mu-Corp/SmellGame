@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<!-- Load images, CSS and JS files-->
+{% load static %}
+
+<html lang="fr" dir="ltr">
+	
+	
+	<!-- header block -->
+	<head>
+		<title>THE SMELL OF US - Administration</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{% static 'css/design.css' %}">
+		<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
+	</head>
+	
+	
+	<body>
+		
+		<!-- bottom block -->		
+		<div style="position: fixed; bottom: 5px; right:5px;" >
+		
+			<div style="display: inline-block; margin-right: 20px;">
+				<a href="../smellguess/home/" style="text-decoration: none;" >
+					<!-- icon from http://www.iconsdb.com/deep-pink-icons/home-5-icon.html -->
+					<img src="{% static 'images/homeIcon.png' %}" alt="Retour à la page d'accueil" height="50" style="display: block; margin-left: auto; margin-right: auto">
+				</a>
+			</div>
+		    
+		    <div style="display: inline-block;">	
+		    	<a href="http://2014.igem.org/Team:Paris_Bettencourt" target="_blank" >
+		    		<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto">
+		    	</a>
+		    </div>
+			
+			<br/>
+	    	
+	    	<p style="font-size: 10px;">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a></p>
+	    </div>
+	    
+
+	    
+	</body>
+	
+</html>

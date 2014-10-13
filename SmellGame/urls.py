@@ -10,8 +10,10 @@ urlpatterns = [
                url(r'^smellguess/',  include('SmellGuess.urls')),
                url(r'^smellgalaxy/', include('SmellGalaxy.urls')),
                url(r'^smellgift/', include('SmellGift.urls')),
+               url(r'^smelladmin/', include('SmellAdmin.urls')),
                url(r'^admin/',       include(admin.site.urls)),
                url(r'^$',            lambda r : HttpResponseRedirect('smellguess/home/')),
+               
 ]
 
 

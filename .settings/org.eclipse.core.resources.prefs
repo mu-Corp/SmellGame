@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
+encoding//SmellAdmin/forms.py=utf-8
+encoding//SmellAdmin/models.py=utf-8
+encoding//SmellAdmin/urls.py=utf-8
+encoding//SmellAdmin/views.py=utf-8
 encoding//SmellGalaxy/admin.py=utf-8
 encoding//SmellGalaxy/models.py=utf-8
 encoding//SmellGalaxy/tests.py=utf-8
@@ -9,6 +13,7 @@ encoding//SmellGame/urls.py=utf-8
 encoding//SmellGame/wsgi.py=utf-8
 encoding//SmellGift/forms.py=utf-8
 encoding//SmellGift/models.py=utf-8
+encoding//SmellGift/urls.py=utf-8
 encoding//SmellGift/views.py=utf-8
 encoding//SmellGuess/admin.py=utf-8
 encoding//SmellGuess/cvs.py=utf8
