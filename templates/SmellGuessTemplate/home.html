@@ -10,25 +10,46 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon2.png' %}">
+		
+		<style>
+		
+			.homeLink {
+				display: inline-block;
+				width: 150px;
+				height: 150px;
+				padding-top: 100px;
+				padding-left: 50px;
+				padding-right: 50px;
+				background-image: url({% static 'images/dnaCircle400x400_White.png' %});
+				background-size: 250px 250px;
+				background-repeat: no-repeat;
+				text-align: center;
+				font-size : 22px;
+				text-decoration: none;
+				color: white;
+				font-weight: bold;
+				margin: 30px;
+			}
+			.homeLink:hover {
+				background-image: url({% static 'images/dnaCircle400x400_Pink.png' %});
+				color : rgb(242,31,122);
+			}
+		</style>
 	</head>
 	
 	<body>
 	
-		<div style="text-align: center">    	
+		<div style="text-align: center;">    	
 			
 			<br><br><br>
 			
-		    <div>
-		    	<a href="../registration">
-		    		<img src="{% static 'images/logo1258x1074.png' %}" height="500">
+			<a class="homeLink" href="{% url 'SmellGuess.views.registrationView' %}" >
+<!-- 		    		<img src="{% static 'images/dnaCircle400x400_White.png' %}" height="250"> -->
+		    		DONNER SON ODEUR
 		    	</a>
-		    </div>
-			
-			<br/>
-			<form action="{% url "SmellGift.views.giftView" %}" method="post">
-				{% csrf_token %}
-				<input type="submit" value="GIVER" />
-			</form>
+			<a class="homeLink" href="{% url 'SmellGift.views.giftView' %}">
+		    		SENTIR DES ODEURS
+		    	</a>
 			
 
 			<div style="position: fixed; bottom: 5px;  right:5px; font-size: 10px;">
