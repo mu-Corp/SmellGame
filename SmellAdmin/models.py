@@ -15,11 +15,16 @@ from django.db import models
 ########################    CLASSES    #########################
 ################################################################
 
-class SampleGiver(models.Model):
+
+
+
+class AllowedSample(models.Model):
 	#Primary key (not in form)
 	id                = models.AutoField(primary_key=True)
 	
 	#Choices:
+	id_sample
+	
 	SEX_CHOICE        = (('M', 'Homme'),('F', 'Femme'),)
 	DIET_CHOICE       = (('HP', 'Hyper protéiné'),
 		             ('VR', 'Végétarien'),
