@@ -8,7 +8,7 @@
 	
 	<!-- header block -->
 	<head>
-		<title>THE SMELL OF US - Administration</title>
+		<title>THE SMELL OF US - Donneur</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
@@ -17,44 +17,23 @@
 	
 	<body>
 		
-		<h1>Sélectionnez les échantillons que vous voulez pouvoir tester (6 minimums) :</h1>
-		
-		<form action="{% url "SmellAdmin.views.adminThankView" %}" method="post">
-			{% csrf_token %}
-			
-			<!-- {{ form.as_p }} 
-			
-			<span>nom : </span>
-				<INPUT type="checkbox" name="nom" value="valeur attachée au bouton">
-			
-			-->
-			
-			<div>
-				{% for cle, valeur in d_allNameSamplesById.items %}
-					<span>{{ valeur }} :</span>
-					<INPUT type="checkbox" name="{{ cle }}" {% if cle in l_allIdAvailableSamples %}checked{% endif %}>
-					<br/>
-				{% endfor %}
+		<br/><br/>
+	
+		<div style="text-align: center">
+			<div style="width:300px; margin: auto;">
+				<form action="{% url "SmellGuess.views.homeView" %}" method="post">
+					{% csrf_token %}
+					Les échantillons à tester ont bien été enregistrés<br/><br/><br/>
+					<input type="image" value="RETOUR" />
+				</form>
 			</div>
-			
-			<br/><br/>
-			
-			<input type="image" value="VALIDER" />
-			
-		</form>
-		
-		
-		
-		
-		
-		
-		
+		</div>
 		
 		<!-- bottom block -->		
 		<div style="position: fixed; bottom: 5px; right:5px;" >
 		
 			<div style="display: inline-block; margin-right: 20px;">
-				<a href="../smellguess/home/" style="text-decoration: none;" >
+				<a href="../home" style="text-decoration: none;" >
 					<!-- icon from http://www.iconsdb.com/deep-pink-icons/home-5-icon.html -->
 					<img src="{% static 'images/homeIcon.png' %}" alt="Retour à la page d'accueil" height="50" style="display: block; margin-left: auto; margin-right: auto">
 				</a>
@@ -71,8 +50,6 @@
 	    	<p style="font-size: 10px;">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a></p>
 	    </div>
 	    
-
-	    
 	</body>
 	
-</html>
+</html> 

@@ -20,6 +20,7 @@ class Sample(models.Model):
 	id          = models.AutoField(primary_key=True)
 	name        = models.CharField(max_length=42)
 	sampleGiver = models.ForeignKey('SmellGift.SampleGiver', null=True)
+	available	= models.BinaryField(default=False)
 
 ################################################################
 class Smeller(models.Model):
