@@ -47,10 +47,7 @@ def adminView(request):
 	paramToGenerateTemplate = dict()
 
 	#Select all data in DB:
-	l_allSamples = Sample.objects.all()
-	paramToGenerateTemplate['d_allNameSamplesById'] = getSampleInfo(l_allSamples, Sample.objects)
-	paramToGenerateTemplate['l_allIdAvailableSamples'] = getAllAvailableId(l_allSamples)
-
+	paramToGenerateTemplate['l_allSamples'] = Sample.objects.all()
 
 	return render(request, 'SmellAdminTemplate/main.html', paramToGenerateTemplate)
 
@@ -58,22 +55,15 @@ def adminView(request):
 
 def adminThankView(request):
 	
-	'''
-	if request.method == 'POST':
-		
+	if request.method == 'POST':			
 		for sample in Sample.objects.all() :
-			
-			postValue = request.POST[str(sample.id)]
-			
-			if postValue == "on":
+			if str(sample.id) in request.POST :
 				sample.available = True
 			else:
-				sample.available = 0
-			
+				sample.available = False
+				
 			sample.save()
-	'''
-	
-	
+			
 	return render(request, 'SmellAdminTemplate/thanks.html')	
 	
 

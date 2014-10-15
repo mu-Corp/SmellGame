@@ -5,7 +5,6 @@
 ################################################################
 
 from django.db import models
-import random
 
 ################################################################
 #######################    FUNCTIONS    ########################
@@ -19,8 +18,8 @@ import random
 class Sample(models.Model):
 	id          = models.AutoField(primary_key=True)
 	name        = models.CharField(max_length=42)
-	sampleGiver = models.ForeignKey('SmellGift.SampleGiver', null=True)
-	available	= models.BinaryField(default=False)
+	#sampleGiver = models.ForeignKey('SmellGift.SampleGiver', null=True, default=None)
+	available   = models.BooleanField(default=False)
 
 ################################################################
 class Smeller(models.Model):

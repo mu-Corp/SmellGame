@@ -22,18 +22,9 @@
 		<form action="{% url "SmellAdmin.views.adminThankView" %}" method="post">
 			{% csrf_token %}
 			
-			<!-- {{ form.as_p }} 
-			
-			<span>nom : </span>
-				<INPUT type="checkbox" name="nom" value="valeur attachée au bouton">
-			
-			-->
-			
 			<div>
-				{% for cle, valeur in d_allNameSamplesById.items %}
-					<span>{{ valeur }} :</span>
-					<INPUT type="checkbox" name="{{ cle }}" {% if cle in l_allIdAvailableSamples %}checked{% endif %}>
-					<br/>
+				{% for sample in l_allSamples %}
+					<label style="display: inline-block; width: 100px;"><input type="checkbox" name="{{ sample.id }}" {% if sample.available %}checked{% endif %}/>{{ sample.name }}</label>
 				{% endfor %}
 			</div>
 			
