@@ -24,15 +24,16 @@ class SampleGiverForm(forms.ModelForm):
 		
 		fields = ('age','sex','smoker','diet','foodRecentlyEaten','deodorant','email','testDuration','activity','intensity','feeling')
 		
-		#fields[5].widget = forms.CheckboxSelectMultiple()
 		widgets = { 'sex': forms.widgets.RadioSelect(),
+			    'smoker': forms.widgets.RadioSelect(choices=[(1, 'Oui'), (0, 'Non')]),
 			    'foodRecentlyEaten': forms.widgets.CheckboxSelectMultiple(),
+			    'deodorant': forms.widgets.RadioSelect(choices=[(1, 'Oui'), (0, 'Non')]),
 			    'diet': forms.widgets.RadioSelect(),
 			    'testDuration': SelectTimeWidget(),
 			    'activity': forms.widgets.RadioSelect(),
 			    'intensity': RangeWidget(LabelBefore='Faible', LabelAfter='Forte'),
 			    'feeling': RangeWidget(LabelBefore=u'Agréable', LabelAfter=u'Désagréable')}
-
+		
 		labels = { 'age': 'Âge ',
 			   'sex': 'Sexe ',
 			   'smoker': 'Fumeur ',
