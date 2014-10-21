@@ -18,7 +18,7 @@ from django.db import models
 class Sample(models.Model):
 	id          = models.AutoField(primary_key=True)
 	name        = models.CharField(max_length=42)
-	#sampleGiver = models.ForeignKey('SmellGift.SampleGiver', null=True, default=None)
+	sampleGiver = models.ForeignKey('SmellGift.SampleGiver', null=True, default=None)
 	available   = models.BooleanField(default=False)
 
 ################################################################

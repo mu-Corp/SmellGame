@@ -32,20 +32,20 @@ class SampleGiver(models.Model):
 		             ('A', 'Autre'),)
 	
 	#Fields visibles in form:
-	age               = models.PositiveSmallIntegerField(default=18)
-	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F')
-	smoker            = models.BooleanField(default=False)
-	diet              = models.CharField(max_length=2, choices=DIET_CHOICE,default='N')
+	age               = models.PositiveSmallIntegerField(default=18, null=True)
+	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F', null=True)
+	smoker            = models.NullBooleanField(default=False, null=True)
+	diet              = models.CharField(max_length=2, choices=DIET_CHOICE,default='N', null=True)
 	foodRecentlyEaten = models.ManyToManyField('Food', null=True)
-	deodorant         = models.BooleanField(default=True)
+	deodorant         = models.NullBooleanField(default=True, null=True)
 	email             = models.EmailField(max_length=254, null=True)
-	testDuration      = models.CharField(max_length=15)
-	activity          = models.CharField(max_length=2, choices=ACTIVITY_CHOICE,default='N')
-	intensity         = models.PositiveSmallIntegerField(default=0)
-	feeling           = models.PositiveSmallIntegerField(default=0)
+	testDuration      = models.CharField(max_length=15, null=True)
+	activity          = models.CharField(max_length=2, choices=ACTIVITY_CHOICE,default='N', null=True)
+	intensity         = models.PositiveSmallIntegerField(default=0, null=True)
+	feeling           = models.PositiveSmallIntegerField(default=0, null=True)
 	
 	#Hidden fields:
-	date_registration = models.DateTimeField(auto_now_add=True)
+	date_registration = models.DateTimeField(auto_now_add=True, null=True)
 
 ###############################################################	
 
