@@ -2,13 +2,14 @@
 
 <!-- Load images, CSS and JS files-->
 {% load static %}
+{% load i18n %}
 
 <html lang="fr" dir="ltr">
 	
 	
 	<!-- header block -->
 	<head>
-		<title>THE SMELL OF US - Donneur</title>
+		<title>THE SMELL OF US - {% trans "Donneur" %}</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
@@ -23,9 +24,9 @@
 			<div style="width:300px; margin: auto;">
 				<form action="{% url "SmellGuess.views.homeView" %}" method="post">
 					{% csrf_token %}
-					Votre échantillon a bien été enregistré !<br/>
-					Merci de votre participation.<br/><br/>
-					<input type="image" value="RETOUR" />
+					{% trans "Votre échantillon a bien été enregistré !" %}<br/>
+					{% trans "Merci de votre participation." %}<br/><br/>
+					<input type="image" value="{% trans 'RETOUR' %}" />
 				</form>
 			</div>
 		</div>

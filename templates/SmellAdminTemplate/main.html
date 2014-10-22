@@ -2,13 +2,14 @@
 
 <!-- Load images, CSS and JS files-->
 {% load static %}
+{% load i18n %}
 
 <html lang="fr" dir="ltr">
 	
 	
 	<!-- header block -->
 	<head>
-		<title>THE SMELL OF US - Administration</title>
+		<title>THE SMELL OF US - {% trans "Administration" %}</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
@@ -17,7 +18,7 @@
 	
 	<body>
 		
-		<h1>Sélectionnez les échantillons que vous voulez pouvoir tester (6 minimums) :</h1>
+		<h1>{% trans "Sélectionnez les échantillons que vous voulez pouvoir tester (6 minimums) :" %}</h1>
 		
 		<form action="{% url "SmellAdmin.views.adminThankView" %}" method="post">
 			{% csrf_token %}
@@ -30,7 +31,7 @@
 			
 			<br/><br/>
 			
-			<input type="image" value="VALIDER" />
+			<input type="image" value="{% trans 'VALIDER' %}" />
 			
 		</form>
 		

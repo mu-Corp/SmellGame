@@ -2,13 +2,14 @@
 
 <!-- Load images, CSS and JS files-->
 {% load static %}
+{% load i18n %}
 
 <html lang="fr" dir="ltr">
 	
 	
 	<!-- header block -->
 	<head>
-		<title>THE SMELL OF US - Donneur</title>
+		<title>THE SMELL OF US - {% trans "Donneur" %}</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
@@ -33,7 +34,7 @@
 					<table cellpadding="5" id="formGift" align="left" style="text-align: left; margin-bottom:30px;" >
 						{{ form.as_table }} 
 					</table>
-					<input type="image" value="VALIDER" />
+					<input type="image" value="{% trans 'VALIDER' %}" />
 				</form>
 			</div>
 		</div>

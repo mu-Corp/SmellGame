@@ -2,11 +2,12 @@
 
 <!-- Load images, CSS and JS files-->
 {% load static %}
+{% load i18n %}
 
 <html lang="fr" dir="ltr">
 	
 	<head>
-		<title>THE SMELL OF US - Jeu (en construction...)</title>
+		<title>THE SMELL OF US - {% trans "Jeu" %}</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
@@ -19,27 +20,27 @@
 		<div id="panelLeft">
 		
 			{% if guessStep == 1 %}
-				<t1>VEUILLEZ SENTIR L'ÉCHANTILLON NUMÉRO : {{ nameSample }}</t1>
+				<t1>{% trans "VEUILLEZ SENTIR L'ÉCHANTILLON NUMÉRO :" %} {{ nameSample }}</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
 					<input type="hidden" name="firstStep" value="" />
-					<input type="image" value="ÉTAPE SUIVANTE" />
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
 				</form>
 				
 			{% elif guessStep == 2 %}
-				<t1>QUELLE EST L'INTENSITÉ DE CETTE ODEUR ?</t1>
+				<t1>{% trans "QUELLE EST L'INTENSITÉ DE CETTE ODEUR ?" %}</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
 					<div id="divRange">
-						<div id="textRange" position="center">FORTE</div>
+						<div id="textRange" position="center">{% trans "FORTE" %}</div>
 						<input type="range" min="0" max="100" step="1" value="50" orient="vertical" name="intensity" class="rangeVertical" onchange="updateGradient('white' this.value)" oninput="updateGradient('white', this.value)"/>
-						<div id="textRange" position="center">FAIBLE</div>
+						<div id="textRange" position="center">{% trans "FAIBLE" %}</div>
 					</div>
-					<input type="image" value="ÉTAPE SUIVANTE" />
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
 				</form>
 			{% elif guessStep == 3 %}
-				<t1>SI CETTE ODEUR EST ...</t1>
-				<t2>UNE HUMEUR</t2>
+				<t1>{% trans "SI CETTE ODEUR EST ..." %}</t1>
+				<t2>{% trans "UNE HUMEUR" %}</t2>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
 					<div class="radio-toolbar">
@@ -47,12 +48,12 @@
 							<input type="radio" id="radio{{ humor.id }}" value="{{ humor.id }}" name="humor" onchange="updateGradient('{{ humor.color }}', '{{ intensity }}')">
 							<label for="radio{{ humor.id }}">{{ humor.name }} <br/></label><br/>
 						{% endfor %}
-					<input type="image" value="ÉTAPE SUIVANTE" />
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
 					</div>
 				</form>
 			{% elif guessStep == 4 %}
-				<t1>SI CETTE ODEUR EST ...</t1>
-				<t2>UNE NOTE</t2>
+				<t1>{% trans "SI CETTE ODEUR EST ..." %}</t1>
+				<t2>{% trans "UNE NOTE" %}</t2>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
 					<div class="radio-toolbar">
@@ -60,11 +61,11 @@
 							<input type="radio" id="radio{{ note.id }}" value="{{ note.id }}" name="note" onchange="updateNote('{{ note.color }}')">
 							<label for="radio{{ note.id }}">{{ note.name }} <br/></label><br/>
 						{% endfor %}
-					<input type="image" value="ÉTAPE SUIVANTE" />
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
 					</div>
 				</form>
 			{% elif guessStep == 5 %}
-				<t1>QUE VOUS ÉVOQUE CETTE ODEUR ?</t1>
+				<t1>{% trans "QUE VOUS ÉVOQUE CETTE ODEUR ?" %}</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
 					<div class="radio-toolbar">
@@ -72,27 +73,27 @@
 							<input type="radio" id="radio{{ image.id }}" value="{{ image.id }}" name="image" onchange="updateImgGuessed('{% static image.pathImage %}')">
 							<label for="radio{{ image.id }}">{{ image.name }} <br/></label><br/>
 						{% endfor %}
-					<input type="image" value="ÉTAPE SUIVANTE" />
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
 					</div>
 				</form>
 			{% elif guessStep == 6 %}
-				<t1>AIMEZ VOUS CETTE ODEUR ?</t1>
+				<t1>{% trans "AIMEZ VOUS CETTE ODEUR ?" %}</t1>
 				<form action="{% url "SmellGuess.views.gameView" %}" method="post" >
 					{% csrf_token %}
 					<div id="divRange">
-						<div id="textRange" position="center">NON</div>
+						<div id="textRange" position="center">{% trans "NON" %}</div>
 						<input type="range" min="0" max="100" step="1" value="0" orient="vertical" onchange="updateFeeling(this.value)" oninput="updateFeeling(this.value)" name="feeling" class="rangeVertical"/>
-						<div id="textRange" position="center">OUI</div>
+						<div id="textRange" position="center">{% trans "OUI" %}</div>
 					</div>
-					<input type="image" value="ÉTAPE SUIVANTE" />
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
 				</form>
 			{% elif guessStep == 7 %}
-				<t1>SI CETTE ODEUR AVAIT UN NOM ...</t1>
+				<t1>{% trans "SI CETTE ODEUR AVAIT UN NOM ..." %}</t1>
 				<form action="{% url "SmellGuess.views.resultView" %}" method="post">
 					{% csrf_token %}
 					<input type="text" name="name" style="width:170px;">
 					<input type="hidden" name="imageBase64" id="inputBase64" /> 
-					<input type="image" value="ÉTAPE SUIVANTE" />
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
 				</form>
 			{% endif %}
 		
@@ -125,29 +126,24 @@
 		
 		
 		<div id="panelHistory">
-			<h3>HISTORIQUE :</h3>
-			<h4>Echantillon n°{{ nameSample }}</h4>
+			<h3>{% trans "HISTORIQUE :" %}</h3>
+			<h4>{% trans "Echantillon n°" %}{{ nameSample }}</h4>
 			{% if guessStep >= 3 %}
-				Intensité : {{ intensity }}% <br/>
+				{% trans "Intensité :" %} {{ intensity }}% <br/>
 			{% endif %}
 			{% if guessStep >= 4 %}
-				Humeur : {{ humor.name }} <br/>
+				{% trans "Humeur :" %} {{ humor.name }} <br/>
 			{% endif %}
 			{% if guessStep >= 5 %}
-				Note : {{ note.name }} <br/>
+				{% trans "Note :" %} {{ note.name }} <br/>
 			{% endif %}
 			{% if guessStep >= 6 %}
-				Image : {{ image.name }} <br/>
+				{% trans "Image :" %} {{ image.name }} <br/>
 			{% endif %}
 			{% if guessStep >= 7 %}
-				Appréciation : {{ feeling }}% NÉGATIVE <br/>
+				{% trans "Appréciation :" %} {{ feeling }}% NÉGATIVE <br/>
 			{% endif %}
 		</div>
-		
-	
-		<div style="position: fixed; bottom: 250px; right:50px">
-			
-	    </div>
 		
 		
 		<!-- bottom block -->		

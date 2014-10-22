@@ -15,6 +15,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.servers.basehttp import FileWrapper
 from django.utils.encoding import smart_str, smart_unicode 
+from django.utils.translation import ugettext_lazy as _
 
 # External libs:
 from datetime import datetime
@@ -371,7 +372,7 @@ def resultView(request):
         paramToGenerateTemplate['humourColorMeanName'] = (Humor.objects.get(id=maxHumorsId)).name
     else:
         paramToGenerateTemplate['humorColorMean'] = None
-        paramToGenerateTemplate['humourColorMeanName'] = "Non disponible"
+        paramToGenerateTemplate['humourColorMeanName'] = _(u"Non disponible")
     
     
     maxNotesId = maxi(notes)
@@ -381,7 +382,7 @@ def resultView(request):
         paramToGenerateTemplate['noteColorMeanName'] = (Note.objects.get(id=maxNotesId)).name
     else:
         paramToGenerateTemplate['noteColorMean'] = None
-        paramToGenerateTemplate['noteColorMeanName'] = "Non disponible"
+        paramToGenerateTemplate['noteColorMeanName'] = _(u"Non disponible")
         
     maxImagesId = maxi(images)
     if isinstance(maxImagesId, int):#existe et donc non None    
@@ -390,7 +391,7 @@ def resultView(request):
         paramToGenerateTemplate['imageMeanName'] = (Image.objects.get(id=maxImagesId)).name
     else:
         paramToGenerateTemplate['pathImageMean'] = None
-        paramToGenerateTemplate['imageMeanName'] = "Non disponible"
+        paramToGenerateTemplate['imageMeanName'] = _(u"Non disponible")
     
     paramToGenerateTemplate['nameSample'] = Sample.objects.get(id=guess.sample_id).name
     

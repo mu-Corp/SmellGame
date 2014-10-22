@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-22 17:49+0200\n"
+"POT-Creation-Date: 2014-10-22 20:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,11 +49,11 @@ msgstr "Pleasant"
 msgid "Désagréable"
 msgstr "Unpleasant"
 
-#: SmellGift/forms.py:37
+#: SmellGift/forms.py:37 SmellGuess/forms.py:46
 msgid "Âge "
 msgstr "Age"
 
-#: SmellGift/forms.py:38
+#: SmellGift/forms.py:38 SmellGuess/forms.py:47
 msgid "Sexe "
 msgstr "Sex"
 
@@ -85,6 +85,146 @@ msgstr "Test duration"
 msgid "Activité suivie "
 msgstr "Activity"
 
+#: SmellGuess/views.py:375 SmellGuess/views.py:385 SmellGuess/views.py:394
+#: templates/SmellGuessTemplate/result.html:184
+#: templates/SmellGuessTemplate/result.html:208
+msgid "Non disponible"
+msgstr ""
+
+#: templates/SmellAdminTemplate/main.html:12
+#: templates/SmellAdminTemplate/thanks.html:12
+msgid "Administration"
+msgstr ""
+
+#: templates/SmellAdminTemplate/main.html:21
+msgid ""
+"Sélectionnez les échantillons que vous voulez pouvoir tester (6 minimums) :"
+msgstr ""
+
+#: templates/SmellAdminTemplate/main.html:34
+#: templates/SmellGiftTemplate/gift.html:37
+#: templates/SmellGuessTemplate/registration.html:112
+msgid "VALIDER"
+msgstr ""
+
+#: templates/SmellAdminTemplate/thanks.html:27
+msgid "Les échantillons à tester ont bien été enregistrés"
+msgstr ""
+
+#: templates/SmellAdminTemplate/thanks.html:28
+#: templates/SmellGiftTemplate/thanks.html:29
+msgid "RETOUR"
+msgstr ""
+
+#: templates/SmellGiftTemplate/gift.html:12
+#: templates/SmellGiftTemplate/thanks.html:12
+msgid "Donneur"
+msgstr ""
+
+#: templates/SmellGiftTemplate/thanks.html:27
+msgid "Votre échantillon a bien été enregistré !"
+msgstr ""
+
+#: templates/SmellGiftTemplate/thanks.html:28
+msgid "Merci de votre participation."
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:10
+msgid "Jeu"
+msgstr "Game"
+
+#: templates/SmellGuessTemplate/game.html:23
+msgid "VEUILLEZ SENTIR L'ÉCHANTILLON NUMÉRO :"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:27
+#: templates/SmellGuessTemplate/game.html:39
+#: templates/SmellGuessTemplate/game.html:51
+#: templates/SmellGuessTemplate/game.html:64
+#: templates/SmellGuessTemplate/game.html:76
+#: templates/SmellGuessTemplate/game.html:88
+#: templates/SmellGuessTemplate/game.html:96
+msgid "ÉTAPE SUIVANTE"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:31
+msgid "QUELLE EST L'INTENSITÉ DE CETTE ODEUR ?"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:35
+msgid "FORTE"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:37
+msgid "FAIBLE"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:42
+#: templates/SmellGuessTemplate/game.html:55
+msgid "SI CETTE ODEUR EST ..."
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:43
+msgid "UNE HUMEUR"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:56
+msgid "UNE NOTE"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:68
+msgid "QUE VOUS ÉVOQUE CETTE ODEUR ?"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:80
+msgid "AIMEZ VOUS CETTE ODEUR ?"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:84
+msgid "NON"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:86
+msgid "OUI"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:91
+msgid "SI CETTE ODEUR AVAIT UN NOM ..."
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:129
+msgid "HISTORIQUE :"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:130
+msgid "Echantillon n°"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:132
+msgid "Intensité :"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:135
+#, fuzzy
+msgid "Humeur :"
+msgstr "Smoker"
+
+#: templates/SmellGuessTemplate/game.html:138
+msgid "Note :"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:141
+msgid "Image :"
+msgstr ""
+
+#: templates/SmellGuessTemplate/game.html:144
+msgid "Appréciation :"
+msgstr ""
+
+#: templates/SmellGuessTemplate/home.html:10
+msgid "Accueil"
+msgstr ""
+
 #: templates/SmellGuessTemplate/home.html:49
 msgid "DONNER SON ODEUR"
 msgstr "GIVE YOUR ODOR"
@@ -92,3 +232,73 @@ msgstr "GIVE YOUR ODOR"
 #: templates/SmellGuessTemplate/home.html:53
 msgid "SENTIR DES ODEURS"
 msgstr "FIND THE SMELL"
+
+#: templates/SmellGuessTemplate/registration.html:12
+msgid "Enregistrement"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:10
+msgid "Résultats"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:37
+msgid "ÉCHANTILLON SUIVANT"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:43
+msgid "MERCI D"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:54
+msgid "Vos résultats pour l'échantillon n°{{ nameSample }} :"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:111
+msgid "Voici le résultat moyen pour l'échantillon n°{{ nameSample }} :"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:119
+msgid "Non displonible !"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:119
+msgid "Désolé."
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:176
+msgid "Résultat de l'échantillon n°{{ nameSample }}"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:177
+msgid "Personnel"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:178
+msgid "Moyen"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:181
+msgid "Intensité"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:190
+#, fuzzy
+msgid "Humeur"
+msgstr "Smoker"
+
+#: templates/SmellGuessTemplate/result.html:195
+msgid "Note"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:200
+msgid "Image"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:205
+msgid "Sensation"
+msgstr ""
+
+#: templates/SmellGuessTemplate/result.html:214
+#, fuzzy
+msgid "Nom"
+msgstr ""

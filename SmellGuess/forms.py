@@ -6,6 +6,7 @@
 
 from django import forms
 from models import Smeller
+from django.utils.translation import ugettext_lazy as _
 
 ################################################################
 ########################    CLASSES    #########################
@@ -42,8 +43,8 @@ class SmellerModelForm(forms.ModelForm):
         fields = ('age', 'sex')
         
         labels = {
-            'age': 'Âge ',
-            'sex': 'Sexe '
+            'age': _(u'Âge '),
+            'sex': _(u'Sexe ')
         }
 
 

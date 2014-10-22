@@ -2,13 +2,14 @@
 
 <!-- Load images, CSS and JS files-->
 {% load static %}
+{% load i18n %}
 
 <html lang="fr" dir="ltr">
 	
 	
 	<!-- header block -->
 	<head>
-		<title>THE SMELL OF US - Enregistrement (en construction...)</title>
+		<title>THE SMELL OF US - {% trans "Enregistrement" %}</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/design.css' %}">
 		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
@@ -106,11 +107,9 @@
 						{% csrf_token %}
 						
 						<div align="left">
-							{{ form.as_p }}
-						
+							{{ form.as_p }} 
 							<br/> 
-							
-							<input type="image" value="VALIDER" />
+							<input type="image" value="{% trans 'VALIDER' %}" />
 						</div>
 						
 					</form>
