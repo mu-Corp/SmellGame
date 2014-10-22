@@ -5,6 +5,7 @@
 ################################################################
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 ################################################################
 #######################    FUNCTIONS    ########################
@@ -20,16 +21,16 @@ class SampleGiver(models.Model):
 	id                = models.AutoField(primary_key=True)
 	
 	#Choices:
-	SEX_CHOICE        = (('M', 'Homme'),('F', 'Femme'),)
-	DIET_CHOICE       = (('HP', 'Hyper protéiné'),
-		             ('VR', 'Végétarien'),
-		             ('VL', 'Végétalien'),
-		             ('N', 'Aucun'),)
-	ACTIVITY_CHOICE   = (('SP', 'Sport'),
-		             ('SO', 'Sommeil'),
-		             ('T', 'Travail'),
-		             ('N', 'Aucune'),
-		             ('A', 'Autre'),)
+	SEX_CHOICE        = (('M', _(u'Homme')),('F', _(u'Femme')),)
+	DIET_CHOICE       = (('HP', _(u'Hyper protéiné')),
+		             ('VR', _(u'Végétarien')),
+		             ('VL', _(u'Végétalien')),
+		             ('N', _(u'Aucun')),)
+	ACTIVITY_CHOICE   = (('SP', _(u'Sport')),
+		             ('SO', _(u'Sommeil')),
+		             ('T', _(u'Travail')),
+		             ('N', _(u'Aucune')),
+		             ('A', _(u'Autre')),)
 	
 	#Fields visibles in form:
 	age               = models.PositiveSmallIntegerField(default=18, null=True)

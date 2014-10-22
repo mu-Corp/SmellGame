@@ -32,7 +32,8 @@ class SampleGiverForm(forms.ModelForm):
 			    'testDuration': SelectTimeWidget(),
 			    'activity': forms.widgets.RadioSelect(),
 			    'intensity': RangeWidget(LabelBefore=_(u'Faible'), LabelAfter=_(u'Forte')),
-			    'feeling': RangeWidget(LabelBefore=_(u'Agréable'), LabelAfter=_(u'Désagréable'))}
+			    'feeling': RangeWidget(LabelBefore=_(u'Agréable'), LabelAfter=_(u'Désagréable'))
+			    }
 		
 		labels = { 'age': _(u'Âge '),
 			   'sex': _(u'Sexe '),

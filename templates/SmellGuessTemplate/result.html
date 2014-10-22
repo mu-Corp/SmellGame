@@ -40,7 +40,7 @@
 			{% else %}
 				<form action="{% url "SmellGuess.views.homeView" %}" method="post" >
 					{% csrf_token %}
-					<input type="image" value="{% trans 'MERCI D'AVOIR JOUÉ !' %}" />	
+					<input type="image" value='{% trans "MERCI D'AVOIR JOUÉ !" %}' />	
 				</form>
 			{% endif %}
 			

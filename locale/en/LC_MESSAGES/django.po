@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-22 20:24+0200\n"
+"POT-Creation-Date: 2014-10-22 22:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,41 +49,85 @@ msgstr "Pleasant"
 msgid "Désagréable"
 msgstr "Unpleasant"
 
-#: SmellGift/forms.py:37 SmellGuess/forms.py:46
+#: SmellGift/forms.py:38 SmellGuess/forms.py:46
 msgid "Âge "
 msgstr "Age"
 
-#: SmellGift/forms.py:38 SmellGuess/forms.py:47
+#: SmellGift/forms.py:39 SmellGuess/forms.py:47
 msgid "Sexe "
 msgstr "Sex"
 
-#: SmellGift/forms.py:39
+#: SmellGift/forms.py:40
 msgid "Fumeur "
 msgstr "Smoker"
 
-#: SmellGift/forms.py:40
+#: SmellGift/forms.py:41
 msgid "Régime "
 msgstr "Diet"
 
-#: SmellGift/forms.py:41
+#: SmellGift/forms.py:42
 msgid "Récemment consommé "
 msgstr "Food eaten"
 
-#: SmellGift/forms.py:42
+#: SmellGift/forms.py:43
 msgid "Déodorant "
 msgstr "Deodorant"
 
-#: SmellGift/forms.py:43
+#: SmellGift/forms.py:44
 msgid "E-mail "
 msgstr "E-mail"
 
-#: SmellGift/forms.py:44
+#: SmellGift/forms.py:45
 msgid "Durée du test "
 msgstr "Test duration"
 
-#: SmellGift/forms.py:45
+#: SmellGift/forms.py:46
 msgid "Activité suivie "
 msgstr "Activity"
+
+#: SmellGift/models.py:24 SmellGuess/models.py:32
+msgid "Homme"
+msgstr ""
+
+#: SmellGift/models.py:24 SmellGuess/models.py:32
+msgid "Femme"
+msgstr ""
+
+#: SmellGift/models.py:25
+msgid "Hyper protéiné"
+msgstr ""
+
+#: SmellGift/models.py:26
+msgid "Végétarien"
+msgstr ""
+
+#: SmellGift/models.py:27
+msgid "Végétalien"
+msgstr ""
+
+#: SmellGift/models.py:28
+msgid "Aucun"
+msgstr ""
+
+#: SmellGift/models.py:29
+msgid "Sport"
+msgstr ""
+
+#: SmellGift/models.py:30
+msgid "Sommeil"
+msgstr ""
+
+#: SmellGift/models.py:31
+msgid "Travail"
+msgstr ""
+
+#: SmellGift/models.py:32
+msgid "Aucune"
+msgstr ""
+
+#: SmellGift/models.py:33
+msgid "Autre"
+msgstr ""
 
 #: SmellGuess/views.py:375 SmellGuess/views.py:385 SmellGuess/views.py:394
 #: templates/SmellGuessTemplate/result.html:184
@@ -120,6 +164,33 @@ msgstr "BACK"
 #: templates/SmellGiftTemplate/thanks.html:12
 msgid "Donneur"
 msgstr "Giver"
+
+#: templates/SmellGiftTemplate/gift.html:65
+msgid "À PROPOS DE VOUS"
+msgstr "ABOUT YOU"
+
+#: templates/SmellGiftTemplate/gift.html:66
+msgid "À PROPOS DE CE TEST"
+msgstr "ABOUT THIS TEST"
+
+#: templates/SmellGiftTemplate/gift.html:66
+msgid "Conditions auxquelles vous avez été soumis."
+msgstr "Conditions to which you have been subjected."
+
+#: templates/SmellGiftTemplate/gift.html:66
+msgid "(Si aucune condition particulière alors passer cette section)"
+msgstr "(If none in particular then pass this section)"
+
+#: templates/SmellGiftTemplate/gift.html:67
+msgid "À PROPOS DE VOTRE ODEUR"
+msgstr "ABOUT THIS ODOR"
+
+#: templates/SmellGiftTemplate/gift.html:69
+msgid ""
+"Vous pouvez renseigner votre e-mail si vous voulez recevoir les résultats de "
+"cette étude."
+msgstr ""
+"You can give your e-mail if you want to receive the results of this study."
 
 #: templates/SmellGiftTemplate/thanks.html:27
 msgid "Votre échantillon a bien été enregistré !"
@@ -198,7 +269,7 @@ msgstr "HISTORY :"
 
 #: templates/SmellGuessTemplate/game.html:130
 msgid "Echantillon n°"
-msgstr "Sample n�"
+msgstr "Sample n°"
 
 #: templates/SmellGuessTemplate/game.html:132
 msgid "Intensité :"
@@ -220,15 +291,15 @@ msgstr "Picture :"
 msgid "Appréciation :"
 msgstr "Appreciation :"
 
-#: templates/SmellGuessTemplate/home.html:10
+#: templates/SmellGuessTemplate/home.html:11
 msgid "Accueil"
 msgstr "Homepage"
 
-#: templates/SmellGuessTemplate/home.html:49
+#: templates/SmellGuessTemplate/home.html:50
 msgid "DONNER SON ODEUR"
 msgstr "GIVE YOUR ODOR"
 
-#: templates/SmellGuessTemplate/home.html:53
+#: templates/SmellGuessTemplate/home.html:54
 msgid "SENTIR DES ODEURS"
 msgstr "FIND THE SMELL"
 
@@ -245,16 +316,16 @@ msgid "ÉCHANTILLON SUIVANT"
 msgstr "NEXT SAMPLE"
 
 #: templates/SmellGuessTemplate/result.html:43
-msgid "MERCI D'AVOIR JOUE !"
+msgid "MERCI D'AVOIR JOUÉ !"
 msgstr "THANK YOU FOR PLAYING !"
 
 #: templates/SmellGuessTemplate/result.html:54
 msgid "Vos résultats pour l'échantillon n°{{ nameSample }} :"
-msgstr "Your results for the sample n�{{ namesample }} :"
+msgstr "Your results for the sample n°{{ namesample }} :"
 
 #: templates/SmellGuessTemplate/result.html:111
 msgid "Voici le résultat moyen pour l'échantillon n°{{ nameSample }} :"
-msgstr " Here are the average results for the sample n� {{ nameSample }} :"
+msgstr " Here are the average results for the sample n°{{ nameSample }} :"
 
 #: templates/SmellGuessTemplate/result.html:119
 msgid "Non displonible !"
@@ -266,7 +337,7 @@ msgstr "Sorry."
 
 #: templates/SmellGuessTemplate/result.html:176
 msgid "Résultat de l'échantillon n°{{ nameSample }}"
-msgstr "Results for the sample n� {{ nameSample }}"
+msgstr "Results for the sample n°{{ nameSample }}"
 
 #: templates/SmellGuessTemplate/result.html:177
 msgid "Personnel"

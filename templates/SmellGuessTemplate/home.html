@@ -3,6 +3,7 @@
 <!-- Load images, CSS and JS files-->
 {% load static %}
 {% load i18n %}
+{% get_current_language as current_language %}
 
 <html lang="fr" dir="ltr">
 	
@@ -59,14 +60,16 @@
 				<form action="/i18n/setlang/" method="post">
 					{% csrf_token %}
 					<input name="next" type="hidden" value="{% url 'SmellGuess.views.homeView' %}" />
-
-					<select name="language">
-					{% for lang in LANGUAGES %}
-						<option value="{{ lang.0 }}">{{ lang.1 }}</option>
+					
+					{% for language in LANGUAGES %}
+						{% if current_language == language.0 %}
+							<input type="radio" id="radio_{{ language.0 }}" value="{{ language.0 }}" name="language" onChange="this.form.submit()" checked >
+							<label for="radio_{{ language.0 }}">{{ language.1 }}</label><br/>
+						{% else %}
+							<input type="radio" id="radio_{{ language.0 }}" value="{{ language.0 }}" name="language" onChange="this.form.submit()">
+							<label for="radio_{{ language.0 }}">{{ language.1 }}</label><br/>
+						{% endif %}
 					{% endfor %}
-					</select>
-
-					<input type="submit"/>
 				</form><br />
 				<p><a href="../../smelladmin/">admin</a></p> 
 			

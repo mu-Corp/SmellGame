@@ -35,7 +35,7 @@
 						{{ form.as_table }} 
 					</table>
 					<input type="image" value="{% trans 'VALIDER' %}" />
-				</form>
+				</form><br/>
 			</div>
 		</div>
 		
@@ -62,11 +62,11 @@
 	    
 	    <script>
 		$(function(){
-			splitFields({'id_age': 'À PROPOS DE VOUS',
-			             'id_testDuration_hour': 'À PROPOS DE CE TEST<br/><span style="font-weight: normal; font-style: italic;">Conditions auquelles vous avez été soumis.<br/>(Si aucune condition particulière alors passer cette section)</span>',
-			             'id_intensity': 'À PROPOS DE VOTRE ODEUR'});
+			splitFields({'id_age': '{% trans "À PROPOS DE VOUS" %}',
+			             'id_testDuration_hour': '{% trans "À PROPOS DE CE TEST" %}<br/><span style="font-weight: normal; font-style: italic;">{% trans "Conditions auxquelles vous avez été soumis." %}<br/>{% trans "(Si aucune condition particulière alors passer cette section)" %}</span>',
+			             'id_intensity': '{% trans "À PROPOS DE VOTRE ODEUR" %}'});
 			$("#id_email").after(" <img id=\"helpImg\" src=\"{% static 'images/help.png' %}\" alt=\"Help\" height=\"22\" /> "+
-					     "<span id=\"helpText\" style=\"float:right;\">Vous pouvez renseigner votre e-mail si vous voulez recevoir les résultats de cette étude.</span>");
+					     "<span id=\"helpText\" style=\"float:right;\">{% trans 'Vous pouvez renseigner votre e-mail si vous voulez recevoir les résultats de cette étude.' %}</span>");
 			$("#helpImg").click(function() {
 				if($("#helpText").css('display') == 'none') { 
 					$("#helpText").css('display', 'inline-block');

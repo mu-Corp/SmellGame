@@ -132,5 +132,5 @@ class RangeWidget(Widget):
 		self.attrs = {}
 
 	def render(self, name, value, attrs=None):
-		renderStr = '<div id="id_%s" class="divRangeHorizontal"> <span class="labelBeforeRange">%s</span> <input type="range" min="%s" max="%s" step="%s" value="%s" orient="horizontal" name="%s" class="rangeHorizontal"/> <span class="labelAfterRange">%s</span> </div>' % (name, str(self.labelBefore.encode('utf8')), str(self.min), str(self.max), str(self.step), str(self.default), name, str(self.labelAfter.encode('utf8')))
+		renderStr = u'<div id="id_%s" class="divRangeHorizontal"> <span class="labelBeforeRange">%s</span> <input type="range" min="%s" max="%s" step="%s" value="%s" orient="horizontal" name="%s" class="rangeHorizontal"/> <span class="labelAfterRange">%s</span> </div>' % (name, self.labelBefore, str(self.min), str(self.max), str(self.step), str(self.default), name, self.labelAfter)
 		return mark_safe(renderStr)

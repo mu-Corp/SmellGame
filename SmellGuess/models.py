@@ -5,6 +5,7 @@
 ################################################################
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 ################################################################
 #######################    FUNCTIONS    ########################
@@ -28,7 +29,7 @@ class Smeller(models.Model):
 	id                = models.AutoField(primary_key=True)
 	
 	#Fields visibles in form:
-	SEX_CHOICE        = (('M', 'Homme'),('F', 'Femme'),)
+	SEX_CHOICE        = (('M', _(u'Homme')),('F', _(u'Femme')),)
 	sex               = models.CharField(max_length=1, choices=SEX_CHOICE,default='F', null=True)
 	age               = models.PositiveSmallIntegerField(default=18, null=True)
 	
