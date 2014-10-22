@@ -5,7 +5,6 @@ from django.forms.widgets import Widget, Select, MultiWidget
 from django.utils.safestring import mark_safe
 from django.template.loader import render_to_string
 from django.forms.fields import EMPTY_VALUES
-from django.utils.translation import ugettext as _
 
 __all__ = ('SelectTimeWidget', 'SplitSelectDateTimeWidget')
 
@@ -133,8 +132,5 @@ class RangeWidget(Widget):
 		self.attrs = {}
 
 	def render(self, name, value, attrs=None):
-		return mark_safe(u'<div id="id_'+name+'" class="divRangeHorizontal" >' +
-			u'<span class="labelBeforeRange">'+self.labelBefore+'</span>' +
-			u'<input type="range" min="'+str(self.min)+'" max="'+str(self.max)+'" step="'+str(self.step)+'" value="'+str(self.default)+'" orient="horizontal" name="'+name+'" class="rangeHorizontal"/>' +
-			u'<span class="labelAfterRange">'+self.labelAfter+'</span>' +
-			u'</div>')
+		renderStr = '<div id="id_%s" class="divRangeHorizontal"> <span class="labelBeforeRange">%s</span> <input type="range" min="%s" max="%s" step="%s" value="%s" orient="horizontal" name="%s" class="rangeHorizontal"/> <span class="labelAfterRange">%s</span> </div>' % (name, str(self.labelBefore.encode('utf8')), str(self.min), str(self.max), str(self.step), str(self.default), name, str(self.labelAfter.encode('utf8')))
+		return mark_safe(renderStr)

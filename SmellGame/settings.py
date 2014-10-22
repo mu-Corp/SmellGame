@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.utils.translation import gettext_lazy as _
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
@@ -56,12 +57,17 @@ MIDDLEWARE_CLASSES = (
     #'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware', 
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+	"django.contrib.auth.context_processors.auth",
+	"django.core.context_processors.i18n",
 )
 
 ROOT_URLCONF = 'SmellGame.urls'
 
 WSGI_APPLICATION = 'SmellGame.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -78,15 +84,21 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 
-LANGUAGE_CODE = 'fr-FR' #'en-us'
-
 TIME_ZONE = 'Europe/Paris'
-
+LANGUAGE_CODE = 'fr-fr'
 USE_I18N = True
-
 USE_L10N = True
+gettext = lambda x: x
+LANGUAGES = (
+    ('fr', _('Français')),
+    ('en', _('Anglais')),
+)
+DEFAULT_LANGUAGE = 1
 
-USE_TZ = True
+absoluteLocalePath = BASE_DIR + "/locale/"
+LOCALE_PATHS = (
+	absoluteLocalePath,
+)
 
 
 # Static files (CSS, JavaScript, Images)

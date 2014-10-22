@@ -2,6 +2,7 @@
 
 <!-- Load images, CSS and JS files-->
 {% load static %}
+{% load i18n %}
 
 <html lang="fr" dir="ltr">
 	
@@ -45,16 +46,28 @@
 			
 			<a class="homeLink" href="{% url 'SmellGift.views.giftView' %}">
 <!-- 		    		<img src="{% static 'images/dnaCircle400x400_White.png' %}" height="250"> -->
-	    		DONNER SON ODEUR
+	    		{% trans "DONNER SON ODEUR" %}
 	    	</a>
 			
 			<a class="homeLink" href="{% url 'SmellGuess.views.registrationView' %}" >
-	    		SENTIR DES ODEURS
+	    		{% trans "SENTIR DES ODEURS" %}
 	    	</a>
 			
 
 			<div style="position: fixed; bottom: 5px;  right:5px; font-size: 10px;">
-			
+				
+				<form action="/i18n/setlang/" method="post">
+					{% csrf_token %}
+					<input name="next" type="hidden" value="{% url 'SmellGuess.views.homeView' %}" />
+
+					<select name="language">
+					{% for lang in LANGUAGES %}
+						<option value="{{ lang.0 }}">{{ lang.1 }}</option>
+					{% endfor %}
+					</select>
+
+					<input type="submit"/>
+				</form><br />
 				<p><a href="../../smelladmin/">admin</a></p> 
 			
 				<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a></p>

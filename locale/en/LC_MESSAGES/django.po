@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-22 17:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: SmellGame/settings.py:93
+msgid "Français"
+msgstr "French"
+
+#: SmellGame/settings.py:94
+msgid "Anglais"
+msgstr "English"
+
+#: SmellGift/forms.py:28 SmellGift/forms.py:30
+msgid "Oui"
+msgstr "Yes"
+
+#: SmellGift/forms.py:28 SmellGift/forms.py:30
+msgid "Non"
+msgstr "No"
+
+#: SmellGift/forms.py:34
+msgid "Faible"
+msgstr "Low"
+
+#: SmellGift/forms.py:34
+msgid "Forte"
+msgstr "Strong"
+
+#: SmellGift/forms.py:35
+msgid "Agréable"
+msgstr "Pleasant"
+
+#: SmellGift/forms.py:35
+msgid "Désagréable"
+msgstr "Unpleasant"
+
+#: SmellGift/forms.py:37
+msgid "Âge "
+msgstr "Age"
+
+#: SmellGift/forms.py:38
+msgid "Sexe "
+msgstr "Sex"
+
+#: SmellGift/forms.py:39
+msgid "Fumeur "
+msgstr "Smoker"
+
+#: SmellGift/forms.py:40
+msgid "Régime "
+msgstr "Diet"
+
+#: SmellGift/forms.py:41
+msgid "Récemment consommé "
+msgstr "Fodd eaten"
+
+#: SmellGift/forms.py:42
+msgid "Déodorant "
+msgstr "Deodorant"
+
+#: SmellGift/forms.py:43
+msgid "E-mail "
+msgstr "E-mail"
+
+#: SmellGift/forms.py:44
+msgid "Durée du test "
+msgstr "Test duration"
+
+#: SmellGift/forms.py:45
+msgid "Activité suivie "
+msgstr "Activity"
+
+#: templates/SmellGuessTemplate/home.html:49
+msgid "DONNER SON ODEUR"
+msgstr "GIVE YOUR ODOR"
+
+#: templates/SmellGuessTemplate/home.html:53
+msgid "SENTIR DES ODEURS"
+msgstr "FIND THE SMELL"
