@@ -35,7 +35,7 @@ msgstr "No"
 
 #: SmellGift/forms.py:34
 msgid "Faible"
-msgstr "Low"
+msgstr "Weak"
 
 #: SmellGift/forms.py:34
 msgid "Forte"
@@ -67,7 +67,7 @@ msgstr "Diet"
 
 #: SmellGift/forms.py:41
 msgid "Récemment consommé "
-msgstr "Fodd eaten"
+msgstr "Food eaten"
 
 #: SmellGift/forms.py:42
 msgid "Déodorant "
@@ -89,45 +89,45 @@ msgstr "Activity"
 #: templates/SmellGuessTemplate/result.html:184
 #: templates/SmellGuessTemplate/result.html:208
 msgid "Non disponible"
-msgstr ""
+msgstr "Non-Available"
 
 #: templates/SmellAdminTemplate/main.html:12
 #: templates/SmellAdminTemplate/thanks.html:12
 msgid "Administration"
-msgstr ""
+msgstr "Administration"
 
 #: templates/SmellAdminTemplate/main.html:21
 msgid ""
 "Sélectionnez les échantillons que vous voulez pouvoir tester (6 minimums) :"
-msgstr ""
+msgstr "Select the samples you want to test (6 minimum) :"
 
 #: templates/SmellAdminTemplate/main.html:34
 #: templates/SmellGiftTemplate/gift.html:37
 #: templates/SmellGuessTemplate/registration.html:112
 msgid "VALIDER"
-msgstr ""
+msgstr "CONFIRM"
 
 #: templates/SmellAdminTemplate/thanks.html:27
 msgid "Les échantillons à tester ont bien été enregistrés"
-msgstr ""
+msgstr "Tested samples were saved"
 
 #: templates/SmellAdminTemplate/thanks.html:28
 #: templates/SmellGiftTemplate/thanks.html:29
 msgid "RETOUR"
-msgstr ""
+msgstr "BACK"
 
 #: templates/SmellGiftTemplate/gift.html:12
 #: templates/SmellGiftTemplate/thanks.html:12
 msgid "Donneur"
-msgstr ""
+msgstr "Giver"
 
 #: templates/SmellGiftTemplate/thanks.html:27
 msgid "Votre échantillon a bien été enregistré !"
-msgstr ""
+msgstr "Your sample was saved !"
 
 #: templates/SmellGiftTemplate/thanks.html:28
 msgid "Merci de votre participation."
-msgstr ""
+msgstr "Thank you for your participation."
 
 #: templates/SmellGuessTemplate/game.html:10
 msgid "Jeu"
@@ -135,7 +135,7 @@ msgstr "Game"
 
 #: templates/SmellGuessTemplate/game.html:23
 msgid "VEUILLEZ SENTIR L'ÉCHANTILLON NUMÉRO :"
-msgstr ""
+msgstr "PLEASE SMELL THE SAMPLE NUMBER :"
 
 #: templates/SmellGuessTemplate/game.html:27
 #: templates/SmellGuessTemplate/game.html:39
@@ -145,85 +145,84 @@ msgstr ""
 #: templates/SmellGuessTemplate/game.html:88
 #: templates/SmellGuessTemplate/game.html:96
 msgid "ÉTAPE SUIVANTE"
-msgstr ""
+msgstr "NEXT STEP"
 
 #: templates/SmellGuessTemplate/game.html:31
 msgid "QUELLE EST L'INTENSITÉ DE CETTE ODEUR ?"
-msgstr ""
+msgstr "What is the intensity of this smell ?"
 
 #: templates/SmellGuessTemplate/game.html:35
 msgid "FORTE"
-msgstr ""
+msgstr "STRONG"
 
 #: templates/SmellGuessTemplate/game.html:37
 msgid "FAIBLE"
-msgstr ""
+msgstr "WEAK"
 
 #: templates/SmellGuessTemplate/game.html:42
 #: templates/SmellGuessTemplate/game.html:55
 msgid "SI CETTE ODEUR EST ..."
-msgstr ""
+msgstr "IF THIS SMELL IS A ..."
 
 #: templates/SmellGuessTemplate/game.html:43
 msgid "UNE HUMEUR"
-msgstr ""
+msgstr "HUMOR"
 
 #: templates/SmellGuessTemplate/game.html:56
 msgid "UNE NOTE"
-msgstr ""
+msgstr "NOTE"
 
 #: templates/SmellGuessTemplate/game.html:68
 msgid "QUE VOUS ÉVOQUE CETTE ODEUR ?"
-msgstr ""
+msgstr "WHAT DOES THIS SMELL EVOKE TO YOU ?"
 
 #: templates/SmellGuessTemplate/game.html:80
 msgid "AIMEZ VOUS CETTE ODEUR ?"
-msgstr ""
+msgstr "DO YOU LIKE THIS ODOR ?"
 
 #: templates/SmellGuessTemplate/game.html:84
 msgid "NON"
-msgstr ""
+msgstr "NO"
 
 #: templates/SmellGuessTemplate/game.html:86
 msgid "OUI"
-msgstr ""
+msgstr "YES"
 
 #: templates/SmellGuessTemplate/game.html:91
 msgid "SI CETTE ODEUR AVAIT UN NOM ..."
-msgstr ""
+msgstr "IF THIS SMELL GOT A NAME ..."
 
 #: templates/SmellGuessTemplate/game.html:129
 msgid "HISTORIQUE :"
-msgstr ""
+msgstr "HISTORY :"
 
 #: templates/SmellGuessTemplate/game.html:130
 msgid "Echantillon n°"
-msgstr ""
+msgstr "Sample n�"
 
 #: templates/SmellGuessTemplate/game.html:132
 msgid "Intensité :"
-msgstr ""
+msgstr "Intensity :"
 
 #: templates/SmellGuessTemplate/game.html:135
-#, fuzzy
 msgid "Humeur :"
-msgstr "Smoker"
+msgstr "Humor"
 
 #: templates/SmellGuessTemplate/game.html:138
 msgid "Note :"
-msgstr ""
+msgstr "Note :"
 
 #: templates/SmellGuessTemplate/game.html:141
 msgid "Image :"
-msgstr ""
+msgstr "Picture :"
 
 #: templates/SmellGuessTemplate/game.html:144
 msgid "Appréciation :"
-msgstr ""
+msgstr "Appreciation :"
 
 #: templates/SmellGuessTemplate/home.html:10
 msgid "Accueil"
-msgstr ""
+msgstr "Homepage"
 
 #: templates/SmellGuessTemplate/home.html:49
 msgid "DONNER SON ODEUR"
@@ -235,70 +234,68 @@ msgstr "FIND THE SMELL"
 
 #: templates/SmellGuessTemplate/registration.html:12
 msgid "Enregistrement"
-msgstr ""
+msgstr "Save"
 
 #: templates/SmellGuessTemplate/result.html:10
 msgid "Résultats"
-msgstr ""
+msgstr "Results"
 
 #: templates/SmellGuessTemplate/result.html:37
 msgid "ÉCHANTILLON SUIVANT"
-msgstr ""
+msgstr "NEXT SAMPLE"
 
 #: templates/SmellGuessTemplate/result.html:43
-msgid "MERCI D"
-msgstr ""
+msgid "MERCI D'AVOIR JOUE !"
+msgstr "THANK YOU FOR PLAYING !"
 
 #: templates/SmellGuessTemplate/result.html:54
 msgid "Vos résultats pour l'échantillon n°{{ nameSample }} :"
-msgstr ""
+msgstr "Your results for the sample n�{{ namesample }} :"
 
 #: templates/SmellGuessTemplate/result.html:111
 msgid "Voici le résultat moyen pour l'échantillon n°{{ nameSample }} :"
-msgstr ""
+msgstr " Here are the average results for the sample n� {{ nameSample }} :"
 
 #: templates/SmellGuessTemplate/result.html:119
 msgid "Non displonible !"
-msgstr ""
+msgstr "Non available !"
 
 #: templates/SmellGuessTemplate/result.html:119
 msgid "Désolé."
-msgstr ""
+msgstr "Sorry."
 
 #: templates/SmellGuessTemplate/result.html:176
 msgid "Résultat de l'échantillon n°{{ nameSample }}"
-msgstr ""
+msgstr "Results for the sample n� {{ nameSample }}"
 
 #: templates/SmellGuessTemplate/result.html:177
 msgid "Personnel"
-msgstr ""
+msgstr "You"
 
 #: templates/SmellGuessTemplate/result.html:178
 msgid "Moyen"
-msgstr ""
+msgstr "Average"
 
 #: templates/SmellGuessTemplate/result.html:181
 msgid "Intensité"
-msgstr ""
+msgstr "Intensity"
 
 #: templates/SmellGuessTemplate/result.html:190
-#, fuzzy
 msgid "Humeur"
-msgstr "Smoker"
+msgstr "Humor"
 
 #: templates/SmellGuessTemplate/result.html:195
 msgid "Note"
-msgstr ""
+msgstr "Note"
 
 #: templates/SmellGuessTemplate/result.html:200
 msgid "Image"
-msgstr ""
+msgstr "Picture"
 
 #: templates/SmellGuessTemplate/result.html:205
 msgid "Sensation"
-msgstr ""
+msgstr "Sensation"
 
 #: templates/SmellGuessTemplate/result.html:214
-#, fuzzy
 msgid "Nom"
-msgstr ""
+msgstr "Name"
