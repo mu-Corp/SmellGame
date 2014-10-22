@@ -1,0 +1,168 @@
+HOME:
+
+Donner son odeur	Give your odor(odour)
+Sentir des Odeurs	Find the smell
+
+REGISTRATION:
+
+Âge	Age
+Sexe	Sex
+Homme	Man
+Femme	Woman
+
+Valider	Confirm
+
+
+GAME :
+
+Veuillez sentir l'échantillon numéro: 	Please smell the sample number:
+
+Historique	history
+Echantillon n°	Sample n°
+étape suivante	Next step
+
+
+Quel est l'intensité de cette odeur ?	What is the intensity of this smell ?
+
+Forte	Strong
+Faible	Weak
+
+Si cette odeur est...	If this smell is a...
+Une humeur	Humor(mood)
+
+Affection	Affection
+Anxiete		Anxiety
+Bonheur		Happiness
+Colère		Anger
+Depression	Depression
+Douceur		Sweetness
+Exitation	Excitement
+Folie		Madness
+Irritation	Irritation
+Nervosité	Nervousness
+Peur		Fear
+Rage		Rage
+Tristesse	Sadness
+
+
+Si cette odeur est...	If this smell is a...
+
+Une note	note
+
+Animale		Animalic
+Chimique	Chemical
+Epicee		Spicy
+Fruitee		Fruity
+Grasse		Fatty
+Vegetale	Vegetative
+
+
+Que vous évoque cette odeur ?	What does this smell evoke ?
+
+Poisson			Fishy
+Chien mouillé		Wet dog
+Bouc/Chèvre		Goaty
+Sanglier		Boar Taint
+Bouillon de poulet	Chicken Broat
+Fromage			Cheesy
+Beurre rance		Rancid Butter
+Raisin			Grape fruit
+Fruit de la passion	Passion Fruit
+Oignon			Onion
+Ail			Garlic
+Choux			Gabbage
+Asperge			Asparagus
+Menthe			Mint
+Piment			Chili
+Cumin			Cumin
+Vinaigre		Vinegar
+Alcool			Alcohol
+Essence			Gasoline
+
+Aimez vous cette odeur ?	Do you like this smell ?
+
+Non 	No
+oui	Yes
+
+Si cette odeur avait un nom...	If this smell got a name...
+
+RESULT
+
+Echantillon suivant	Next sample
+
+Vos résultats pour l'échantillon n°	You results for the sample n°
+Voici le résultat moyen pour l'échantillon n°	Here are the average result for the sample n°
+Non disponible!		Not Available !
+Désolé.			Sorry.
+
+Personnel		You
+Moyenne			Average
+
+
+
+Merci d'avoir joué!	Thank you for playing!
+
+
+
+
+
+
+
+
+Smellgift
+
+A propos de vous	About you
+
+Age	Age
+Sexe	Sex
+Fumeur	Smoker
+
+Régime		Diet
+Hyper protéiné	High-protein
+Végetarien	Vegetarian
+Végetalien	Vegan
+Aucun		None
+
+
+
+
+Récemment consommé	Recently eaten
+Brocoli			Broccoli
+Choux			Gabbage
+Choux-fleur		cauliflower
+Asperge			Asparagus
+Poisson			Fish
+Viande Rouge		Red meat
+Fast-food		Fast-food
+Plat épicé		Spicy food
+Alcool			Alcohol
+Antibiotiques		Antibiotics
+
+
+
+Déodorant		Deodorant
+E-mail			E-mail
+
+
+A propos de ce test 							About this test
+Conditions auquelles vous avez été soumis.				Conditions to which you have been subjected.
+(Si aucun condition particulière alors passer cette section)		(If none in particular then pass this section)
+Durée du test								Test duration
+Activité suivie								Activity
+Sport									Sport
+Sommeil									Sleep
+Travail									Work
+Aucune									None
+Autre									other
+
+A propos de votre odeur		About your body-odor
+
+Faible			Weak
+Forte 			Strong
+Agréable		Pleasant
+Désagréable 		Unpleasant
+
+Valider			Confirm
+
+
+
