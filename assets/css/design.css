@@ -301,3 +301,20 @@ tr.titleSectionFields > td {
 /*.helpImg:active ~ .helpText {
 	display: inline-block;
 }*/
+
+.radio-toolbar label {
+    display:inline-block;
+    padding:4px 11px;
+}
+
+
+.radioLanguage {
+	display:none;
+}
+.labelRadioLanguage {
+	display:inline-block;
+	border: solid 1px black;
+}
+.radioLanguage:checked + .labelRadioLanguage {
+	border: solid 1px red;
+}

@@ -42,41 +42,30 @@
 	<body>
 	
 		<div style="text-align: center;">    	
-			
 			<br><br><br>
-			
-			<a class="homeLink" href="{% url 'SmellGift.views.giftView' %}">
-<!-- 		    		<img src="{% static 'images/dnaCircle400x400_White.png' %}" height="250"> -->
-	    		{% trans "DONNER SON ODEUR" %}
-	    	</a>
-			
-			<a class="homeLink" href="{% url 'SmellGuess.views.registrationView' %}" >
-	    		{% trans "SENTIR DES ODEURS" %}
-	    	</a>
-			
-
-			<div style="position: fixed; bottom: 5px;  right:5px; font-size: 10px;">
-				
-				<form action="/i18n/setlang/" method="post">
-					{% csrf_token %}
-					<input name="next" type="hidden" value="{% url 'SmellGuess.views.homeView' %}" />
-					
-					{% for language in LANGUAGES %}
-						{% if current_language == language.0 %}
-							<input type="radio" id="radio_{{ language.0 }}" value="{{ language.0 }}" name="language" onChange="this.form.submit()" checked >
-							<label for="radio_{{ language.0 }}">{{ language.1 }}</label><br/>
-						{% else %}
-							<input type="radio" id="radio_{{ language.0 }}" value="{{ language.0 }}" name="language" onChange="this.form.submit()">
-							<label for="radio_{{ language.0 }}">{{ language.1 }}</label><br/>
-						{% endif %}
-					{% endfor %}
-				</form><br />
-				<p><a href="../../smelladmin/">admin</a></p> 
-			
-				<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a></p>
-			</div>
-		
+			<a class="homeLink" href="{% url 'SmellGift.views.giftView' %}">{% trans "DONNER SON ODEUR" %}</a>
+			<a class="homeLink" href="{% url 'SmellGuess.views.registrationView' %}" >{% trans "SENTIR DES ODEURS" %}</a>
 		</div>
+		
+		<div style="position: fixed; bottom: 5px;  right:5px; font-size: 10px;">
+			<p style="margin-left: 30px;"><a href="../../smelladmin/">admin</a></p> 
+			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a></p>
+		</div>
+		
+		<form action="/i18n/setlang/" method="post" style="position:fixed; bottom:20px; left:20px;">
+			{% csrf_token %}
+			<input name="next" type="hidden" value="{% url 'SmellGuess.views.homeView' %}" />
+			{% get_static_prefix as STATIC_PREFIX %}
+			{% for language in LANGUAGES %}
+				{% if current_language == language.0 %}
+					<input class="radioLanguage" type="radio" id="radio_{{ language.0 }}" value="{{ language.0 }}" name="language" onChange="this.form.submit()" checked >
+					<label class="labelRadioLanguage" for="radio_{{ language.0 }}"><img src="{{ STATIC_PREFIX }}images/flag-{{ language.0 }}.png" width=50 /></label>
+				{% else %}
+					<input class="radioLanguage" type="radio" id="radio_{{ language.0 }}" value="{{ language.0 }}" name="language" onChange="this.form.submit()">
+					<label class="labelRadioLanguage" for="radio_{{ language.0 }}"><img src="{{ STATIC_PREFIX }}images/flag-{{ language.0 }}.png" width=50 /></label>
+				{% endif %}
+			{% endfor %}
+		</form>
 		
 	</body>
 	
