@@ -87,47 +87,47 @@ msgstr "Activity"
 
 #: SmellGift/models.py:24 SmellGuess/models.py:32
 msgid "Homme"
-msgstr ""
+msgstr "Man"
 
 #: SmellGift/models.py:24 SmellGuess/models.py:32
 msgid "Femme"
-msgstr ""
+msgstr "Woman"
 
 #: SmellGift/models.py:25
 msgid "Hyper protéiné"
-msgstr ""
+msgstr "High-protein"
 
 #: SmellGift/models.py:26
 msgid "Végétarien"
-msgstr ""
+msgstr "Vegetarian"
 
 #: SmellGift/models.py:27
 msgid "Végétalien"
-msgstr ""
+msgstr "Vegan"
 
 #: SmellGift/models.py:28
 msgid "Aucun"
-msgstr ""
+msgstr "None"
 
 #: SmellGift/models.py:29
 msgid "Sport"
-msgstr ""
+msgstr "Sport"
 
 #: SmellGift/models.py:30
 msgid "Sommeil"
-msgstr ""
+msgstr "Sleep"
 
 #: SmellGift/models.py:31
 msgid "Travail"
-msgstr ""
+msgstr "Work"
 
 #: SmellGift/models.py:32
 msgid "Aucune"
-msgstr ""
+msgstr "None"
 
 #: SmellGift/models.py:33
 msgid "Autre"
-msgstr ""
+msgstr "Other"
 
 #: SmellGuess/views.py:375 SmellGuess/views.py:385 SmellGuess/views.py:394
 #: templates/SmellGuessTemplate/result.html:184
@@ -143,7 +143,8 @@ msgstr "Administration"
 #: templates/SmellAdminTemplate/main.html:21
 msgid ""
 "Sélectionnez les échantillons que vous voulez pouvoir tester (6 minimums) :"
-msgstr "Select the samples you want to test (6 minimum) :"
+msgstr ""
+"Select the samples you want to test (6 minimum) :"
 
 #: templates/SmellAdminTemplate/main.html:34
 #: templates/SmellGiftTemplate/gift.html:37
