@@ -311,10 +311,14 @@ tr.titleSectionFields > td {
 .radioLanguage {
 	display:none;
 }
-.labelRadioLanguage {
+.labelRadioLanguage img {
 	display:inline-block;
-	border: solid 1px black;
+	border-bottom: solid 0px white;
+	padding-bottom: 8px;
+	margin: 5px;
+	cursor:pointer;
 }
-.radioLanguage:checked + .labelRadioLanguage {
-	border: solid 1px red;
+.radioLanguage:checked + .labelRadioLanguage img {
+	padding-bottom: 5px;
+	border-bottom: solid 3px rgb(255,20,147);
 }
