@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 
 # Create your views here.
-def DemoGraphes(request):
+def graphesView(request):
 	"""
 	A simple view for a simple demonstration
 	"""
