@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 import os
 from django.utils.translation import gettext_lazy as _
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_DIR = os.path.dirname(__file__)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
@@ -44,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'hvad',
     'SmellGuess',
     'SmellGift',
     'SmellGalaxy',
@@ -58,6 +60,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     #'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware', 
+    'easymode.middleware.LocaliseUrlsMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -105,6 +108,7 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 # Read the tuto !!! (http://fr.openclassrooms.com/informatique/cours/developpez-votre-site-web-avec-le-framework-django/les-templates-3)
 
+ADMIN_MEDIA_PREFIX='/assets/'
 STATIC_URL = '/assets/'
 #STATIC_URL = '/static/'
 

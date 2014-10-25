@@ -30,9 +30,9 @@
 				text-decoration: none;
 				color: white;
 				font-weight: bold;
-				margin-top: 100px;
-				margin-left: 75px;
-				margin-right: 75px;
+				margin-top: 30px;
+				margin-left: 30px;
+				margin-right: 30px;
 			}
 			.homeLink:hover {
 				background-image: url({% static 'images/dnaCircle400x400_Pink.png' %});
@@ -43,10 +43,11 @@
 	
 	<body>
 	
-		<div style="text-align:center; background-image:url({% static 'images/theSmellOfUs.png' %}); background-size:200px 183px; background-repeat: no-repeat; background-position: center;">
+		<div style="text-align:center; margin-top: 40px;">
+			<img src="{% static 'images/theSmellOfUs.png' %}" width=170/><br/>
 			<a class="homeLink" href="{% url 'SmellGift.views.giftView' %}">{% trans "DONNER SON ODEUR" %}</a>
-			<a class="homeLink" href="{% url 'SmellGuess.views.registrationView' %}" >{% trans "SENTIR DES ODEURS" %}</a><br />
-			<a class="homeLink" style="height:160px;padding-top:90px;" href="{% url 'SmellGalaxy.views.graphesView' %}" >{% trans "VISUALISER LES RÉSULTATS" %}</a>
+			<a class="homeLink" href="{% url 'SmellGuess.views.registrationView' %}" >{% trans "SENTIR DES ODEURS" %}</a>
+			<a class="homeLink" href="{% url 'SmellGalaxy.views.graphesView' %}" >{% trans "VOIR LES RÉSULTATS" %}</a>
 		</div>
 		
 		<div style="position: fixed; bottom: 5px;  right:5px; font-size: 10px;">

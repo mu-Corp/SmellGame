@@ -3,70 +3,94 @@
 from SmellGuess.models import *
 from SmellGift.models import *
 
+def SaveHumor(nameFr, nameEn, rgb):
+	h = Humor.objects.language('fr').create(name=nameFr, color=rgb)
+	h.translate('en')
+	h.name = nameEn
+	h.save()
+
 # Creating humors
-Humor(name="AFFECTION",  color="rgb(5,176,197)").save()
-Humor(name="ANXIETE",    color="rgb(203,211,0)").save()
-Humor(name="BONHEUR",    color="rgb(229,39,120)").save()
-Humor(name="COLERE",     color="rgb(229,53,45)").save()
-Humor(name="DEPRESSION", color="rgb(200,174,151)").save()
-Humor(name="DOUCEUR",    color="rgb(219,226,235)").save()
-Humor(name="EXCITATION", color="rgb(255,219,13)").save()
-Humor(name="FOLIE",      color="rgb(12,49,131)").save()
-Humor(name="IRRITATION", color="rgb(148,176,128)").save()
-Humor(name="NERVOSITE",  color="rgb(225,142,16)").save()
-Humor(name="PEUR",       color="rgb(112,113,115)").save()
-Humor(name="RAGE",       color="rgb(149,57,125)").save()
-Humor(name="TRISTESSE",  color="rgb(148,203,173)").save()
+SaveHumor('AFFECTION','AFFECTION','rgb(5,176,197)')
+SaveHumor('ANXIETE','ANXIETY','rgb(203,211,0)')
+SaveHumor('BONHEUR','HAPPINESS','rgb(229,39,120)')
+SaveHumor('COLÈRE','ANGER','rgb(229,53,45)')
+SaveHumor('DEPRESSION','DEPRESSION','rgb(200,174,151)')
+SaveHumor('DOUCEUR','SWEETNESS','rgb(219,226,235)')
+SaveHumor('EXITATION','EXCITEMENT','rgb(255,219,13)')
+SaveHumor('FOLIE','MADNESS','rgb(12,49,131)')
+SaveHumor('IRRITATION','IRRITATION','rgb(148,176,128)')
+SaveHumor('NERVOSITÉ','NERVOUSNESS','rgb(225,142,16)')
+SaveHumor('PEUR','FEAR','rgb(112,113,115)')
+SaveHumor('RAGE','RAGE','rgb(149,57,125)')
+SaveHumor('TRISTESSE','SADNESS','rgb(148,203,173)')
 
 print "Humors created"
 
 
+def SaveNote(nameFr, nameEn, rgb):
+	n = Note.objects.language('fr').create(name=nameFr, color=rgb)
+	n.translate('en')
+	n.name = nameEn
+	n.save()
+
 # Creating notes
-Note(name="ANIMALE",  color="rgb(200,174,151)").save()
-Note(name="CHIMIQUE", color="rgb(219,226,235)").save()
-Note(name="EPICEE",   color="rgb(216,147,71)").save()
-Note(name="FRUITEE",  color="rgb(203,201,0)").save()
-Note(name="GRASSE",   color="rgb(245,187,211)").save()
-Note(name="VEGETALE", color="rgb(148,203,173)").save()
+SaveNote('ANIMALE','ANIMALIC','rgb(200,174,151)')
+SaveNote('CHIMIQUE','CHEMICAL','rgb(219,226,235)')
+SaveNote('EPICEE','SPICY','rgb(216,147,71)')
+SaveNote('FRUITEE','FRUITY','rgb(203,201,0)')
+SaveNote('GRASSE','FATTY','rgb(245,187,211)')
+SaveNote('VEGETALE','VEGETATIVE','rgb(148,203,173)')
 
 print "Notes created"
 
 
+def SaveImage(nameFr, nameEn, path):
+	i = Image.objects.language('fr').create(name=nameFr, pathImage=path)
+	i.translate('en')
+	i.name = nameEn
+	i.save()
+
 # Creating common names
-Image(name="POISSON",             pathImage="images/Image/poisson.png").save()
-Image(name="CHIEN MOUILLE",       pathImage="images/Image/chienMouille.png").save()
-Image(name="BOUC / CHEVRE",       pathImage="images/Image/boucChevre.png").save()
-Image(name="SANGLIER",            pathImage="images/Image/sanglier.png").save()
-Image(name="BOUILLON DE POULET",  pathImage="images/Image/bouillonDePoulet.png").save()
-Image(name="FROMAGE",             pathImage="images/Image/fromage.png").save()
-Image(name="BEURRE RANCE",        pathImage="images/Image/beurreRance.png").save()
-Image(name="RAISIN",              pathImage="images/Image/raisin.png").save()
-Image(name="FRUIT DE LA PASSION", pathImage="images/Image/fruitDeLaPassion.png").save()
-Image(name="OIGNON",              pathImage="images/Image/oignon.png").save()
-Image(name="AIL",                 pathImage="images/Image/ail.png").save()
-Image(name="CHOUX",               pathImage="images/Image/choux.png").save()
-Image(name="ASPERGE",             pathImage="images/Image/asperge.png").save()
-Image(name="MENTHE",              pathImage="images/Image/menthe.png").save()
-Image(name="PIMENT",              pathImage="images/Image/piment.png").save()
-Image(name="CUMIN",               pathImage="images/Image/cumin.png").save()
-Image(name="VINAIGRE",            pathImage="images/Image/vinaigre.png").save()
-Image(name="ALCOOL",              pathImage="images/Image/alcool.png").save()
-Image(name="ESSENCE",             pathImage="images/Image/essence.png").save()
+SaveImage('POISSON','FISHY','images/Image/poisson.png')
+SaveImage('CHIENMOUILLÉ','WETDOG','images/Image/chienMouille.png')
+SaveImage('BOUC/CHÈVRE','GOATY','images/Image/boucChevre.png')
+SaveImage('SANGLIER','BOARTAINT','images/Image/sanglier.png')
+SaveImage('BOUILLONDEPOULET','CHICKENBROAT','images/Image/bouillonDePoulet.png')
+SaveImage('FROMAGE','CHEESY','images/Image/fromage.png')
+SaveImage('BEURRERANCE','RANCIDBUTTER','images/Image/beurreRance.png')
+SaveImage('RAISIN','GRAPEFRUIT','images/Image/raisin.png')
+SaveImage('FRUITDELAPASSION','PASSIONFRUIT','images/Image/fruitDeLaPassion.png')
+SaveImage('OIGNON','ONION','images/Image/oignon.png')
+SaveImage('AIL','GARLIC','images/Image/ail.png')
+SaveImage('CHOUX','GABBAGE','images/Image/choux.png')
+SaveImage('ASPERGE','ASPARAGUS','images/Image/asperge.png')
+SaveImage('MENTHE','MINT','images/Image/menthe.png')
+SaveImage('PIMENT','CHILI','images/Image/piment.png')
+SaveImage('CUMIN','CUMIN','images/Image/cumin.png')
+SaveImage('VINAIGRE','VINEGAR','images/Image/vinaigre.png')
+SaveImage('ALCOOL','ALCOHOL','images/Image/alcool.png')
+SaveImage('ESSENCE','GASOLINE','images/Image/essence.png')
 
 print "Images created"
 
 
+def SaveFood(nameFr, nameEn):
+	f = Food.objects.language('fr').create(name=nameFr)
+	f.translate('en')
+	f.name = nameEn
+	f.save()
+
 # Creating common names
-Food(name="Brocoli").save()
-Food(name="Choux").save()
-Food(name="Choux fleur").save()
-Food(name="Asperge").save()
-Food(name="Poisson").save()
-Food(name="Viande rouge").save()
-Food(name="Fast food").save()
-Food(name="Plat épicé").save()
-Food(name="Alcool").save()
-Food(name="Antibiotiques").save()
+SaveFood('Brocoli','Broccoli')
+SaveFood('Choux','Gabbage')
+SaveFood('Choux-fleur','cauliflower')
+SaveFood('Asperge','Asparagus')
+SaveFood('Poisson','Fish')
+SaveFood('Viande Rouge','Red meat')
+SaveFood('Fast-food','Fast-food')
+SaveFood('Plat épicé','Spicy food')
+SaveFood('Alcool','Alcohol')
+SaveFood('Antibiotiques','Antibiotics')
 
 print "Food created"
 

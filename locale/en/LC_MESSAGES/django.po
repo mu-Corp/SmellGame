@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-22 22:58+0200\n"
+"POT-Creation-Date: 2014-10-25 16:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: SmellGame/settings.py:93
+#: SmellGame/settings.py:96
 msgid "Français"
 msgstr "French"
 
-#: SmellGame/settings.py:94
+#: SmellGame/settings.py:97
 msgid "Anglais"
 msgstr "English"
 
@@ -85,47 +85,47 @@ msgstr "Test duration"
 msgid "Activité suivie "
 msgstr "Activity"
 
-#: SmellGift/models.py:24 SmellGuess/models.py:32
+#: SmellGift/models.py:25 SmellGuess/models.py:33
 msgid "Homme"
 msgstr "Man"
 
-#: SmellGift/models.py:24 SmellGuess/models.py:32
+#: SmellGift/models.py:25 SmellGuess/models.py:33
 msgid "Femme"
 msgstr "Woman"
 
-#: SmellGift/models.py:25
+#: SmellGift/models.py:26
 msgid "Hyper protéiné"
 msgstr "High-protein"
 
-#: SmellGift/models.py:26
+#: SmellGift/models.py:27
 msgid "Végétarien"
 msgstr "Vegetarian"
 
-#: SmellGift/models.py:27
+#: SmellGift/models.py:28
 msgid "Végétalien"
 msgstr "Vegan"
 
-#: SmellGift/models.py:28
+#: SmellGift/models.py:29
 msgid "Aucun"
 msgstr "None"
 
-#: SmellGift/models.py:29
+#: SmellGift/models.py:30
 msgid "Sport"
 msgstr "Sport"
 
-#: SmellGift/models.py:30
+#: SmellGift/models.py:31
 msgid "Sommeil"
 msgstr "Sleep"
 
-#: SmellGift/models.py:31
+#: SmellGift/models.py:32
 msgid "Travail"
 msgstr "Work"
 
-#: SmellGift/models.py:32
+#: SmellGift/models.py:33
 msgid "Aucune"
 msgstr "None"
 
-#: SmellGift/models.py:33
+#: SmellGift/models.py:34
 msgid "Autre"
 msgstr "Other"
 
@@ -143,8 +143,7 @@ msgstr "Administration"
 #: templates/SmellAdminTemplate/main.html:21
 msgid ""
 "Sélectionnez les échantillons que vous voulez pouvoir tester (6 minimums) :"
-msgstr ""
-"Select the samples you want to test (6 minimum) :"
+msgstr "Select the samples you want to test (6 minimum) :"
 
 #: templates/SmellAdminTemplate/main.html:34
 #: templates/SmellGiftTemplate/gift.html:37
@@ -266,7 +265,7 @@ msgstr "IF THIS SMELL GOT A NAME ..."
 
 #: templates/SmellGuessTemplate/game.html:129
 msgid "HISTORIQUE :"
-msgstr "HISTORY :"
+msgstr "HISTORY:"
 
 #: templates/SmellGuessTemplate/game.html:130
 msgid "Echantillon n°"
@@ -274,35 +273,39 @@ msgstr "Sample n°"
 
 #: templates/SmellGuessTemplate/game.html:132
 msgid "Intensité :"
-msgstr "Intensity :"
+msgstr "Intensity:"
 
 #: templates/SmellGuessTemplate/game.html:135
 msgid "Humeur :"
-msgstr "Humor"
+msgstr "Humor:"
 
 #: templates/SmellGuessTemplate/game.html:138
 msgid "Note :"
-msgstr "Note :"
+msgstr "Note:"
 
 #: templates/SmellGuessTemplate/game.html:141
 msgid "Image :"
-msgstr "Picture :"
+msgstr "Picture:"
 
 #: templates/SmellGuessTemplate/game.html:144
 msgid "Appréciation :"
-msgstr "Appreciation :"
+msgstr "Appreciation:"
 
 #: templates/SmellGuessTemplate/home.html:11
 msgid "Accueil"
 msgstr "Homepage"
 
-#: templates/SmellGuessTemplate/home.html:50
+#: templates/SmellGuessTemplate/home.html:48
 msgid "DONNER SON ODEUR"
 msgstr "GIVE YOUR ODOR"
 
-#: templates/SmellGuessTemplate/home.html:54
+#: templates/SmellGuessTemplate/home.html:49
 msgid "SENTIR DES ODEURS"
 msgstr "FIND THE SMELL"
+
+#: templates/SmellGuessTemplate/home.html:50
+msgid "VOIR LES RÉSULTATS"
+msgstr "CHECK THE RESULTS"
 
 #: templates/SmellGuessTemplate/registration.html:12
 msgid "Enregistrement"
@@ -321,12 +324,12 @@ msgid "MERCI D'AVOIR JOUÉ !"
 msgstr "THANK YOU FOR PLAYING !"
 
 #: templates/SmellGuessTemplate/result.html:54
-msgid "Vos résultats pour l'échantillon n°{{ nameSample }} :"
-msgstr "Your results for the sample n°{{ namesample }} :"
+msgid "Vos résultats pour l'échantillon n°"
+msgstr "Your results for the sample n°"
 
 #: templates/SmellGuessTemplate/result.html:111
-msgid "Voici le résultat moyen pour l'échantillon n°{{ nameSample }} :"
-msgstr " Here are the average results for the sample n°{{ nameSample }} :"
+msgid "Voici le résultat moyen pour l'échantillon n°"
+msgstr " Here are the average results for the sample n°"
 
 #: templates/SmellGuessTemplate/result.html:119
 msgid "Non displonible !"
@@ -337,8 +340,8 @@ msgid "Désolé."
 msgstr "Sorry."
 
 #: templates/SmellGuessTemplate/result.html:176
-msgid "Résultat de l'échantillon n°{{ nameSample }}"
-msgstr "Results for the sample n°{{ nameSample }}"
+msgid "Résultat de l'échantillon n°"
+msgstr "Your results for the sample n°"
 
 #: templates/SmellGuessTemplate/result.html:177
 msgid "Personnel"

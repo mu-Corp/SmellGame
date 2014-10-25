@@ -6,6 +6,7 @@
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from hvad.models import TranslatableModel, TranslatedFields
 
 ################################################################
 #######################    FUNCTIONS    ########################
@@ -50,9 +51,12 @@ class SampleGiver(models.Model):
 
 ###############################################################	
 
-class Food(models.Model):
+class Food(TranslatableModel):
 	id   = models.AutoField(primary_key=True)
-	name = models.CharField(max_length=42)
+	
+	translations = TranslatedFields(
+		name  = models.CharField(max_length=42),
+	)
 	
 	def __unicode__(self): return self.name
 

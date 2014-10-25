@@ -6,6 +6,7 @@
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from hvad.models import TranslatableModel, TranslatedFields
 
 ################################################################
 #######################    FUNCTIONS    ########################
@@ -51,25 +52,33 @@ class Guess(models.Model):
 	name       = models.CharField(max_length=42, null=True)
 	
 ###############################################################
-
-class Humor(models.Model):
+class Humor(TranslatableModel):
 	id    = models.AutoField(primary_key=True)
-	name  = models.CharField(max_length=42)
 	color = models.CharField(max_length=42)
+	
+	translations = TranslatedFields(
+		name  = models.CharField(max_length=42),
+	)
 
 ###############################################################
 
-class Note(models.Model):
+class Note(TranslatableModel):
 	id    = models.AutoField(primary_key=True)
-	name  = models.CharField(max_length=42)
 	color = models.CharField(max_length=42)
+	
+	translations = TranslatedFields(
+		name  = models.CharField(max_length=42),
+	)
 
 ###############################################################
 
-class Image(models.Model):
+class Image(TranslatableModel):
 	id    = models.AutoField(primary_key=True)
-	name  = models.CharField(max_length=42)
 	pathImage = models.CharField(max_length=42)
+	
+	translations = TranslatedFields(
+		name  = models.CharField(max_length=42),
+	)
 
 ###############################################################
 ####################    LOCAL EXECUTION    ####################

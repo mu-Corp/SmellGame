@@ -223,7 +223,7 @@ def gameView(request):
                 request.session['guessStep'] = 5
                 
             elif 'image' in request.POST.keys() : 
-                currentGuess.image = Image.objects.get(id=request.POST['image'])
+                currentGuess.image = Image.objects.language().get(id=request.POST['image'])
                 request.session['guessStep'] = 6
                 
             elif 'feeling' in request.POST.keys() :
