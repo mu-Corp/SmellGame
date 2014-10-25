@@ -5,64 +5,65 @@
 {% load i18n %}
 
 <html lang="fr" dir="ltr">
-	
-	<head>
-		<title>Demo Graphes using HighCharts</title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="{% static 'css/design.css' %}">
-		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
-		<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/Function_template.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/js_highcharts/highcharts.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/js_highcharts/highcharts-3d.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/js_highcharts/modules/exporting.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/js_highcharts/highcharts-more.js' %}"></script>		
-		<script type="text/javascript" type="text/javascript">
-		
-		
-		
-/*---------------------*\	
-| SampleData for Exemple|	
+    
+    <head>
+        <title>SmellGame Graphics</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'css/design.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
+        <script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/Function_template.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/js_highcharts/highcharts.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/js_highcharts/highcharts-3d.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/js_highcharts/modules/exporting.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/js_highcharts/highcharts-more.js' %}"></script>       
+        <script type="text/javascript" type="text/javascript">
+        
+        
+        
+/*---------------------*\   
+| SampleData for Exemple|   
 \*---------------------*/
 
 //For Pie
 var sampleDataforPie = [
                   ['Warrior', 45.0],
                   ['Sorcerer', 26.8],
-				  ['Rogue', 8.5],
+                  ['Rogue', 8.5],
                   ['Ranger', 6.2],
                   ['Priest', 12],
-				  ['Noob', 0.5]
-				 ]		
+                  ['Noob', 0.5]
+                 ]      
 
-				 
+                 
 //For Histogramme
 var sampleDataforHisto = [['Catholic Church', 8], ['Hippies', 13], ['Alien', 4]];
-var sampleErreurforHisto = [[9, 7], [13.5, 12.5], [2, 8]];			 
-				 
-				 
-				 
+var sampleErreurforHisto = [[9, 7], [13.5, 12.5], [2, 8]];           
+var sampleErreurforHisto = [[9, 7], [13.5, 12.5], [9, 7], [13.5, 12.5]];   //reasign for test fix
+             
+                 
+                 
 //For Line
 //Format: [[x,y],[x,y]]
 var sampleData1_forLine = [[7.0, 8], [6.9, 2], [9.5, 15]];
-var sampleData2_forLine = [[5, 8], [3, 2], [11, 15]];			 
-				 
-				 
-				 
-				 	 
-/*-----------------------------------------------------*\	
-| Function:												|
-|		-The following functions return an "option"		|
-|		object, requiered as parameter for highchart	|
-|		constructors.									|						
-|														|
-|		-Three SetOption Function are avaliable:		|
-|			-SetOptionPie()								|
-|			-SetOptionHisto()							|
-|			-SetOptionLine()							|	
-\*-----------------------------------------------------*/				 
+var sampleData2_forLine = [[5, 8], [3, 2], [11, 15]];            
+                 
+                 
+                 
+                     
+/*-----------------------------------------------------*\   
+| Function:                                             |
+|       -The following functions return an "option"     |
+|       object, requiered as parameter for highchart    |
+|       constructors.                                   |                       
+|                                                       |
+|       -Three SetOption Function are avaliable:        |
+|           -SetOptionPie()                             |
+|           -SetOptionHisto()                           |
+|           -SetOptionLine()                            |   
+\*-----------------------------------------------------*/                
 
-		 
+         
 function SetOptionPie(titre, categorie, donnees){
 // Take 3 non-optional arguments:
 // => titre : string, selfexplain...
@@ -70,7 +71,7 @@ function SetOptionPie(titre, categorie, donnees){
 // => donnees : array of array [['MU-corp', 100], ['Rest-of-the-World', 0]], contening data
 
 
-	var option = {
+    var option = {
         chart: {
             type: 'pie',
             options3d: {
@@ -104,7 +105,7 @@ function SetOptionPie(titre, categorie, donnees){
     };
 
 
-	return option;
+    return option;
 }
 
 
@@ -120,8 +121,8 @@ function SetOptionHisto(titre, y, indicationCurseur, donnees, erreur, soustitre)
 // => soustitre : string, a subtitle
 
 
-	var soustitre = soustitre || '';
-	var option = {
+    var soustitre = soustitre || '';
+    var option = {
         chart: {
             type: 'column'
         },
@@ -170,15 +171,15 @@ function SetOptionHisto(titre, y, indicationCurseur, donnees, erreur, soustitre)
                 }
             }
         }, { 
-			name: 'Rainfall error',
-			type: 'errorbar',
-			data: erreur
-		}]
-		
-   };		
-	
-	return option; 
-}		
+            name: 'Rainfall error',
+            type: 'errorbar',
+            data: erreur
+        }]
+        
+   };       
+    
+    return option; 
+}       
 
 
 function SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, soustitre){
@@ -196,74 +197,98 @@ function SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, sousti
 
 
 
-	var soustitre = soustitre || '';
-	var option = {
-			title: {
-				text: titre,
-				x: -20
-			},
-			subtitle: {
-				text: soustitre,
-				x: -20
-			},
-			xAxis: {
-				title:{
-					text: axeX
-				}
-			},
-			yAxis: {
-				title: {
-					text: axeY
-				},
-				plotLines: [{
-					value: 0,
-					width: 1,
-					color: '#808080'
-				}]
-			},
-			tooltip: {
-				valueSuffix: '?'
-			},
-			legend: {
-				layout: 'vertical',
-				align: 'right',
-				verticalAlign: 'middle',
-				borderWidth: 0
-			},
-			series: [{
-				name: nom1,
-				data: donnees1
-			}, {
-				name: nom2,
-				data: donnees2
-			}]
-		};
-	return option;
+    var soustitre = soustitre || '';
+    var option = {
+            title: {
+                text: titre,
+                x: -20
+            },
+            subtitle: {
+                text: soustitre,
+                x: -20
+            },
+            xAxis: {
+                title:{
+                    text: axeX
+                }
+            },
+            yAxis: {
+                title: {
+                    text: axeY
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '?'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: nom1,
+                data: donnees1
+            }, {
+                name: nom2,
+                data: donnees2
+            }]
+        };
+    return option;
 }
 
 
-/*-----------------------------------------------------*\	
-| Exemple:												|
-|		- The following lines are basic exemple			|
-|		  for using these function within a 			|
-|		  highchart constructor							|						
-|														|
-\*-----------------------------------------------------*/	
+/*-----------------------------------------------------*\   
+| Exemple:                                              |
+|       - The following lines are basic exemple         |
+|         for using these function within a             |
+|         highchart constructor                         |                       
+|                                                       |
+\*-----------------------------------------------------*/   
 
 </script>
 </head>
 <body>
-	
-<p><a onClick="$(function () { $('#container1').highcharts(SetOptionPie('D&D Company', 'Users', sampleDataforPie));});"><button type="button">Pie</button></a></p>	
+                        
+	<div id="panelLeft">
+		<t1>Choissisez un graphique a visualiser :</t1>
+		{% csrf_token %}
+		
+		<!-- Graphics  Histogrammes -->
+		<!-- SetOptionHisto(titre, y, indicationCurseur, donnees, erreur, soustitre) -->
+		{% for graphic in HistoGraphs %}
+			<p><a onClick="$(function () {$('#container1').highcharts(SetOptionHisto(
+			'{{ graphic.title }}', '{{ graphic.orderedName }}', '{{ graphic.abscisseName }}', 
+			{{ graphic.data }}{{ graphic.dataError }},
+			'{{ graphic.description }}'  )) });">
+			<button type="button">{{ graphic.button }}</button></a></p> 
+		{% endfor %}
 
-<p><a onClick="$(function () { $('#container2').highcharts(SetOptionHisto('MU-CORP Operation', 'Feeling', 'Danger', sampleDataforHisto, sampleErreurforHisto, 'Report on mortel ennemy')) });"><button type="button">Histogramme</button></a></p>	
+		<!-- Graphics  Pies -->
+		<!-- SetOptionPie(titre, categorie, donnees) -->
+		{% for graphic in PiesGraphs %}
+			<p><a onClick="$(function () { $('#container1').highcharts(SetOptionPie(
+			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
+			<button type="button">{{ graphic.button }}</button></a></p>  
+		{% endfor %}
+		
+		<!-- Graphics  Lines -->
+		<!-- SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, soustitre) -->
+		{% for graphic in LinesGraphs %}
+			<p><a onClick="$(function () { $('#container1').highcharts(SetOptionLine(
+			'{{ graphic.title }}', '{{ graphic.abscisseName }}', '{{ graphic.orderedName }}', '{{ graphic.nameLine1 }}', {{ graphic.dataLine1 }}, '{{ graphic.nameLine2 }}', {{ graphic.dataLine2 }}, '{{ graphic.subtitle }}')) });">
+			<button type="button">{{ graphic.button }}</button></a></p>  
+		{% endfor %}
 
-<p><a onClick="$(function () { $('#container3').highcharts(SetOptionLine('Test Titre', 'Space', 'Time', 'Kiwi', sampleData1_forLine, 'fraise', sampleData2_forLine)) });"><button type="button">Lines</button></a></p>	
+	</div>
 
 
+<div id="container1" style="min-width: 500px; min-height : 100%; margin: 0 auto; margin-left: 220px"></div>
 
-<div id="container1" style="height: 400px"></div>
-<div id="container2" style="min-width: 500px; height: 400px; margin: 0 auto"></div>
-<div id="container3" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 </body>
 </html>
