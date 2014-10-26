@@ -20,37 +20,6 @@
         <script type="text/javascript" src="{% static 'js/js_highcharts/themes/smellGameTheme.js' %}"></script>
         <script type="text/javascript" type="text/javascript">
         
-        
-        
-/*---------------------*\   
-| SampleData for Exemple|   
-\*---------------------*/
-
-//For Pie
-var sampleDataforPie = [
-                  ['Warrior', 45.0],
-                  ['Sorcerer', 26.8],
-                  ['Rogue', 8.5],
-                  ['Ranger', 6.2],
-                  ['Priest', 12],
-                  ['Noob', 0.5]
-                 ]      
-
-                 
-//For Histogramme
-var sampleDataforHisto = [['Catholic Church', 8], ['Hippies', 13], ['Alien', 4]];
-var sampleErreurforHisto = [[9, 7], [13.5, 12.5], [2, 8]];           
-var sampleErreurforHisto = [[9, 7], [13.5, 12.5], [9, 7], [13.5, 12.5]];   //reasign for test fix
-             
-                 
-                 
-//For Line
-//Format: [[x,y],[x,y]]
-var sampleData1_forLine = [[7.0, 8], [6.9, 2], [9.5, 15]];
-var sampleData2_forLine = [[5, 8], [3, 2], [11, 15]];            
-                 
-                 
-                 
                      
 /*-----------------------------------------------------*\   
 | Function:                                             |
@@ -285,7 +254,7 @@ function SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, sousti
 <body>
                         
 	<div id="panelLeft">
-		<t1>Choissisez un graphique a visualiser :</t1>
+		<t1>Choissisez un graphique à visualiser :</t1>
 		
 		<!-- Graphics  Histogrammes -->
 		<!-- SetOptionHisto(titre, y, indicationCurseur, donnees, erreur, soustitre) -->
@@ -297,6 +266,8 @@ function SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, sousti
 			<button>{{ graphic.button }}</button></a></p> 
 		{% endfor %}
 
+		<t1>Informations sur les donneurs :</t1>
+		
 		<!-- Graphics  Pies -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->
 		{% for graphic in PiesGraphs %}

@@ -3,6 +3,8 @@
 """
 Authors: 
 - Florian Thonier, florian.thonier@gmail.com (2014)
+- Nathan Foulquier, nathan.foulquier.pro@gmail.com (2014)
+- Jean Coquet, coquet.jean@gmail.com (2014)
 """
 
 
@@ -45,26 +47,26 @@ def graphesView(request):
 def createListHisto():
 	listHisto = []
 	# Intensity & Feeling by sex
-	listHisto.append({'title': 'Intensity & Feeling by sex',  'button': 'Data by sex',  'abscisseName': 'Sex of giver',  'orderedName': 'Intensity & feeling',  'data': getDataBySex(),  'dataError': ''})
+	listHisto.append({'title': 'Intensités & apréciations selon le sexe',  'button': 'Données selon le sexe',  'abscisseName': 'Sexe du donneur',  'orderedName': 'Intensités & apréciations',  'data': getDataBySex(),  'dataError': ''})
 	# Intensity & Feeling by age
-	listHisto.append({'title': 'Intensity & Feeling by age',  'button': 'Data by age',  'orderedName': 'Intensity & feeling',  'abscisseName': 'Categories of age',  'data': getDataBySliceOfAge(),  'dataError': ''})
+	listHisto.append({'title': 'Intensités & apréciations selon l âge',  'button': 'Données selon l\'âge',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Categories of age',  'data': getDataBySliceOfAge(),  'dataError': ''})
 	# Intensity & Feeling by use of deodorant
-	listHisto.append({'title': 'Intensity & Feeling by use of deodorant',  'button': 'Data by use of deodorant',  'orderedName': 'Intensity & feeling',  'abscisseName': 'Use of deodorant of giver',  'data': getDataByDeo(),  'dataError': ''})
+	listHisto.append({'title': 'Intensités & apréciations selon l utilisation de déodorant',  'button': 'Données déodorant',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Use of deodorant of giver',  'data': getDataByDeo(),  'dataError': ''})
 	return listHisto
 
 
 def createListPie():
 	listPie = []
 	# Repartition by sex
-	listPie.append({'title': 'Repartition by sex', 'button': 'Pie by sex', 'description': 'Repartition by sex', 'data': pieByCritereSex()})
+	listPie.append({'title': 'Repartition selon le sexe', 'button': 'Sexe des donneurs', 'description': '', 'data': pieByCritereSex()})
 	# Repartition between slice of Age
-	listPie.append({'title': 'Repartition between slice of Age', 'button': 'Pie by age', 'description': 'Repartition between slice of Age', 'data': pieByCritereSliceOfAge()})
+	listPie.append({'title': 'Repartition selon la tranche d âge', 'button': 'Tranche d\'âge', 'description': '', 'data': pieByCritereSliceOfAge()})
 	# Repartition by smoker
-	listPie.append({'title': 'Repartition by smoker', 'button': 'Pie by smoking', 'description': 'Repartition by smoker', 'data': pieByCritereSmoker()})
+	listPie.append({'title': 'Répartition par consommation de cigarettes', 'button': 'Consommation de cigarettes', 'description': '', 'data': pieByCritereSmoker()})
 	return listPie
 
 def createListLines():
 	listLines = []
 	# Pleasanteness in function of intensity
-	listLines.append({'title': 'Pleasanteness in function of intensity', 'button': 'Pleasanteness by intensity', 'abscisseName': 'Intensity', 'orderedName': 'Feeling', 'nameLine1': 'Raw data', 'dataLine1': intensityByFeeling(), 'nameLine2': 'Center data', 'dataLine2': intensityByFeelingCenter(), 'subtitle': ''})
+	listLines.append({'title': "Apréciation en fonction de l intensité", 'button': 'Apréciation par l\'intensité', 'abscisseName': 'Intensité', 'orderedName': 'Apréciation', 'nameLine1': 'Données brutes', 'dataLine1': intensityByFeeling(), 'nameLine2': 'Données centrées', 'dataLine2': intensityByFeelingCenter(), 'subtitle': ''})
 	return listLines
