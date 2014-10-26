@@ -1,0 +1,101 @@
+import django
+from django.db.models.fields import FieldDoesNotExist
+from django.utils.translation import get_language
+from hvad.exceptions import WrongManager
+
+def combine(trans, klass):
+    """
+    'Combine' the shared and translated instances by setting the translation
+    on the 'translations_cache' attribute of the shared instance and returning
+    the shared instance.
+
+    The result is casted to klass (needed for proxy models).
+    """
+    combined = trans.master
+    if klass._meta.proxy:
+        combined.__class__ = klass
+    opts = combined._meta
+    setattr(combined, opts.translations_cache, trans)
+    return combined
+
+def get_cached_translation(instance):
+    return getattr(instance, instance._meta.translations_cache, None)
+
+def get_translation(instance, language_code=None):
+    opts = instance._meta
+    if not language_code:
+        language_code = get_language()
+    accessor = getattr(instance, opts.translations_accessor)
+    return accessor.get(language_code=language_code)
+
+def get_translation_aware_manager(model):
+    from hvad.manager import TranslationAwareManager
+    manager = TranslationAwareManager()
+    manager.model = model
+    return manager
+
+class SmartGetFieldByName(object):
+    """
+    Get field by name from a shared model or raise a smart exception to help the
+    developer.
+    """
+    def __init__(self, real):
+        self.real = real
+    
+    def __call__(self, meta, name):
+        assert not isinstance(self.real, SmartGetFieldByName)
+        try:
+            return self.real(name)
+        except FieldDoesNotExist:
+            if name in meta.translations_model._meta.get_all_field_names():
+                raise WrongManager("To access translated fields like %r from "
+                                   "an untranslated model, you must use a "
+                                   "translation aware manager. For non-translatable "
+                                   "models, you can get one using "
+                                   "hvad.utils.get_translation_aware_manager.\n"
+                                   "For translatable models, use the language() "
+                                   "method."%
+                                   name)
+            raise
+
+
+def collect_context_modifiers(instance, include=None, exclude=None, extra_kwargs=None):
+    """
+    helper method that updates the context with any instance methods that start
+    with `context_modifier_`. `include` is an optional list of method names
+    that also should be called. Any method names in `exclude` will not be
+    added to the context.
+
+    This helper is most useful when called from get_context_data()::
+
+        def get_context_data(self, **kwargs):
+            context = super(MyViewClass, self).get_context_data(**kwargs)
+            context.update(collect_context_modifiers(self, extra_kwargs=kwargs))
+            return context
+    """
+    include = include or []
+    exclude = exclude or []
+    extra_kwargs = extra_kwargs or {}
+    context = {}
+
+    for thing in dir(instance):
+        if (thing.startswith('context_modifier_') or thing in include) and \
+            not thing in exclude:
+            context.update(getattr(instance, thing, lambda x:x)(**extra_kwargs))
+    return context
+
+class _MinimumDjangoVersionDescriptor(object):
+    def __init__(self, name, version):
+        self.name = name
+        self.version = version
+
+    def __get__(self, obj, type=None):
+        raise AttributeError('Method %s requires Django %s or newer' %
+                             (self.name, '.'.join(str(x) for x in self.version)))
+
+def minimumDjangoVersion(*args):
+    if django.VERSION >= args:
+        return lambda x: x
+    def decorate(f):
+        return _MinimumDjangoVersionDescriptor(f.__name__, args)
+    return decorate
