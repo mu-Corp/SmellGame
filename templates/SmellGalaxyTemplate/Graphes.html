@@ -268,6 +268,14 @@ function SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, sousti
 			'{{ graphic.description }}'  )) });">
 			<button type="button">{{ graphic.button }}</button></a></p> 
 		{% endfor %}
+		
+		{% for graphic in HistoGraphs2 %}
+			<p><a onClick="$(function () {$('#container1').highcharts(SetOptionHisto(
+			'{{ graphic.title }}', '{{ graphic.orderedName }}', '{{ graphic.abscisseName }}', 
+			{{ graphic.data }}{{ graphic.dataError }},
+			'{{ graphic.description }}'  )) });">
+			<button type="button">{{ graphic.button }}</button></a></p> 
+		{% endfor %}
 
 		<!-- Graphics  Pies -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->

@@ -167,37 +167,6 @@ def pieByCritereSliceOfAge():
 ########################    CLASSES    #########################
 ################################################################
 
-class GraphHistogramme(models.Model):
-	id           = models.AutoField(primary_key=True)
-	title        = models.CharField(max_length=8096)
-	button       = models.CharField(max_length=8096)
-	orderedName  = models.CharField(max_length=256)
-	abscisseName = models.CharField(max_length=256)
-	data         = models.CharField(max_length=8096)
-	dataError    = models.CharField(max_length=8096)
-	#graphHisto = GraphHistogramme(title="", button="", orderedName="", abscisseName="", data=getdata...(), dataError =getdata...())
-
-
-class GraphPie(models.Model):
-	id          = models.AutoField(primary_key=True)
-	title       = models.CharField(max_length=512)
-	button      = models.CharField(max_length=512)
-	description = models.CharField(max_length=512)
-	data        = models.CharField(max_length=8096)
-	#graph= GraphPie(title="", button="", description="", data=getdata...())
-
-class GraphLines(models.Model):
-	id          = models.AutoField(primary_key=True)
-	title          = models.CharField(max_length=320)
-	subtitle       = models.CharField(max_length=320)
-	button         = models.CharField(max_length=320)
-	abscisseName   = models.CharField(max_length=256)
-	orderedName    = models.CharField(max_length=256)
-	nameLine1  = models.CharField(max_length=256)
-	dataLine1  = models.CharField(max_length=8096)
-	nameLine2  = models.CharField(max_length=256)
-	dataLine2  = models.CharField(max_length=8096)
-	#graphLines = GraphLines(title="", button="", abscisseName="", orderedName="", nameLine1="",dataLine1=getdata...(), nameLine2="", dataLine2 =getdata...())
 		
 ###############################################################
 ####################    LOCAL EXECUTION    ####################
@@ -205,12 +174,3 @@ class GraphLines(models.Model):
 if __name__ == "__main__" :
 
 	print 'Test in local\n.'
-
-	print 'Test By Deo\n'
-	print getDataByDeo()
-	
-	print 'Test in Sex\n'
-	print getDataBySex()
-	
-	print 'Test in Sex\n'
-	print getDataBySliceOfAge()
