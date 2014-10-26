@@ -16,7 +16,8 @@
         <script type="text/javascript" src="{% static 'js/js_highcharts/highcharts.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/js_highcharts/highcharts-3d.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/js_highcharts/modules/exporting.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/js_highcharts/highcharts-more.js' %}"></script>       
+        <script type="text/javascript" src="{% static 'js/js_highcharts/highcharts-more.js' %}"></script>  
+        <script type="text/javascript" src="{% static 'js/js_highcharts/themes/smellGameTheme.js' %}"></script>
         <script type="text/javascript" type="text/javascript">
         
         
@@ -78,7 +79,7 @@ function SetOptionPie(titre, categorie, donnees){
                 enabled: true,
                 alpha: 45,
                 beta: 0
-            }
+            },
         },
         title: {
             text: titre
@@ -252,51 +253,89 @@ function SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, sousti
 \*-----------------------------------------------------*/   
 
 </script>
+
+<style>
+	#panelLeft {
+		width: 20%; 
+	}
+	button {
+		font-family: Arial;
+		font-size: 12px;
+		color: white;
+		font-weight: bold;
+		background-color: rgb(186,181,186);
+		background:       rgb(186,181,186);
+		border: none;
+		margin-left: 15px;
+		cursor:pointer;
+		height: 20px;
+	}
+	button:hover { background-color: rgb(216,89,149); }
+	#containerGraphic {
+		position: absolute;
+		top: 10px;
+		left: 22%;
+		width: 75%;
+		height: 70%;
+		margin: 0px;
+	}
+</style>
+
 </head>
 <body>
                         
 	<div id="panelLeft">
 		<t1>Choissisez un graphique a visualiser :</t1>
-		{% csrf_token %}
 		
 		<!-- Graphics  Histogrammes -->
 		<!-- SetOptionHisto(titre, y, indicationCurseur, donnees, erreur, soustitre) -->
 		{% for graphic in HistoGraphs %}
-			<p><a onClick="$(function () {$('#container1').highcharts(SetOptionHisto(
+			<p><a onClick="$(function () {$('#containerGraphic').highcharts(SetOptionHisto(
 			'{{ graphic.title }}', '{{ graphic.orderedName }}', '{{ graphic.abscisseName }}', 
 			{{ graphic.data }}{{ graphic.dataError }},
 			'{{ graphic.description }}'  )) });">
-			<button type="button">{{ graphic.button }}</button></a></p> 
-		{% endfor %}
-		
-		{% for graphic in HistoGraphs2 %}
-			<p><a onClick="$(function () {$('#container1').highcharts(SetOptionHisto(
-			'{{ graphic.title }}', '{{ graphic.orderedName }}', '{{ graphic.abscisseName }}', 
-			{{ graphic.data }}{{ graphic.dataError }},
-			'{{ graphic.description }}'  )) });">
-			<button type="button">{{ graphic.button }}</button></a></p> 
+			<button>{{ graphic.button }}</button></a></p> 
 		{% endfor %}
 
 		<!-- Graphics  Pies -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->
 		{% for graphic in PiesGraphs %}
-			<p><a onClick="$(function () { $('#container1').highcharts(SetOptionPie(
+			<p><a onClick="$(function () { $('#containerGraphic').highcharts(SetOptionPie(
 			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
-			<button type="button">{{ graphic.button }}</button></a></p>  
+			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
 		
 		<!-- Graphics  Lines -->
 		<!-- SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, soustitre) -->
 		{% for graphic in LinesGraphs %}
-			<p><a onClick="$(function () { $('#container1').highcharts(SetOptionLine(
+			<p><a onClick="$(function () { $('#containerGraphic').highcharts(SetOptionLine(
 			'{{ graphic.title }}', '{{ graphic.abscisseName }}', '{{ graphic.orderedName }}', '{{ graphic.nameLine1 }}', {{ graphic.dataLine1 }}, '{{ graphic.nameLine2 }}', {{ graphic.dataLine2 }}, '{{ graphic.subtitle }}')) });">
-			<button type="button">{{ graphic.button }}</button></a></p>  
+			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
 
 	</div>
 
 
-<div id="container1" style="min-width: 500px; min-height : 100%; margin: 0 auto; margin-left: 220px"></div>
+	<div id="containerGraphic"></div>
+	
+	<!-- bottom block -->		
+	<div style="position: fixed; bottom: 5px; right:5px;" >
+		<div style="display: inline-block; margin-right: 20px;">
+			<a href="../.." style="text-decoration: none;" >
+				<img src="{% static 'images/homeIcon.png' %}" alt="Retour à la page d'accueil" height="50" style="display: block; margin-left: auto; margin-right: auto">
+			</a>
+		</div>
+
+		<div style="display: inline-block;">	
+			<a href="http://2014.igem.org/Team:Paris_Bettencourt" target="_blank" >
+				<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto">
+			</a>
+		</div>
+
+		<br/>
+
+		<p style="font-size: 10px;">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a></p>
+	</div>
 
 </body>
 </html>
