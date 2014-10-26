@@ -108,7 +108,7 @@
 		
 		<div style="display: inline-block; vertical-align: top; width: 500px; height:610px; text-align: center;">
 			
-			<h3>{% trans "Voici le résultat moyen pour l'échantillon n°"%}{{ nameSample }} :</h3>
+			<h3>{% trans "Voici le résultat moyen pour l'échantillon n°" %}{{ nameSample }} :</h3>
 			
 			{% if intensityMean == None %}
 			<div style="display: inline-block; 
@@ -173,7 +173,7 @@
 		
 		<table style="margin: 20px; border-collapse: collapse;">
 			<tr>
-				<td style="color: rgb(216,89,149); padding: 2px; border: 1px solid white; font-weight: bold;">{% trans "Résultat de l'échantillon n°" %}</td>
+				<td style="color: rgb(216,89,149); padding: 2px; border: 1px solid white; font-weight: bold;">{% trans "Résultat de l'échantillon n°" %}{{ nameSample }}</td>
 				<td style="color: rgb(216,89,149); border-color: white; padding: 2px; border: 1px solid white; font-weight: bold;">{% trans "Personnel" %}</td>
 				<td style="color: rgb(216,89,149); border-color: white; padding: 2px; border: 1px solid white; font-weight: bold;">{% trans "Moyen" %}</td>
 			</tr>

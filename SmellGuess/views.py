@@ -419,7 +419,7 @@ def resultView(request):
         guess.save()
         request.session['currentIdGuess'] = guess.id
     
-    else : DB_to_csv()
+    #else : DB_to_csv()
     
     return render(request, 'SmellGuessTemplate/result.html', paramToGenerateTemplate)
 
