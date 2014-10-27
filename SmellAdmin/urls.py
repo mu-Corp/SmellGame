@@ -6,7 +6,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('SmellAdmin.views',#main path
-                       #url(r'^main/$', 'adminView'),
-                       url(r'^$', 'adminView'),
+                       url(r'^$', 'adminView', name='connexion'),
                        url(r'^thanks/$', 'adminThankView'),
 )

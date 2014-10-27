@@ -6,10 +6,12 @@
 # Django libs:
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate, login
 
 
 # Local import:
 from SmellGuess.models import Sample
+from forms import ConnexionForm
 
 ################################################################
 #########################    VIEWS    ##########################
@@ -45,11 +47,37 @@ def getAllAvailableId(l_objects):
 def adminView(request):
 
 	paramToGenerateTemplate = dict()
+	paramToGenerateTemplate['error'] = False
+	
+	
+	if request.method == 'POST':	
+	
+		form = ConnexionForm(request.POST)
+		paramToGenerateTemplate['form'] = ConnexionForm()
+		
+		if form.is_valid():
 
-	#Select all data in DB:
-	paramToGenerateTemplate['l_allSamples'] = Sample.objects.all()
+			username = form.cleaned_data["username"]
+			password = form.cleaned_data["password"]
+			user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
+			
+			if user:  # Si l'objet renvoyé n'est pas None
+				login(request, user)  # nous connectons l'utilisateur
+				
+				#Select all data in DB:
+				paramToGenerateTemplate['l_allSamples'] = Sample.objects.all()
+				
+			else: # sinon une erreur sera affichée
+				paramToGenerateTemplate['error'] = True
 
+	else:#Connection before identification
+		paramToGenerateTemplate['form'] = ConnexionForm()
+
+	
 	return render(request, 'SmellAdminTemplate/main.html', paramToGenerateTemplate)
+
+
+
 
 
 
