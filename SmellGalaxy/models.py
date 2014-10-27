@@ -62,17 +62,28 @@ def getDataByDeo():
 	giverWithDeo    = SampleGiver.objects.filter(deodorant = 1)
 	giverWithoutDeo = SampleGiver.objects.filter(deodorant = 0)
 	result = [
-		['Moyenne des intensités des utilisateurs de déodorant',doMoyIntensityForAllGivers(giverWithDeo)],
-		['Moyenne des apréciations des utilisateurs de déodorant',doMoyFeelingForAllGivers(giverWithDeo)],
-		['Moyenne des intensités des non-utilisateurs de déodorant',doMoyIntensityForAllGivers(giverWithoutDeo)],
-		['Moyenne des apréciations des non-utilisateurs de déodorant',doMoyFeelingForAllGivers(giverWithoutDeo)]
+		['Intensités des utilisateurs de déodorant',doMoyIntensityForAllGivers(giverWithDeo)],
+		['Appréciations des utilisateurs de déodorant',doMoyFeelingForAllGivers(giverWithDeo)],
+		['Intensités des non-utilisateurs de déodorant',doMoyIntensityForAllGivers(giverWithoutDeo)],
+		['Appréciations des non-utilisateurs de déodorant',doMoyFeelingForAllGivers(giverWithoutDeo)]
 		]
 	return result
 
 def getDataBySex():
 	giverWoman   = SampleGiver.objects.filter(sex = "F")
 	giverMan = SampleGiver.objects.filter(sex = "M")
-	result = [['Moyenne des intensités des hommes',doMoyIntensityForAllGivers(giverMan)],['Moyenne des apréciations des hommes',doMoyFeelingForAllGivers(giverMan)],['Moyenne des intensités des femmes',doMoyIntensityForAllGivers(giverWoman)],['Moyenne des apréciations des femmes',doMoyFeelingForAllGivers(giverWoman)]]
+	result = [
+		['Intensités des hommes',doMoyIntensityForAllGivers(giverMan)],
+		['Appréciations des hommes',doMoyFeelingForAllGivers(giverMan)],
+		['Intensités des femmes',doMoyIntensityForAllGivers(giverWoman)],
+		['Appréciations des femmes',doMoyFeelingForAllGivers(giverWoman)]
+		]
+	return result
+
+def getDataBySmoker():
+	giverSmoker    = SampleGiver.objects.filter(smoker = True)
+	giverNonSmoker = SampleGiver.objects.filter(smoker = False)
+	result = [['Moyenne des intensités des non fumeurs',doMoyIntensityForAllGivers(giverNonSmoker)],['Moyenne des apréciations des non fumeurs',doMoyFeelingForAllGivers(giverNonSmoker)],['Moyenne des intensités des fumeurs',doMoyIntensityForAllGivers(giverSmoker)],['Moyenne des apréciations des fumeurs',doMoyFeelingForAllGivers(giverSmoker)]]
 	return result
 
 def getDataBySliceOfAge(): #todo
@@ -93,16 +104,16 @@ def getDataBySliceOfAge(): #todo
 	dict_SliceOfAge["giver61_end"] = SampleGiver.objects.extra(where=[getFromTo(crit, 61, 125)])
 
 	result = [
-		["Intensité des donneurs de 0 à 15 ans ("+str(len(from_0_15))+")",   doMoyIntensityForAllGivers( dict_SliceOfAge["giver0_15"])],
-		["Apréciations des donneurs de 0 à 15 ans ("+str(len(from_0_15))+")",   doMoyFeelingForAllGivers(   dict_SliceOfAge["giver0_15"])],
-		["Intensité des donneurs de 16 à 30 ans ("+str(len(from_16_30))+")",  doMoyIntensityForAllGivers( dict_SliceOfAge["giver16_30"])],
-		["Apréciations des donneurs de 16 à 30 ans ("+str(len(from_16_30))+")",  doMoyFeelingForAllGivers(   dict_SliceOfAge["giver16_30"])],
-		["Intensités des donneurs de 31 à 45 ans ("+str(len(from_31_45))+")",  doMoyIntensityForAllGivers( dict_SliceOfAge["giver31_45"])],
-		["Apréciations des donneurs de 31 à 45 ans ("+str(len(from_31_45))+")",  doMoyFeelingForAllGivers(   dict_SliceOfAge["giver31_45"])],
-		["Intensités des donneurs de 46 à 60 ans ("+str(len(from_46_60))+")",  doMoyIntensityForAllGivers( dict_SliceOfAge["giver46_60"])],
-		["Apréciations des donneurs de 46 à 60 ans ("+str(len(from_46_60))+")",  doMoyFeelingForAllGivers(   dict_SliceOfAge["giver46_60"])],
-		["Intensités des donneurs sans données ("+str(len(from_61_end))+")", doMoyIntensityForAllGivers( dict_SliceOfAge["giver61_end"])],
-		["Apréciations des donneurs sans données ("+str(len(from_61_end))+")",   doMoyFeelingForAllGivers(   dict_SliceOfAge["giver61_end"])] ]
+		["Intensité, de 0 à 15 ans ("+str(len(from_0_15))+")",   doMoyIntensityForAllGivers( dict_SliceOfAge["giver0_15"])],
+		["Appréciations, de 0 à 15 ans ("+str(len(from_0_15))+")",   doMoyFeelingForAllGivers(   dict_SliceOfAge["giver0_15"])],
+		["Intensité, de 16 à 30 ans ("+str(len(from_16_30))+")",  doMoyIntensityForAllGivers( dict_SliceOfAge["giver16_30"])],
+		["Appréciations, de 16 à 30 ans ("+str(len(from_16_30))+")",  doMoyFeelingForAllGivers(   dict_SliceOfAge["giver16_30"])],
+		["Intensités, de 31 à 45 ans ("+str(len(from_31_45))+")",  doMoyIntensityForAllGivers( dict_SliceOfAge["giver31_45"])],
+		["Appréciations, de 31 à 45 ans ("+str(len(from_31_45))+")",  doMoyFeelingForAllGivers(   dict_SliceOfAge["giver31_45"])],
+		["Intensités, de 46 à 60 ans ("+str(len(from_46_60))+")",  doMoyIntensityForAllGivers( dict_SliceOfAge["giver46_60"])],
+		["Appréciations, de 46 à 60 ans ("+str(len(from_46_60))+")",  doMoyFeelingForAllGivers(   dict_SliceOfAge["giver46_60"])],
+		["Intensités, sans données ("+str(len(from_61_end))+")", doMoyIntensityForAllGivers( dict_SliceOfAge["giver61_end"])],
+		["Appréciations, sans données ("+str(len(from_61_end))+")",   doMoyFeelingForAllGivers(   dict_SliceOfAge["giver61_end"])] ]
 	return result
 	
 def nameDataGraphPie(grph, fromNumb, toNumb, liste, y=""):
@@ -154,9 +165,9 @@ def pieByCritereSmoker():
 	ratioFalse = getRatio(giverFalse, allGiver)
 	ratioOther = getRatio(giverOther, allGiver)
 	stringToReturn = [
-		["Smoker("+str(len(giverTrue))+")",ratioTrue],
-		["No smoker("+str(len(giverFalse))+")",ratioFalse],
-		["empty field("+str(len(giverOther))+")",ratioOther]
+		["Fumeurs("+str(len(giverTrue))+")",ratioTrue],
+		["Non fumeurs("+str(len(giverFalse))+")",ratioFalse]
+		#["empty field("+str(len(giverOther))+")",ratioOther]
 	]
 	return stringToReturn
 
@@ -173,7 +184,10 @@ def pieByCritereSex():
 	
 	ratioWoman = getRatio(giverWoman, allGiver, giverOther)
 	ratioMan   = getRatio(giverMan,   allGiver, giverOther)
-	stringToReturn = [["Woman ("+str(len(giverWoman))+")",ratioWoman],["Man ("+str(len(giverMan))+")",ratioMan]]
+	stringToReturn = [
+		["Femmes ("+str(len(giverWoman))+")",ratioWoman],
+		["Hommes ("+str(len(giverMan))+")",ratioMan]
+		]
 	return stringToReturn
 
 def getFromTo(critere,fromNumber, toNumber):
@@ -209,12 +223,12 @@ def pieByCritereSliceOfAge():
 	ratio61more = getRatio(giver61more, allGiver, giverOther)
 	ratioGiverOther = getRatio(giverOther, allGiver)
 	stringToReturn = [
-		["Ratio de 0 à 15 ans ("+str(len(giver0_15))+")",ratio0_15], 
-		["Ratio de 16 à 30 ans ("+str(len(giver16_30))+")",ratio16_30], 
-		["Ratio de 31 à 45 ans ("+str(len(giver31_45))+")",ratio31_45], 
-		["Ratio de 46 à 60 ans ("+str(len(giver46_60))+")",ratio46_60],
-		["Ratio de 61 ans & plus ("+str(len(giver61more))+")",ratio61more], 
-		["Ratio des sans renseignements ("+str(len(giverOther))+")",ratioGiverOther]
+		["De 0 à 15 ans ("+str(len(giver0_15))+")",ratio0_15], 
+		["De 16 à 30 ans ("+str(len(giver16_30))+")",ratio16_30], 
+		["De 31 à 45 ans ("+str(len(giver31_45))+")",ratio31_45], 
+		["De 46 à 60 ans ("+str(len(giver46_60))+")",ratio46_60],
+		["De 61 ans & plus ("+str(len(giver61more))+")",ratio61more], 
+		["Sans renseignements ("+str(len(giverOther))+")",ratioGiverOther]
 		]
 	return stringToReturn
 	

@@ -49,9 +49,11 @@ def createListHisto():
 	# Intensity & Feeling by sex
 	listHisto.append({'title': 'Intensités & apréciations selon le sexe',  'button': 'Données selon le sexe',  'abscisseName': 'Sexe du donneur',  'orderedName': 'Intensités & apréciations',  'data': getDataBySex(),  'dataError': ''})
 	# Intensity & Feeling by age
-	listHisto.append({'title': 'Intensités & apréciations selon l âge',  'button': 'Données selon l\'âge',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Categories of age',  'data': getDataBySliceOfAge(),  'dataError': ''})
+	listHisto.append({'title': 'Intensités & apréciations selon l âge',  'button': 'Données selon l\'âge',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Tranche d âge',  'data': getDataBySliceOfAge(),  'dataError': ''})
 	# Intensity & Feeling by use of deodorant
-	listHisto.append({'title': 'Intensités & apréciations selon l utilisation de déodorant',  'button': 'Données déodorant',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Use of deodorant of giver',  'data': getDataByDeo(),  'dataError': ''})
+	listHisto.append({'title': 'Intensités & apréciations selon l utilisation de déodorant',  'button': 'Données déodorant',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Utilisation de déodorant',  'data': getDataByDeo(),  'dataError': ''})
+	# Intensity & Feeling by Smoking
+	listHisto.append({'title': 'Intensités & apréciations selon la comsommation de cigarettes',  'button': 'Données fumeur',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Comsommation de cigarettes',  'data': getDataBySmoker(),  'dataError': ''})
 	return listHisto
 
 
