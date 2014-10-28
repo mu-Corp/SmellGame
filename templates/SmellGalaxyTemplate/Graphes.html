@@ -213,6 +213,68 @@ function SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, sousti
 }
 
 
+function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2, nom3, donnees3){
+// This function Create and return the option object
+// for a column graphe with negative value.
+
+// Take 8 non-optionnal argument:
+// => titre: string, self explain...
+// => categorie: array of strings, the names of the categories displayed
+// => nom1 : string, name of first data series
+// => donnees1: array of numbers, contening data
+// => nom2 : string, name of second data series
+// => donnees2: array of numbers, contening data
+// => nom3 : string, name of third data series
+// => donnees3: array of numbers, contening data
+
+// N.B: if you want to modify the number of data series you
+// have to edit the attribute series in the following lines.
+// Adding a series:
+//			{
+//				name: nomx,
+//				data: donneex
+//			}
+//
+//		Don't Forget to Edit the argument's function too! by adding nomx and donneex
+//		in the list of arguments take by the function. 
+//			
+//			function SetOption(titre, categorie, nom1, donnee1, nom2, donnee2, nom3, donnees3, nomx, donneex)
+//
+		
+	var option = {
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: titre
+			},
+			xAxis: {
+				categories: categorie
+			},
+			credits: {
+				enabled: false
+			},
+			series: [{
+				name: nom1,
+				data: donnee1
+			}, {
+				name: nom2,
+				data: donnee2
+			}, {
+				name: nom3,
+				data: donnees3
+			}]
+		};
+		
+	return option;
+}
+
+
+
+
+
+
+
 /*-----------------------------------------------------*\   
 | Exemple:                                              |
 |       - The following lines are basic exemple         |
