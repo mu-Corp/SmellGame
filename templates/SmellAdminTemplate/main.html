@@ -17,8 +17,50 @@
 	
 	
 	<body>
+	
+		<script>
+			function autoCheck(checkboxName, isChecked) {
+				checkbox = document.getElementsByName(checkboxName);
+				checkbox[0].checked = isChecked;					
+			}
+			
+			//Récupérer tous les noms d'échantillons dans une liste JavaScript (méthode moyennement propre...)
+			function recupAllSampleName() {
+				var a_result = [{% for sample in l_allSamples %}"{{ sample.name }}", {% endfor %}];
+				return a_result;
+			}
+			
+			function parsingSession(sampleName){
+				var sessionName = '';
+				
+				regex = "^([a-zA-Z]*)[0-9]*([a-zA-Z]*)$";
+				var re = new RegExp(regex); 
+				var match = re.exec(sampleName);
+				
+				if(match[1] != ''){
+					sessionName = match[1];
+				}else if(match[1] == '' && match[2] != ''){
+					sessionName = match[2];
+				}
+				
+				return sessionName;
+			}
+			
+			function autoCheckSession(sessionName, isChecked) {
+				//sessionName doit être égal à "A", "S", "PB", "CS" ou "B"
+				var a_allSampleName = recupAllSampleName();
+				
+				for (i = 0 ; i < a_allSampleName.length ; i++) { 
+					var currentSession = parsingSession(a_allSampleName[i]);
+					if(currentSession == sessionName) {
+						autoCheck(a_allSampleName[i], isChecked);
+					}
+				} 
+				
+			}
+		</script>
 		
-		<h1>Se connecter</h1>
+		
 
 		{% if error %}
 			<p><strong>Utilisateur inconnu ou mauvais mot de passe.</strong></p>
@@ -30,6 +72,11 @@
 		{% if user.is_authenticated %}
 			Vous êtes connecté, {{ user.username }} !
 			
+			<form action="{% url "SmellAdmin.views.decoView" %}" method="post">
+			    {% csrf_token %}
+			    <input type="submit" value="Se déconnecter" />
+			</form>
+			
 			
 			<h1>{% trans "Sélectionnez les échantillons que vous voulez pouvoir tester (6 minimums) :" %}</h1>
 		
@@ -38,15 +85,36 @@
 				
 				<div>
 					{% for sample in l_allSamples %}
-						<label style="display: inline-block; width: 100px;"><input type="checkbox" name="{{ sample.id }}" {% if sample.available %}checked{% endif %}/>{{ sample.name }}</label>
+						<label style="display: inline-block; width: 100px;"><input type="checkbox" id="{{ sample.id }}" name="{{ sample.name }}" {% if sample.available %}checked{% endif %}/>{{ sample.name }}</label>
 					{% endfor %}
 				</div>
+				
+				<br/><br/>
+				
+				
+				<table>
+					<tr>
+						<td><input type="submit" name="select" id="select" value="Select S" onClick="autoCheckSession('S', true)"></td>
+						<td><input type="submit" name="select" id="select" value="Select CS" onClick="autoCheckSession('CS', true)"></td>
+						<td><input type="submit" name="select" id="select" value="Select PB" onClick="autoCheckSession('PB', true)"></td>
+						<td><input type="submit" name="select" id="select" value="Select A" onClick="autoCheckSession('A', true)"></td>
+						<td><input type="submit" name="select" id="select" value="Select B" onClick="autoCheckSession('B', true)"></td>
+					</tr>
+					<tr>
+						<td><input type="submit" name="select" id="select" value="deSelect S" onClick="autoCheckSession('S', false)"></td>
+						<td><input type="submit" name="select" id="select" value="deSelect CS" onClick="autoCheckSession('CS', false)"></td>
+						<td><input type="submit" name="select" id="select" value="deSelect PB" onClick="autoCheckSession('PB', false)"></td>
+						<td><input type="submit" name="select" id="select" value="deSelect A" onClick="autoCheckSession('A', false)"></td>
+						<td><input type="submit" name="select" id="select" value="deSelect B" onClick="autoCheckSession('B', false)"></td>
+					</tr>
+				</table>
 				
 				<br/><br/>
 				
 				<input type="image" value="{% trans 'VALIDER' %}" />
 				
 			</form>
+			
 			
 		{% else %}
 			<form method="post" action=".">
@@ -58,6 +126,10 @@
 		{% endif %}
 		
 		
+		
+		
+		
+
 		
 		
 		
