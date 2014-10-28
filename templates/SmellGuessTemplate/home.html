@@ -50,10 +50,6 @@
 			<a class="homeLink" href="{% url 'SmellGalaxy.views.graphesView' %}" >{% trans "VOIR LES RÉSULTATS" %}</a>
 		</div>
 		
-		{% include "footer.html" %}
-		
-		<p style="position: fixed; top: 5px; right: 15px; font-size: 10px; " ><a href="../../smelladmin/">{% trans "Se connecter" %}</a></p> 
-		
 		<form action="/i18n/setlang/" method="post" style="position:fixed; bottom:20px; left:20px;">
 			{% csrf_token %}
 			<input name="next" type="hidden" value="{% url 'SmellGuess.views.homeView' %}" />
@@ -68,6 +64,10 @@
 				{% endif %}
 			{% endfor %}
 		</form>
+		
+		{% include "footer.html" %}
+		
+		<p style="position: fixed; top: 5px; right: 15px; font-size: 10px; " ><a href="../../smelladmin/">{% trans "Se connecter" %}</a></p> 
 		
 	</body>
 	
