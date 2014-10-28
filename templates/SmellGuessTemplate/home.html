@@ -50,10 +50,9 @@
 			<a class="homeLink" href="{% url 'SmellGalaxy.views.graphesView' %}" >{% trans "VOIR LES RÉSULTATS" %}</a>
 		</div>
 		
-		<div style="position: fixed; bottom: 5px;  right:5px; font-size: 10px;">
-			<p style="margin-left: 30px;"><a href="../../smelladmin/">Admin</a></p> 
-			<p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="https://github.com/JeanCoq/SmellGame" target="_blank">Sources</a></p>
-		</div>
+		{% include "footer.html" %}
+		
+		<p style="position: fixed; top: 5px; right: 15px; font-size: 10px; " ><a href="../../smelladmin/">{% trans "Se connecter" %}</a></p> 
 		
 		<form action="/i18n/setlang/" method="post" style="position:fixed; bottom:20px; left:20px;">
 			{% csrf_token %}

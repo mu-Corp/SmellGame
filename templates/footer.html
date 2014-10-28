@@ -1,0 +1,312 @@
+{% load static %}
+{% load i18n %}
+
+<div style="position: fixed; bottom: 15px; right:100px;" >
+	<div style="display: inline-block;">
+		<a href="../smellguess/home/" style="text-decoration: none;" >
+			<img src="{% static 'images/homeIcon.png' %}" alt="Retour à la page d'accueil" height="40" style="display: block; margin-left: auto; margin-right: auto">
+		</a>
+	</div>
+
+	<div style="display: inline-block;">	
+		<a href="http://2014.igem.org/Team:Paris_Bettencourt" target="_blank" >
+			<img src="{% static 'images/logo150x150.png' %}" alt="Site web de l'équipe" style="display: block; margin-left: auto; margin-right: auto" width=100 >
+		</a>
+	</div>
+</div>
+
+<div id="aboutUs"><p>{% trans 'A PROPOS' %}<p></div>
+
+<div id="aboutUsDiv">
+	<div id="popUp">				
+		<t1 style="margin-top: 0px;">SMELL GAME</t1>
+		<p id="introduction">This platform has three concrete aims: to Develop a game for people to characterize smell samples (sweat or artificial odor) with respect to intensity and pleasantness, to create a database that stores the results from game and connects those smell results to the pertinent information from people who give a sample of their own sweat.and to generate graphical results from all precedent data, updated dynamically from the database. <a target="_blank" href="http://2014.igem.org/Team:Paris_Bettencourt/The_Smell_Game">More</a> </p>
+		
+		<t1>TEAM</t1>
+		<div id="arnaud" class="face" style="background: -webkit-radial-gradient(rgb(143,215,90) 0%, rgb(143,215,90) 40%, rgb(186,181,186) 70%);
+						background: -o-radial-gradient(rgb(143,215,90) 0%, rgb(143,215,90) 40%, rgb(186,181,186) 70%);
+						background: -moz-radial-gradient(rgb(143,215,90) 0%, rgb(143,215,90) 40%, rgb(186,181,186) 70%);
+						background: radial-gradient(rgb(143,215,90) 0%, rgb(143,215,90) 40%, rgb(186,181,186) 70%);">
+						<img class="blurImg" style="border-color: rgb(148,203,173);" src="{% static 'images/AboutUS/arnaud2.png' %}" />
+						<img class="netImg" style="border-color: rgb(148,203,173);" src="{% static 'images/AboutUS/arnaud.png' %}" />
+						<span class="personnalLinks">
+						<a target="_blank" href="mailto:arnaud.ferre.pro@gmail.com"><img src="{% static 'images/AboutUS/mail.png' %}" width=30 /></a>
+						<a target="_blank" href="http://fr.linkedin.com/in/arnaudferre"><img src="{% static 'images/AboutUS/linkedin.png' %}" width=30 /></a>
+						</span>
+		</div>
+		<div id="florian" class="face" style="background: -webkit-radial-gradient(rgb(229,53,45) 0%, rgb(229,53,45) 40%, rgb(186,181,186) 70%);
+						background: -o-radial-gradient(rgb(229,53,45) 0%, rgb(229,53,45) 40%, rgb(186,181,186) 70%);
+						background: -moz-radial-gradient(rgb(229,53,45) 0%, rgb(229,53,45) 40%, rgb(186,181,186) 70%);
+						background: radial-gradient(rgb(229,53,45) 0%, rgb(229,53,45) 40%, rgb(186,181,186) 70%);">
+						<img class="blurImg" style="border-color: rgb(216,147,71);" src="{% static 'images/AboutUS/flo2.png' %}" />
+						<img class="netImg" style="border-color: rgb(216,147,71);" src="{% static 'images/AboutUS/flo.png' %}" />
+						<span class="personnalLinks">
+						<a target="_blank" href="mailto:florian.thonier@gmail.com"><img src="{% static 'images/AboutUS/mail.png' %}" width=30 /></a>
+						<a target="_blank" href="http://fr.linkedin.com/pub/florian-thonier/80/787/baa"><img src="{% static 'images/AboutUS/linkedin.png' %}" width=30 /></a>
+						</span>
+		</div>
+		<div id="jean" class="face" style="background: -webkit-radial-gradient(rgb(5,176,197) 0%, rgb(5,176,197) 40%, rgb(186,181,186) 70%);
+						background: -o-radial-gradient(rgb(5,176,197) 0%, rgb(5,176,197) 40%, rgb(186,181,186) 70%);
+						background: -moz-radial-gradient(rgb(5,176,197) 0%, rgb(5,176,197) 40%, rgb(186,181,186) 70%);
+						background: radial-gradient(rgb(5,176,197) 0%, rgb(5,176,197) 40%, rgb(186,181,186) 70%);">
+						<img class="blurImg" style="border-color: rgb(65,161,193);" src="{% static 'images/AboutUS/jean2.png' %}" />
+						<img class="netImg" style="border-color: rgb(65,161,193);" src="{% static 'images/AboutUS/jean.png' %}" />
+						<span class="personnalLinks">
+						<a target="_blank" href="mailto:public@jeancoquet.com"><img src="{% static 'images/AboutUS/mail.png' %}" width=30 /></a>
+						<a target="_blank" href="http://fr.linkedin.com/in/jeancoquet"><img src="{% static 'images/AboutUS/linkedin.png' %}" width=30 /></a>
+						</span>
+		</div>
+		<div id="lucas" class="face" style="background: -webkit-radial-gradient(rgb(112,113,115) 0%, rgb(112,113,115) 40%, rgb(186,181,186) 70%);
+						background: -o-radial-gradient(rgb(112,113,115) 0%, rgb(112,113,115) 40%, rgb(186,181,186) 70%);
+						background: -moz-radial-gradient(rgb(112,113,115) 0%, rgb(112,113,115) 40%, rgb(186,181,186) 70%);
+						background: radial-gradient(rgb(112,113,115) 0%, rgb(112,113,115) 40%, rgb(186,181,186) 70%);">
+						<img class="blurImg" style="border-color: rgb(219,226,235);" src="{% static 'images/AboutUS/lucas2.png' %}" />
+						<img class="netImg" style="border-color: rgb(219,226,235);" src="{% static 'images/AboutUS/lucas.png' %}" />
+						<span class="personnalLinks">
+						<a target="_blank" href="mailto:lucas.lelann@gmail.com"><img src="{% static 'images/AboutUS/mail.png' %}" width=30 /></a>
+						<a target="_blank" href="https://www.linkedin.com/in/lucaslelann"><img src="{% static 'images/AboutUS/linkedin.png' %}" width=30 /></a>
+						</span>
+		</div>
+		<div id="nathan" class="face" style="background: -webkit-radial-gradient(white 0%, white 40%, rgb(186,181,186) 70%);
+						background: -o-radial-gradient(white 0%, white 40%, rgb(186,181,186) 70%);
+						background: -moz-radial-gradient(white 0%, white 40%, rgb(186,181,186) 70%);
+						background: radial-gradient(white 0%, white 40%, rgb(186,181,186) 70%);">
+						<img class="blurImg" style="border-color: rgb(100,100,100);" src="{% static 'images/AboutUS/nathan2.png' %}" />
+						<img class="netImg" style="border-color: rgb(100,100,100);" src="{% static 'images/AboutUS/nathan.png' %}" />
+						<span class="personnalLinks">
+						<a target="_blank" href="mailto:nathan.foulquier.pro@gmail.com"><img src="{% static 'images/AboutUS/mail.png' %}" width=30 /></a>
+						<a target="_blank" href="http://fr.linkedin.com/pub/nathan-foulquier/87/72/1"><img src="{% static 'images/AboutUS/linkedin.png' %}" width=30 /></a>
+						</span>
+		</div>
+		
+		<p id="defaultTextDescrip" class="description">
+			<b>PROJECT TEAM</b></br><i>University of Rennes</i>
+			</br></br>
+			The Smell game was developped, with the Paris-Bettencourt team, by a team from Rennes. This team includes three computational biologists (Florian Thonier, Lucas Le Lann and Nathan Foulquier), and two bio-informaticians (Arnaud Ferre and Jean Coquet). They started this project two month ago after several meeting with the Paris-Bettencourt team. They build this team because of their interest in synthetic biology.
+		</p>
+		<p id="arnaudTextDescrip" class="description" style="display:none;">
+			<b>ARNAUD FERRE</b></br><i>Team-leader</i>
+			</br></br>
+			I am an old student with two degrees: one in software &amp; project engineering and one in bioinformatics for genomics. I want to work in biotechnology, because of their high interdisciplinary aspect and their potential to improve our (very near) future society. The first time that I heard about synthetic biology, I was immediately motivated by learn skills about this, and iGEM is for me the best way to achieve it. It is also a huge opportunity to meet people who have the same passion for science as me, and who want to act. My main focus in the platform is to organize the programming part and to contribute to the realization of the SmellGame platform.
+		</p>
+		<p id="florianTextDescrip" class="description" style="display:none;">
+			<b>FLORIAN THONIER</b></br><i>Computational Biologist</i>
+			</br></br>
+			Recently I graduated from the Rennes 1 University (France) was a degree in Bioinformatics and genomics. I'm passionate about informatics and its potential to facilitate new research, particularly in biology. I'm part of this project to learn new methodologies and learn about synthetic biology. I learned that synthetic biology is a domain for new research to respond to the goals of tomorrow in everyday life. I also learned a lot by working with researchers from many different backgrounds. 
+		</p>
+		<p id="jeanTextDescrip" class="description" style="display:none;">
+			<b>JEAN COQUET</b></br><i>Bio-Informatician</i>
+			</br></br>
+			I'm a first year Ph.D student from university of Rennes (FRANCE). I studied the “Semantic-based reasoning for biological pathways analysis” (my thesis subject) at Irisa/Inria in Rennes. I obtained a bachelor degree in Computer Science then I decided to go to the BioInformatics way. I'm really happy to participate of synthetic biology project because this domain possibilities are exciting. Specifically, I participated in developing SmellGame platform.
+		</p>
+		<p id="lucasTextDescrip" class="description" style="display:none;">
+			<b>LUCAS LE LANN</b></br><i>Computational Biologist</i>
+			</br></br>
+			I have a Master degree in Bioinformatics. My speciality is genetic and microbiology. I wanted to take part in this synthetic biology project because I enjoy interdisciplinarity. Furthermore, I think synthetic biology can be useful to everyday life as well as bigger projects. The Smell game project allow me to improve my computing and teamwork skills.
+		</p>
+		<p id="nathanTextDescrip" class="description" style="display:none;">
+			<b>NATHAN FOULQUIER</b></br><i>Computational Biologist</i>
+			</br></br>
+			I am a 23 years old engineer in bioinformatics and I started iGEM 2014 when I was still a student at Universitée Rennes 1. While I was finishing my studies I felt the need to involve myself into a concrete project at the interface of informatics and biology. I was really interested by the spirit of innovation carried by iGEM in the field of Synthetic biology and thought that I may contribute to the projects of Paris Bettencourt iGEM team with my own skills. I believe the next revolutions in Science will take place in organisations like iGEM.
+		</p>
+		
+		<t1>SOURCE CODE</t1>
+		<p>
+		The Smell Game Application is developped thanks to Django framework and Highcharts JS librairy. You can find the source code on Github repertory : <a target="_blank" href="https://github.com/JeanCoq/SmellGame">https://github.com/JeanCoq/SmellGame</a>
+		</p>
+	</div>
+	
+	<img id="close" src='{% static "images/AboutUS/close.png" %}' width=20 />
+</div>
+
+<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+
+<style>
+	#aboutUs {
+		position: fixed;
+		bottom: 0px;
+		right: 0px;
+		width: 75px;
+		height: 36px;
+		background: url('{% static "images/aboutUS.png" %}');
+		background-size: 120px 73px;
+		font-weight: bold;
+		padding-left: 45px;
+		padding-top: 37px;
+		font-size: 13px;
+		cursor: pointer;
+	}
+	#aboutUs p {
+		margin: 0px;
+		-webkit-transform: rotate(-31deg);
+		-moz-transform: rotate(-31deg);
+		-ms-transform: rotate(-31deg);
+		-o-transform: rotate(-31deg);
+	}
+	
+	#aboutUsDiv {
+		position: absolute;
+		top: 0%;
+		left: 0%;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.5);
+	}
+	#close {
+		position: absolute;
+		top: 6%;
+		right: 10%;
+		margin-top: -13px;
+		margin-right: -13px;
+		background: black;
+		-webkit-border-radius: 13px;
+		-moz-border-radius: 13px;
+		border-radius: 13px;
+		border: 3px white solid;
+		cursor: pointer;
+	}
+	#popUp {
+		position: absolute;
+		top: 6%;
+		left: 10%;
+		width: 72%;
+		height: 76%;
+		text-align: center;
+		background-color: rgb(186,181,186);
+		color: white;
+		font-family: Arial;
+		font-size: 15px;
+		margin: 0px;
+		padding: 4%;
+		padding-top: 3%;
+		overflow : auto;
+		box-shadow: 0px 0px 40px #000;
+	}
+	#popUp p { text-align: justify; }
+	#introduction { margin: 0px; }
+	#popUp t1 { 
+		display: block;
+		font-size: 25px;
+		margin-top: 40px;
+		margin-bottom: 30px;
+		font-weight: bold;
+		color : rgb(216,89,149);
+	}
+	.face {
+		display: inline-block;
+		width: 160px;
+		height: 160px;
+		padding: 30px;
+		margin: 0px;
+	}
+	.blurImg, .netImg {
+		width: 130px;
+		-webkit-border-radius: 80px;
+		-moz-border-radius: 80px;
+		border-radius: 80px;
+		border-style: solid;
+		border-width: 15px;
+	}
+	.description {
+		margin-top: 15px;
+		padding: 30px;
+		background: #FF0063;
+		height: 15%;
+		min-width: 500px;
+		overflow : auto;
+	}
+	.personnalLinks { float: left; }
+	.personnalLinks a {
+		border: none;
+		margin-left: 25px;
+		margin-right: 25px;
+	}
+</style>
+
+<script>
+$(document).ready(function(){
+	$(".netImg").hide()
+	$('.personnalLinks').hide();
+	$('#aboutUsDiv').hide();
+	
+	$('#aboutUs').click(function() {
+		$("body").css('overflow','hidden');
+		$("#aboutUsDiv").show(); 
+	});
+	
+	$('#arnaud').mouseover(function() {
+		$('#arnaudTextDescrip').css('display','block');
+		$('#defaultTextDescrip').css('display','none');
+		$('#arnaud .blurImg').hide();
+		$('#arnaud .netImg').show();
+		$('#arnaud .personnalLinks').show();
+	}).mouseout(function(){
+		$('#arnaudTextDescrip').css('display','none');
+		$('#defaultTextDescrip').css('display','block');
+		$('#arnaud .netImg').hide();
+		$('#arnaud .blurImg').show();
+		$('#arnaud .personnalLinks').hide();
+	});
+	
+	$('#florian').mouseover(function() {
+		$('#florianTextDescrip').css('display','block');
+		$('#defaultTextDescrip').css('display','none');
+		$('#florian .blurImg').hide();
+		$('#florian .netImg').show();
+		$('#florian .personnalLinks').show();
+	}).mouseout(function(){
+		$('#florianTextDescrip').css('display','none');
+		$('#defaultTextDescrip').css('display','block');
+		$('#florian .netImg').hide();
+		$('#florian .blurImg').show();
+		$('#florian .personnalLinks').hide();
+	});
+	
+	$('#jean').mouseover(function() {
+		$('#jeanTextDescrip').css('display','block');
+		$('#defaultTextDescrip').css('display','none');
+		$('#jean .blurImg').hide();
+		$('#jean .netImg').show();
+		$('#jean .personnalLinks').show();
+	}).mouseout(function(){
+		$('#jeanTextDescrip').css('display','none');
+		$('#defaultTextDescrip').css('display','block');
+		$('#jean .netImg').hide();
+		$('#jean .blurImg').show();
+		$('#jean .personnalLinks').hide();
+	});
+	
+	$('#lucas').mouseover(function() {
+		$('#lucasTextDescrip').css('display','block');
+		$('#defaultTextDescrip').css('display','none');
+		$('#lucas .blurImg').hide();
+		$('#lucas .netImg').show();
+		$('#lucas .personnalLinks').show();
+	}).mouseout(function(){
+		$('#lucasTextDescrip').css('display','none');
+		$('#defaultTextDescrip').css('display','block');
+		$('#lucas .netImg').hide();
+		$('#lucas .blurImg').show();
+		$('#lucas .personnalLinks').hide();
+	});
+	
+	$('#nathan').mouseover(function() {
+		$('#nathanTextDescrip').css('display','block');
+		$('#defaultTextDescrip').css('display','none');
+		$('#nathan .blurImg').hide();
+		$('#nathan .netImg').show();
+		$('#nathan .personnalLinks').show();
+	}).mouseout(function(){
+		$('#nathanTextDescrip').css('display','none');
+		$('#defaultTextDescrip').css('display','block');
+		$('#nathan .netImg').hide();
+		$('#nathan .blurImg').show();
+		$('#nathan .personnalLinks').hide();
+	});
+	
+	$('#close').click(function() {
+		$("#aboutUsDiv").hide();
+		$("body").css('overflow','visible');
+	});
+});
+</script>
