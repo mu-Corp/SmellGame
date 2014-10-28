@@ -6,7 +6,7 @@
 # Django libs:
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 # Local import:
@@ -48,6 +48,8 @@ def adminView(request):
 
 	paramToGenerateTemplate = dict()
 	paramToGenerateTemplate['error'] = False
+	#Select all data in DB:
+	paramToGenerateTemplate['l_allSamples'] = Sample.objects.all()
 	
 	
 	if request.method == 'POST':	
@@ -63,9 +65,6 @@ def adminView(request):
 			
 			if user:  # Si l'objet renvoyé n'est pas None
 				login(request, user)  # nous connectons l'utilisateur
-				
-				#Select all data in DB:
-				paramToGenerateTemplate['l_allSamples'] = Sample.objects.all()
 				
 			else: # sinon une erreur sera affichée
 				paramToGenerateTemplate['error'] = True
@@ -83,9 +82,10 @@ def adminView(request):
 
 def adminThankView(request):
 	
-	if request.method == 'POST':			
+	if request.method == 'POST':	
+
 		for sample in Sample.objects.all() :
-			if str(sample.id) in request.POST :
+			if str(sample.name) in request.POST :
 				sample.available = True
 			else:
 				sample.available = False
@@ -99,6 +99,11 @@ def adminThankView(request):
 
 
 
-
+def decoView(request):
+	
+	logout(request)
+			
+	return render(request, 'SmellAdminTemplate/deco.html')	
+	
 
 

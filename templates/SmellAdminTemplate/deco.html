@@ -24,8 +24,11 @@
 			<div style="width:300px; margin: auto;">
 				<form action="{% url "SmellGuess.views.homeView" %}" method="post">
 					{% csrf_token %}
-					{% trans "Les échantillons à tester ont bien été enregistrés" %}<br/><br/><br/>
-					{{ test }}
+					<p>Vous vous êtes bien déconnectés.<p>
+					<p>ATTENTION : la plateforme sera en mode démo à présent (= aucune information enregistrée dans la base de données)<p>
+					
+					<br/><br/><br/>
+					
 					<input type="image" value="{% trans 'RETOUR' %}" />
 				</form>
 			</div>

@@ -8,4 +8,5 @@ admin.autodiscover()
 urlpatterns = patterns('SmellAdmin.views',#main path
                        url(r'^$', 'adminView', name='connexion'),
                        url(r'^thanks/$', 'adminThankView'),
+                       url(r'^deco/$', 'decoView'),
 )
