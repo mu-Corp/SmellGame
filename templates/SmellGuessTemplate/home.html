@@ -65,7 +65,13 @@
 			{% endfor %}
 		</form>
 		
-		<p style="position: fixed; top: 5px; right: 15px; font-size: 10px; " ><a href="../../smelladmin/">{% trans "Se connecter" %}</a></p> 
+		
+		
+		<p style="position: fixed; top: 5px; right: 15px; font-size: 10px; " >
+			<a href="../../smelladmin/">{% if demoMode == False %}Connected mode{% else %}Demo mode{% endif %}</a>
+		</p> 
+		
+		
 		
 		{% include "footer.html" %}
 		

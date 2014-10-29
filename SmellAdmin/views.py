@@ -66,6 +66,8 @@ def adminView(request):
 			if user:  # Si l'objet renvoyé n'est pas None
 				login(request, user)  # nous connectons l'utilisateur
 				
+				request.session['demoMode'] = False #If admin co, disable the mode demo
+				
 			else: # sinon une erreur sera affichée
 				paramToGenerateTemplate['error'] = True
 
@@ -102,6 +104,8 @@ def adminThankView(request):
 def decoView(request):
 	
 	logout(request)
+	
+	request.session['demoMode'] = True #If admin deco, active the mode demo
 			
 	return render(request, 'SmellAdminTemplate/deco.html')	
 	

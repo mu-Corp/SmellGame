@@ -73,9 +73,14 @@ def homeView(request):
     request.session['guessStep'] = None
     request.session['SampleIdToAnalyze'] = None
     
-
+    paramToGenerateTemplate = dict()
+    if 'demoMode' not in request.session.keys():
+        request.session['demoMode'] = True #init in demo mode
+    
+    paramToGenerateTemplate['demoMode'] = request.session['demoMode']
+        
     # Render:    
-    return render(request, 'SmellGuessTemplate/home.html',{})#{'nb': nb, 'intensity': intensity, 'color': color, 'note': note, 'image': image, 'opacity': opacity, 'name': name})    
+    return render(request, 'SmellGuessTemplate/home.html', paramToGenerateTemplate)#{'nb': nb, 'intensity': intensity, 'color': color, 'note': note, 'image': image, 'opacity': opacity, 'name': name})    
     
 
 
