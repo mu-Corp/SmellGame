@@ -163,9 +163,7 @@ def gameView(request):
 
     Notes
     -----
-    
     TODO: Use var in URL to generate a specific game page
-    TODO: Many things again!
 
     """
     

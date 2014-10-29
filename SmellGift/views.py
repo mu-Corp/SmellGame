@@ -21,13 +21,22 @@ def giftView(request):
 	form.fields["foodRecentlyEaten"].queryset = Food.objects.all()
 	return render(request, 'SmellGiftTemplate/gift.html', {'form': form})
 
+
+
 def thanksView(request) :
-	if request.method == 'POST':
-		formGiver = SampleGiverForm(request.POST)
-		if formGiver.is_valid() :
-			giver = formGiver.save()
-			sample = Sample(sampleGiver=giver)
-			sample.save()
-			sample.name = request.POST['nameSample']
-			sample.save()
-	return render(request, 'SmellGiftTemplate/thanks.html')
+	
+	paramToGenerateTemplate = dict()
+	
+	if request.session['demoMode'] == False:
+		if request.method == 'POST':
+			formGiver = SampleGiverForm(request.POST)
+			if formGiver.is_valid() :
+				giver = formGiver.save()
+				sample = Sample(sampleGiver=giver)
+				sample.save()
+				sample.name = request.POST['nameSample']
+				sample.save()
+	
+	paramToGenerateTemplate['demoMode'] = request.session['demoMode']
+	
+	return render(request, 'SmellGiftTemplate/thanks.html', paramToGenerateTemplate)

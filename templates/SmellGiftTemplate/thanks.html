@@ -25,8 +25,23 @@
 			<div style="width:300px; margin: auto;">
 				<form action="{% url "SmellGuess.views.homeView" %}" method="post">
 					{% csrf_token %}
-					{% trans "Votre échantillon a bien été enregistré !" %}<br/>
-					{% trans "Merci de votre participation." %}<br/><br/>
+					
+					
+					
+					{% if demoMode == False %}
+						{% trans "Votre échantillon a bien été enregistré !" %}<br/>
+						{% trans "Merci de votre participation." %}<br/><br/>
+					{% else %}
+						<p>Vous n'avez actuellement accès qu'à la version de démonstration de la plateforme.</p>
+						<br/>
+						<p>Les données saisies ne seront donc pas enregistrées dans notre base de données.</p>
+						<br/><br/>
+					{% endif %}
+					
+					
+					
+					
+					
 					<input type="image" value="{% trans 'RETOUR' %}" />
 				</form>
 			</div>
