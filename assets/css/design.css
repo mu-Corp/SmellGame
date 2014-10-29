@@ -223,7 +223,7 @@ input[type=image] {
 	padding: 0px;
 }
 
-#formGift .titleSectionFields {
+.titleSectionFields {
 	text-align: center;
 	color : rgb(216,89,149);
 	font-weight: bold;

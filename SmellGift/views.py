@@ -28,6 +28,6 @@ def thanksView(request) :
 			giver = formGiver.save()
 			sample = Sample(sampleGiver=giver)
 			sample.save()
-			sample.name = "PT"+str(sample.id)
+			sample.name = request.POST['nameSample']
 			sample.save()
 	return render(request, 'SmellGiftTemplate/thanks.html')
