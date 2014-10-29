@@ -53,7 +53,7 @@ def createListHisto():
 	# Intensity & Feeling by sex
 	listHisto.append({'title': 'Intensités & apréciations selon le sexe',  'button': 'Données selon le sexe',  'abscisseName': 'Sexe du donneur',  'orderedName': 'Intensités & apréciations',  'data': getDataHistoBySex(),  'dataError': '', 'categories' : cat1})
 	# Intensity & Feeling by age
-	listHisto.append({'title': 'Intensités & apréciations selon l âge',  'button': 'Données selon l\'âge',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Tranche d âge',  'data': getDataHistoBySliceOfAge(),  'dataError': '', 'categories' : cat1 })
+	listHisto.append({'title': 'Intensités & apréciations selon l\'âge',  'button': 'Données selon l\'âge',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Tranche d âge',  'data': getDataHistoBySliceOfAge(),  'dataError': '', 'categories' : cat1 })
 	# Intensity & Feeling by use of deodorant
 	listHisto.append({'title': 'Intensités & apréciations selon l utilisation de déodorant',  'button': 'Données déodorant',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Utilisation de déodorant',  'data': getDataHistoByDeo(),  'dataError': '', 'categories' : cat1})
 	# Intensity & Feeling by Smoking
