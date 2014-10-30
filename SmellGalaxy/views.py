@@ -25,6 +25,7 @@ import time
 import codecs
 import os, tempfile, zipfile
 from base64 import decodestring
+from math import sqrt
 
 from django.db import models
 from SmellGuess.models  import *
@@ -36,6 +37,40 @@ cat2 = [f.name for f in Food.objects.all()]
 ################################################################
 #########################    VIEWS    ##########################
 ################################################################
+def mean_std_dev(l_durations):
+    """ Calculate mean and standard deviation of data durations[]: """
+    
+    length, mean, std = len(l_durations), 0, 0
+    
+    for duration in l_durations:
+        mean = mean + duration
+    
+    mean = mean / float(length)
+    
+    for duration in l_durations:
+        std = std + (duration - mean) ** 2
+    
+    std = sqrt(std / float(length))
+    mean = int(round(mean))
+    std = int(round(std))
+    
+    return mean, std
+
+
+#Intervalle de confiance à 95%:
+def errorInterval(l_data):
+
+    n = len(l_data)
+    meanData, ecartType = mean_std_dev(l_data)
+    
+    demiLargeur = 1.96*(ecartType / sqrt(n))
+    
+    low = meanData - demiLargeur
+    high = meanData + demiLargeur
+    
+    return low, high
+
+
 
 
 # Nathan view
