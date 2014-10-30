@@ -24,7 +24,7 @@ def doMoyFeelingForAllGivers (givers) :
 		if len(GuessByIdSample) != 0 :
 			for elt in GuessByIdSample :
 				if elt.intensity > 10 :
-					somme += elt.feeling - 50
+					somme += 50 - elt.feeling
 					i     += 1
 	if i>0:
 		moyenne = (somme* -1.0)/ i
@@ -73,23 +73,23 @@ def intensityByFeelingCenter():
 	string = []
 	for eachGuess in allGuess :
 		if eachGuess.intensity < 10 :
-			dictData["0-10"].append((float(eachGuess.feeling)-50)*-1.0)
+			dictData["0-10"].append(float(eachGuess.feeling)-50)
 		elif eachGuess.intensity < 20 :
-			dictData["10-20"].append((float(eachGuess.feeling)-50)*-1.0)
+			dictData["10-20"].append(float(eachGuess.feeling)-50)
 		elif eachGuess.intensity < 30 :
-			dictData["20-30"].append((float(eachGuess.feeling)-50)*-1.0)
+			dictData["20-30"].append(float(eachGuess.feeling)-50)
 		elif eachGuess.intensity < 40 :
-			dictData["30-40"].append((float(eachGuess.feeling)-50)*-1.0)
+			dictData["30-40"].append(float(eachGuess.feeling)-50)
 		elif eachGuess.intensity < 50 :
-			dictData["50-60"].append((float(eachGuess.feeling)-50)*-1.0)
+			dictData["50-60"].append(float(eachGuess.feeling)-50)
 		elif eachGuess.intensity < 60 :
-			dictData["60-70"].append((float(eachGuess.feeling)-50)*-1.0)
+			dictData["60-70"].append(float(eachGuess.feeling)-50)
 		elif eachGuess.intensity < 70 :
-			dictData["70-80"].append((float(eachGuess.feeling)-50)*-1.0)
+			dictData["70-80"].append(float(eachGuess.feeling)-50)
 		elif eachGuess.intensity < 80 :
-			dictData["80-90"].append((float(eachGuess.feeling)-50)*-1.0)
+			dictData["80-90"].append(float(eachGuess.feeling)-50)
 		elif eachGuess.intensity < 90 :
-			dictData["90-100"].append((float(eachGuess.feeling)-50)*-1.0)
+			dictData["90-100"].append(float(eachGuess.feeling)-50)
 	for eachKey in sorted(dictData.keys()) : 
 		string.append([str(eachKey), moyList(dictData[eachKey])])
 	return string
