@@ -32,7 +32,7 @@ from SmellGalaxy.models import *
 from SmellGift.models   import *
 
 cat1 = [[_(u'Intensités (0~100)'),_(u'Appreciations (0~100)')]]
-cat2 = [_(u'Broccoli'), _(u'Gabbage'), _(u'Cauliflower'), _(u'Asparagus'), _(u'Fish'), _(u'Red meat'), _(u'Fast food'), _(u'Spicy food'), _(u'Alcohol'), _(u'Antibiotics')]
+cat2 = [f.name for f in Food.objects.all()]
 ################################################################
 #########################    VIEWS    ##########################
 ################################################################
@@ -44,7 +44,6 @@ def graphesView(request):
     paramToGenerateTemplate['HistoGraphs']    = createListHisto()
     paramToGenerateTemplate['HistoGraphsRE']  = createListHistoRE()
     paramToGenerateTemplate['PiesGraphs']     = createListPie()
-    paramToGenerateTemplate['PiesGraphsRE']   = createListPieRecentlyEaten()
     paramToGenerateTemplate['LinesGraphs']    = createListLines()
 
     return render(request, 'SmellGalaxyTemplate/Graphes.html', paramToGenerateTemplate) 
@@ -59,7 +58,6 @@ def paraGraphesView(request):
     paramToGenerateTemplate['HistoGraphs']    = createListHisto()
     paramToGenerateTemplate['HistoGraphsRE']  = createListHistoRE()
     paramToGenerateTemplate['PiesGraphs']     = createListPie()
-    paramToGenerateTemplate['PiesGraphsRE']   = createListPieRecentlyEaten()
     paramToGenerateTemplate['LinesGraphs']    = createListLines()
 
     return render(request, 'SmellGalaxyTemplate/paraGraphes.html', paramToGenerateTemplate) 
@@ -119,11 +117,6 @@ def createListPie():
 	listPie.append({'title': _(u'Répartition par consommation de cigarettes'), 'button': _(u'Consommation de cigarettes'), 'description': '', 'data': pieByCritereSmoker()})
 	return listPie
 
-def createListPieRecentlyEaten():
-	listPie = []
-	for i in range(1,11,1):
-		listPie.append({'title': _(u'Repartition by recent ')+cat2[i-1]+_(u' consumption'), 'button': cat2[i-1]+_(u' recenty eaten'), 'description': '', 'data': pieByCritereRecentlyEaten(i)})
-	return listPie
 
 def createListLines():
 	listLines = []
