@@ -38,34 +38,34 @@ function SetOptionPie(titre, categorie, donnees){
 	// => donnees : array of array [['MU-corp', 100], ['Rest-of-the-World', 0]], contening data
 	var option = {
 		chart: {
-		type: 'pie',
-		options3d: {
-		enabled: true,
-		alpha: 45,
-		beta: 0
-		},
+			type: 'pie',
+			options3d: {
+				enabled: true,
+				alpha: 45,
+				beta: 0
+			},
 		},
 		title: {
-		text: titre
+			text: titre
 		},
 		tooltip: {
-		pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 		},
 		plotOptions: {
-		pie: {
-		allowPointSelect: true,
-		cursor: 'pointer',
-		depth: 35,
-		dataLabels: {
-		enabled: true,
-		format: '{point.name}'
-		}
-		}
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				depth: 35,
+				dataLabels: {
+					enabled: true,
+					format: '{point.name}'
+				}
+			}
 		},
 		series: [{
-		type: 'pie',
-		name: categorie,
-		data: donnees
+			type: 'pie',
+			name: categorie,
+			data: donnees
 		}]
 	};
 	return option;
@@ -272,7 +272,7 @@ function showHide(elt) {
 		{% for graphic in PiesGraphs %}
 			<p><a onClick="$('#containerGraphic').hide(); $('#containerGraphicRight').html('');
 				$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
-			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
+			'{{ graphic.title }}', '{{ graphic.description }}', [{% for data in graphic.data %}['{{ data.0 }}',parseFloat('{{ data.1 }}'.replace(',', '.'))],{% endfor %}]));});">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
 

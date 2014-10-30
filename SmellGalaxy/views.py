@@ -110,11 +110,11 @@ def createListHistoRE():
 def createListPie():
 	listPie = []
 	# Repartition by sex
-	listPie.append({'title': _(u'Repartition selon le sexe'), 'button': _(u'Sexe des donneurs'), 'description': '', 'data': pieByCritereSex()})
+	listPie.append({'title': _(u'Repartition selon le sexe'), 'button': _(u'Sexe des donneurs'), 'description': _(u'Pourcentage'), 'data': pieByCritereSex()})
 	# Repartition between slice of Age
-	listPie.append({'title': _(u'Repartition selon la tranche d âge'), 'button': _(u'Tranche d âge'), 'description': '', 'data': pieByCritereSliceOfAge()})
+	listPie.append({'title': _(u'Repartition selon la tranche d âge'), 'button': _(u'Tranche d âge'), 'description': _(u'Pourcentage'), 'data': pieByCritereSliceOfAge()})
 	# Repartition by smoker
-	listPie.append({'title': _(u'Répartition par consommation de cigarettes'), 'button': _(u'Consommation de cigarettes'), 'description': '', 'data': pieByCritereSmoker()})
+	listPie.append({'title': _(u'Répartition par consommation de cigarettes'), 'button': _(u'Consommation de cigarettes'), 'description': _(u'Pourcentage'), 'data': pieByCritereSmoker()})
 	return listPie
 
 

@@ -29,8 +29,8 @@ def pieByCritereSmoker():
 	ratioFalse = getRatio(giverFalse, allGiver)
 	ratioOther = getRatio(giverOther, allGiver)
 	stringToReturn = [
-		[str(_(u"Fumeurs("))+str(len(giverTrue))+")",ratioTrue],
-		[str(_(u"Non fumeurs("))+str(len(giverFalse))+")",ratioFalse]
+		[_(u"Fumeurs(")+str(len(giverTrue))+")",ratioTrue],
+		[_(u"Non fumeurs(")+str(len(giverFalse))+")",ratioFalse]
 		#,["empty field("+str(len(giverOther))+")",ratioOther]
 	]
 	return stringToReturn
@@ -45,8 +45,8 @@ def pieByCritereSex():
 	ratioWoman = getRatio(giverWoman, allGiver, giverOther)
 	ratioMan   = getRatio(giverMan,   allGiver, giverOther)
 	stringToReturn = [
-		[str(_(u"Femme ("))+str(len(giverMan))+")",ratioMan],
-		[str(_(u"Homme ("))+str(len(giverWoman))+")",ratioWoman]
+		[_(u"Femme (")+str(len(giverMan))+")",ratioMan],
+		[_(u"Homme (")+str(len(giverWoman))+")",ratioWoman]
 		]
 	return stringToReturn
 def pieByCritereRecentlyEaten(elt):
@@ -60,8 +60,8 @@ def pieByCritereRecentlyEaten(elt):
 	ratioRE    = getRatio( giverRE,      allGiver )
 	ratioNotRE = getRatio( giverNotRE,   allGiver )
 	stringToReturn = [
-		[categories[elt-1]+ str(_(u" récemment mangé ("))+str(len(giverRE))+")",ratioRE],
-		[categories[elt-1]+ str(_(u" pas récemment ("))+str(len(giverNotRE))+")",ratioNotRE]
+		[categories[elt-1]+ _(u" récemment mangé (")+str(len(giverRE))+")",ratioRE],
+		[categories[elt-1]+ _(u" pas récemment (")+str(len(giverNotRE))+")",ratioNotRE]
 		]
 	return stringToReturn
 
@@ -90,11 +90,11 @@ def pieByCritereSliceOfAge():
 	ratio41more = getRatio(giver41more, allGiver, giverOther)
 	ratioGiverOther = getRatio(giverOther, allGiver)
 	stringToReturn = [
-		[str(_(u"De 0 à 10 ans ("))+str(len(giver0_10))+")",ratio0_10], 
-		[str(_(u"De 11 à 20 ans ("))+str(len(giver11_20))+")",ratio11_20], 
-		[str(_(u"De 21 à 30 ans ("))+str(len(giver21_30))+")",ratio21_30], 
-		[str(_(u"De 31 à 40 ans ("))+str(len(giver31_40))+")",ratio31_40],
-		[str(_(u"De 41 ans & plus ("))+str(len(giver41more))+")",ratio41more] 
+		[_(u"De 0 à 10 ans (")+str(len(giver0_10))+")",ratio0_10], 
+		[_(u"De 11 à 20 ans (")+str(len(giver11_20))+")",ratio11_20], 
+		[_(u"De 21 à 30 ans (")+str(len(giver21_30))+")",ratio21_30], 
+		[_(u"De 31 à 40 ans (")+str(len(giver31_40))+")",ratio31_40],
+		[_(u"De 41 ans et plus (")+str(len(giver41more))+")",ratio41more] 
 		#["Sans renseignements ("+str(len(giverOther))+")",ratioGiverOther]
 		]
 	return stringToReturn
