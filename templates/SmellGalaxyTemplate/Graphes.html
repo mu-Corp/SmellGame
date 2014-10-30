@@ -271,26 +271,6 @@ function showHide(elt) {
 			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
-		
-		<!-- Graphics  Lines -->
-		<!-- SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, soustitre) -->
-		{% for graphic in LinesGraphs %}
-			<p><a onClick="showHide('containerGraphicLeft');showHide('containerGraphicRight');
-				$(function () { $('#containerGraphic').highcharts(SetOptionLine(
-			'{{ graphic.title }}', '{{ graphic.abscisseName }}', '{{ graphic.orderedName }}', '{{ graphic.nameLine1 }}', {{ graphic.dataLine1 }}, '{{ graphic.nameLine2 }}', {{ graphic.dataLine2 }}, '{{ graphic.subtitle }}')) });">
-			<button>{{ graphic.button }}</button></a></p>  
-		{% endfor %}
-
-
-		<t1>Recents consumptions of givers:</t1>
-		<!-- Graphics  Pies Recently Eaten -->
-		<!-- SetOptionPie(titre, categorie, donnees) -->
-		{% for graphic in PiesGraphsRE %}
-			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');
-				$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
-			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
-			<button>{{ graphic.button }}</button></a></p>  
-		{% endfor %}
 
 	</div>
 
