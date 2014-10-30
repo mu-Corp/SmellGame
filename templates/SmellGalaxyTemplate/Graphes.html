@@ -211,13 +211,13 @@ function showHide(elt) {
 <body>
 						
 	<div id="panelLeft">
-		<t1>{% trans "Choissisez un graphique à visualiser : " }</t1>
+		<t1>{% trans "Choissisez un graphique à visualiser : " %}</t1>
 		
 		<!-- Graphics  Histogrammes -->
 		<!-- SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) -->
 		{% for graphic in HistoGraphs %}
 			<p>
-			<a onClick="showHide('containerGraphic');
+			<a onClick="$('#containerGraphic').hide();
 			$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
 			'{{ graphic.titleLeft}}', 
 			'{{ graphic.orderedNameLeft }}', 
@@ -241,7 +241,7 @@ function showHide(elt) {
 		{% endfor %}		
 		{% for graphic in HistoGraphsRE %}
 			<p>
-			<a onClick="showHide('containerGraphic');
+			<a onClick="$('#containerGraphic').hide();
 			$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
 			'{{ graphic.titleLeft}}', 
 			'{{ graphic.orderedNameLeft }}', 
@@ -261,12 +261,12 @@ function showHide(elt) {
 		{% endfor %}
 		
 		
-		<t1>{% trans "Informations sur les donneurs : "}</t1>
+		<t1>{% trans "Informations sur les donneurs : " %}</t1>
 		
 		<!-- Graphics  Pies -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->
 		{% for graphic in PiesGraphs %}
-			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');
+			<p><a onClick="$('#containerGraphic').hide(); $('#containerGraphicRight').html('');
 				$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
 			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
 			<button>{{ graphic.button }}</button></a></p>  
