@@ -202,7 +202,7 @@ msgstr ""
 
 #: templates/footer.html:18
 msgid "A PROPOS"
-msgstr ""
+msgstr "ABOUT US"
 
 #: templates/SmellAdminTemplate/deco.html:12
 #: templates/SmellAdminTemplate/main.html:12
@@ -269,7 +269,7 @@ msgstr "Your sample was saved !"
 
 #: templates/SmellGiftTemplate/thanks.html:33
 msgid "Il possède le numéro {{ nameSample }}."
-msgstr ""
+msgstr "The sample is number {{ nameSample }}."
 
 #: templates/SmellGiftTemplate/thanks.html:34
 msgid "Merci de votre participation."
@@ -278,9 +278,9 @@ msgstr "Thank you for your participation."
 #: templates/SmellGiftTemplate/thanks.html:36
 #: templates/SmellGuessTemplate/demoResult.html:35
 msgid ""
-"Vous n'avez actuellement accès qu'à la version de démonstration de la "
-"plateforme."
+"Vous n'avez actuellement accès qu'à la version de démonstration de la plateforme."
 msgstr ""
+"You only have access to the platform demo."
 
 #: templates/SmellGiftTemplate/thanks.html:38
 #: templates/SmellGuessTemplate/demoResult.html:36
@@ -288,6 +288,8 @@ msgid ""
 "Les données saisies ne seront donc pas enregistrées dans notre base de "
 "données."
 msgstr ""
+"Data will not be saved in the "
+" database."
 
 #: templates/SmellGuessTemplate/demo.html:10
 #: templates/SmellGuessTemplate/game.html:10
