@@ -43,8 +43,23 @@ def pieByCritereSex():
 	ratioWoman = getRatio(giverWoman, allGiver, giverOther)
 	ratioMan   = getRatio(giverMan,   allGiver, giverOther)
 	stringToReturn = [
-		["Femmes ("+str(len(giverWoman))+")",ratioWoman],
-		["Hommes ("+str(len(giverMan))+")",ratioMan]
+		["Women ("+str(len(giverMan))+")",ratioMan],
+		["Men ("+str(len(giverWoman))+")",ratioWoman]
+		]
+	return stringToReturn
+def pieByCritereRecentlyEaten(elt):
+
+	allGiver   = SampleGiver.objects.all()
+	giverRE       = SampleGiver.objects.filter(foodRecentlyEaten  = elt )
+	giverNotRE    = SampleGiver.objects.filter( ).exclude(foodRecentlyEaten = elt )
+
+
+	categories = ['Broccoli', 'Gabbage', 'Cauliflower', 'Asparagus', 'Fish', 'Red_meat', 'Fast_food', 'Spicy_food', 'Alcohol', 'Antibiotics']
+	ratioRE    = getRatio( giverRE,      allGiver )
+	ratioNotRE = getRatio( giverNotRE,   allGiver )
+	stringToReturn = [
+		[categories[elt-1]+ " recently eaten ("+str(len(giverRE))+")",ratioRE],
+		[categories[elt-1]+ " not recently eaten ("+str(len(giverNotRE))+")",ratioNotRE]
 		]
 	return stringToReturn
 

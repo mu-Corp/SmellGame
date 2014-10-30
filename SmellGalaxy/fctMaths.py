@@ -74,7 +74,6 @@ def intensityByFeelingCenter():
 	for eachGuess in allGuess :
 		if eachGuess.intensity < 10 :
 			dictData["0-10"].append((float(eachGuess.feeling)-50)*-1.0)
-			print eachGuess.intensity; 
 		elif eachGuess.intensity < 20 :
 			dictData["10-20"].append((float(eachGuess.feeling)-50)*-1.0)
 		elif eachGuess.intensity < 30 :

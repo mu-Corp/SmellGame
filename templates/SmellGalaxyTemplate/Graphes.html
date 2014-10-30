@@ -217,12 +217,21 @@ function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2
 	return option;
 }
 
+// test flo on hide container
+function showHide(shID) {
+	if (document.getElementById(shID)) {
+		if (document.getElementById(shID+'-show').style.display != 'none') {
+			document.getElementById(shID+'-show').style.display = 'none';
+			document.getElementById(shID).style.display = 'block';
+		}
+	}
+}
 
 </script>
 
 <style>
 	#panelLeft {
-		width: 20%; 
+		width: 18%; 
 	}
 	button {
 		font-family: Arial;
@@ -232,16 +241,33 @@ function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2
 		background-color: rgb(186,181,186);
 		background:       rgb(186,181,186);
 		border: none;
-		margin-left: 15px;
+		margin-: 15px;
 		cursor:pointer;
 		height: 20px;
 	}
 	button:hover { background-color: rgb(216,89,149); }
+
 	#containerGraphic {
+	position: absolute;
+	top: 10px;
+	left: 18%;
+	width: 81%;
+	height: 70%;
+	margin: 0px;
+	}
+	#containerGraphicRight {
 		position: absolute;
 		top: 10px;
-		left: 22%;
-		width: 75%;
+		right: 1%;
+		width: 40%;
+		height: 70%;
+		margin: 0px;
+	}
+	#containerGraphicLeft {
+		position: absolute;
+		top: 10px;
+		left: 18%;
+		width: 40%;
 		height: 70%;
 		margin: 0px;
 	}
@@ -249,29 +275,56 @@ function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2
 
 </head>
 <body>
-	
+						
 	<div id="panelLeft">
 		<t1>Choissisez un graphique à visualiser :</t1>
 		
 		<!-- Graphics  Histogrammes -->
 		<!-- SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) -->
 		{% for graphic in HistoGraphs %}
-			<p><a onClick="$(function () {$('#containerGraphic').highcharts(SetOptionHisto(
-			'{{ graphic.title }}', 
-			'{{ graphic.orderedName }}', 
+			<p>
+			<a onClick="showHide('#containerGraphicLeft');showHide('#containerGraphicRight');showHide('#containerGraphic');$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
+			'{{ graphic.titleLeft}}', 
+			'{{ graphic.orderedNameLeft }}', 
 			'{{ graphic.abscisseName }}', 
-			{{ graphic.categories  }},
-			{{ graphic.data }}, 
+			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
+			{{ graphic.dataLeft }}, 
+			'{{ graphic.Description }}')) });$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
+			'{{ graphic.titleRight }}', 
+			'{{ graphic.orderedNameRight }}', 
+			'{{ graphic.abscisseName }}', 
+			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
+			{{ graphic.dataRight }}, 
 			'{{ graphic.description }}')) });">
+
+			<button>{{ graphic.button }}</button></a></p> 
+		{% endfor %}		
+		{% for graphic in HistoGraphsRE %}
+			<p>
+			<a onClick="showHide('#containerGraphicLeft');showHide('#containerGraphicRight');showHide('#containerGraphic');$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
+			'{{ graphic.titleLeft}}', 
+			'{{ graphic.orderedNameLeft }}', 
+			'{{ graphic.abscisseName }}', 
+			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
+			{{ graphic.dataLeft }}, 
+			'{{ graphic.Description }}')) });$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
+			'{{ graphic.titleRight }}', 
+			'{{ graphic.orderedNameRight }}', 
+			'{{ graphic.abscisseName }}', 
+			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
+			{{ graphic.dataRight }}, 
+			'{{ graphic.description }}')) });">
+
 			<button>{{ graphic.button }}</button></a></p> 
 		{% endfor %}
-
+		
+		
 		<t1>Informations sur les donneurs :</t1>
 		
 		<!-- Graphics  Pies -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->
 		{% for graphic in PiesGraphs %}
-			<p><a onClick="$(function () { $('#containerGraphic').highcharts(SetOptionPie(
+			<p><a onClick="$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
 			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
@@ -284,18 +337,31 @@ function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
 
+
+		<t1>Recents consumptions of givers:</t1>
+		<!-- Graphics  Pies Recently Eaten -->
+		<!-- SetOptionPie(titre, categorie, donnees) -->
+		{% for graphic in PiesGraphsRE %}
+			<p><a onClick="$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
+			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
+			<button>{{ graphic.button }}</button></a></p>  
+		{% endfor %}
+
 	</div>
 
 
+	<div id="containerGraphicLeft"></div>
+	<div id="containerGraphicRight"></div>
+	
 	<div id="containerGraphic">
 	<p>
 	<img alt="" src="{% static 'images/Smellgame_exemples.png' %}" style="vertical-align:middle;text-align:center;width: 90%;height: 80%;" />
 	</p>
 	</div>
 	
-	
+
 	{% include "footer.html" %}
-	
+
 
 </body>
 </html>

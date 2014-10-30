@@ -30,6 +30,8 @@ from SmellGuess.models  import *
 from SmellGalaxy.models import *
 from SmellGift.models   import *
 
+cat1 = [['Intensités (0~100)'],['Appréciations (-50~50)']]
+cat2 = ['Broccoli', 'Gabbage', 'Cauliflower', 'Asparagus', 'Fish', 'Red meat', 'Fast food', 'Spicy food', 'Alcohol', 'Antibiotics']
 ################################################################
 #########################    VIEWS    ##########################
 ################################################################
@@ -38,32 +40,53 @@ from SmellGift.models   import *
 # Nathan view
 def graphesView(request):
     paramToGenerateTemplate = dict()
-    paramToGenerateTemplate['HistoGraphs']  = createListHisto()
-    paramToGenerateTemplate['PiesGraphs']   = createListPie()
-    paramToGenerateTemplate['LinesGraphs']  = createListLines()
+    paramToGenerateTemplate['HistoGraphs']    = createListHisto()
+    paramToGenerateTemplate['HistoGraphsRE']  = createListHistoRE()
+    paramToGenerateTemplate['PiesGraphs']     = createListPie()
+    paramToGenerateTemplate['PiesGraphsRE']   = createListPieRecentlyEaten()
+    paramToGenerateTemplate['LinesGraphs']    = createListLines()
 
     return render(request, 'SmellGalaxyTemplate/Graphes.html', paramToGenerateTemplate) 
     
+   
 def createListHisto():
 	#SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) 
 	listHisto = []
 	
-	cat1 = ['Intensités','Appréciations']
+	cat1 = ['Intensités (0~100)','Appréciations (-50~50)']
 	cat2 = ['Broccoli', 'Gabbage', 'Cauliflower', 'Asparagus', 'Fish', 'Red_meat', 'Fast_food', 'Spicy_food', 'Alcohol', 'Antibiotics']
 	# Intensity & Feeling by sex
-	listHisto.append({'title': 'Intensités & apréciations selon le sexe',  'button': 'Données selon le sexe',  'abscisseName': 'Sexe du donneur',  'orderedName': 'Intensités & apréciations',  'data': getDataHistoBySex(),  'dataError': '', 'categories' : cat1})
+	listHisto.append({
+		'button': 'Données selon le sexe', 'abscisseName': 'Sexe du donneur', 'description': '',
+		'titleLeft' : 'Intensités selon le sexe',     'orderedNameLeft' : 'Intensités (0~100)', 'categoriesLeft' : cat1[0],     'dataLeft' : getDataHistoBySex('intensity'),  'dataErrorLeft': '',
+		'titleRight': 'Appréciations selon le sexe',  'orderedNameRight': 'Appréciations (-50~50)', 'categoriesRight' : cat1[1], 'dataRight': getDataHistoBySex('feeling'),  'dataErrorRight': ''})
 	# Intensity & Feeling by age
-	listHisto.append({'title': 'Intensités & apréciations selon l âge',  'button': 'Données selon l\'âge',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Tranche d âge',  'data': getDataHistoBySliceOfAge(),  'dataError': '', 'categories' : cat1 })
+	listHisto.append({
+		'button': 'Données selon l\'âge', 'abscisseNameLeft': 'Tranche d âge', 'description': '',
+		'titleLeft': 'Intensités selon l âge',    'orderedNameLeft': 'Intensités (0~100)', 'categoriesLeft' : cat1[0], 'dataLeft': getDataHistoBySliceOfAge('intensity'),  'dataErrorLeft': '',
+		'titleRight': 'Appréciations selon l âge',  'orderedNameRight': 'Apréciations', 'categoriesRight' : cat1[1], 'data': getDataHistoBySliceOfAge('feeling'),  'dataError': ''})
 	# Intensity & Feeling by use of deodorant
-	listHisto.append({'title': 'Intensités & apréciations selon l utilisation de déodorant',  'button': 'Données déodorant',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Utilisation de déodorant',  'data': getDataHistoByDeo(),  'dataError': '', 'categories' : cat1})
+	listHisto.append({
+		'button': 'Données déodorant',  'abscisseName': 'Utilisation de déodorant',  'description': '',
+		'titleLeft': 'Intensités selon l utilisation de déodorant',    'orderedNameLeft': 'Intensités (0~100)',  'categoriesLeft' : cat1[0], 'dataLeft': getDataHistoByDeo('intensity'),  'dataErrorLeft': '', 
+		'titleRight': 'Appréciations selon l utilisation de déodorant',  'orderedNameRight': 'Appréciations (-50~50)', 'categoriesRight' : cat1[1], 'dataRight': getDataHistoByDeo('feeling'),  'dataErrorRight': ''})
 	# Intensity & Feeling by Smoking
-	listHisto.append({'title': 'Intensités & apréciations selon la comsommation de cigarettes',  'button': 'Données fumeur',  'orderedName': 'Intensités & apréciations',  'abscisseName': 'Comsommation de cigarettes',  'data': getDataHistoBySmoker(),  'dataError': '', 'categories' : cat1 })
-	
+	listHisto.append({
+		'button': 'Données fumeur', 'abscisseNameLeft': 'Comsommation de cigarettes', 'description': '',
+		'titleLeft': 'Intensités selon la comsommation de cigarettes',   'orderedNameLeft': 'Intensités (0~100)', 'categoriesLeft' : cat1[0],   'dataLeft': getDataHistoBySmoker('intensity'),  'dataErrorLeft': '', 
+		'titleRight': 'Appréciations selon la comsommation de cigarettes', 'orderedNameRight': 'Appréciations (-50~50)', 'categoriesRight' : cat1[1], 'dataRight': getDataHistoBySmoker('feeling'),  'dataErrorRight': ''})
+
+	return listHisto
+
+def createListHistoRE():
+	#SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) 
+	listHisto = []
 	# Intensity by Recently eaten
-	listHisto.append({'title': 'Intensités selon la comsommation d aliments',  'button': 'Intensité selon l\'alimentation',  'orderedName': 'Intensités',  'abscisseName': 'Comsommation de cigarettes',  'data': getDataHistoByRegime('intensity'),  'dataError': '', 'categories' : cat2 })
-	# Feeling by Recently eaten
-	listHisto.append({'title': 'Apréciations selon la comsommation d aliments',  'button': 'Feeling selon l\'alimentation',  'orderedName': 'Appréciations',  'abscisseName': 'Comsommation de cigarettes',  'data': getDataHistoByRegime('feeling'),  'dataError': '', 'categories' : cat2 })
-	
+	listHisto.append({
+		'button': 'Données selon l\'alimentation', 'abscisseNameLeft': 'Comsommation de cigarettes', 
+		'titleLeft': 'Intensités selon la consommation d aliments',   'orderedNameLeft': 'Intensités (0~100)',  'categoriesLeft' : cat2,  'dataLeft': getDataHistoByRegime('intensity'),  'dataErrorLeft': '', 
+		'titleRight': 'Appréciations selon la consommation d aliments',    'orderedNameRight': 'Appréciations (-50~50)',   'categoriesRight' : cat2,  'dataRight': getDataHistoByRegime('feeling'),  'dataErrorRight': ''})
+
 	return listHisto
 
 
@@ -77,8 +100,14 @@ def createListPie():
 	listPie.append({'title': 'Répartition par consommation de cigarettes', 'button': 'Consommation de cigarettes', 'description': '', 'data': pieByCritereSmoker()})
 	return listPie
 
+def createListPieRecentlyEaten():
+	listPie = []
+	for i in range(1,11,1):
+		listPie.append({'title': 'Repartition by recent '+cat2[i-1]+' consumption', 'button': cat2[i-1]+' recenty eaten', 'description': '', 'data': pieByCritereRecentlyEaten(i)})
+	return listPie
+
 def createListLines():
 	listLines = []
 	# Pleasanteness in function of intensity
-	listLines.append({'title': "Apréciation en fonction de l intensité", 'button': 'Apréciation par l intensité', 'abscisseName': 'Intensité', 'orderedName': 'Apréciation', 'nameLine1': 'Données brutes', 'dataLine1': "[]", 'nameLine2': 'Données centrées', 'dataLine2': intensityByFeelingCenter(), 'subtitle': ''})
+	listLines.append({'title': "Apréciation en fonction de l intensité", 'button': 'Apréciation par l intensité', 'abscisseName': 'Intensités (0~100)', 'orderedName': 'Apréciation', 'nameLine1': 'Données brutes', 'dataLine1': "[]", 'nameLine2': 'Données centrées', 'dataLine2': intensityByFeelingCenter(), 'subtitle': ''})
 	return listLines
