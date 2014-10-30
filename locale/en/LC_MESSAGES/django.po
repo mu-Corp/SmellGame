@@ -269,7 +269,7 @@ msgstr "Your sample was saved !"
 
 #: templates/SmellGiftTemplate/thanks.html:33
 msgid "Il possède le numéro {{ nameSample }}."
-msgstr "The sample is number {{ nameSample }}."
+msgstr "The sample number is {{ nameSample }}."
 
 #: templates/SmellGiftTemplate/thanks.html:34
 msgid "Merci de votre participation."
