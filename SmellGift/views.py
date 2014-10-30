@@ -19,23 +19,13 @@ from SmellGuess.models import Sample
 def giftView(request):
 	form = SampleGiverForm()
 	form.fields["foodRecentlyEaten"].queryset = Food.objects.all()
-	
 	return render(request, 'SmellGiftTemplate/gift.html', {'form': form})
 
 
 
-
-def getAllSampleName():
-	result = list()
-	for sample in Sample.objects.all():
-		result.append(sample.name)
-	return result
-		
-
 def thanksView(request) :
 	
 	paramToGenerateTemplate = dict()
-	paramToGenerateTemplate['nameSample'] = 'demo'
 	
 	if 'demoMode' not in request.session.keys():
 		request.session['demoMode'] = True
@@ -47,30 +37,9 @@ def thanksView(request) :
 				giver = formGiver.save()
 				sample = Sample(sampleGiver=giver)
 				sample.save()
-				
-				#Generate a correct sample name:
-				l_sampleName = getAllSampleName()
-				sessionName = 'B'
-				i = 1
-				sampleName = sessionName + str(i)
-				while sampleName in l_sampleName:
-					i += 1
-					sampleName = sessionName + str(i)
-				
-				sample.name = sampleName
+				sample.name = request.POST['nameSample']
 				sample.save()
-				
-				paramToGenerateTemplate['nameSample'] = sampleName
-				
 	
 	paramToGenerateTemplate['demoMode'] = request.session['demoMode']
 	
 	return render(request, 'SmellGiftTemplate/thanks.html', paramToGenerateTemplate)
-
-
-
-
-
-
-
-

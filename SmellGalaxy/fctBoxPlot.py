@@ -18,16 +18,16 @@ from SmellGift.models    import *
 
 def boxplotIntensity(givers):
 	listVal = []
-	boxPlot   = [0.0, 0.0]
+	boxPlot   = "[0.0, 0.0]"
 	for eachGiver in givers : 
 		GuessByIdSample = Guess.objects.filter(sample_id=eachGiver.id)
 		if len(GuessByIdSample) != 0 :
 			for elt in GuessByIdSample :
 				if elt.intensity > 10 :
 					listVal.append(elt.intensity)
-	if len(listVal) > 0 :
+	if len(listVal) > 4 :
 	#doingBOxPlot
-		#print listVal, sorted(listVal)
+		#print listVal, 'sorted(listVal)', str(len(listVal)/4)
 		listVal   = sorted(listVal)
 		quart     = len(listVal)/4
 		quartile1 = listVal[quart]
@@ -37,14 +37,14 @@ def boxplotIntensity(givers):
 	
 def boxplotFeeling(givers):
 	listVal = []
-	boxPlot   = [0.0, 0.0]
+	boxPlot   = "[0.0, 0.0]"
 	for eachGiver in givers : 
 		GuessByIdSample = Guess.objects.filter(sample_id=eachGiver.id)
 		if len(GuessByIdSample) != 0 :
 			for elt in GuessByIdSample :
 				if elt.intensity > 10 :
 					listVal.append((elt.feeling - 50)*-1.0)
-	if len(listVal) > 0 :
+	if len(listVal) > 4 :
 	#doingBOxPlot
 		#print listVal
 		listVal   = sorted(listVal)

@@ -83,18 +83,7 @@ function SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soust
 	var soustitre = soustitre || '';
 	var option = {
 		
-			/*
-			
-		xAxis: { type: 'category', labels: { rotation: -45, style: { fontSize: '13px', fontFamily: 'Verdana, sans-serif' } } }, 
-		yAxis: { min: 0, title: { text: y } }, 
-		legend: { enabled: false }, 
-		tooltip: { pointFormat: 	indicationCurseur }, 
-		series: [{ name: 'category', data: donnees, 
-		dataLabels: { enabled: true, rotation: -90, color: '#FFFFFF', 
-		align: 'right', x: 4, y: 10, style: { fontSize: '13px', 
-		fontFamily: 'Verdana, sans-serif', textShadow: '0 0 3px black' } 
-		} }, { name: 'Rainfall error', type: 'errorbar', data: erreur }] */
-		
+	
 		chart:   { type: 'column'	},
         title:   { text: titre },
         subtitle: { text: soustitre },
@@ -165,58 +154,6 @@ function SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, sousti
 	return option;
 }
 
-function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2, nom3, donnees3){
-	// This function Create and return the option object
-	// for a column graphe with negative value.
-	// Take 8 non-optionnal argument:
-	// => titre: string, self explain...
-	// => categorie: array of strings, the names of the categories displayed
-	// => nom1 : string, name of first data series
-	// => donnees1: array of numbers, contening data
-	// => nom2 : string, name of second data series
-	// => donnees2: array of numbers, contening data
-	// => nom3 : string, name of third data series
-	// => donnees3: array of numbers, contening data
-	// N.B: if you want to modify the number of data series you
-	// have to edit the attribute series in the following lines.
-	// Adding a series:
-	// {
-	// name: nomx,
-	// data: donneex
-	// }
-	//
-	// Don't Forget to Edit the argument's function too! by adding nomx and donneex
-	// in the list of arguments take by the function.
-	//
-	// function SetOption(titre, categorie, nom1, donnee1, nom2, donnee2, nom3, donnees3, nomx, donneex)
-	//
-	var option = {
-		chart: {
-		type: 'column'
-		},
-		title: {
-		text: titre
-		},
-		xAxis: {
-		categories: categorie
-		},
-		credits: {
-		enabled: false
-		},
-		series: [{
-		name: nom1,
-		data: donnee1
-		}, {
-		name: nom2,
-		data: donnee2
-		}, {
-		name: nom3,
-		data: donnees3
-		}]
-	};
-	return option;
-}
-
 // test flo on hide container
 function showHide(elt) {
 	document.getElementById(elt).innerHTML = "";
@@ -280,7 +217,8 @@ function showHide(elt) {
 		<!-- SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) -->
 		{% for graphic in HistoGraphs %}
 			<p>
-			<a onClick="showHide('containerGraphic');$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
+			<a onClick="showHide('containerGraphic');
+			$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
 			'{{ graphic.titleLeft}}', 
 			'{{ graphic.orderedNameLeft }}', 
 			'{{ graphic.abscisseName }}', 
@@ -288,7 +226,8 @@ function showHide(elt) {
 				{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}
 				{% else %} '{{ graphic.categoriesLeft}}' {% endifequal %}],
 			{{ graphic.dataLeft }}, 
-			'{{ graphic.Description }}')) });$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
+			'{{ graphic.Description }}')) });
+			$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
 			'{{ graphic.titleRight }}', 
 			'{{ graphic.orderedNameRight }}', 
 			'{{ graphic.abscisseName }}', 
@@ -302,13 +241,15 @@ function showHide(elt) {
 		{% endfor %}		
 		{% for graphic in HistoGraphsRE %}
 			<p>
-			<a onClick="showHide('containerGraphic');$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
+			<a onClick="showHide('containerGraphic');
+			$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
 			'{{ graphic.titleLeft}}', 
 			'{{ graphic.orderedNameLeft }}', 
 			'{{ graphic.abscisseName }}', 
 			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
 			{{ graphic.dataLeft }}, 
-			'{{ graphic.Description }}')) });$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
+			'{{ graphic.Description }}')) });
+			$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
 			'{{ graphic.titleRight }}', 
 			'{{ graphic.orderedNameRight }}', 
 			'{{ graphic.abscisseName }}', 
@@ -325,7 +266,8 @@ function showHide(elt) {
 		<!-- Graphics  Pies -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->
 		{% for graphic in PiesGraphs %}
-			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
+			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');
+				$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
 			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
@@ -333,7 +275,8 @@ function showHide(elt) {
 		<!-- Graphics  Lines -->
 		<!-- SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, soustitre) -->
 		{% for graphic in LinesGraphs %}
-			<p><a onClick="showHide('containerGraphicLeft');showHide('containerGraphicRight');$(function () { $('#containerGraphic').highcharts(SetOptionLine(
+			<p><a onClick="showHide('containerGraphicLeft');showHide('containerGraphicRight');
+				$(function () { $('#containerGraphic').highcharts(SetOptionLine(
 			'{{ graphic.title }}', '{{ graphic.abscisseName }}', '{{ graphic.orderedName }}', '{{ graphic.nameLine1 }}', {{ graphic.dataLine1 }}, '{{ graphic.nameLine2 }}', {{ graphic.dataLine2 }}, '{{ graphic.subtitle }}')) });">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
@@ -343,7 +286,8 @@ function showHide(elt) {
 		<!-- Graphics  Pies Recently Eaten -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->
 		{% for graphic in PiesGraphsRE %}
-			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
+			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');
+				$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
 			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}

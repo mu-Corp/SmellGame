@@ -31,14 +31,10 @@
 			<div style="width:600px; margin: auto;">
 				<form action="{% url "SmellGift.views.thanksView" %}" method="post">
 					{% csrf_token %}
-					
-					<!-- OLD: to delete certainly...
 					<div>
 						<div class="titleSectionFields" style="margin-top: 30px; margin-bottom: 20px;">NUMÉRO DE L'ÉCHANTILLON</div>
 						<input type="text" value="" name="nameSample" style="width:90px; height:50px; text-align:center; font-size:30px; font-weight:bold;"/>
 					</div>
-					-->
-					 
 					<table cellpadding="5" id="formGift" align="left" style="text-align: left; margin-bottom:30px;" >
 						{{ form.as_table }} 
 					</table>
