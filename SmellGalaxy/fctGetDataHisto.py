@@ -26,19 +26,19 @@ def getDataHistoByDeo(cas):
 	if cas == 'intensity':
 	#
 		result  = "[{"
-		result += "name: 'Utilisateurs de déodorant'," 
+		result += "name: "+_(u'Utilisateurs de déodorant')+"," 
 		result += "data: ["+str(doMoyIntensityForAllGivers(giverWithDeo))+"]"
 		result += "},{"
-		result += "name: 'Non-utilisateurs de déodorant', "
+		result += "name: "+_(u'Non-utilisateurs de déodorant')+", "
 		result += "data: ["+ str(doMoyIntensityForAllGivers(giverWithoutDeo))+"]}]"	
 		#result += ",\n["+boxplotIntensity(giverWithDeo) +","+ boxplotIntensity(giverWithoutDeo) + "]"	
 	if cas == 'feeling':
 	#
 		result  = "[{"
-		result += "name: 'Utilisateurs de déodorant'," 
+		result += "name: "+_(u'Utilisateurs de déodorant')+"," 
 		result += "data: ["+str(doMoyFeelingForAllGivers(giverWithDeo))+"]"
 		result += "},{"
-		result += "name: 'Non-utilisateurs de déodorant', "
+		result += "name: "+_(u'Non-utilisateurs de déodorant')+", "
 		result += "data: ["+str(doMoyFeelingForAllGivers(giverWithoutDeo))+"]}]"	
 		#result += ",\n["+ boxplotFeeling(giverWithDeo) +","+ boxplotFeeling(giverWithoutDeo) + "]"
 	return result
@@ -59,19 +59,19 @@ def getDataHistoBySex(cas):
 	if cas == 'intensity':
 	#
 		result  = "[{"
-		result += "name: 'Women'," 
+		result += "name: "+_(u'Femme')+"," 
 		result += "data: ["+str(doMoyIntensityForAllGivers(giverWoman))+"]"
 		result += "},{"
-		result += "name: 'Men', "
+		result += "name: "+_(u'Homme')+", "
 		result += "data: ["+ str(doMoyIntensityForAllGivers(giverMan))+"]}]"
 		#result += ",\n["+boxplotIntensity(giverMan) +","+ boxplotIntensity(giverWoman) + "]"
 	if cas == 'feeling':
 	#
 		result  = "[{"
-		result += "name: 'Women'," 
+		result += "name: "+_(u'Femme')+"," 
 		result += "data: ["+str(doMoyFeelingForAllGivers(giverWoman))+"]"
 		result += "},{"
-		result += "name: 'Men', "
+		result += "name: "+_(u'Homme')+", "
 		result += "data: ["+ str(doMoyFeelingForAllGivers(giverMan))+"]}]"
 		#result += ",\n["+boxplotFeeling(giverMan) +","+ boxplotFeeling(giverWoman) + "]"
 	return result
@@ -92,19 +92,19 @@ def getDataHistoBySmoker(cas):
 	if cas == 'intensity':
 	#
 		result  = "[{"
-		result += "name: 'Non fumeurs'," 
+		result += "name: "+_(u'Non fumeurs')+"," 
 		result += "data: ["+str(doMoyIntensityForAllGivers(giverNonSmoker))+"]"
 		result += "},{"
-		result += "name: 'Fumeurs', "
+		result += "name: "+_(u'Fumeurs')+", "
 		result += "data: ["+ str(doMoyIntensityForAllGivers(giverSmoker))+"]}]"
 		#result += ",\n["+boxplotIntensity(giverNonSmoker) +","+ boxplotIntensity(giverSmoker) + "]"	
 	if cas == 'feeling':
 	#
 		result  = "[{"
-		result += "name: 'Non fumeurs'," 
+		result += "name: "+_(u'Non fumeurs')+"," 
 		result += "data: ["+str(doMoyFeelingForAllGivers(giverNonSmoker))+"]"
 		result += "},{"
-		result += "name: 'Fumeurs', "
+		result += "name: "+_(u'Fumeurs')+", "
 		result += "data: ["+ str(doMoyFeelingForAllGivers(giverSmoker))+"]}]"
 		#result += ",\n["+ boxplotFeeling(giverNonSmoker) +","+ boxplotFeeling(giverSmoker) + "]"
 	return result
@@ -138,49 +138,49 @@ def getDataHistoBySliceOfAge(cas): #todo
 	dict_SliceOfAge["giver31_40"]  = SampleGiver.objects.extra(where=[getFromTo(crit, 31, 40)])
 	dict_SliceOfAge["giver41_60"]  = SampleGiver.objects.extra(where=[getFromTo(crit, 41, 60)])	
 	dict_SliceOfAge["giver61_end"] = SampleGiver.objects.extra(where=[getFromTo(crit, 61, 125)])
-	
-	
+	for e in dict_SliceOfAge["giver41_60"] :
+		print e.id
 	if cas == 'intensity':
 		# todo fix
 		result  = "[{"
-		result += "name: 'De 0 à 10 ans ("+str(len(dict_SliceOfAge["giver0_10"]))+")'," 
+		result += "name: "+_(u'De 0 à 10 ans')+" ("+str(len(dict_SliceOfAge["giver0_10"]))+")'," 
 		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver0_10"]))+"]"
 		result += "},{"
-		result += "name: 'De 11 à 20 ans ("+str(len(dict_SliceOfAge["giver11_20"]))+")',"
+		result += "name: "+_(u'De 11 à 20 ans')+" ("+str(len(dict_SliceOfAge["giver11_20"]))+")',"
 		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver11_20"]))+"]"
 		result += "},{"
-		result += "name: 'De 21 à 30 ans ("+str(len(dict_SliceOfAge["giver21_30"]))+")'," 
+		result += "name: "+_(u'De 21 à 30 ans')+" ("+str(len(dict_SliceOfAge["giver21_30"]))+")'," 
 		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver21_30"]))+"]"
 		result += "},{"
-		result += "name: 'De 31 à 40 ans ("+str(len(dict_SliceOfAge["giver31_40"]))+")'," 
+		result += "name: "+_(u'De 31 à 40 ans')+" ("+str(len(dict_SliceOfAge["giver31_40"]))+")'," 
 		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver31_40"]))+"]"
 		result += "},{"
-		result += "name: 'De 41 à 60 ans ("+str(len(dict_SliceOfAge["giver41_60"]))+")', "
+		result += "name: "+_(u'De 41 à 60 ans')+" ("+str(len(dict_SliceOfAge["giver41_60"]))+")', "
 		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver41_60"]))+"]"
 		result += "},{"
-		result += "name: 'De 61 à 100 ans ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
+		result += "name: "+_(u'De 61 à 100 ans')+" ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
 		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver61_end"]))+"]}]"
 		#result += ",\n["+ boxplotIntensity(dict_SliceOfAge["giver0_10"]) +","+ boxplotIntensity(dict_SliceOfAge["giver11_20"])+","+ boxplotIntensity(dict_SliceOfAge["giver21_30"])+","+ boxplotIntensity(dict_SliceOfAge["giver31_40"])+","+ boxplotIntensity(dict_SliceOfAge["giver41_60"])+","+ boxplotIntensity(dict_SliceOfAge["giver61_end"]) + "]"
 
 	if cas == 'feeling':
 		# todo fix
 		result  = "[{"
-		result += "name: 'De 0 à 10 ans ("+str(len(dict_SliceOfAge["giver0_10"]))+")'," 
+		result += "name: "+_(u'De 0 à 10 ans')+" ("+str(len(dict_SliceOfAge["giver0_10"]))+")'," 
 		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver0_10"]))+"]"
 		result += "},{"
-		result += "name: 'De 11 à 20 ans ("+str(len(dict_SliceOfAge["giver11_20"]))+")',"
+		result += "name: "+_(u'De 11 à 20 ans')+" ("+str(len(dict_SliceOfAge["giver11_20"]))+")',"
 		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver11_20"]))+"]"
 		result += "},{"
-		result += "name: 'De 21 à 30 ans ("+str(len(dict_SliceOfAge["giver21_30"]))+")'," 
+		result += "name: "+_(u'De 21 à 30 ans')+" ("+str(len(dict_SliceOfAge["giver21_30"]))+")'," 
 		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver21_30"]))+"]"
 		result += "},{"
-		result += "name: 'De 31 à 40 ans ("+str(len(dict_SliceOfAge["giver31_40"]))+")'," 
+		result += "name: "+_(u'De 31 à 40 ans')+" ("+str(len(dict_SliceOfAge["giver31_40"]))+")'," 
 		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver31_40"]))+"]"
 		result += "},{"
-		result += "name: 'De 41 à 60 ans ("+str(len(dict_SliceOfAge["giver41_60"]))+")', "
+		result += "name: "+_(u'De 41 à 60 ans')+" ("+str(len(dict_SliceOfAge["giver41_60"]))+")', "
 		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver41_60"]))+"]"
 		result += "},{"
-		result += "name: 'De 61 à 100 ans ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
+		result += "name: "+_(u'De 61 à 100 ans')+" ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
 		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver61_end"]))+"]}]"
 		#result += ",\n["+ boxplotFeeling(dict_SliceOfAge["giver0_10"]) +","+ boxplotFeeling(dict_SliceOfAge["giver11_20"])+","+ boxplotFeeling(dict_SliceOfAge["giver21_30"])+","+ boxplotFeeling(dict_SliceOfAge["giver31_40"])+","+ boxplotFeeling(dict_SliceOfAge["giver41_60"])+","+ boxplotFeeling(dict_SliceOfAge["giver61_end"]) + "]"
 	return result
@@ -227,11 +227,11 @@ def getDataHistoByRegime(cas):
 	
 	# cas = 1, intensité, sinon, cas =2 , feeling
 	if cas == 'intensity':
-		result =   "[{name: 'Intensités mangeur', data:"        +str(intensitybyList(listeComsommateur))    +'},'
-		result +=   "{name: 'Intensités non-mangeur', data:"    +str(intensitybyList(listeNonComsommateur)) +'}]'
+		result =   "[{name: "+_(u'Intensités mangeur')+", data:"        +str(intensitybyList(listeComsommateur))    +'},'
+		result +=   "{name: "+_(u'Intensités non-mangeur')+", data:"    +str(intensitybyList(listeNonComsommateur)) +'}]'
 	if cas == 'feeling':
-		result =    "[{name: 'Appréciations mangeur', data:"     +str(feelingbyList(listeComsommateur))     +'},'
-		result +=   "{name: 'Appréciations non-mangeur', data:" +str(feelingbyList(listeNonComsommateur))   +'}]'
+		result =    "[{name: "+_(u'Appréciations mangeur')+", data:"     +str(feelingbyList(listeComsommateur))     +'},'
+		result +=   "{name: "+_(u'Appréciations non-mangeur')+", data:" +str(feelingbyList(listeNonComsommateur))   +'}]'
 	
 	#categories = ['Broccoli', 'Gabbage', 'Cauliflower', 'Asparagus', 'Fish', 'Red_meat', 'Fast_food', 'Spicy_food', 'Alcohol', 'Antibiotics']
 	
