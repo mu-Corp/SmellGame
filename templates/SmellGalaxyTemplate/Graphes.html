@@ -84,7 +84,7 @@ function SetOptionHisto(titre, y, indicationCurseur, cat, donnees, minY, maxY, e
 	var option = {
 		
 	
-		chart:   { type: 'column'	},
+		chart:   { type: 'column', zoomType: 'xy'},
         title:   { text: titre },
         subtitle: { text: soustitre },
         xAxis:   { categories: cat },
