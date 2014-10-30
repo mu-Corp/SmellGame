@@ -222,14 +222,22 @@ function showHide(elt) {
 			'{{ graphic.titleLeft}}', 
 			'{{ graphic.orderedNameLeft }}', 
 			'{{ graphic.abscisseName }}', 
-			['{{ graphic.abscisseName }}'],
+			[{% ifequal graphic.categoriesLeft|length 1 %}
+				'{{ graphic.abscisseName }}'
+			{% else %}
+				{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}
+			{% endifequal %}],
 			{{ graphic.dataLeft }},0,100, 
 			'{{ graphic.Description }}')) });
 			$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
 			'{{ graphic.titleRight }}', 
 			'{{ graphic.orderedNameRight }}', 
 			'{{ graphic.abscisseName }}', 
-			['{{ graphic.abscisseName }}'],
+			[{% ifequal graphic.categoriesRight|length 1 %}
+				'{{ graphic.abscisseName }}'
+			{% else %}
+				{% for categ in graphic.categoriesRight %}'{{ categ }}', {% endfor %}
+			{% endifequal %}],
 			{{ graphic.dataRight }},-50,50, 
 			'{{ graphic.description }}')) });">
 
@@ -242,14 +250,14 @@ function showHide(elt) {
 			'{{ graphic.titleLeft}}', 
 			'{{ graphic.orderedNameLeft }}', 
 			'{{ graphic.abscisseName }}', 
-			['{{ graphic.abscisseName }}'],
+			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
 			{{ graphic.dataLeft }},0,100, 
 			'{{ graphic.Description }}')) });
 			$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
 			'{{ graphic.titleRight }}', 
 			'{{ graphic.orderedNameRight }}', 
 			'{{ graphic.abscisseName }}', 
-			['{{ graphic.abscisseName }}'],
+			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
 			{{ graphic.dataRight }},-50,50,
 			'{{ graphic.description }}')) });">
 

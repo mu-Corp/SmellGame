@@ -89,7 +89,7 @@ def createListHisto():
 		'titleRight': _(u'Appréciations selon l utilisation de déodorant'),  'orderedNameRight': _(u'Appréciations (-50~50)'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoByDeo(_(u'feeling')),  'dataErrorRight': ''})
 	# Intensity & Feeling by Smoking
 	listHisto.append({
-		'button': _(u'Données fumeur'), 'abscisseNameLeft': _(u'Comsommation de cigarettes'), 'description': '',
+		'button': _(u'Données fumeur'), 'abscisseName': _(u'Comsommation de cigarettes'), 'description': '',
 		'titleLeft': _(u'Intensités selon la comsommation de cigarettes'),   'orderedNameLeft': _(u'Intensités (0~100)'), 'categoriesLeft' : cat1[0],   'dataLeft': getDataHistoBySmoker(_(u'intensity')),  'dataErrorLeft': '', 
 		'titleRight': _(u'Appréciations selon la comsommation de cigarettes'), 'orderedNameRight': _(u'Appréciations (-50~50)'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoBySmoker(_(u'feeling')),  'dataErrorRight': ''})
 
