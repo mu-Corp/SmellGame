@@ -20,7 +20,8 @@ def doMoyFeelingForAllGivers (givers) :
 	moyenne = 0; somme = 0
 	i=0
 	for eachGiver in givers : 
-		GuessByIdSample = Guess.objects.filter(sample_id=eachGiver.id)
+		sample = Sample.objects.filter(sampleGiver_id=eachGiver.id)
+		GuessByIdSample = Guess.objects.filter(sample_id=sample[0].id)
 		if len(GuessByIdSample) != 0 :
 			for elt in GuessByIdSample :
 				if elt.intensity > 10 :
@@ -35,7 +36,8 @@ def doMoyIntensityForAllGivers (givers) :
 	moyenne = 0; somme = 0
 	i=0
 	for eachGiver in givers : 
-		GuessByIdSample = Guess.objects.filter(sample_id=eachGiver.id)
+		sample = Sample.objects.filter(sampleGiver_id=eachGiver.id)
+		GuessByIdSample = Guess.objects.filter(sample_id=sample[0].id)
 		if len(GuessByIdSample) != 0 :
 			for elt in GuessByIdSample :
 				if elt.intensity > 10 :

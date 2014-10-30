@@ -136,7 +136,8 @@ def getDataHistoBySliceOfAge(cas): #todo
 	dict_SliceOfAge["giver31_40"]  = SampleGiver.objects.extra(where=[getFromTo(crit, 31, 40)])
 	dict_SliceOfAge["giver41_60"]  = SampleGiver.objects.extra(where=[getFromTo(crit, 41, 60)])	
 	dict_SliceOfAge["giver61_end"] = SampleGiver.objects.extra(where=[getFromTo(crit, 61, 125)])
-	
+	for e in dict_SliceOfAge["giver41_60"] :
+		print e.id
 	if cas == 'intensity':
 		# todo fix
 		result  = "[{"
