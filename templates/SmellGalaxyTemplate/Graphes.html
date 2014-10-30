@@ -219,7 +219,8 @@ function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2
 
 // test flo on hide container
 function showHide(elt) {
-	document.getElementById(elt).style.visibility='hidden';
+	document.getElementById(elt).innerHTML = "";
+	//document.getElementById(elt).style.visibility='hidden';
 
 }
 
@@ -283,13 +284,17 @@ function showHide(elt) {
 			'{{ graphic.titleLeft}}', 
 			'{{ graphic.orderedNameLeft }}', 
 			'{{ graphic.abscisseName }}', 
-			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
+			[{% ifequal graphic.categoriesLeft 'Intensités (0~100)' %}
+				{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}
+				{% else %} '{{ graphic.categoriesLeft}}' {% endifequal %}],
 			{{ graphic.dataLeft }}, 
 			'{{ graphic.Description }}')) });$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
 			'{{ graphic.titleRight }}', 
 			'{{ graphic.orderedNameRight }}', 
 			'{{ graphic.abscisseName }}', 
-			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
+			[{% ifequal graphic.categoriesLeft 'Appréciations (-50~50)' %}
+				{% for categ in graphic.categoriesRight %}'{{ categ }}', {% endfor %}
+				{% else %} '{{ graphic.categoriesRight}}' {% endifequal %}],
 			{{ graphic.dataRight }}, 
 			'{{ graphic.description }}')) });">
 
@@ -328,7 +333,7 @@ function showHide(elt) {
 		<!-- Graphics  Lines -->
 		<!-- SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, soustitre) -->
 		{% for graphic in LinesGraphs %}
-			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');$(function () { $('#containerGraphic').highcharts(SetOptionLine(
+			<p><a onClick="showHide('containerGraphicLeft');showHide('containerGraphicRight');$(function () { $('#containerGraphic').highcharts(SetOptionLine(
 			'{{ graphic.title }}', '{{ graphic.abscisseName }}', '{{ graphic.orderedName }}', '{{ graphic.nameLine1 }}', {{ graphic.dataLine1 }}, '{{ graphic.nameLine2 }}', {{ graphic.dataLine2 }}, '{{ graphic.subtitle }}')) });">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
@@ -338,7 +343,7 @@ function showHide(elt) {
 		<!-- Graphics  Pies Recently Eaten -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->
 		{% for graphic in PiesGraphsRE %}
-			<p><a onClick="showHide('containerGraphicLeft');showHide('containerGraphicRight');$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
+			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
 			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
