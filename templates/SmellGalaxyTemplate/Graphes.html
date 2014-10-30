@@ -218,13 +218,9 @@ function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2
 }
 
 // test flo on hide container
-function showHide(shID) {
-	if (document.getElementById(shID)) {
-		if (document.getElementById(shID+'-show').style.display != 'none') {
-			document.getElementById(shID+'-show').style.display = 'none';
-			document.getElementById(shID).style.display = 'block';
-		}
-	}
+function showHide(elt) {
+	document.getElementById(elt).style.visibility='hidden';
+
 }
 
 </script>
@@ -283,7 +279,7 @@ function showHide(shID) {
 		<!-- SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) -->
 		{% for graphic in HistoGraphs %}
 			<p>
-			<a onClick="showHide('#containerGraphicLeft');showHide('#containerGraphicRight');showHide('#containerGraphic');$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
+			<a onClick="showHide('containerGraphic');$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
 			'{{ graphic.titleLeft}}', 
 			'{{ graphic.orderedNameLeft }}', 
 			'{{ graphic.abscisseName }}', 
@@ -301,7 +297,7 @@ function showHide(shID) {
 		{% endfor %}		
 		{% for graphic in HistoGraphsRE %}
 			<p>
-			<a onClick="showHide('#containerGraphicLeft');showHide('#containerGraphicRight');showHide('#containerGraphic');$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
+			<a onClick="showHide('containerGraphic');$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
 			'{{ graphic.titleLeft}}', 
 			'{{ graphic.orderedNameLeft }}', 
 			'{{ graphic.abscisseName }}', 
@@ -324,7 +320,7 @@ function showHide(shID) {
 		<!-- Graphics  Pies -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->
 		{% for graphic in PiesGraphs %}
-			<p><a onClick="$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
+			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
 			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
@@ -332,7 +328,7 @@ function showHide(shID) {
 		<!-- Graphics  Lines -->
 		<!-- SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, soustitre) -->
 		{% for graphic in LinesGraphs %}
-			<p><a onClick="$(function () { $('#containerGraphic').highcharts(SetOptionLine(
+			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');$(function () { $('#containerGraphic').highcharts(SetOptionLine(
 			'{{ graphic.title }}', '{{ graphic.abscisseName }}', '{{ graphic.orderedName }}', '{{ graphic.nameLine1 }}', {{ graphic.dataLine1 }}, '{{ graphic.nameLine2 }}', {{ graphic.dataLine2 }}, '{{ graphic.subtitle }}')) });">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
@@ -342,7 +338,7 @@ function showHide(shID) {
 		<!-- Graphics  Pies Recently Eaten -->
 		<!-- SetOptionPie(titre, categorie, donnees) -->
 		{% for graphic in PiesGraphsRE %}
-			<p><a onClick="$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
+			<p><a onClick="showHide('containerGraphicLeft');showHide('containerGraphicRight');$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
 			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
 			<button>{{ graphic.button }}</button></a></p>  
 		{% endfor %}
