@@ -41,6 +41,7 @@ def getDataHistoByDeo(cas):
 		result += ",\n["+ boxplotFeeling(giverWithDeo) +","+ boxplotFeeling(giverWithoutDeo) + "]"
 	return result
 
+
 def getDataHistoBySex(cas):
 	giverWoman   = SampleGiver.objects.filter(sex = "F")
 	giverMan = SampleGiver.objects.filter(sex = "M")
@@ -48,21 +49,21 @@ def getDataHistoBySex(cas):
 	if cas == 'intensity':
 	#
 		result  = "[{"
-		result += "name: 'Men'," 
-		result += "data: ["+str(doMoyIntensityForAllGivers(giverMan))+"]"
+		result += "name: 'Women'," 
+		result += "data: ["+str(doMoyIntensityForAllGivers(giverWoman))+"]"
 		result += "},{"
-		result += "name: 'Women', "
-		result += "data: ["+ str(doMoyIntensityForAllGivers(giverWoman))+"]}]"
-		result += ",\n["+boxplotIntensity(giverMan) +","+ boxplotIntensity(giverWoman) + "]"
+		result += "name: 'Men', "
+		result += "data: ["+ str(doMoyIntensityForAllGivers(giverMan))+"]}]"
+		result += ",\n["+boxplotIntensity(giverWoman) +","+ boxplotIntensity(giverMan) + "]"
 	if cas == 'feeling':
 	#
 		result  = "[{"
-		result += "name: 'Men'," 
-		result += "data: ["+str(doMoyFeelingForAllGivers(giverMan))+"]"
+		result += "name: 'Women'," 
+		result += "data: ["+str(doMoyFeelingForAllGivers(giverWoman))+"]"
 		result += "},{"
-		result += "name: 'Women', "
-		result += "data: ["+ str(doMoyFeelingForAllGivers(giverWoman))+"]}]"
-		result += ",\n["+boxplotFeeling(giverMan) +","+ boxplotFeeling(giverWoman) + "]"
+		result += "name: 'Men', "
+		result += "data: ["+ str(doMoyFeelingForAllGivers(giverMan))+"]}]"
+		result += ",\n["+boxplotFeeling(giverWoman) +","+ boxplotFeeling(giverMan) + "]"
 	return result
 
 
