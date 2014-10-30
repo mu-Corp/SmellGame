@@ -30,12 +30,12 @@
 					
 					{% if demoMode == False %}
 						{% trans "Votre échantillon a bien été enregistré !" %}<br/>
-						<p>Il possède le numéro {{ nameSample }}.</p>
+						<p>{% trans "Il possède le numéro {{ nameSample }}." %}</p>
 						{% trans "Merci de votre participation." %}<br/><br/>
 					{% else %}
-						<p>Vous n'avez actuellement accès qu'à la version de démonstration de la plateforme.</p>
+						<p>{% trans "Vous n'avez actuellement accès qu'à la version de démonstration de la plateforme." %}</p>
 						<br/>
-						<p>Les données saisies ne seront donc pas enregistrées dans notre base de données.</p>
+						<p>{% trans "Les données saisies ne seront donc pas enregistrées dans notre base de données." %}</p>
 						<br/><br/>
 					{% endif %}
 					
