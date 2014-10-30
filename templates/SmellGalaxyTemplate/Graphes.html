@@ -90,7 +90,7 @@ function SetOptionHisto(titre, y, indicationCurseur, cat, donnees, minY, maxY, e
         xAxis:   { categories: cat },
         yAxis:   { title: { text: y }, min: minY, max: maxY, tickInterval:10}, 
 		//legend:  { enabled: false }, 
-		tooltip: { pointFormat: indicationCurseur },
+		// tooltip: { pointFormat: indicationCurseur },
         credits: { enabled: false },
         series: donnees,
         exporting: {url: 'http://export.highcharts.com/index-utf8-encode.php'}
