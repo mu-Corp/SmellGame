@@ -222,11 +222,9 @@ def getDataHistoByRegime(cas):
 	giverNotSpicy_food  = SampleGiver.objects.filter( ).exclude(foodRecentlyEaten = 8)
 	giverAlcohol        = SampleGiver.objects.filter(foodRecentlyEaten  = 9 )
 	giverNotAlcohol     = SampleGiver.objects.filter( ).exclude(foodRecentlyEaten = 9)
-	giverAntibiotics    = SampleGiver.objects.filter(foodRecentlyEaten  = 10 )
-	giverNotAntibiotics = SampleGiver.objects.filter( ).exclude(foodRecentlyEaten = 10)
 
-	listeComsommateur    = [giverBroccoli,    giverGabbage,    giverCauliflower,    giverAsparagus,    giverFish,    giverRed_meat,    giverFast_food,    giverSpicy_food,    giverAlcohol,    giverAntibiotics]
-	listeNonComsommateur = [giverNotBroccoli, giverNotGabbage, giverNotCauliflower, giverNotAsparagus, giverNotFish, giverNotRed_meat, giverNotFast_food, giverNotSpicy_food, giverNotAlcohol, giverAntibiotics]
+	listeComsommateur    = [giverBroccoli,    giverGabbage,    giverCauliflower,    giverAsparagus,    giverFish,    giverRed_meat,    giverFast_food,    giverSpicy_food,    giverAlcohol]
+	listeNonComsommateur = [giverNotBroccoli, giverNotGabbage, giverNotCauliflower, giverNotAsparagus, giverNotFish, giverNotRed_meat, giverNotFast_food, giverNotSpicy_food, giverNotAlcohol]
 	
 	# cas = 1, intensité, sinon, cas =2 , feeling
 	if cas == 'intensity':
