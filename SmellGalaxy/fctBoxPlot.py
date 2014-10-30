@@ -27,7 +27,7 @@ def boxplotIntensity(givers):
 					listVal.append(elt.intensity)
 	if len(listVal) > 0 :
 	#doingBOxPlot
-		print listVal, sorted(listVal)
+		#print listVal, sorted(listVal)
 		listVal   = sorted(listVal)
 		quart     = len(listVal)/4
 		quartile1 = listVal[quart]
@@ -46,7 +46,7 @@ def boxplotFeeling(givers):
 					listVal.append((elt.feeling - 50)*-1.0)
 	if len(listVal) > 0 :
 	#doingBOxPlot
-		print listVal
+		#print listVal
 		listVal   = sorted(listVal)
 		quart     = len(listVal)/4
 		quartile1 = listVal[quart]
