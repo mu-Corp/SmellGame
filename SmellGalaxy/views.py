@@ -48,7 +48,25 @@ def graphesView(request):
 
     return render(request, 'SmellGalaxyTemplate/Graphes.html', paramToGenerateTemplate) 
     
-   
+
+
+
+
+def paraGraphesView(request):
+    
+    paramToGenerateTemplate = dict()
+    paramToGenerateTemplate['HistoGraphs']    = createListHisto()
+    paramToGenerateTemplate['HistoGraphsRE']  = createListHistoRE()
+    paramToGenerateTemplate['PiesGraphs']     = createListPie()
+    paramToGenerateTemplate['PiesGraphsRE']   = createListPieRecentlyEaten()
+    paramToGenerateTemplate['LinesGraphs']    = createListLines()
+
+    return render(request, 'SmellGalaxyTemplate/paraGraphes.html', paramToGenerateTemplate) 
+
+
+
+
+
 def createListHisto():
 	#SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) 
 	listHisto = []

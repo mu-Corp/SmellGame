@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<!-- Load images, CSS and JS files-->
+{% load static %}
+{% load i18n %}
+
+<html lang="fr" dir="ltr">
+	
+	<head>
+	<title>SmellGame Graphics</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="{% static 'css/design.css' %}">
+	<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
+	<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/Function_template.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/js_highcharts/highcharts.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/js_highcharts/highcharts-3d.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/js_highcharts/modules/exporting.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/js_highcharts/highcharts-more.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/js_highcharts/themes/smellGameTheme.js' %}"></script>
+	<script type="text/javascript" type="text/javascript">
+	/*-----------------------------------------------------*\
+	| Function: |
+	| -The following functions return an "option" |
+	| object, requiered as parameter for highchart |
+	| constructors. |
+	| |
+	| -Three SetOption Function are avaliable: |
+	| -SetOptionPie() |
+	| -SetOptionHisto() |
+	| -SetOptionLine() |
+	\*-----------------------------------------------------*/
+
+function SetOptionPie(titre, categorie, donnees){
+	// Take 3 non-optional arguments:
+	// => titre : string, selfexplain...
+	// => categorie : string, generic name of data (Ex: 'Smeller')
+	// => donnees : array of array [['MU-corp', 100], ['Rest-of-the-World', 0]], contening data
+	var option = {
+		chart: {
+		type: 'pie',
+		options3d: {
+		enabled: true,
+		alpha: 45,
+		beta: 0
+		},
+		},
+		title: {
+		text: titre
+		},
+		tooltip: {
+		pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		},
+		plotOptions: {
+		pie: {
+		allowPointSelect: true,
+		cursor: 'pointer',
+		depth: 35,
+		dataLabels: {
+		enabled: true,
+		format: '{point.name}'
+		}
+		}
+		},
+		series: [{
+		type: 'pie',
+		name: categorie,
+		data: donnees
+		}]
+	};
+	return option;
+}
+
+function SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) {
+	// Take 5 non-optional arguments
+	// => titre : string, selfexplain...
+	// => y : string, name of y axis
+	// => indicateurCurseur: string, indication show by cursor.
+	// => donnees : array of array [['MU-corp', 100], ['Rest-of-the-World', 0]], contening data
+	// => erreur : array of array, contening value (bounds), exemple : [[11, 9], [13, 8]]
+	//Take 1 optional argument
+	// => soustitre : string, a subtitle
+	var soustitre = soustitre || '';
+	var option = {
+		
+	
+		chart:   { type: 'column'	},
+        title:   { text: titre },
+        subtitle: { text: soustitre },
+        xAxis:   { categories: cat },
+        yAxis:   { title: { text: y } }, 
+		//legend:  { enabled: false }, 
+		tooltip: { pointFormat: indicationCurseur },
+        credits: { enabled: false },
+        series: donnees,
+        exporting: {url: 'http://export.highcharts.com/index-utf8-encode.php'}
+	}; 
+	return option; 
+}
+
+function SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, soustitre){
+	// Take 7 non-optional arguments
+	// => titre : string, selfexplain...
+	// => axeX : string, name of X axis
+	// => axeY : string, name of Y axis
+	// => nom1 : string, name of data serie1
+	// => donnees1: array of array, contening data for serie1, exemple:[[5, 8], [3, 2]], Where format is [[x, y], [x, y]
+	// => nom2 : string, name of data serie2
+	// => donnees2: array of array, contening data for serie2, exemple:[[5, 8], [3, 2]], Where format is [[x, y], [x, y]
+	//Take 1 optional argument
+	// => soustitre : string, a subtitle
+	var soustitre = soustitre || '';
+	var option = {
+		title: {
+		text: titre,
+		x: -20
+		},
+		subtitle: {
+		text: soustitre,
+		x: -20
+		},
+		xAxis: {
+		title:{
+		text: axeX
+		}
+		},
+		yAxis: {
+		title: {
+		text: axeY
+		},
+		plotLines: [{
+		value: 0,
+		width: 1,
+		color: '#808080'
+		}]
+		},
+		tooltip: {
+		valueSuffix: '?'
+		},
+		legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle',
+		borderWidth: 0
+		},
+		series: [{
+		name: nom1,
+		data: donnees1
+		}, {
+		name: nom2,
+		data: donnees2
+		}]
+	};
+	return option;
+}
+
+// test flo on hide container
+function showHide(elt) {
+	document.getElementById(elt).innerHTML = "";
+	//document.getElementById(elt).style.visibility='hidden';
+
+}
+
+</script>
+
+<style>
+	#panelLeft {
+		width: 18%; 
+	}
+	button {
+		font-family: Arial;
+		font-size: 12px;
+		color: white;
+		font-weight: bold;
+		background-color: rgb(186,181,186);
+		background:       rgb(186,181,186);
+		border: none;
+		margin-: 15px;
+		cursor:pointer;
+		height: 20px;
+	}
+	button:hover { background-color: rgb(216,89,149); }
+
+	#containerGraphic {
+	position: absolute;
+	top: 10px;
+	left: 18%;
+	width: 81%;
+	height: 70%;
+	margin: 0px;
+	}
+	#containerGraphicRight {
+		position: absolute;
+		top: 10px;
+		right: 1%;
+		width: 40%;
+		height: 70%;
+		margin: 0px;
+	}
+	#containerGraphicLeft {
+		position: absolute;
+		top: 10px;
+		left: 18%;
+		width: 40%;
+		height: 70%;
+		margin: 0px;
+	}
+</style>
+
+</head>
+<body>
+						
+	<div id="panelLeft">
+		<t1>Choissisez un graphique à visualiser :</t1>
+		
+		<!-- Graphics  Histogrammes -->
+		<!-- SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) -->
+		{% for graphic in HistoGraphs %}
+			<p>
+			<a onClick="showHide('containerGraphic');
+			$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
+			'{{ graphic.titleLeft}}', 
+			'{{ graphic.orderedNameLeft }}', 
+			'{{ graphic.abscisseName }}', 
+			[{% ifequal graphic.categoriesLeft 'Intensités (0~100)' %}
+				{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}
+				{% else %} '{{ graphic.categoriesLeft}}' {% endifequal %}],
+			{{ graphic.dataLeft }}, 
+			'{{ graphic.Description }}')) });
+			$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
+			'{{ graphic.titleRight }}', 
+			'{{ graphic.orderedNameRight }}', 
+			'{{ graphic.abscisseName }}', 
+			[{% ifequal graphic.categoriesLeft 'Appréciations (-50~50)' %}
+				{% for categ in graphic.categoriesRight %}'{{ categ }}', {% endfor %}
+				{% else %} '{{ graphic.categoriesRight}}' {% endifequal %}],
+			{{ graphic.dataRight }}, 
+			'{{ graphic.description }}')) });">
+
+			<button>{{ graphic.button }}</button></a></p> 
+		{% endfor %}		
+		{% for graphic in HistoGraphsRE %}
+			<p>
+			<a onClick="showHide('containerGraphic');
+			$(function () {$('#containerGraphicLeft').highcharts(SetOptionHisto(
+			'{{ graphic.titleLeft}}', 
+			'{{ graphic.orderedNameLeft }}', 
+			'{{ graphic.abscisseName }}', 
+			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
+			{{ graphic.dataLeft }}, 
+			'{{ graphic.Description }}')) });
+			$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
+			'{{ graphic.titleRight }}', 
+			'{{ graphic.orderedNameRight }}', 
+			'{{ graphic.abscisseName }}', 
+			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
+			{{ graphic.dataRight }}, 
+			'{{ graphic.description }}')) });">
+
+			<button>{{ graphic.button }}</button></a></p> 
+		{% endfor %}
+		
+		
+		<t1>Informations sur les donneurs :</t1>
+		
+		<!-- Graphics  Pies -->
+		<!-- SetOptionPie(titre, categorie, donnees) -->
+		{% for graphic in PiesGraphs %}
+			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');
+				$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
+			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
+			<button>{{ graphic.button }}</button></a></p>  
+		{% endfor %}
+		
+		<!-- Graphics  Lines -->
+		<!-- SetOptionLine(titre, axeX, axeY, nom1, donnees1, nom2, donnees2, soustitre) -->
+		{% for graphic in LinesGraphs %}
+			<p><a onClick="showHide('containerGraphicLeft');showHide('containerGraphicRight');
+				$(function () { $('#containerGraphic').highcharts(SetOptionLine(
+			'{{ graphic.title }}', '{{ graphic.abscisseName }}', '{{ graphic.orderedName }}', '{{ graphic.nameLine1 }}', {{ graphic.dataLine1 }}, '{{ graphic.nameLine2 }}', {{ graphic.dataLine2 }}, '{{ graphic.subtitle }}')) });">
+			<button>{{ graphic.button }}</button></a></p>  
+		{% endfor %}
+
+
+		<t1>Recents consumptions of givers:</t1>
+		<!-- Graphics  Pies Recently Eaten -->
+		<!-- SetOptionPie(titre, categorie, donnees) -->
+		{% for graphic in PiesGraphsRE %}
+			<p><a onClick="showHide('containerGraphic');showHide('containerGraphicRight');
+				$(function () { $('#containerGraphicLeft').highcharts(SetOptionPie(
+			'{{ graphic.title }}', '{{ graphic.description }}', {{ graphic.data }}));});">
+			<button>{{ graphic.button }}</button></a></p>  
+		{% endfor %}
+
+	</div>
+
+
+	<div id="containerGraphicLeft"></div>
+	<div id="containerGraphicRight"></div>
+	
+	<div id="containerGraphic">
+	<p>
+	<img alt="" src="{% static 'images/Smellgame_exemples.png' %}" style="vertical-align:middle;text-align:center;width: 90%;height: 80%;" />
+	</p>
+	</div>
+	
+
+	{% include "footer.html" %}
+
+
+</body>
+</html>
+
