@@ -57,20 +57,20 @@ def getDataHistoBySex(cas):
 	if cas == 'intensity':
 	#
 		result  = "[{"
-		result += "name: 'Men'," 
-		result += "data: ["+str(doMoyIntensityForAllGivers(giverMan))+"]"
+		result += "name: 'Women'," 
+		result += "data: ["+str(doMoyIntensityForAllGivers(giverWoman))+"]"
 		result += "},{"
-		result += "name: 'Women', "
-		result += "data: ["+ str(doMoyIntensityForAllGivers(giverWoman))+"]}]"
+		result += "name: 'Men', "
+		result += "data: ["+ str(doMoyIntensityForAllGivers(giverMan))+"]}]"
 		#result += ",\n["+boxplotIntensity(giverMan) +","+ boxplotIntensity(giverWoman) + "]"
 	if cas == 'feeling':
 	#
 		result  = "[{"
-		result += "name: 'Men'," 
-		result += "data: ["+str(doMoyFeelingForAllGivers(giverMan))+"]"
+		result += "name: 'Women'," 
+		result += "data: ["+str(doMoyFeelingForAllGivers(giverWoman))+"]"
 		result += "},{"
-		result += "name: 'Women', "
-		result += "data: ["+ str(doMoyFeelingForAllGivers(giverWoman))+"]}]"
+		result += "name: 'Men', "
+		result += "data: ["+ str(doMoyFeelingForAllGivers(giverMan))+"]}]"
 		#result += ",\n["+boxplotFeeling(giverMan) +","+ boxplotFeeling(giverWoman) + "]"
 	return result
 	
