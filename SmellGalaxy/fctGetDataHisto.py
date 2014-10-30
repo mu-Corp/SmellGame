@@ -8,6 +8,8 @@ from django.db import models
 from collections import defaultdict
 import random
 
+from django.utils.translation import ugettext_lazy as _
+
 from SmellGuess.models   import *
 from SmellGift.models    import *
 from fctMaths      import *

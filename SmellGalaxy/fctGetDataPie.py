@@ -8,6 +8,8 @@ from django.db import models
 from collections import defaultdict
 import random
 
+from django.utils.translation import ugettext_lazy as _
+
 from SmellGuess.models   import *
 from SmellGift.models    import *
 from fctMaths      import *
@@ -27,8 +29,8 @@ def pieByCritereSmoker():
 	ratioFalse = getRatio(giverFalse, allGiver)
 	ratioOther = getRatio(giverOther, allGiver)
 	stringToReturn = [
-		["Fumeurs("+str(len(giverTrue))+")",ratioTrue],
-		["Non fumeurs("+str(len(giverFalse))+")",ratioFalse]
+		[str(_(u"Fumeurs("))+str(len(giverTrue))+")",ratioTrue],
+		[str(_(u"Non fumeurs("))+str(len(giverFalse))+")",ratioFalse]
 		#,["empty field("+str(len(giverOther))+")",ratioOther]
 	]
 	return stringToReturn
@@ -43,8 +45,8 @@ def pieByCritereSex():
 	ratioWoman = getRatio(giverWoman, allGiver, giverOther)
 	ratioMan   = getRatio(giverMan,   allGiver, giverOther)
 	stringToReturn = [
-		["Women ("+str(len(giverMan))+")",ratioMan],
-		["Men ("+str(len(giverWoman))+")",ratioWoman]
+		[str(_(u"Femme ("))+str(len(giverMan))+")",ratioMan],
+		[str(_(u"Homme ("))+str(len(giverWoman))+")",ratioWoman]
 		]
 	return stringToReturn
 def pieByCritereRecentlyEaten(elt):
@@ -54,12 +56,12 @@ def pieByCritereRecentlyEaten(elt):
 	giverNotRE    = SampleGiver.objects.filter( ).exclude(foodRecentlyEaten = elt )
 
 
-	categories = ['Broccoli', 'Gabbage', 'Cauliflower', 'Asparagus', 'Fish', 'Red_meat', 'Fast_food', 'Spicy_food', 'Alcohol', 'Antibiotics']
+	categories = [_(u'Brocoli'), _(u'Chou'), _(u'Chou fleur'), _(u'Asperge'), _(u'Poisson'), _(u'Viande rouge'), _(u'Fast food'), _(u'Epicé'), _(u'Alcool'), _(u'Antibiotiques')]
 	ratioRE    = getRatio( giverRE,      allGiver )
 	ratioNotRE = getRatio( giverNotRE,   allGiver )
 	stringToReturn = [
-		[categories[elt-1]+ " recently eaten ("+str(len(giverRE))+")",ratioRE],
-		[categories[elt-1]+ " not recently eaten ("+str(len(giverNotRE))+")",ratioNotRE]
+		[categories[elt-1]+ str(_(u" récemment mangé ("))+str(len(giverRE))+")",ratioRE],
+		[categories[elt-1]+ str(_(u" pas récemment ("))+str(len(giverNotRE))+")",ratioNotRE]
 		]
 	return stringToReturn
 
@@ -88,11 +90,11 @@ def pieByCritereSliceOfAge():
 	ratio41more = getRatio(giver41more, allGiver, giverOther)
 	ratioGiverOther = getRatio(giverOther, allGiver)
 	stringToReturn = [
-		["De 0 à 10 ans ("+str(len(giver0_10))+")",ratio0_10], 
-		["De 11 à 20 ans ("+str(len(giver11_20))+")",ratio11_20], 
-		["De 21 à 30 ans ("+str(len(giver21_30))+")",ratio21_30], 
-		["De 31 à 40 ans ("+str(len(giver31_40))+")",ratio31_40],
-		["De 41 ans & plus ("+str(len(giver41more))+")",ratio41more] 
+		[str(_(u"De 0 à 10 ans ("))+str(len(giver0_10))+")",ratio0_10], 
+		[str(_(u"De 11 à 20 ans ("))+str(len(giver11_20))+")",ratio11_20], 
+		[str(_(u"De 21 à 30 ans ("))+str(len(giver21_30))+")",ratio21_30], 
+		[str(_(u"De 31 à 40 ans ("))+str(len(giver31_40))+")",ratio31_40],
+		[str(_(u"De 41 ans & plus ("))+str(len(giver41more))+")",ratio41more] 
 		#["Sans renseignements ("+str(len(giverOther))+")",ratioGiverOther]
 		]
 	return stringToReturn
