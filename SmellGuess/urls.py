@@ -8,8 +8,10 @@ admin.autodiscover()
 urlpatterns = patterns('SmellGuess.views',#main path
                        url(r'^home/$', 'homeView'),
                        url(r'^registration/$', 'registrationView'),
+                       url(r'^demo/$', 'demoView'),
                        url(r'^game/$', 'gameView'),
                        url(r'^result/$', 'resultView'),
+                       url(r'^demoResult/$', 'resultDemoView'),
                        url(r'^error/$', 'errorview'),
                        #url(r'^game/(?P<user>\d{0})/$', 'game'),
                        #url(r'^URL_name/$', 'AppName.views.FunctionName'),

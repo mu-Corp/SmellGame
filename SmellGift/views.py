@@ -27,6 +27,9 @@ def thanksView(request) :
 	
 	paramToGenerateTemplate = dict()
 	
+	if 'demoMode' not in request.session.keys():
+		request.session['demoMode'] = True
+	
 	if request.session['demoMode'] == False:
 		if request.method == 'POST':
 			formGiver = SampleGiverForm(request.POST)

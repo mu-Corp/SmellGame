@@ -47,7 +47,7 @@
 		<div style="text-align:center; margin-top: 40px;">
 			<img src="{% static 'images/theSmellOfUs.png' %}" width=170/><br/>
 			<a class="homeLink" href="{% url 'SmellGift.views.giftView' %}">{% trans "DONNER SON ODEUR" %}</a>
-			<a class="homeLink" href="{% url 'SmellGuess.views.registrationView' %}" >{% trans "SENTIR DES ODEURS" %}</a>
+			<a class="homeLink" href={% if demoMode == False %}"{% url 'SmellGuess.views.registrationView' %}"{% else %}"{% url 'SmellGuess.views.demoView' %}"{% endif %} >{% trans "SENTIR DES ODEURS" %}</a>
 			<a class="homeLink" href="{% url 'SmellGalaxy.views.graphesView' %}" >{% trans "VOIR LES RÉSULTATS" %}</a>
 		</div>
 		

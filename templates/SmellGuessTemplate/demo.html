@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<!-- Load images, CSS and JS files-->
+{% load static %}
+{% load i18n %}
+
+<html lang="fr" dir="ltr">
+	
+	<head>
+		<title>THE SMELL OF US - {% trans "Jeu" %}</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{% static 'css/design.css' %}">
+		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
+		<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/Function_template.js' %}"></script>
+	</head>
+	
+	<body>
+		
+		<div id="panelLeft">
+		
+			{% if guessStep == 1 %}
+				<t1>{% trans "VEUILLEZ SENTIR L'ÉCHANTILLON NUMÉRO :" %} {{ nameSample }}</t1>
+				<form action="{% url "SmellGuess.views.demoView" %}" method="post" >
+					{% csrf_token %}
+					<input type="hidden" name="firstStep" value="" />
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
+				</form>
+				
+			{% elif guessStep == 2 %}
+				<t1>{% trans "QUELLE EST L'INTENSITÉ DE CETTE ODEUR ?" %}</t1>
+				<form action="{% url "SmellGuess.views.demoView" %}" method="post" >
+					{% csrf_token %}
+					<div id="divRange">
+						<div id="textRange" position="center">{% trans "FORTE" %}</div>
+						<input type="range" min="0" max="100" step="1" value="50" orient="vertical" name="intensity" class="rangeVertical" onchange="updateGradient('white' this.value)" oninput="updateGradient('white', this.value)"/>
+						<div id="textRange" position="center">{% trans "FAIBLE" %}</div>
+					</div>
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
+				</form>
+			{% elif guessStep == 3 %}
+				<t1>{% trans "SI CETTE ODEUR EST ..." %}</t1>
+				<t2>{% trans "UNE HUMEUR" %}</t2>
+				<form action="{% url "SmellGuess.views.demoView" %}" method="post" >
+					{% csrf_token %}
+					<div class="radio-toolbar">
+						{% for humor in listHumors %}
+							<input type="radio" id="radio{{ humor.id }}" value="{{ humor.id }}" name="humor" onchange="updateGradient('{{ humor.color }}', '{{ intensity }}')">
+							<label for="radio{{ humor.id }}">{{ humor.name }} <br/></label><br/>
+						{% endfor %}
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
+					</div>
+				</form>
+			{% elif guessStep == 4 %}
+				<t1>{% trans "SI CETTE ODEUR EST ..." %}</t1>
+				<t2>{% trans "UNE NOTE" %}</t2>
+				<form action="{% url "SmellGuess.views.demoView" %}" method="post" >
+					{% csrf_token %}
+					<div class="radio-toolbar">
+						{% for note in listNotes %}
+							<input type="radio" id="radio{{ note.id }}" value="{{ note.id }}" name="note" onchange="updateNote('{{ note.color }}')">
+							<label for="radio{{ note.id }}">{{ note.name }} <br/></label><br/>
+						{% endfor %}
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
+					</div>
+				</form>
+			{% elif guessStep == 5 %}
+				<t1>{% trans "QUE VOUS ÉVOQUE CETTE ODEUR ?" %}</t1>
+				<form action="{% url "SmellGuess.views.demoView" %}" method="post" >
+					{% csrf_token %}
+					<div class="radio-toolbar">
+						{% for image in listImages %}
+							<input type="radio" id="radio{{ image.id }}" value="{{ image.id }}" name="image" onchange="updateImgGuessed('{% static image.pathImage %}')">
+							<label for="radio{{ image.id }}">{{ image.name }} <br/></label><br/>
+						{% endfor %}
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
+					</div>
+				</form>
+			{% elif guessStep == 6 %}
+				<t1>{% trans "AIMEZ VOUS CETTE ODEUR ?" %}</t1>
+				<form action="{% url "SmellGuess.views.demoView" %}" method="post" >
+					{% csrf_token %}
+					<div id="divRange">
+						<div id="textRange" position="center">{% trans "NON" %}</div>
+						<input type="range" min="0" max="100" step="1" value="0" orient="vertical" onchange="updateFeeling(this.value)" oninput="updateFeeling(this.value)" name="feeling" class="rangeVertical"/>
+						<div id="textRange" position="center">{% trans "OUI" %}</div>
+					</div>
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
+				</form>
+			{% elif guessStep == 7 %}
+				<t1>{% trans "SI CETTE ODEUR AVAIT UN NOM ..." %}</t1>
+				<form action="{% url "SmellGuess.views.resultDemoView" %}" method="post">
+					{% csrf_token %}
+					<input type="text" name="name" style="width:170px;">
+					<input type="hidden" name="imageBase64" id="inputBase64" /> 
+					<input type="image" value="{% trans 'ÉTAPE SUIVANTE' %}" />
+				</form>
+			{% endif %}
+		
+		</div>
+		
+		
+		
+		<div id="panelIdSamples">
+			{% for sample in currentSamples %}
+				{% if sample == nameSample %}
+					<div class="idSample" style="color: white; border: 5px solid white;">{{ sample }}</div>
+				{% else %}
+					<div class="idSample">{{ sample }}</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+		{% if guessStep == 1 %}
+			<div id="panelCenterSample">{{ nameSample }}</div>
+		{% else %}
+			<!-- Zone where image is built -->
+			<div id="panelCenter">
+				<div id="panelNote"> </div>
+				<img id="imgGuessed" src="" height="160" width="160" style="display:none;"> 
+				<div id="panelFeeling"> </div>
+			</div>
+		{% endif %}
+		
+		
+		
+		
+		
+		<div id="panelHistory">
+			<h3>{% trans "HISTORIQUE :" %}</h3>
+			<h4>{% trans "Echantillon n°" %}{{ nameSample }}</h4>
+			{% if guessStep >= 3 %}
+				{% trans "Intensité :" %} {{ intensity }}% <br/>
+			{% endif %}
+			{% if guessStep >= 4 %}
+				{% trans "Humeur :" %} {{ humorName }} <br/>
+			{% endif %}
+			{% if guessStep >= 5 %}
+				{% trans "Note :" %} {{ noteName }} <br/>
+			{% endif %}
+			{% if guessStep >= 6 %}
+				{% trans "Image :" %} {{ imageName }} <br/>
+			{% endif %}
+			{% if guessStep >= 7 %}
+				{% trans "Appréciation :" %} {{ feeling }}% NÉGATIVE <br/>
+			{% endif %}
+		</div>
+		
+		
+		{% include "footer.html" %}
+	</body>
+	
+	
+	
+	
+	
+	<script>
+	{% if guessStep >= 3 %}
+		updateGradient('white', '{{ intensity }}');
+	{% endif %}
+	{% if guessStep >= 4 %}
+		updateGradient('{{ humorColor }}', '{{ intensity }}');
+	{% endif %}
+	{% if guessStep >= 5 %}
+		updateNote('{{ noteColor }}');
+	{% endif %}
+	{% if guessStep >= 6 %}
+		updateImgGuessed('{% static imagePathImage %}');
+	{% endif %}
+	{% if guessStep >= 7 %}
+		updateFeeling('{{ feeling }}');
+		//createImageFinal();
+	{% endif %}
+	</script>
+	
+</html>

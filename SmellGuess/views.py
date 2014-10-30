@@ -72,6 +72,7 @@ def homeView(request):
     request.session['currentIdGuess'] = None
     request.session['guessStep'] = None
     request.session['SampleIdToAnalyze'] = None
+    request.session['guessStep'] = None #To adapt the demo mode for game part
     
     paramToGenerateTemplate = dict()
     if 'demoMode' not in request.session.keys():
@@ -80,8 +81,8 @@ def homeView(request):
     paramToGenerateTemplate['demoMode'] = request.session['demoMode']
         
     # Render:    
-    return render(request, 'SmellGuessTemplate/home.html', paramToGenerateTemplate)#{'nb': nb, 'intensity': intensity, 'color': color, 'note': note, 'image': image, 'opacity': opacity, 'name': name})    
-    
+    return render(request, 'SmellGuessTemplate/home.html', paramToGenerateTemplate)#{'nb': nb, 'intensity': intensity, 'color': color, 'note': note, 'image': image, 'opacity': opacity, 'name': name})        
+
 
 
 
@@ -577,7 +578,237 @@ def sendZipfileBackup(request) :
     return response
 
         
+
+
+
+
+
+
+
+
+
+def demoView(request):
+    
+    paramToGenerateTemplate = dict()
+    
+    #First connection:
+    if request.session['guessStep'] == None:
         
+        request.session['intensity'] = None
+        request.session['humorName'] = None
+        request.session['humorColor'] = None
+        request.session['noteName'] = None
+        request.session['noteColor'] = None
+        request.session['imageName'] = None
+        request.session['imagePathImage'] = None
+        request.session['feeling'] = None
+        request.session['name'] = None
+        
+        #Generate game samples to analyze:
+        l_allSampleId = getAllId( Sample.objects.all() )
+        nbSamplesToAnalyze = 6
+        request.session['SampleIdToAnalyze'] = random.sample(l_allSampleId,  nbSamplesToAnalyze) #init
+        
+        #Preparation of the first analyze:
+        firstToAnalyze = request.session['SampleIdToAnalyze'][0]
+        request.session['sampleId'] = firstToAnalyze   
+        firstSample = Sample.objects.get(id=firstToAnalyze)
+        
+        #Parameters to generate the first page of game:
+        paramToGenerateTemplate['guessStep'] = request.session['guessStep']
+        paramToGenerateTemplate['nameSample'] = firstSample.name
+        paramToGenerateTemplate['currentSamples'] = getAllName(request.session['SampleIdToAnalyze'], Sample.objects)
+        
+        request.session['guessStep'] = 1
+    
+    #Other connections:
+    else:       
+        #Generation of the different page of the game:
+        if 'firstStep' in request.POST.keys() :
+            request.session['guessStep'] = 2
+
+        if 'intensity' in request.POST.keys() :
+            request.session['intensity'] = request.POST['intensity']
+            request.session['guessStep'] = 3
+            
+        elif 'humor' in request.POST.keys() :
+            request.session['humorName'] = Humor.objects.get(id=request.POST['humor']).name
+            request.session['humorColor'] = Humor.objects.get(id=request.POST['humor']).color
+            request.session['guessStep'] = 4
+            
+        elif 'note' in request.POST.keys() : 
+            request.session['noteName'] = Note.objects.get(id=request.POST['note']).name
+            request.session['noteColor'] = Note.objects.get(id=request.POST['note']).color
+            request.session['guessStep'] = 5
+            
+        elif 'image' in request.POST.keys() : 
+            request.session['imageName'] = Image.objects.language().get(id=request.POST['image']).name
+            request.session['imagePathImage'] = Image.objects.language().get(id=request.POST['image']).pathImage
+            request.session['guessStep'] = 6
+            
+        elif 'feeling' in request.POST.keys() :
+            request.session['feeling'] = request.POST['feeling']
+            request.session['guessStep'] = 7
+            
+        elif 'name' in request.POST.keys() : 
+            request.session['name'] = request.POST['name']
+            request.session['guessStep'] = 8
+            
+    
+    # Parameters to generate template
+    paramToGenerateTemplate['currentSamples'] = getAllName(request.session['SampleIdToAnalyze'], Sample.objects)    
+    paramToGenerateTemplate['nameSample'] = Sample.objects.get(id=request.session['sampleId']).name
+    request.session['nameSample'] = paramToGenerateTemplate['nameSample']
+    paramToGenerateTemplate['listHumors'] = Humor.objects.all()
+    paramToGenerateTemplate['listNotes'] = Note.objects.all()
+    paramToGenerateTemplate['listImages'] = Image.objects.all()
+
+    #Preparing next step:
+    paramToGenerateTemplate['guessStep'] = request.session['guessStep']
+    
+    paramToGenerateTemplate['intensity'] = request.session['intensity']
+    paramToGenerateTemplate['humorName'] = request.session['humorName']
+    paramToGenerateTemplate['humorColor'] = request.session['humorColor']
+    paramToGenerateTemplate['noteName'] = request.session['noteName']
+    paramToGenerateTemplate['noteColor'] = request.session['noteColor']
+    paramToGenerateTemplate['imageName'] = request.session['imageName']
+    paramToGenerateTemplate['imagePathImage'] = request.session['imagePathImage']
+    paramToGenerateTemplate['feeling'] = request.session['feeling']
+    paramToGenerateTemplate['name'] = request.session['name']
+    
+    return render(request, 'SmellGuessTemplate/demo.html', paramToGenerateTemplate)
+
+
+
+
+
+
+
+def resultDemoView(request):
+    
+    if request.method == 'POST':  # If it's a POST request
+        
+        request.session['guessStep'] = 1      
+        
+        #In waiting to display images of other results:
+        idOfAnalyzedSample = request.session['sampleId']
+        idemGuess = Guess.objects.filter(sample_id=idOfAnalyzedSample)
+        intensities = list()
+        humors = list()
+        notes = list()
+        images = list()
+        feelings = list()
+        names = list()
+        for g in idemGuess:
+            intensities.append(g.intensity)
+            humors.append(g.humor_id)
+            notes.append(g.note_id)
+            images.append(g.image_id)
+            feelings.append(g.feeling)
+            names.append(g.name)
+    
+    else: # if it's not post, it's not safe
+        error = 'You try to connect to this game with the wrong way, please, go back to home...'
+    
+    paramToGenerateTemplate = dict()
+    
+    #all param to generate:
+    paramToGenerateTemplate['intensity'] = request.session['intensity']
+    paramToGenerateTemplate['intensityDisplay'] = 30 * (int(request.session['intensity']))/100 + 40
+    paramToGenerateTemplate['humorColor'] = request.session['humorColor']
+    paramToGenerateTemplate['humourColorName'] = request.session['humorName']
+    paramToGenerateTemplate['noteColor'] = request.session['noteColor']
+    paramToGenerateTemplate['noteColorName'] = request.session['noteName']
+    paramToGenerateTemplate['pathImage'] = request.session['imagePathImage']
+    paramToGenerateTemplate['imageName'] = request.session['imageName']
+    paramToGenerateTemplate['opacityLevelPercent'] = str((int(request.session['feeling']))*50/100) 
+    paramToGenerateTemplate['opacityLevel'] = str((int(request.session['feeling']))*0.5/100)
+    paramToGenerateTemplate['feelingLevel'] = request.session['feeling']
+    paramToGenerateTemplate['name'] = request.session['name']
+    
+    
+    if len(intensities) == 0 :
+        paramToGenerateTemplate['intensityMean'] = None
+        paramToGenerateTemplate['intensityMeanDisplay'] = None
+    else :
+        intensityMean = mean(intensities)
+        paramToGenerateTemplate['intensityMean'] = intensityMean
+        paramToGenerateTemplate['intensityMeanDisplay'] = 30*intensityMean/100+40
+        
+    if len(feelings) == 0 :
+        paramToGenerateTemplate['feelingLevelMean'] = None
+        paramToGenerateTemplate['opacityMeanLevelPercent'] = None
+        paramToGenerateTemplate['opacityMeanLevel'] = None
+    else :
+        feelingLevelMean = mean(feelings)
+        paramToGenerateTemplate['feelingLevelMean'] = feelingLevelMean
+        paramToGenerateTemplate['opacityLevelMeanPercent'] = str(feelingLevelMean*50/100) 
+        paramToGenerateTemplate['opacityLevelMean'] = str(feelingLevelMean*0.5/100)
+    
+    maxHumorsId = maxi(humors)
+    if isinstance(maxHumorsId, int):#existe et donc non None
+        maxHumors = Humor.objects.get(id=maxHumorsId)
+        paramToGenerateTemplate['humorColorMean'] = maxHumors.color
+        paramToGenerateTemplate['humourColorMeanName'] = (Humor.objects.get(id=maxHumorsId)).name
+    else:
+        paramToGenerateTemplate['humorColorMean'] = None
+        paramToGenerateTemplate['humourColorMeanName'] = _(u"Non disponible")
+    
+    
+    maxNotesId = maxi(notes)
+    if isinstance(maxNotesId, int):#existe et donc non None
+        maxNotes = Note.objects.get(id=maxNotesId)
+        paramToGenerateTemplate['noteColorMean'] = maxNotes.color
+        paramToGenerateTemplate['noteColorMeanName'] = (Note.objects.get(id=maxNotesId)).name
+    else:
+        paramToGenerateTemplate['noteColorMean'] = None
+        paramToGenerateTemplate['noteColorMeanName'] = _(u"Non disponible")
+        
+    maxImagesId = maxi(images)
+    if isinstance(maxImagesId, int):#existe et donc non None    
+        maxImages = Image.objects.get(id=maxImagesId)
+        paramToGenerateTemplate['pathImageMean'] = maxImages.pathImage
+        paramToGenerateTemplate['imageMeanName'] = (Image.objects.get(id=maxImagesId)).name
+    else:
+        paramToGenerateTemplate['pathImageMean'] = None
+        paramToGenerateTemplate['imageMeanName'] = _(u"Non disponible")
+    
+    paramToGenerateTemplate['nameSample'] = request.session['nameSample']
+    
+    
+    #######################################################################"
+    
+    request.session['SampleIdToAnalyze'].remove(request.session['sampleId']) #Warning: remove method don't return the list minus the element...
+    
+    paramToGenerateTemplate['remainSamplesToAnalyze'] = []
+    for idSample in request.session['SampleIdToAnalyze'] :
+        paramToGenerateTemplate['remainSamplesToAnalyze'].append(Sample.objects.get(id=idSample).name)
+    
+    
+    paramToGenerateTemplate['nbRemainSamplesToAnalyze'] = len(request.session['SampleIdToAnalyze'])
+    if paramToGenerateTemplate['nbRemainSamplesToAnalyze'] > 0: #if it remains sample(s) to analyze: 
+        request.session['sampleId'] = request.session['SampleIdToAnalyze'][0]
+        sample = Sample.objects.get(id=request.session['sampleId'])
+        paramToGenerateTemplate['nameNextSample'] = sample.name
+    else:
+        request.session['sampleId'] = None
+    
+    #RE-initialization of session variable:
+    request.session['intensity'] = None
+    request.session['humorName'] = None
+    request.session['humorColor'] = None
+    request.session['noteName'] = None
+    request.session['noteColor'] = None
+    request.session['imageName'] = None
+    request.session['imagePathImage'] = None
+    request.session['feeling'] = None
+    request.session['name'] = None
+
+    return render(request, 'SmellGuessTemplate/demoResult.html', paramToGenerateTemplate)
+
+
+
+
 ###############################################################
 ####################    LOCAL EXECUTION    ####################
 ###############################################################

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<!-- Load images, CSS and JS files-->
+{% load static %}
+{% load i18n %}
+
+<html lang="fr" dir="ltr">
+	
+	<head>
+		<title>THE SMELL OF US - {% trans "Résultats" %}</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{% static 'css/design.css' %}">
+		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
+		<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+	</head>
+	
+	
+	<body>
+		
+		{% if nameNextSample != None %}
+			<div style="width: 400px; height: 50px; margin-bottom: 10px;">
+				{% for sample in remainSamplesToAnalyze %}
+					{% if sample == nameNextSample %}
+						<div class="idSample" style="color: white; border: 5px solid white;">{{ sample }}</div>
+					{% else %}
+						<div class="idSample">{{ sample }}</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		{% endif %}
+		
+		<br/>
+		<div style="display: block;">
+		
+			<p>Vous n'avez actuellement accès qu'à la version de démonstration de la plateforme.</p>
+			<p>Les données saisies ne seront donc pas enregistrées dans notre base de données.</p>
+			
+			<br/>
+		
+			{% if nbRemainSamplesToAnalyze > 0 %}
+			<form action="{% url "SmellGuess.views.demoView" %}" method="post" >
+				{% csrf_token %}
+				<input type="image" value="{% trans 'ÉCHANTILLON SUIVANT' %}" />
+			</form>
+			
+			{% else %}
+				<form action="{% url "SmellGuess.views.homeView" %}" method="post" >
+					{% csrf_token %}
+					<input type="image" value='{% trans "MERCI D'AVOIR JOUÉ !" %}' />	
+				</form>
+			{% endif %}
+			
+		</div>
+		
+		<br/>
+
+
+		<div style="display: inline-block; vertical-align: top; width: 500px; height:610px; text-align: center;">
+			
+			<h3>{% trans "Vos résultats pour l'échantillon n°"%}{{ nameSample }}:</h3>
+			
+			<!-- Size of the first circle (intensity + color): -->
+			<div style="display: inline-block; 
+						vertical-align: top;
+						text-align: center;
+						width: 500px; 
+						height:500px;
+						background: -webkit-radial-gradient({{ humorColor }} 0%, {{ humorColor }} 20%, rgb(186,181,186) {{ intensityDisplay }}%);
+						background: -o-radial-gradient({{ humorColor }} 0%, {{ humorColor }} 20%, rgb(186,181,186) {{ intensityDisplay }}%);
+						background: -moz-radial-gradient({{ humorColor }} 0%, {{ humorColor }} 20%, rgb(186,181,186) {{ intensityDisplay }}%);
+						background: radial-gradient({{ humorColor }} 0%, {{ humorColor }} 20%, rgb(186,181,186) {{ intensityDisplay }}%);">
+		
+				<!-- Color of the second circle (note): -->
+				<div style="width: 200px;
+					height: 200px;
+					margin: auto;
+					position: relative;
+					top: 50%;
+					margin-top: -100px;
+					-webkit-border-radius: 30px;
+					-moz-border-radius: 30px;
+					border-radius: 100px;
+					background: {{ noteColor }}"> 
+				</div>
+				
+				<!-- Image: -->
+				<img src="{% static pathImage %}" style="width: 160px;
+										height: 160px;
+										display: block;
+										margin: auto;
+										position: relative;
+										top: 50%;
+										margin-top: -180px;">
+				
+				<!-- feeling (red gradient): -->
+				<div style="width: 160px;
+					height: 160px;
+					margin: auto;
+					position: relative;
+					top: 50%;
+					margin-top: -160px;
+					-webkit-border-radius: 80px;
+					-moz-border-radius: 80px;
+					border-radius: 80px;
+					background-color: red;
+					opacity: {{ opacityLevel }};
+					filter: alpha(opacity={{ opacityLevelPercent }});">
+				</div>
+				
+			</div>
+			
+			<h3 style="margin-top: -50px">{{ name }}</h3>
+		</div>
+		
+		<div style="display: inline-block; vertical-align: top; width: 500px; height:610px; text-align: center;">
+			
+			<h3>{% trans "Voici le résultat moyen pour l'échantillon n°" %}{{ nameSample }} :</h3>
+			
+			{% if intensityMean == None %}
+			<div style="display: inline-block; 
+					vertical-align: middle;
+					width: 500px; 
+					height: 500px;
+					font-size: 35px;">
+				{% trans "Non displonible !" %}<br/>{% trans "Désolé." %}
+			</div>
+			{% else %}
+			<!-- Size of the first circle (intensity + color): -->
+			<div style="display: inline-block; 
+					vertical-align: top;
+					text-align: center;
+					width: 500px; 
+					height:500px;
+					background: -webkit-radial-gradient({{ humorColorMean }} 0%, {{ humorColorMean }} 20%, rgb(186,181,186) {{ intensityMeanDisplay }}%);
+					background: -o-radial-gradient({{ humorColorMean }} 0%, {{ humorColorMean }} 20%, rgb(186,181,186) {{ intensityMeanDisplay }}%);
+					background: -moz-radial-gradient({{ humorColorMean }} 0%, {{ humorColorMean }} 20%, rgb(186,181,186) {{ intensityMeanDisplay }}%);
+					background: radial-gradient({{ humorColorMean }} 0%, {{ humorColorMean }} 20%, rgb(186,181,186) {{ intensityMeanDisplay }}%);">
+	
+				<!-- Color of the second circle (note): -->
+				<div style="width: 200px;
+					height: 200px;
+					margin: auto;
+					position: relative;
+					top: 50%;
+					margin-top: -100px;
+					-webkit-border-radius: 30px;
+					-moz-border-radius: 30px;
+					border-radius: 100px;
+					background: {{ noteColorMean }}"> 
+				</div>
+			
+				<!-- Image: -->
+				<img src="{% static pathImageMean %}" style="width: 160px;
+										height: 160px;
+										display: block;
+										margin: auto;
+										position: relative;
+										top: 50%;
+										margin-top: -180px;"> 
+
+				<!-- feeling (red gradient): -->
+				<div style="width: 160px;
+					height: 160px;
+					margin: auto;
+					position: relative;
+					top: 50%;
+					margin-top: -160px;
+					-webkit-border-radius: 80px;
+					-moz-border-radius: 80px;
+					border-radius: 80px;
+					background-color: red;
+					opacity: {{ opacityLevelMean }};
+					filter: alpha(opacity={{ opacityLevelMeanPercent }});">
+				</div>
+				
+			</div>
+			{% endif %}
+		</div>
+		
+		<table style="margin: 20px; border-collapse: collapse;">
+			<tr>
+				<td style="color: rgb(216,89,149); padding: 2px; border: 1px solid white; font-weight: bold;">{% trans "Résultat de l'échantillon n°" %}{{ nameSample }}</td>
+				<td style="color: rgb(216,89,149); border-color: white; padding: 2px; border: 1px solid white; font-weight: bold;">{% trans "Personnel" %}</td>
+				<td style="color: rgb(216,89,149); border-color: white; padding: 2px; border: 1px solid white; font-weight: bold;">{% trans "Moyen" %}</td>
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">{% trans "Intensité" %}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ intensity }}%</td>
+				{% if feelingLevelMean == None %}
+					<td style="padding: 2px; border: 1px solid white;">{% trans "Non disponible" %}</td>
+				{% else %}
+					<td style="padding: 2px; border: 1px solid white;">{{ intensityMean }}%</td>
+				{% endif %}
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">{% trans "Humeur" %}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ humourColorName }}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ humourColorMeanName }}</td>
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">{% trans "Note" %}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ noteColorName }}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ noteColorMeanName }}</td>
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">{% trans "Image" %}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ imageName }}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ imageMeanName }}</td>
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">{% trans "Sensation" %} -</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ feelingLevel }}%</td>
+				{% if feelingLevelMean == None %}
+					<td style="padding: 2px; border: 1px solid white;">{% trans "Non disponible" %}</td>
+				{% else %}
+					<td style="padding: 2px; border: 1px solid white;">{{ feelingLevelMean }}%</td>
+				{% endif %}
+			</tr>
+			<tr style="border: 1px solid white;">
+				<td style="padding: 2px; border: 1px solid white;">{% trans "Nom" %}</td>
+				<td style="padding: 2px; border: 1px solid white;">{{ name }}</td>
+			</tr>
+		</table>
+		
+			
+		{% include "footer.html" %}
+	
+	</body>
+	
+</html>
