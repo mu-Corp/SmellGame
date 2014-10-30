@@ -121,15 +121,7 @@ def getDataHistoBySliceOfAge(cas): #todo
 	result = ()
 	
 	crit = "age"
-	"""
-	from_0_10   = SampleGiver.objects.extra(where=[getFromTo(crit, 0, 10)])
-	from_11_20  = SampleGiver.objects.extra(where=[getFromTo(crit, 11, 20)])
-	from_21_30  = SampleGiver.objects.extra(where=[getFromTo(crit, 21, 30)])
-	from_31_40  = SampleGiver.objects.extra(where=[getFromTo(crit, 31, 40)])
-	from_41_60  = SampleGiver.objects.extra(where=[getFromTo(crit, 41, 60)])	
-	from_61_end = SampleGiver.objects.extra(where=[getFromTo(crit, 61, 125)])	
-	"""
-	
+
 	dict_SliceOfAge["giver0_10"]   = SampleGiver.objects.extra(where=[getFromTo(crit, 0, 10)])
 	dict_SliceOfAge["giver11_20"]  = SampleGiver.objects.extra(where=[getFromTo(crit, 11, 20)])
 	dict_SliceOfAge["giver21_30"]  = SampleGiver.objects.extra(where=[getFromTo(crit, 21, 30)])
@@ -138,7 +130,10 @@ def getDataHistoBySliceOfAge(cas): #todo
 	dict_SliceOfAge["giver61_end"] = SampleGiver.objects.extra(where=[getFromTo(crit, 61, 125)])
 	
 	if cas == 'intensity':
+<<<<<<< HEAD
 		# todo fix
+=======
+>>>>>>> 36fd174f74de81433486161ee6214a4ea7e48b02
 		result  = "[{"
 		result += "name: 'De 0 à 10 ans ("+str(len(dict_SliceOfAge["giver0_10"]))+")'," 
 		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver0_10"]))+"]"
@@ -157,10 +152,16 @@ def getDataHistoBySliceOfAge(cas): #todo
 		result += "},{"
 		result += "name: 'De 61 à 100 ans ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
 		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver61_end"]))+"]}]"
+<<<<<<< HEAD
 		#result += ",\n["+ boxplotIntensity(dict_SliceOfAge["giver0_10"]) +","+ boxplotIntensity(dict_SliceOfAge["giver11_20"])+","+ boxplotIntensity(dict_SliceOfAge["giver21_30"])+","+ boxplotIntensity(dict_SliceOfAge["giver31_40"])+","+ boxplotIntensity(dict_SliceOfAge["giver41_60"])+","+ boxplotIntensity(dict_SliceOfAge["giver61_end"]) + "]"
 
 	if cas == 'feeling':
 		# todo fix
+=======
+		result += ",\n["+ boxplotIntensity(dict_SliceOfAge["giver0_10"]) +","+ boxplotIntensity(dict_SliceOfAge["giver11_20"])+","+ boxplotIntensity(dict_SliceOfAge["giver21_30"])+","+ boxplotIntensity(dict_SliceOfAge["giver31_40"])+","+ boxplotIntensity(dict_SliceOfAge["giver41_60"])+","+ boxplotIntensity(dict_SliceOfAge["giver61_end"]) + "]"
+
+	if cas == 'feeling':
+>>>>>>> 36fd174f74de81433486161ee6214a4ea7e48b02
 		result  = "[{"
 		result += "name: 'De 0 à 10 ans ("+str(len(dict_SliceOfAge["giver0_10"]))+")'," 
 		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver0_10"]))+"]"
@@ -179,7 +180,11 @@ def getDataHistoBySliceOfAge(cas): #todo
 		result += "},{"
 		result += "name: 'De 61 à 100 ans ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
 		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver61_end"]))+"]}]"
+<<<<<<< HEAD
 		#result += ",\n["+ boxplotFeeling(dict_SliceOfAge["giver0_10"]) +","+ boxplotFeeling(dict_SliceOfAge["giver11_20"])+","+ boxplotFeeling(dict_SliceOfAge["giver21_30"])+","+ boxplotFeeling(dict_SliceOfAge["giver31_40"])+","+ boxplotFeeling(dict_SliceOfAge["giver41_60"])+","+ boxplotFeeling(dict_SliceOfAge["giver61_end"]) + "]"
+=======
+		result += ",\n["+ boxplotFeeling(dict_SliceOfAge["giver0_10"]) +","+ boxplotFeeling(dict_SliceOfAge["giver11_20"])+","+ boxplotFeeling(dict_SliceOfAge["giver21_30"])+","+ boxplotFeeling(dict_SliceOfAge["giver31_40"])+","+ boxplotFeeling(dict_SliceOfAge["giver41_60"])+","+ boxplotFeeling(dict_SliceOfAge["giver61_end"]) + "]"
+>>>>>>> 36fd174f74de81433486161ee6214a4ea7e48b02
 	return result
 
 def getBoxplotBySliceOfAge(cas):
