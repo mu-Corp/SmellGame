@@ -249,7 +249,7 @@ function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2
 
 </head>
 <body>
-						
+	
 	<div id="panelLeft">
 		<t1>Choissisez un graphique à visualiser :</t1>
 		
@@ -287,11 +287,15 @@ function SetOptionColumn_negative(titre, categorie, nom1, donnee1, nom2, donnee2
 	</div>
 
 
-	<div id="containerGraphic"></div>
+	<div id="containerGraphic">
+	<p>
+	<img alt="" src="{% static 'images/Smellgame_exemples.png' %}" style="vertical-align:middle;text-align:center;width: 90%;height: 80%;" />
+	</p>
+	</div>
 	
-
+	
 	{% include "footer.html" %}
-
+	
 
 </body>
 </html>
