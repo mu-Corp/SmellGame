@@ -71,7 +71,7 @@ function SetOptionPie(titre, categorie, donnees){
 	return option;
 }
 
-function SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soustitre) {
+function SetOptionHisto(titre, y, indicationCurseur, cat, donnees, minY, maxY, erreur, soustitre) {
 	// Take 5 non-optional arguments
 	// => titre : string, selfexplain...
 	// => y : string, name of y axis
@@ -88,7 +88,7 @@ function SetOptionHisto(titre, y, indicationCurseur, cat, donnees, erreur, soust
         title:   { text: titre },
         subtitle: { text: soustitre },
         xAxis:   { categories: cat },
-        yAxis:   { title: { text: y } }, 
+        yAxis:   { title: { text: y }, min: minY, max: maxY, tickInterval:10}, 
 		//legend:  { enabled: false }, 
 		tooltip: { pointFormat: indicationCurseur },
         credits: { enabled: false },
@@ -225,7 +225,7 @@ function showHide(elt) {
 			[{% ifequal graphic.categoriesLeft 'Intensités (0~100)' %}
 				{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}
 				{% else %} '{{ graphic.categoriesLeft}}' {% endifequal %}],
-			{{ graphic.dataLeft }}, 
+			{{ graphic.dataLeft }},0,100, 
 			'{{ graphic.Description }}')) });
 			$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
 			'{{ graphic.titleRight }}', 
@@ -234,7 +234,7 @@ function showHide(elt) {
 			[{% ifequal graphic.categoriesLeft 'Appréciations (-50~50)' %}
 				{% for categ in graphic.categoriesRight %}'{{ categ }}', {% endfor %}
 				{% else %} '{{ graphic.categoriesRight}}' {% endifequal %}],
-			{{ graphic.dataRight }}, 
+			{{ graphic.dataRight }},-50,50, 
 			'{{ graphic.description }}')) });">
 
 			<button>{{ graphic.button }}</button></a></p> 
@@ -247,14 +247,14 @@ function showHide(elt) {
 			'{{ graphic.orderedNameLeft }}', 
 			'{{ graphic.abscisseName }}', 
 			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
-			{{ graphic.dataLeft }}, 
+			{{ graphic.dataLeft }},0,100, 
 			'{{ graphic.Description }}')) });
 			$(function () {$('#containerGraphicRight').highcharts(SetOptionHisto(
 			'{{ graphic.titleRight }}', 
 			'{{ graphic.orderedNameRight }}', 
 			'{{ graphic.abscisseName }}', 
 			[{% for categ in graphic.categoriesLeft %}'{{ categ }}', {% endfor %}],
-			{{ graphic.dataRight }}, 
+			{{ graphic.dataRight }},-50,50,
 			'{{ graphic.description }}')) });">
 
 			<button>{{ graphic.button }}</button></a></p> 
