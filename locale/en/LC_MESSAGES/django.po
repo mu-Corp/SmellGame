@@ -202,11 +202,11 @@ msgstr "Cigarette consumption"
 
 #: SmellGalaxy/views.py:139
 msgid "Intensités selon la consommation d aliments"
-msgstr "Intensity related to cigarette consumption"
+msgstr "Intensity related to diet"
 
 #: SmellGalaxy/views.py:140
 msgid "Appréciations selon la consommation d aliments"
-msgstr "Assessment related to cigarette consumption"
+msgstr "Assessment related to diet"
 
 #: SmellGalaxy/views.py:148
 msgid "Repartition selon le sexe"
