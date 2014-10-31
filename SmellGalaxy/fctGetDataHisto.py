@@ -58,7 +58,7 @@ def getDataHistoBySex(cas):
 	if cas == 'intensity':
 	#
 		result  = "[{"
-		result += "name: 'Women'," 
+		result += "name: 'Women',"
 		result += "data: ["+str(doMoyIntensityForAllGivers(giverWoman))+"]"
 		result += "},{"
 		result += "name: 'Men',"
