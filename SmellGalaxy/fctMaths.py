@@ -41,7 +41,10 @@ def errorFeelingForAllGivers(givers) :
 		if len(GuessByIdSample) != 0 :
 			for elt in GuessByIdSample :
 				if elt.intensity > 10 : l_feeling.append(50-elt.feeling)
-	low,high = errorInterval(l_feeling)
+	if len(l_feeling) == 0 :
+		low = 0
+		high = 0
+	else : low,high = errorInterval(l_feeling)
 	return [low,high]
 
 def doMoyIntensityForAllGivers (givers) :
@@ -68,7 +71,10 @@ def errorIntensityForAllGivers(givers) :
 		if len(GuessByIdSample) != 0 :
 			for elt in GuessByIdSample :
 				if elt.intensity > 10 : l_intensity.append(elt.intensity)
-	low,high = errorInterval(l_intensity)
+	if len(l_intensity) == 0 :
+		low = 0
+		high = 0
+	else : low,high = errorInterval(l_intensity)
 	return [low,high]
 
 
@@ -152,6 +158,18 @@ def feelingbyList(liste):
 	listeToReturn = []
 	for givers in liste : 
 		listeToReturn.append(doMoyFeelingForAllGivers(givers))
+	return listeToReturn
+
+def errorIntensitybyList(liste):
+	listeToReturn = []
+	for givers in liste : 
+		listeToReturn.append(errorIntensityForAllGivers(givers))
+	return listeToReturn
+
+def errorFeelingbyList(liste):
+	listeToReturn = []
+	for givers in liste : 
+		listeToReturn.append(errorFeelingForAllGivers(givers))
 	return listeToReturn
 
 

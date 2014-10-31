@@ -26,19 +26,21 @@ def getDataHistoByDeo(cas):
 	#
 		result  = "[{"
 		result += "name: 'Deodorant user'," 
-		result += "data: ["+str(doMoyIntensityForAllGivers(giverWithDeo))+"]"
-		result += "},{"
-		result += "name: 'Deodorant non-user',"
-		result += "data: ["+ str(doMoyIntensityForAllGivers(giverWithoutDeo))+"]}]"	
+		result += "data: ["+str(doMoyIntensityForAllGivers(giverWithDeo))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(giverWithDeo))+"]},"
+		result += "{name: 'Deodorant non-user',"
+		result += "data: ["+ str(doMoyIntensityForAllGivers(giverWithoutDeo))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(giverWithoutDeo))+"]}]"
 		#result += ",\n["+boxplotIntensity(giverWithDeo) +","+ boxplotIntensity(giverWithoutDeo) + "]"	
 	if cas == 'feeling':
 	#
 		result  = "[{"
 		result += "name: 'Deodorant user',"  
-		result += "data: ["+str(doMoyFeelingForAllGivers(giverWithDeo))+"]"
-		result += "},{"
-		result += "name: 'Deodorant non-user'," 
-		result += "data: ["+str(doMoyFeelingForAllGivers(giverWithoutDeo))+"]}]"	
+		result += "data: ["+str(doMoyFeelingForAllGivers(giverWithDeo))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(giverWithDeo))+"]},"
+		result += "{name: 'Deodorant non-user'," 
+		result += "data: ["+str(doMoyFeelingForAllGivers(giverWithoutDeo))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(giverWithoutDeo))+"]}]"
 		#result += ",\n["+ boxplotFeeling(giverWithDeo) +","+ boxplotFeeling(giverWithoutDeo) + "]"
 	return result
 
@@ -90,19 +92,21 @@ def getDataHistoBySmoker(cas):
 	#
 		result  = "[{"
 		result += "name: 'Non-Smokers'," 
-		result += "data: ["+str(doMoyIntensityForAllGivers(giverNonSmoker))+"]"
-		result += "},{"
-		result += "name: 'Smokers',"
-		result += "data: ["+ str(doMoyIntensityForAllGivers(giverSmoker))+"]}]"
+		result += "data: ["+str(doMoyIntensityForAllGivers(giverNonSmoker))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(giverNonSmoker))+"]},"
+		result += "{name: 'Smokers',"
+		result += "data: ["+ str(doMoyIntensityForAllGivers(giverSmoker))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(giverSmoker))+"]}]"
 		#result += ",\n["+boxplotIntensity(giverNonSmoker) +","+ boxplotIntensity(giverSmoker) + "]"	
 	if cas == 'feeling':
 	#
 		result  = "[{"
 		result += "name: 'Non-Smokers'," 
-		result += "data: ["+str(doMoyFeelingForAllGivers(giverNonSmoker))+"]"
-		result += "},{"
-		result += "name: 'Smokers'," 
-		result += "data: ["+ str(doMoyFeelingForAllGivers(giverSmoker))+"]}]"
+		result += "data: ["+str(doMoyFeelingForAllGivers(giverNonSmoker))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(giverSmoker))+"]},"
+		result += "{name: 'Smokers'," 
+		result += "data: ["+ str(doMoyFeelingForAllGivers(giverSmoker))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(giverNonSmoker))+"]}]"
 		#result += ",\n["+ boxplotFeeling(giverNonSmoker) +","+ boxplotFeeling(giverSmoker) + "]"
 	return result
 	
@@ -141,44 +145,46 @@ def getDataHistoBySliceOfAge(cas): #todo
 		# todo fix
 		result  = "[{"
 		result += "name: 'From 0 to 10 years old ("+str(len(dict_SliceOfAge["giver0_10"]))+")'," 
-		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver0_10"]))+"]"
-		result += "},{"
-		result += "name: 'From 11 to 20 years old ("+str(len(dict_SliceOfAge["giver11_20"]))+")',"
-		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver11_20"]))+"]"
-		result += "},{"
-		result += "name: 'From 21 to 30 years old ("+str(len(dict_SliceOfAge["giver21_30"]))+")'," 
-		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver21_30"]))+"]"
-		result += "},{"
-		result += "name: 'From 31 to 40 years old ("+str(len(dict_SliceOfAge["giver31_40"]))+")'," 
-		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver31_40"]))+"]"
-		result += "},{"
-		result += "name: 'From 41 to 60 years old ("+str(len(dict_SliceOfAge["giver41_60"]))+")', "
-		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver41_60"]))+"]"
-		result += "},{"
-		result += "name: 'From 61 to 100 years old ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
-		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver61_end"]))+"]}]"
+		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver0_10"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(dict_SliceOfAge["giver0_10"]))+"]},"
+		result += "{name: 'From 11 to 20 years old ("+str(len(dict_SliceOfAge["giver11_20"]))+")',"
+		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver11_20"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(dict_SliceOfAge["giver11_20"]))+"]},"
+		result += "{name: 'From 21 to 30 years old ("+str(len(dict_SliceOfAge["giver21_30"]))+")'," 
+		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver21_30"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(dict_SliceOfAge["giver21_30"]))+"]},"
+		result += "{name: 'From 31 to 40 years old ("+str(len(dict_SliceOfAge["giver31_40"]))+")'," 
+		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver31_40"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(dict_SliceOfAge["giver31_40"]))+"]},"
+		result += "{name: 'From 41 to 60 years old ("+str(len(dict_SliceOfAge["giver41_60"]))+")', "
+		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver41_60"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(dict_SliceOfAge["giver41_60"]))+"]},"
+		result += "{name: 'From 61 to 100 years old ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
+		result += "data: ["+str(doMoyIntensityForAllGivers(dict_SliceOfAge["giver61_end"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(dict_SliceOfAge["giver61_end"]))+"]}]"
 		#result += ",\n["+ boxplotIntensity(dict_SliceOfAge["giver0_10"]) +","+ boxplotIntensity(dict_SliceOfAge["giver11_20"])+","+ boxplotIntensity(dict_SliceOfAge["giver21_30"])+","+ boxplotIntensity(dict_SliceOfAge["giver31_40"])+","+ boxplotIntensity(dict_SliceOfAge["giver41_60"])+","+ boxplotIntensity(dict_SliceOfAge["giver61_end"]) + "]"
 
 	if cas == 'feeling':
 		# todo fix
 		result  = "[{"
 		result += "name: 'From 0 to 10 years old ("+str(len(dict_SliceOfAge["giver0_10"]))+")'," 
-		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver0_10"]))+"]"
-		result += "},{"
-		result += "name: 'From 11 to 20 years old ("+str(len(dict_SliceOfAge["giver11_20"]))+")',"
-		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver11_20"]))+"]"
-		result += "},{"
-		result += "name: 'From 21 to 30 years old ("+str(len(dict_SliceOfAge["giver21_30"]))+")'," 
-		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver21_30"]))+"]"
-		result += "},{"
-		result += "name: 'From 31 to 40 years old ("+str(len(dict_SliceOfAge["giver31_40"]))+")'," 
-		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver31_40"]))+"]"
-		result += "},{"
-		result += "name: 'From 41 to 60 years old ("+str(len(dict_SliceOfAge["giver41_60"]))+")', "
-		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver41_60"]))+"]"
-		result += "},{"
-		result += "name: 'From 61 to 100 years old ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
-		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver61_end"]))+"]}]"
+		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver0_10"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(dict_SliceOfAge["giver0_10"]))+"]},"
+		result += "{name: 'From 11 to 20 years old ("+str(len(dict_SliceOfAge["giver11_20"]))+")',"
+		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver11_20"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(dict_SliceOfAge["giver11_20"]))+"]},"
+		result += "{name: 'From 21 to 30 years old ("+str(len(dict_SliceOfAge["giver21_30"]))+")'," 
+		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver21_30"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(dict_SliceOfAge["giver21_30"]))+"]},"
+		result += "{name: 'From 31 to 40 years old ("+str(len(dict_SliceOfAge["giver31_40"]))+")'," 
+		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver31_40"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(dict_SliceOfAge["giver31_40"]))+"]},"
+		result += "{name: 'From 41 to 60 years old ("+str(len(dict_SliceOfAge["giver41_60"]))+")', "
+		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver41_60"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(dict_SliceOfAge["giver41_60"]))+"]},"
+		result += "{name: 'From 61 to 100 years old ("+str(len(dict_SliceOfAge["giver61_end"]))+")', "
+		result += "data: ["+str(doMoyFeelingForAllGivers(dict_SliceOfAge["giver61_end"]))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(dict_SliceOfAge["giver61_end"]))+"]}]"
 		#result += ",\n["+ boxplotFeeling(dict_SliceOfAge["giver0_10"]) +","+ boxplotFeeling(dict_SliceOfAge["giver11_20"])+","+ boxplotFeeling(dict_SliceOfAge["giver21_30"])+","+ boxplotFeeling(dict_SliceOfAge["giver31_40"])+","+ boxplotFeeling(dict_SliceOfAge["giver41_60"])+","+ boxplotFeeling(dict_SliceOfAge["giver61_end"]) + "]"
 	return result
 
@@ -225,10 +231,14 @@ def getDataHistoByRegime(cas):
 	# cas = 1, intensité, sinon, cas =2 , feeling
 	if cas == 'intensity':
 		result =   "[{name: 'Intensity eaters', data:"        +str(intensitybyList(listeComsommateur))    +'},'
-		result +=   "{name: 'Intensity non-eaters', data:"    +str(intensitybyList(listeNonComsommateur)) +'}]'
+		result +=   "{name: 'error', type: 'errorbar', data: "+str(errorIntensitybyList(listeComsommateur))+"},"
+		result +=   "{name: 'Intensity non-eaters', data:"    +str(intensitybyList(listeNonComsommateur)) +'},'
+		result +=   "{name: 'error', type: 'errorbar', data: "+str(errorIntensitybyList(listeNonComsommateur))+"}]"
 	if cas == 'feeling':
 		result =    "[{name: 'Assessment eaters', data:"     +str(feelingbyList(listeComsommateur))     +'},'
-		result +=   "{name: 'Assessment non-eaters', data:" +str(feelingbyList(listeNonComsommateur))   +'}]'
+		result +=   "{name: 'error', type: 'errorbar', data: "+str(errorFeelingbyList(listeComsommateur))+"},"
+		result +=   "{name: 'Assessment non-eaters', data:" +str(feelingbyList(listeNonComsommateur))   +'},'
+		result +=   "{name: 'error', type: 'errorbar', data: "+str(errorFeelingbyList(listeNonComsommateur))+"}]"
 	
 	#categories = ['Broccoli', 'Gabbage', 'Cauliflower', 'Asparagus', 'Fish', 'Red_meat', 'Fast_food', 'Spicy_food', 'Alcohol', 'Antibiotics']
 	
