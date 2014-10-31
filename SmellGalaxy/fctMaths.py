@@ -7,6 +7,7 @@
 from django.db import models
 from collections import defaultdict
 import random
+from math import sqrt
 
 from SmellGuess.models   import *
 from SmellGift.models    import *
@@ -32,6 +33,17 @@ def doMoyFeelingForAllGivers (givers) :
 	moyenne = round(moyenne,2)
 	return moyenne
 
+def errorFeelingForAllGivers(givers) :
+	l_feeling = []
+	for eachGiver in givers : 
+		sample = Sample.objects.filter(sampleGiver_id=eachGiver.id)
+		GuessByIdSample = Guess.objects.filter(sample_id=sample[0].id)
+		if len(GuessByIdSample) != 0 :
+			for elt in GuessByIdSample :
+				if elt.intensity > 10 : l_feeling.append(50-elt.feeling)
+	low,high = errorInterval(l_feeling)
+	return [low,high]
+
 def doMoyIntensityForAllGivers (givers) :
 	moyenne = 0; somme = 0
 	i=0
@@ -47,6 +59,17 @@ def doMoyIntensityForAllGivers (givers) :
 		moyenne = (somme* 1.0)/ i
 	moyenne = round(moyenne,2)
 	return moyenne
+
+def errorIntensityForAllGivers(givers) :
+	l_intensity = []
+	for eachGiver in givers : 
+		sample = Sample.objects.filter(sampleGiver_id=eachGiver.id)
+		GuessByIdSample = Guess.objects.filter(sample_id=sample[0].id)
+		if len(GuessByIdSample) != 0 :
+			for elt in GuessByIdSample :
+				if elt.intensity > 10 : l_intensity.append(elt.intensity)
+	low,high = errorInterval(l_intensity)
+	return [low,high]
 
 
 def nameDataGraphPie(grph, fromNumb, toNumb, liste, y=""):
@@ -130,6 +153,40 @@ def feelingbyList(liste):
 	for givers in liste : 
 		listeToReturn.append(doMoyFeelingForAllGivers(givers))
 	return listeToReturn
+
+
+def mean_std_dev(l_durations):
+    """ Calculate mean and standard deviation of data durations[]: """
+    
+    length, mean, std = len(l_durations), 0, 0
+    
+    for duration in l_durations:
+        mean = mean + duration
+    
+    mean = mean / float(length)
+    
+    for duration in l_durations:
+        std = std + (duration - mean) ** 2
+    
+    std = sqrt(std / float(length))
+    mean = int(round(mean))
+    std = int(round(std))
+    
+    return mean, std
+
+
+#Intervalle de confiance à 95%:
+def errorInterval(l_data):
+
+    n = len(l_data)
+    meanData, ecartType = mean_std_dev(l_data)
+    
+    demiLargeur = 1.96*(ecartType / sqrt(n))
+    
+    low = meanData - demiLargeur
+    high = meanData + demiLargeur
+    
+    return low, high
 
 
 ###############################################################

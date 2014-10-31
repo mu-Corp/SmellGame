@@ -54,25 +54,23 @@ def getBoxplotByDeo(cas):
 def getDataHistoBySex(cas):
 	giverWoman   = SampleGiver.objects.filter(sex = "F")
 	giverMan = SampleGiver.objects.filter(sex = "M")
+	
 		# cas = 1, intensité, sinon, cas =2 , feeling
 	if cas == 'intensity':
 	#
-		result  = "[{"
-		result += "name: 'Women'," 
-		result += "data: ["+str(doMoyIntensityForAllGivers(giverWoman))+"]"
-		result += "},{"
-		result += "name: 'Men',"
-		result += "data: ["+ str(doMoyIntensityForAllGivers(giverMan))+"]}]"
+		result  = "[{name: 'Women',data: ["+str(doMoyIntensityForAllGivers(giverWoman))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(giverWoman))+"]},"
+		result += "{name: 'Men', data: ["+ str(doMoyIntensityForAllGivers(giverMan))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorIntensityForAllGivers(giverMan))+"]}]"
 		#result += ",\n["+boxplotIntensity(giverMan) +","+ boxplotIntensity(giverWoman) + "]"
 	if cas == 'feeling':
 	#
-		result  = "[{"
-		result += "name: 'Women',"
-		result += "data: ["+str(doMoyFeelingForAllGivers(giverWoman))+"]"
-		result += "},{"
-		result += "name: 'Men',"
-		result += "data: ["+ str(doMoyFeelingForAllGivers(giverMan))+"]}]"
+		result  = "[{name: 'Women',data: ["+str(doMoyFeelingForAllGivers(giverWoman))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(giverWoman))+"]},"
+		result += "{name: 'Men', data: ["+ str(doMoyFeelingForAllGivers(giverMan))+"]},"
+		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(giverMan))+"]}]"
 		#result += ",\n["+boxplotFeeling(giverMan) +","+ boxplotFeeling(giverWoman) + "]"
+	print result
 	return result
 	
 def getBoxplotBySex(cas):
