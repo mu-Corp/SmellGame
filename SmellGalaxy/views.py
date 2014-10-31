@@ -110,23 +110,23 @@ def createListHisto():
 	# Intensity & Feeling by sex
 	listHisto.append({
 		'button': _(u'Données selon le sexe'), 'abscisseName': _(u'Sexe du donneur'), 'description': '',
-		'titleLeft' : _(u'Intensités selon le sexe'),     'orderedNameLeft' : _(u'Intensités (0~100)'), 'categoriesLeft' : cat1[0],     'dataLeft' : getDataHistoBySex(_(u'intensity')),  'dataErrorLeft': '',
-		'titleRight': _(u'Appréciations selon le sexe'),  'orderedNameRight': _(u'Appréciations (-50~50)'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoBySex(_(u'feeling')),  'dataErrorRight': ''})
+		'titleLeft' : _(u'Intensités selon le sexe'),     'orderedNameLeft' : _(u'Intensités (0~100)'), 'categoriesLeft' : cat1[0],     'dataLeft' : getDataHistoBySex('intensity'),  'dataErrorLeft': '',
+		'titleRight': _(u'Appréciations selon le sexe'),  'orderedNameRight': _(u'Appréciations (-50~50)'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoBySex('feeling'),  'dataErrorRight': ''})
 	# Intensity & Feeling by age
 	listHisto.append({
 		'button': _(u'Données selon l\'âge'), 'abscisseName': _(u'Tranche d âge'), 'description': '',
-		'titleLeft': _(u'Intensités selon l âge'),    'orderedNameLeft': _(u'Intensités (0~100)'), 'categoriesLeft' : cat1[0], 'dataLeft': getDataHistoBySliceOfAge(_(u'intensity')),  'dataErrorLeft': '',
-		'titleRight': _(u'Appréciations selon l âge'),  'orderedNameRight': _(u'Apréciations'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoBySliceOfAge(_(u'feeling')),  'dataErrorRight': ''})
+		'titleLeft': _(u'Intensités selon l âge'),    'orderedNameLeft': _(u'Intensités (0~100)'), 'categoriesLeft' : cat1[0], 'dataLeft': getDataHistoBySliceOfAge('intensity'),  'dataErrorLeft': '',
+		'titleRight': _(u'Appréciations selon l âge'),  'orderedNameRight': _(u'Apréciations'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoBySliceOfAge('feeling'),  'dataErrorRight': ''})
 	# Intensity & Feeling by use of deodorant
 	listHisto.append({
 		'button': _(u'Données déodorant'),  'abscisseName': _(u'Utilisation de déodorant'),  'description': '',
-		'titleLeft': _(u'Intensités selon l utilisation de déodorant'),    'orderedNameLeft': _(u'Intensités (0~100)'),  'categoriesLeft' : cat1[0], 'dataLeft': getDataHistoByDeo(_(u'intensity')),  'dataErrorLeft': '', 
-		'titleRight': _(u'Appréciations selon l utilisation de déodorant'),  'orderedNameRight': _(u'Appréciations (-50~50)'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoByDeo(_(u'feeling')),  'dataErrorRight': ''})
+		'titleLeft': _(u'Intensités selon l utilisation de déodorant'),    'orderedNameLeft': _(u'Intensités (0~100)'),  'categoriesLeft' : cat1[0], 'dataLeft': getDataHistoByDeo('intensity'),  'dataErrorLeft': '', 
+		'titleRight': _(u'Appréciations selon l utilisation de déodorant'),  'orderedNameRight': _(u'Appréciations (-50~50)'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoByDeo('feeling'),  'dataErrorRight': ''})
 	# Intensity & Feeling by Smoking
 	listHisto.append({
 		'button': _(u'Données fumeur'), 'abscisseName': _(u'Comsommation de cigarettes'), 'description': '',
-		'titleLeft': _(u'Intensités selon la comsommation de cigarettes'),   'orderedNameLeft': _(u'Intensités (0~100)'), 'categoriesLeft' : cat1[0],   'dataLeft': getDataHistoBySmoker(_(u'intensity')),  'dataErrorLeft': '', 
-		'titleRight': _(u'Appréciations selon la comsommation de cigarettes'), 'orderedNameRight': _(u'Appréciations (-50~50)'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoBySmoker(_(u'feeling')),  'dataErrorRight': ''})
+		'titleLeft': _(u'Intensités selon la comsommation de cigarettes'),   'orderedNameLeft': _(u'Intensités (0~100)'), 'categoriesLeft' : cat1[0],   'dataLeft': getDataHistoBySmoker('intensity'),  'dataErrorLeft': '', 
+		'titleRight': _(u'Appréciations selon la comsommation de cigarettes'), 'orderedNameRight': _(u'Appréciations (-50~50)'), 'categoriesRight' : cat1[1], 'dataRight': getDataHistoBySmoker('feeling'),  'dataErrorRight': ''})
 
 	return listHisto
 
@@ -136,8 +136,8 @@ def createListHistoRE():
 	# Intensity by Recently eaten
 	listHisto.append({
 		'button': _(u'Données selon l\'alimentation'), 'abscisseNameLeft': _(u'Consommation de cigarettes'), 
-		'titleLeft': _(u'Intensités selon la consommation d aliments'),   'orderedNameLeft': _(u'Intensités (0~100)'),  'categoriesLeft' : cat2,  'dataLeft': getDataHistoByRegime(_(u'intensity')),  'dataErrorLeft': '', 
-		'titleRight': _(u'Appréciations selon la consommation d aliments'),    'orderedNameRight': _(u'Appréciations (-50~50)'),   'categoriesRight' : cat2,  'dataRight': getDataHistoByRegime(_(u'feeling')),  'dataErrorRight': ''})
+		'titleLeft': _(u'Intensités selon la consommation d aliments'),   'orderedNameLeft': _(u'Intensités (0~100)'),  'categoriesLeft' : cat2,  'dataLeft': getDataHistoByRegime('intensity'),  'dataErrorLeft': '', 
+		'titleRight': _(u'Appréciations selon la consommation d aliments'),    'orderedNameRight': _(u'Appréciations (-50~50)'),   'categoriesRight' : cat2,  'dataRight': getDataHistoByRegime('feeling'),  'dataErrorRight': ''})
 
 	return listHisto
 

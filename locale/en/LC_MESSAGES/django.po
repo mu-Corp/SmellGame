@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-31 02:32+0100\n"
+"POT-Creation-Date: 2014-10-31 03:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -165,12 +165,6 @@ msgstr "Giver sex"
 msgid "Intensités selon le sexe"
 msgstr "Intensity for each sex"
 
-#: SmellGalaxy/views.py:113 SmellGalaxy/views.py:118 SmellGalaxy/views.py:123
-#: SmellGalaxy/views.py:128 SmellGalaxy/views.py:139
-#, fuzzy
-msgid "intensity"
-msgstr "Intensity"
-
 #: SmellGalaxy/views.py:114
 #, fuzzy
 msgid "Appréciations selon le sexe"
@@ -181,11 +175,6 @@ msgstr "Assessment for each sex"
 #, fuzzy
 msgid "Appréciations (-50~50)"
 msgstr "Assessment (-50~50)"
-
-#: SmellGalaxy/views.py:114 SmellGalaxy/views.py:119 SmellGalaxy/views.py:124
-#: SmellGalaxy/views.py:129 SmellGalaxy/views.py:140
-msgid "feeling"
-msgstr "Assessment"
 
 #: SmellGalaxy/views.py:117
 msgid "Données selon l'âge"
@@ -519,11 +508,11 @@ msgstr "Tested samples were saved"
 msgid "SmellGame Graphics"
 msgstr ""
 
-#: templates/SmellGalaxyTemplate/Graphes.html:214
+#: templates/SmellGalaxyTemplate/Graphes.html:215
 msgid "Choissisez un graphique à visualiser : "
 msgstr "Choose a graph to visualize :"
 
-#: templates/SmellGalaxyTemplate/Graphes.html:268
+#: templates/SmellGalaxyTemplate/Graphes.html:269
 msgid "Informations sur les donneurs : "
 msgstr "Givers data :"
 
@@ -785,3 +774,10 @@ msgstr "CHECK THE RESULTS"
 #: templates/SmellGuessTemplate/registration.html:12
 msgid "Enregistrement"
 msgstr "Save"
+
+#, fuzzy
+#~ msgid "intensity"
+#~ msgstr "Intensity"
+
+#~ msgid "feeling"
+#~ msgstr "Assessment"
