@@ -23,23 +23,47 @@ def giftView(request):
 
 
 
+def getAllSampleName():
+	result = list()
+	for sample in Sample.objects.all():
+		result.append(sample.name)
+	return result
+
+
 def thanksView(request) :
-	
 	paramToGenerateTemplate = dict()
+	paramToGenerateTemplate['nameSample'] = 'demo'
 	
 	if 'demoMode' not in request.session.keys():
 		request.session['demoMode'] = True
-	
+		
 	if request.session['demoMode'] == False:
 		if request.method == 'POST':
 			formGiver = SampleGiverForm(request.POST)
+			
 			if formGiver.is_valid() :
 				giver = formGiver.save()
 				sample = Sample(sampleGiver=giver)
 				sample.save()
-				sample.name = request.POST['nameSample']
-				sample.save()
 	
+				#Generate a correct sample name:
+				l_sampleName = getAllSampleName()
+				sessionName = 'B'
+				i = 1
+				sampleName = sessionName + str(i)
+				while sampleName in l_sampleName:
+					i += 1
+					sampleName = sessionName + str(i)
+				
+				sample.name = sampleName
+				sample.save()
+				
+				paramToGenerateTemplate['nameSample'] = sampleName
+				
 	paramToGenerateTemplate['demoMode'] = request.session['demoMode']
 	
 	return render(request, 'SmellGiftTemplate/thanks.html', paramToGenerateTemplate)
+
+
+
+
