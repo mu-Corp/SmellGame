@@ -38,72 +38,72 @@ msgstr "Man"
 
 #: SmellGalaxy/fctGetDataPie.py:59
 msgid "Brocoli"
-msgstr ""
+msgstr "Broccoli"
 
 #: SmellGalaxy/fctGetDataPie.py:59
 msgid "Chou"
-msgstr ""
+msgstr "Cabbage"
 
 #: SmellGalaxy/fctGetDataPie.py:59
 msgid "Chou fleur"
-msgstr ""
+msgstr "Cauliflower"
 
 #: SmellGalaxy/fctGetDataPie.py:59
 msgid "Asperge"
-msgstr ""
+msgstr "Aspergus"
 
 #: SmellGalaxy/fctGetDataPie.py:59
 msgid "Poisson"
-msgstr ""
+msgstr "Fish"
 
 #: SmellGalaxy/fctGetDataPie.py:59
 msgid "Viande rouge"
-msgstr ""
+msgstr "Red meat"
 
 #: SmellGalaxy/fctGetDataPie.py:59 SmellGalaxy/views.py:109
 msgid "Fast food"
-msgstr ""
+msgstr "Fast food"
 
 #: SmellGalaxy/fctGetDataPie.py:59
 msgid "Epicé"
-msgstr ""
+msgstr "Spicy food"
 
 #: SmellGalaxy/fctGetDataPie.py:59
 msgid "Alcool"
-msgstr ""
+msgstr "Alcohol"
 
 #: SmellGalaxy/fctGetDataPie.py:59
 msgid "Antibiotiques"
-msgstr ""
+msgstr "Antibiotics"
 
 #: SmellGalaxy/fctGetDataPie.py:63
 #, fuzzy
 msgid " récemment mangé ("
-msgstr "Food eaten"
+msgstr "Food eaten recently"
 
 #: SmellGalaxy/fctGetDataPie.py:64
 msgid " pas récemment ("
-msgstr ""
+msgstr "Food eaten not recently"
 
 #: SmellGalaxy/fctGetDataPie.py:93
 msgid "De 0 à 10 ans ("
-msgstr ""
+msgstr "From 0 to 10 years old"
 
 #: SmellGalaxy/fctGetDataPie.py:94
 msgid "De 11 à 20 ans ("
-msgstr ""
+msgstr "From 11 to 20 years old"
 
 #: SmellGalaxy/fctGetDataPie.py:95
 msgid "De 21 à 30 ans ("
-msgstr ""
+msgstr "From 21 to 30 years old"
 
 #: SmellGalaxy/fctGetDataPie.py:96
 msgid "De 31 à 40 ans ("
-msgstr ""
+msgstr "From 31 to 40 years old"
 
 #: SmellGalaxy/fctGetDataPie.py:97
 msgid "De 41 ans et plus ("
-msgstr ""
+msgstr "From 41 and beyond "
 
 #: SmellGalaxy/views.py:35 SmellGalaxy/views.py:108 SmellGalaxy/views.py:113
 #: SmellGalaxy/views.py:118 SmellGalaxy/views.py:123 SmellGalaxy/views.py:128
@@ -115,55 +115,55 @@ msgstr "Intensity:"
 #: SmellGalaxy/views.py:35 SmellGalaxy/views.py:108
 #, fuzzy
 msgid "Appreciations (0~100)"
-msgstr "Appreciation:"
+msgstr "Assessment (0~100)"
 
 #: SmellGalaxy/views.py:109
 msgid "Broccoli"
-msgstr ""
+msgstr "Broccoli"
 
 #: SmellGalaxy/views.py:109
 msgid "Gabbage"
-msgstr ""
+msgstr "Gabbage"
 
 #: SmellGalaxy/views.py:109
 msgid "Cauliflower"
-msgstr ""
+msgstr "Cauliflower"
 
 #: SmellGalaxy/views.py:109
 msgid "Asparagus"
-msgstr ""
+msgstr "Asparagus"
 
 #: SmellGalaxy/views.py:109
 msgid "Fish"
-msgstr ""
+msgstr "Fish"
 
 #: SmellGalaxy/views.py:109
 msgid "Red meat"
-msgstr ""
+msgstr "Red meat"
 
 #: SmellGalaxy/views.py:109
 msgid "Spicy food"
-msgstr ""
+msgstr "Spicy food"
 
 #: SmellGalaxy/views.py:109
 msgid "Alcohol"
-msgstr ""
+msgstr "Alcohol"
 
 #: SmellGalaxy/views.py:109
 msgid "Antibiotics"
-msgstr ""
+msgstr "Antibiotics"
 
 #: SmellGalaxy/views.py:112
 msgid "Données selon le sexe"
-msgstr ""
+msgstr "Data for each sex"
 
 #: SmellGalaxy/views.py:112
 msgid "Sexe du donneur"
-msgstr ""
+msgstr "Giver sex"
 
 #: SmellGalaxy/views.py:113
 msgid "Intensités selon le sexe"
-msgstr ""
+msgstr "Intensity for each sex"
 
 #: SmellGalaxy/views.py:113 SmellGalaxy/views.py:118 SmellGalaxy/views.py:123
 #: SmellGalaxy/views.py:128 SmellGalaxy/views.py:139
@@ -174,119 +174,119 @@ msgstr "Intensity"
 #: SmellGalaxy/views.py:114
 #, fuzzy
 msgid "Appréciations selon le sexe"
-msgstr "Appreciation:"
+msgstr "Assessment for each sex"
 
 #: SmellGalaxy/views.py:114 SmellGalaxy/views.py:124 SmellGalaxy/views.py:129
 #: SmellGalaxy/views.py:140
 #, fuzzy
 msgid "Appréciations (-50~50)"
-msgstr "Appreciation:"
+msgstr "Assessment (-50~50)"
 
 #: SmellGalaxy/views.py:114 SmellGalaxy/views.py:119 SmellGalaxy/views.py:124
 #: SmellGalaxy/views.py:129 SmellGalaxy/views.py:140
 msgid "feeling"
-msgstr ""
+msgstr "Assessment"
 
 #: SmellGalaxy/views.py:117
 msgid "Données selon l'âge"
-msgstr ""
+msgstr "Data related to Age"
 
 #: SmellGalaxy/views.py:117 SmellGalaxy/views.py:150
 msgid "Tranche d âge"
-msgstr ""
+msgstr "Age group"
 
 #: SmellGalaxy/views.py:118
 #, fuzzy
 msgid "Intensités selon l âge"
-msgstr "Intensity:"
+msgstr "Intensity related to Age"
 
 #: SmellGalaxy/views.py:119
 #, fuzzy
 msgid "Appréciations selon l âge"
-msgstr "Appreciation:"
+msgstr "Assessment related to Age"
 
 #: SmellGalaxy/views.py:119
 #, fuzzy
 msgid "Apréciations"
-msgstr "Appreciation:"
+msgstr "Assessment"
 
 #: SmellGalaxy/views.py:122
 #, fuzzy
 msgid "Données déodorant"
-msgstr "Deodorant"
+msgstr "Deodorant data"
 
 #: SmellGalaxy/views.py:122
 msgid "Utilisation de déodorant"
-msgstr ""
+msgstr "deodorant user"
 
 #: SmellGalaxy/views.py:123
 msgid "Intensités selon l utilisation de déodorant"
-msgstr ""
+msgstr "Intensity related to deodorant user"
 
 #: SmellGalaxy/views.py:124
 msgid "Appréciations selon l utilisation de déodorant"
-msgstr ""
+msgstr "Assessment related to deodorant user"
 
 #: SmellGalaxy/views.py:127
 #, fuzzy
 msgid "Données fumeur"
-msgstr "Giver"
+msgstr "Smoker data"
 
 #: SmellGalaxy/views.py:127
 msgid "Comsommation de cigarettes"
-msgstr ""
+msgstr "Cigarette consumption"
 
 #: SmellGalaxy/views.py:128
 msgid "Intensités selon la comsommation de cigarettes"
-msgstr ""
+msgstr "Intensity related to cigarette consumption"
 
 #: SmellGalaxy/views.py:129
 msgid "Appréciations selon la comsommation de cigarettes"
-msgstr ""
+msgstr "Assessment related to cigarette consumption"
 
 #: SmellGalaxy/views.py:138
 msgid "Données selon l'alimentation"
-msgstr ""
+msgstr "Data related to alimentation"
 
 #: SmellGalaxy/views.py:138 SmellGalaxy/views.py:152
 msgid "Consommation de cigarettes"
-msgstr ""
+msgstr "Cigarette consumption"
 
 #: SmellGalaxy/views.py:139
 msgid "Intensités selon la consommation d aliments"
-msgstr ""
+msgstr "Intensity related to cigarette consumption"
 
 #: SmellGalaxy/views.py:140
 msgid "Appréciations selon la consommation d aliments"
-msgstr ""
+msgstr "Assessment related to cigarette consumption"
 
 #: SmellGalaxy/views.py:148
 msgid "Repartition selon le sexe"
-msgstr ""
+msgstr "sexe distribution"
 
 #: SmellGalaxy/views.py:148
 msgid "Sexe des donneurs"
-msgstr ""
+msgstr "Giver sex"
 
 #: SmellGalaxy/views.py:148 SmellGalaxy/views.py:150 SmellGalaxy/views.py:152
 msgid "Pourcentage"
-msgstr ""
+msgstr "Percent"
 
 #: SmellGalaxy/views.py:150
 msgid "Repartition selon la tranche d âge"
-msgstr ""
+msgstr "Age group distribution"
 
 #: SmellGalaxy/views.py:152
 msgid "Répartition par consommation de cigarettes"
-msgstr ""
+msgstr "cigarette consumption distribution"
 
 #: SmellGalaxy/views.py:159
 msgid "Apréciation en fonction de l intensité"
-msgstr ""
+msgstr "Assessment related to intensity"
 
 #: SmellGalaxy/views.py:159
 msgid "Apréciation par l intensité"
-msgstr ""
+msgstr "assessment by intensity"
 
 #: SmellGalaxy/views.py:159
 #, fuzzy
@@ -295,11 +295,11 @@ msgstr "Appreciation:"
 
 #: SmellGalaxy/views.py:159
 msgid "Données brutes"
-msgstr ""
+msgstr "Raw data"
 
 #: SmellGalaxy/views.py:159
 msgid "Données centrées"
-msgstr ""
+msgstr "Centered data"
 
 #: SmellGame/settings.py:95
 msgid "Français"
@@ -486,7 +486,7 @@ msgstr ""
 
 #: templates/footer.html:18
 msgid "A PROPOS"
-msgstr ""
+msgstr "ABOUT US"
 
 #: templates/SmellAdminTemplate/deco.html:12
 #: templates/SmellAdminTemplate/main.html:12
@@ -521,11 +521,11 @@ msgstr ""
 
 #: templates/SmellGalaxyTemplate/Graphes.html:214
 msgid "Choissisez un graphique à visualiser : "
-msgstr ""
+msgstr "Choose a graph to visualize :"
 
 #: templates/SmellGalaxyTemplate/Graphes.html:268
 msgid "Informations sur les donneurs : "
-msgstr ""
+msgstr "Givers data :"
 
 #: templates/SmellGiftTemplate/gift.html:12
 #: templates/SmellGiftTemplate/thanks.html:12
@@ -684,7 +684,7 @@ msgstr "Picture:"
 #: templates/SmellGuessTemplate/demo.html:144
 #: templates/SmellGuessTemplate/game.html:144
 msgid "Appréciation :"
-msgstr "Appreciation:"
+msgstr "Assessment :"
 
 #: templates/SmellGuessTemplate/demoResult.html:10
 #: templates/SmellGuessTemplate/result.html:10
