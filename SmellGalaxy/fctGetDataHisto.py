@@ -70,7 +70,7 @@ def getDataHistoBySex(cas):
 		result += "{name: 'Men', data: ["+ str(doMoyFeelingForAllGivers(giverMan))+"]},"
 		result += "{name: 'error', type: 'errorbar', data: ["+str(errorFeelingForAllGivers(giverMan))+"]}]"
 		#result += ",\n["+boxplotFeeling(giverMan) +","+ boxplotFeeling(giverWoman) + "]"
-	print result
+		
 	return result
 	
 def getBoxplotBySex(cas):
