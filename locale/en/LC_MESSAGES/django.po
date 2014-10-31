@@ -24,7 +24,7 @@ msgstr "Smoker"
 
 #: SmellGalaxy/fctGetDataPie.py:33
 msgid "Non fumeurs("
-msgstr ""
+msgstr "Non Smoker"
 
 #: SmellGalaxy/fctGetDataPie.py:48
 #, fuzzy
